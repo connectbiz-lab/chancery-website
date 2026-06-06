@@ -62,9 +62,17 @@
 .nav-logo-brand { height: 92px; }
 .navbar.scrolled .nav-logo-brand { height: 72px; }
 
-/* Chancery (Lavelle Road) lockup — wide and short, golden script */
-.nav-logo-hotel.chancery { height: 78px; }
-.navbar.scrolled .nav-logo-hotel.chancery { height: 62px; }
+/* Chancery (Lavelle Road) lockup — wide and short, golden script.
+   The PNG crops tightly to the artwork, so it needs more visual breathing
+   room than the brand and Pavilion marks (which have built-in whitespace). */
+.nav-logo-hotel.chancery {
+  height: 78px;
+  margin: 6px 28px 6px 4px;
+}
+.navbar.scrolled .nav-logo-hotel.chancery {
+  height: 62px;
+  margin: 4px 24px 4px 4px;
+}
 
 /* Pavilion lockup — tall portrait, includes 'Luxury Unbulloned' tagline */
 .nav-logo-hotel.pavilion { height: 92px; }
@@ -220,10 +228,10 @@
   .navbar.scrolled .navbar-inner { height: 78px; }
   .mobile-panel { inset: 96px 0 0 0; }
   .nav-logo-brand { height: 66px; }
-  .nav-logo-hotel.chancery { height: 56px; }
+  .nav-logo-hotel.chancery { height: 56px; margin: 4px 18px 4px 2px; }
   .nav-logo-hotel.pavilion { height: 70px; }
   .navbar.scrolled .nav-logo-brand { height: 56px; }
-  .navbar.scrolled .nav-logo-hotel.chancery { height: 46px; }
+  .navbar.scrolled .nav-logo-hotel.chancery { height: 46px; margin: 4px 16px 4px 2px; }
   .navbar.scrolled .nav-logo-hotel.pavilion { height: 58px; }
 }
 
@@ -232,6 +240,6 @@
   .navbar.scrolled .navbar-inner { height: 68px; }
   .mobile-panel { inset: 80px 0 0 0; }
   .nav-logo-brand { height: 54px; }
-  .nav-logo-hotel.chancery { height: 44px; }
+  .nav-logo-hotel.chancery { height: 44px; margin: 4px 14px 4px 2px; }
   .nav-logo-hotel.pavilion { height: 58px; }
 }
