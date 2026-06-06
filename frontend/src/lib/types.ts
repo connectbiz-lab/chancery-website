@@ -10,6 +10,7 @@ export interface SiteContent {
   newsletter_heading: string;
   newsletter_description: string;
   og_image: string | null;
+  brand_logo: string | null;
   instagram_url: string;
   facebook_url: string;
   tripadvisor_url: string;

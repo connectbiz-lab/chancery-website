@@ -61,12 +61,18 @@ export function Footer() {
         <div className="container wide">
           <div className="footer-grid">
             <div className="footer-brand">
-              <Link to="/" className="brand light">
-                <span className="brand-mark" aria-hidden="true">C</span>
-                <span className="brand-text">
-                  <span className="brand-name">Chancery</span>
-                  <span className="brand-line">Hotels Bangalore</span>
-                </span>
+              <Link to="/" className="brand light" aria-label="Chancery Hotels — home">
+                {s?.brand_logo ? (
+                  <img src={s.brand_logo} alt="Chancery Hotels" className="footer-logo" />
+                ) : (
+                  <>
+                    <span className="brand-mark" aria-hidden="true">C</span>
+                    <span className="brand-text">
+                      <span className="brand-name">Chancery</span>
+                      <span className="brand-line">Hotels Bangalore</span>
+                    </span>
+                  </>
+                )}
               </Link>
               <p className="brand-note">
                 {s?.footer_note ??

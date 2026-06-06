@@ -46,10 +46,13 @@ def thumb(img, size="sm"):
 
 @admin.register(SiteContent)
 class SiteContentAdmin(admin.ModelAdmin):
-    list_display = ["site_title", "tagline", "og_thumb"]
-    readonly_fields = ["og_thumb"]
+    list_display = ["site_title", "tagline", "brand_logo_thumb"]
+    readonly_fields = ["og_thumb", "brand_logo_thumb"]
     fieldsets = (
         ("Basics", {"fields": ("site_title", "tagline", "meta_description")}),
+        ("Brand logo (navbar + footer)", {
+            "fields": ("brand_logo", "brand_logo_thumb"),
+        }),
         ("Newsletter", {"fields": ("newsletter_heading", "newsletter_description")}),
         ("Footer & social", {
             "fields": (
@@ -65,8 +68,11 @@ class SiteContentAdmin(admin.ModelAdmin):
 
     def og_thumb(self, obj):
         return thumb(obj.og_image, "lg")
-
     og_thumb.short_description = "OG image preview"
+
+    def brand_logo_thumb(self, obj):
+        return thumb(obj.brand_logo, "lg")
+    brand_logo_thumb.short_description = "Brand logo preview"
 
     def has_add_permission(self, request):
         # Singleton — only one row.

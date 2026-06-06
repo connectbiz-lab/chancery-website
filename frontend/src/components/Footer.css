@@ -48,7 +48,18 @@
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 3.5rem 3rem;
 }
-.footer-brand .brand { margin-bottom: 1.5rem; }
+.footer-brand .brand { margin-bottom: 1.5rem; align-items: flex-start; }
+.footer-logo {
+  height: 96px;
+  width: auto;
+  display: block;
+  background: rgba(246, 241, 231, 0.94);
+  padding: 10px 16px;
+  border-radius: 2px;
+}
+@media (max-width: 720px) {
+  .footer-logo { height: 72px; }
+}
 .brand-note {
   font-family: var(--f-serif);
   font-size: 1.05rem;

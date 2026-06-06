@@ -140,6 +140,9 @@ class Command(BaseCommand):
         og = img_path(source, "/images/common/chancery-banner.jpg")
         if og:
             attach(sc, "og_image", og)
+        brand_logo = img_path(source, "/images/common/Chancery.png")
+        if brand_logo:
+            attach(sc, "brand_logo", brand_logo)
         self.stdout.write("  · site content")
 
     # ----------------------------------------------------------------- hotels

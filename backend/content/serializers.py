@@ -25,6 +25,7 @@ def list_from_lines(text):
 
 class SiteContentSerializer(serializers.ModelSerializer):
     og_image = serializers.ImageField(read_only=True)
+    brand_logo = serializers.ImageField(read_only=True)
 
     class Meta:
         model = SiteContent
@@ -36,6 +37,7 @@ class SiteContentSerializer(serializers.ModelSerializer):
             "newsletter_heading",
             "newsletter_description",
             "og_image",
+            "brand_logo",
             "instagram_url",
             "facebook_url",
             "tripadvisor_url",

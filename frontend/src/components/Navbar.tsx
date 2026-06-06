@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { api, useAsync } from "@/lib/api";
 import { useHotel } from "@/lib/hotel";
 import type { HotelSlug } from "@/lib/types";
 import "./Navbar.css";
@@ -28,6 +29,8 @@ const PRIMARY: NavItem[] = [
 export function Navbar() {
   const { active, fallback } = useHotel();
   const { pathname } = useLocation();
+  const site = useAsync(() => api.siteContent(), []);
+  const hotels = useAsync(() => api.hotels(), []);
   const [scrolled, setScrolled] = useState(false);
   const [openProp, setOpenProp] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -40,13 +43,27 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close menus on route change.
   useEffect(() => {
     setOpenProp(false);
     setMobileOpen(false);
   }, [pathname]);
 
   const scope: HotelSlug = active ?? fallback;
+
+  // Active scope drives the logo: brand-wide on the root tree, hotel-specific
+  // inside /chancery and /pavilion. Falls back to the brand mark if a hotel's
+  // logo hasn't been uploaded.
+  const activeHotel = useMemo(
+    () => hotels.data?.find((h) => h.slug === active),
+    [hotels.data, active],
+  );
+  const brandLogo = site.data?.brand_logo ?? null;
+  const logoSrc = activeHotel?.logo ?? brandLogo;
+  const logoAlt = activeHotel
+    ? `${activeHotel.name} — home`
+    : `${site.data?.site_title ?? "Chancery Hotels"} — home`;
+  // Hotel logos are tall portrait marks (esp. Pavilion). Brand logo is squarer.
+  const logoClass = activeHotel ? `nav-logo nav-logo-hotel ${active}` : "nav-logo nav-logo-brand";
 
   const navClass = [
     "navbar",
@@ -58,12 +75,12 @@ export function Navbar() {
   return (
     <header className={navClass}>
       <div className="navbar-inner container wide">
-        <Link to="/" className="brand" aria-label="Chancery Hotels — home">
-          <span className="brand-mark" aria-hidden="true">C</span>
-          <span className="brand-text">
-            <span className="brand-name">Chancery</span>
-            <span className="brand-line">Hotels Bangalore</span>
-          </span>
+        <Link to="/" className="brand" aria-label={logoAlt}>
+          {logoSrc ? (
+            <img src={logoSrc} alt={logoAlt} className={logoClass} />
+          ) : (
+            <span className="brand-mark" aria-hidden="true">C</span>
+          )}
         </Link>
 
         <nav className="primary" aria-label="Primary">

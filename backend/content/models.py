@@ -26,6 +26,13 @@ class SiteContent(models.Model):
     newsletter_heading = models.CharField(max_length=200, default="Stay in touch")
     newsletter_description = models.TextField(blank=True)
     og_image = models.ImageField(upload_to="brand/", blank=True, null=True)
+    brand_logo = models.ImageField(
+        upload_to="brand/",
+        blank=True,
+        null=True,
+        help_text="Master 'Chancery Hotels' group logo. Shown in the navbar on "
+        "all brand-level pages, and in the footer.",
+    )
     instagram_url = models.URLField(blank=True)
     facebook_url = models.URLField(blank=True)
     tripadvisor_url = models.URLField(blank=True)
