@@ -1,0 +1,49 @@
+/* Two-hotel property card */
+.property-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1.75rem;
+  color: var(--c-navy);
+  transition: transform 0.4s var(--t-easing);
+}
+.property-card:hover { color: var(--c-navy); }
+.property-card:hover .figure img { transform: scale(1.05); }
+.property-card .property-body { padding: 0; }
+.property-card .figure { aspect-ratio: 4 / 3; }
+.property-card h3 { margin: 0.5rem 0; }
+.property-card .copy {
+  font-family: var(--f-serif);
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--c-muted);
+  margin-bottom: 1.25rem;
+}
+
+/* Offers on dark band */
+.offer-card .figure { aspect-ratio: 4 / 3; margin-bottom: 1.5rem; }
+
+/* Testimonial stack */
+.testimonial-stack {
+  display: grid; gap: 4rem;
+  margin-top: 2.5rem;
+}
+.testimonial { margin: 0; }
+.testimonial figcaption {
+  margin-top: 1.5rem;
+  display: flex; flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+.t-name {
+  font-family: var(--f-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-navy);
+}
+.t-title {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--c-muted);
+}
