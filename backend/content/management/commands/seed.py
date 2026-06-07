@@ -582,47 +582,49 @@ class Command(BaseCommand):
 
     # ----------------------------------------------------------------- offers
     def _offers(self, source, chancery, pavilion):
+        # Placeholder images sourced from the legacy gallery — easy to swap
+        # out from /admin once final offer photography is ready.
         items = [
             (None, "Save 15%", "Early Bird Offer",
              "Book 21 days in advance and enjoy 15% off the best available "
              "rate. Book 7 days ahead for 10% off.",
-             "EARLYBIRD", None),
+             "EARLYBIRD", None, "/images/chancery/lobby.jpg"),
             (None, "Min 7 Nights", "Extended Stay Package",
              "Stay for a minimum of 7 nights and enjoy special discounted "
              "rates across all room categories.",
-             "EXTENDED7", 7),
+             "EXTENDED7", 7, "/images/pavilion/superior-room-lounge.jpg"),
             (None, "Weekends", "Weekend Package",
              "Valid on Saturday and Sunday for Deluxe and Premium Rooms. "
              "Enjoy 10% off the best available rate.",
-             "WEEKEND", 2),
+             "WEEKEND", 2, "/images/pavilion/alchemy-rooftop-sunset.jpg"),
             (None, "Last Minute", "Last Minute Deal",
              "Book within 0–3 days and receive 5% off the best available room rate.",
-             "LASTMIN", None),
+             "LASTMIN", None, "/images/chancery/deluxe-room-king.jpg"),
             ("pavilion", "Rooftop Dining", "Alchemy Microbrewery Package",
              "Stay & dine at Pavilion: complimentary craft-beer flight for "
              "two at our 10th-floor Alchemy microbrewery, plus buffet "
              "breakfast at Ithaca.",
-             "ALCHEMY", 1),
+             "ALCHEMY", 1, "/images/pavilion/alchemy-night.jpg"),
             ("pavilion", "Wedding", "Grand Ballroom Wedding Suite",
              "Book the Grand Ball Room for your wedding and receive a "
              "complimentary bridal-suite upgrade with a poolside cocktail setup.",
-             "PAVILIONWED", None),
+             "PAVILIONWED", None, "/images/pavilion/grand-ballroom-banquet.jpg"),
             ("chancery", "Heritage", "Lavelle Road Heritage Stay",
              "Two nights in a heritage suite at The Chancery Hotel with a "
              "Japanese tasting menu for two at Matsuri.",
-             "HERITAGE", 2),
+             "HERITAGE", 2, "/images/chancery/matsuri-dining.jpg"),
             ("chancery", "Business", "Lavelle Business Break",
              "Single-night corporate package on Lavelle Road with breakfast "
              "at South Parade and complimentary airport transfer.",
-             "LAVELLEBIZ", None),
+             "LAVELLEBIZ", None, "/images/chancery/south-parade-lobby.jpg"),
         ]
-        for idx, (hslug, tag, title, desc, promo, min_nights) in enumerate(items, start=1):
+        for idx, (hslug, tag, title, desc, promo, min_nights, img_rel) in enumerate(items, start=1):
             hotel = None
             if hslug == "chancery":
                 hotel = chancery
             elif hslug == "pavilion":
                 hotel = pavilion
-            Offer.objects.create(
+            offer = Offer.objects.create(
                 hotel=hotel,
                 tag=tag,
                 title=title,
@@ -631,6 +633,7 @@ class Command(BaseCommand):
                 min_nights=min_nights,
                 order=idx,
             )
+            attach(offer, "image", img_path(source, img_rel))
         self.stdout.write(f"  · offers ({Offer.objects.count()})")
 
     # ---------------------------------------------------------------- gallery
