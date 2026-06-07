@@ -34,9 +34,9 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
 
       <Hero
         image={hotelData.hero_image}
-        eyebrow={pageData?.hero_eyebrow ?? `${hotelData.location_tag} · ${hotelData.location}`}
-        heading={pageData?.hero_heading ?? hotelData.tagline}
-        subheading={pageData?.hero_subheading}
+        eyebrow={`${hotelData.location_tag} · ${hotelData.location}`}
+        heading={hotelData.name}
+        subheading={hotelData.address}
         size="full"
         align="center"
       >
@@ -87,7 +87,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
               <p className="lede">
                 {hotelData.intro_body}
               </p>
-              <Link to={`/${hotel}/experience`} className="link-arrow">Our story</Link>
+              <Link to={`/${hotel}/gallery`} className="link-arrow">Our story</Link>
             </div>
           </div>
         </div>

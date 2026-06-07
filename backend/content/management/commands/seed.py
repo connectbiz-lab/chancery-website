@@ -42,12 +42,31 @@ from content.models import (
 
 DEFAULT_SOURCE = Path("/Users/jagraj/Documents/Github/chancery-website")
 
+# v2-local "frozen" assets: photography that lives inside this repo so the
+# seed no longer depends on the legacy v1 source for it. Prefer this over
+# img_path() when a curated v2 replacement exists.
+LOCAL_ASSETS = Path(__file__).resolve().parents[3] / "seed_assets"
+
 
 def img_path(source_root: Path, rel: str) -> Path | None:
     """Resolve a /images/... path from the old site into an absolute source path."""
     rel = rel.lstrip("/")
     candidate = source_root / "public" / rel
     return candidate if candidate.exists() else None
+
+
+def local_path(rel: str) -> Path | None:
+    """Resolve a path inside backend/seed_assets/ (v2-owned photography)."""
+    candidate = LOCAL_ASSETS / rel.lstrip("/")
+    return candidate if candidate.is_file() else None
+
+
+def seed_image(source_root: Path, rel: str) -> Path | None:
+    """Prefer a v2-local frozen asset, otherwise fall back to the v1 source.
+    Lets a single canonical path (e.g. /images/pavilion/hero.jpg) silently
+    upgrade to the curated v2 copy when one exists under seed_assets/."""
+    local_rel = rel.lstrip("/").removeprefix("images/")
+    return local_path(local_rel) or img_path(source_root, rel)
 
 
 def attach(model_instance, field_name: str, src_path: Path, save: bool = True):
@@ -180,7 +199,7 @@ class Command(BaseCommand):
             ),
             order=2,
         )
-        attach(chancery, "hero_image", img_path(source, "/images/chancery/hero.jpg"))
+        attach(chancery, "hero_image", seed_image(source, "/images/chancery/hero.jpg"))
         attach(chancery, "about_image", img_path(source, "/images/chancery/about.jpg"))
         attach(chancery, "banner_image", img_path(source, "/images/common/chancery-banner.jpg"))
         attach(chancery, "logo", img_path(source, "/images/common/TCH.png"))
@@ -217,7 +236,7 @@ class Command(BaseCommand):
             ),
             order=1,
         )
-        attach(pavilion, "hero_image", img_path(source, "/images/pavilion/hero.jpg"))
+        attach(pavilion, "hero_image", seed_image(source, "/images/pavilion/hero.jpg"))
         attach(pavilion, "about_image", img_path(source, "/images/pavilion/about.jpg"))
         attach(pavilion, "banner_image", img_path(source, "/images/common/pavilion-banner.jpg"))
         attach(pavilion, "logo", img_path(source, "/images/common/TCP_LOGO.png"))
@@ -870,7 +889,7 @@ class Command(BaseCommand):
                 intro_body=intro,
             )
             if hero_rel:
-                attach(page, "hero_image", img_path(source, hero_rel))
+                attach(page, "hero_image", seed_image(source, hero_rel))
 
         # Per-hotel pages.
         hotel_pages = {
@@ -930,14 +949,6 @@ class Command(BaseCommand):
                      "Contact", "Reach the Chancery",
                      "Speak directly to the team at 10/6 Lavelle Road for "
                      "reservations, dining and event enquiries."),
-                    ("experience", "The Chancery Experience",
-                     "The Experience | The Chancery Hotel",
-                     "What it feels like to stay at The Chancery Hotel — "
-                     "service, ceremony, and a sense of place.",
-                     "The experience", "An unhurried kind of luxury",
-                     "Service shaped by decades of hospitality, interiors "
-                     "shaped by Lavelle Road's quiet refinement, and a sense "
-                     "of welcome that lingers long after check-out."),
                     ("destination", "Lavelle Road & Around",
                      "Destination | The Chancery Hotel",
                      "Explore the neighbourhood around The Chancery Hotel — "
@@ -1006,15 +1017,6 @@ class Command(BaseCommand):
                      "Contact", "Reach the Pavilion",
                      "Speak directly to the team at #135 Residency Road for "
                      "reservations, dining and event enquiries."),
-                    ("experience", "The Pavilion Experience",
-                     "The Experience | The Chancery Pavilion",
-                     "Contemporary luxury, attentive service, and the views "
-                     "and amenities of a Residency Road landmark.",
-                     "The experience", "Contemporary luxury, deeply Bangalorean",
-                     "The Pavilion blends the warmth of Chancery hospitality "
-                     "with the conveniences of a modern flagship — a "
-                     "rooftop bar, an outdoor pool, club-floor service, and "
-                     "Bangalore at your doorstep."),
                     ("destination", "Residency Road & Around",
                      "Destination | The Chancery Pavilion",
                      "Explore the neighbourhood around The Chancery Pavilion "
@@ -1035,5 +1037,5 @@ class Command(BaseCommand):
                     hero_eyebrow=eyebrow, hero_heading=heading,
                     intro_body=intro,
                 )
-                attach(page, "hero_image", img_path(source, data["hero"]))
+                attach(page, "hero_image", seed_image(source, data["hero"]))
         self.stdout.write(f"  · pages ({Page.objects.count()})")

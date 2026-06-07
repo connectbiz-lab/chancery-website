@@ -11,7 +11,6 @@ const HOTEL_PAGES: Array<[string, string]> = [
   ["special-offers", "Special offers"],
   ["gallery", "Gallery"],
   ["contact-us", "Contact us"],
-  ["experience", "Experience"],
   ["destination", "Destination"],
 ];
 

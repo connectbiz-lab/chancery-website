@@ -22,7 +22,6 @@ const PRIMARY: NavItem[] = [
   { label: "Dining", scoped: "/dining" },
   { label: "Events", scoped: "/plan-your-event" },
   { label: "Offers", scoped: "/special-offers" },
-  { label: "Experience", scoped: "/experience" },
   { label: "Gallery", scoped: "/gallery" },
 ];
 

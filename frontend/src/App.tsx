@@ -8,7 +8,6 @@ import { ContactPage } from "@/pages/ContactPage";
 import { DestinationPage } from "@/pages/DestinationPage";
 import { DiningPage } from "@/pages/DiningPage";
 import { EventsPage } from "@/pages/EventsPage";
-import { ExperiencePage } from "@/pages/ExperiencePage";
 import { FAQPage } from "@/pages/FAQPage";
 import { GalleryPage } from "@/pages/GalleryPage";
 import { HomePage } from "@/pages/HomePage";
@@ -102,14 +101,6 @@ export function App() {
           element={
             <ValidHotel>
               <HotelParam Component={ContactPage} />
-            </ValidHotel>
-          }
-        />
-        <Route
-          path=":hotel/experience"
-          element={
-            <ValidHotel>
-              <HotelParam Component={ExperiencePage} />
             </ValidHotel>
           }
         />

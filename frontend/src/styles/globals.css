@@ -8,9 +8,9 @@
 
 :root {
   /* ---------- colour ---------- */
-  --c-ivory:        #f6f1e7;   /* primary surface */
-  --c-ivory-2:      #efe8d8;   /* warm tint */
-  --c-cream:        #fbf7ef;   /* lightest surface */
+  --c-ivory:        #faf9f8;   /* primary surface — Claridges off-white */
+  --c-ivory-2:      #f0ece4;   /* warm tint — only for accent blocks (image mats) */
+  --c-cream:        #ffffff;   /* lightest surface — clean white */
   --c-paper:        #ffffff;
   --c-navy:         #0e2237;   /* primary ink / on dark surfaces */
   --c-navy-soft:    #1d3552;
