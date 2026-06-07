@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
@@ -148,9 +149,14 @@ export function HomePage() {
                   <p className="card-eyebrow" style={{ color: "var(--c-gold-soft)" }}>{o.tag}</p>
                   <h3 style={{ color: "var(--c-ivory)" }}>{o.title}</h3>
                   <p className="copy" style={{ color: "rgba(246,241,231,0.85)" }}>{o.description}</p>
-                  <Link to={`/book?hotel=${o.hotel?.slug ?? "pavilion"}${o.promo_code ? `&promo=${o.promo_code}` : ""}`} className="link-arrow" style={{ color: "var(--c-gold-soft)", borderColor: "var(--c-gold-soft)" }}>
+                  <BookButton
+                    hotel={o.hotel?.slug ?? "pavilion"}
+                    promo={o.promo_code || undefined}
+                    className="link-arrow"
+                    style={{ color: "var(--c-gold-soft)", borderColor: "var(--c-gold-soft)" }}
+                  >
                     Book
-                  </Link>
+                  </BookButton>
                 </div>
               ))}
             </div>

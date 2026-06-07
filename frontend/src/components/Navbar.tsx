@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { api, useAsync } from "@/lib/api";
 import { useHotel } from "@/lib/hotel";
 import type { HotelSlug } from "@/lib/types";
+import { BookButton } from "./BookButton";
 import "./Navbar.css";
 
 interface NavItem {
@@ -123,7 +124,7 @@ export function Navbar() {
         </nav>
 
         <div className="nav-cta">
-          <Link to={`/book?hotel=${scope}`} className="btn small gold">Book Now</Link>
+          <BookButton hotel={scope} className="btn small gold">Book Now</BookButton>
         </div>
 
         <button
@@ -163,7 +164,7 @@ export function Navbar() {
             <Link to="/catering" className="mobile-link">Outdoor Catering</Link>
           </div>
           <div className="mobile-cta">
-            <Link to={`/book?hotel=${scope}`} className="btn gold">Book Your Stay</Link>
+            <BookButton hotel={scope} className="btn gold">Book Your Stay</BookButton>
           </div>
         </div>
       )}

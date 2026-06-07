@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
@@ -67,7 +68,7 @@ export function DestinationPage({ hotel }: { hotel: HotelSlug }) {
             ))}
           </ul>
           <p className="text-center" style={{ marginTop: "3rem" }}>
-            <Link to={`/book?hotel=${hotel}`} className="btn">Book your stay</Link>
+            <BookButton hotel={hotel} className="btn">Book your stay</BookButton>
           </p>
         </div>
       </section>

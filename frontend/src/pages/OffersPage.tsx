@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
@@ -42,12 +43,13 @@ export function OffersPage({ hotel }: { hotel: HotelSlug }) {
                 <p className="copy">{o.description}</p>
                 {o.min_nights && <p className="meta">Minimum {o.min_nights} nights</p>}
                 <div className="card-cta">
-                  <Link
-                    to={`/book?hotel=${hotel}${o.promo_code ? `&promo=${o.promo_code}` : ""}`}
+                  <BookButton
+                    hotel={hotel}
+                    promo={o.promo_code || undefined}
                     className="link-arrow"
                   >
                     Book
-                  </Link>
+                  </BookButton>
                 </div>
               </article>
             ))}

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
@@ -40,7 +41,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
         size="full"
         align="center"
       >
-        <Link to={`/book?hotel=${hotel}`} className="btn gold">Book your stay</Link>
+        <BookButton hotel={hotel} className="btn gold">Book your stay</BookButton>
         <Link to={`/${hotel}/accommodation`} className="btn light">Explore rooms</Link>
       </Hero>
 
@@ -178,7 +179,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
                   <p className="card-eyebrow">{o.tag}</p>
                   <h3>{o.title}</h3>
                   <p className="copy">{o.description}</p>
-                  <Link to={`/book?hotel=${hotel}${o.promo_code ? `&promo=${o.promo_code}` : ""}`} className="link-arrow">Book</Link>
+                  <BookButton hotel={hotel} promo={o.promo_code || undefined} className="link-arrow">Book</BookButton>
                 </div>
               ))}
             </div>
@@ -220,7 +221,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "2rem", flexWrap: "wrap" }}>
             <Link to={`/${hotel}/contact-us`} className="btn light">Contact us</Link>
-            <Link to={`/book?hotel=${hotel}`} className="btn gold">Book your stay</Link>
+            <BookButton hotel={hotel} className="btn gold">Book your stay</BookButton>
           </div>
         </div>
       </section>

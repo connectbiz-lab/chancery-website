@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
@@ -86,7 +87,7 @@ function RoomBlock({ room, flip, hotel }: { room: Room; flip: boolean; hotel: Ho
           </ul>
         )}
         <div className="room-cta">
-          <Link to={`/book?hotel=${hotel}`} className="btn">Book this room</Link>
+          <BookButton hotel={hotel} className="btn">Book this room</BookButton>
         </div>
       </div>
     </article>
