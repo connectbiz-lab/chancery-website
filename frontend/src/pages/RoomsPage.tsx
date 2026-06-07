@@ -17,7 +17,7 @@ export function RoomsPage() {
     <>
       <PageMeta title={p?.meta_title ?? "Suites & Rooms"} description={p?.meta_description} />
       <Hero
-        image={p?.hero_image ?? hotels.data?.[1]?.hero_image ?? null}
+        image={p?.hero_image ?? hotels.data?.find((h) => h.slug === "pavilion")?.hero_image ?? null}
         eyebrow={p?.hero_eyebrow ?? "Stays"}
         heading={p?.hero_heading ?? "Rooms & suites"}
         subheading={p?.hero_subheading}

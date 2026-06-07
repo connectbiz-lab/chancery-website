@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 import type { HotelSlug } from "./types";
 
-const HOTELS: HotelSlug[] = ["chancery", "pavilion"];
+const HOTELS: HotelSlug[] = ["pavilion", "chancery"];
 
 function hotelFromPath(pathname: string): HotelSlug | null {
   const seg = pathname.split("/").filter(Boolean)[0];

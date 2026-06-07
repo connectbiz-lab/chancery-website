@@ -28,10 +28,10 @@
   display: flex;
   align-items: center;
   gap: 2rem;
-  height: 124px;
+  height: 144px;
   transition: height 0.3s var(--t-easing);
 }
-.navbar.scrolled .navbar-inner { height: 100px; }
+.navbar.scrolled .navbar-inner { height: 120px; }
 
 /* Brand */
 .brand {
@@ -59,37 +59,30 @@
   transition: height 0.3s var(--t-easing), opacity 0.3s var(--t-easing);
 }
 /* Master 'Chancery Hotels' lockup — square with built-in whitespace */
-.nav-logo-brand { height: 92px; }
-.navbar.scrolled .nav-logo-brand { height: 72px; }
+.nav-logo-brand { height: 112px; }
+.navbar.scrolled .nav-logo-brand { height: 92px; }
 
 /* Chancery (Lavelle Road) lockup — wide and short, golden script.
    The PNG crops tightly to the artwork, so it needs more visual breathing
    room than the brand and Pavilion marks (which have built-in whitespace). */
 .nav-logo-hotel.chancery {
-  height: 78px;
+  height: 96px;
   margin: 6px 28px 6px 4px;
 }
 .navbar.scrolled .nav-logo-hotel.chancery {
-  height: 62px;
+  height: 80px;
   margin: 4px 24px 4px 4px;
 }
 
 /* Pavilion lockup — tall portrait, includes 'Luxury Unbulloned' tagline */
-.nav-logo-hotel.pavilion { height: 92px; }
-.navbar.scrolled .nav-logo-hotel.pavilion { height: 72px; }
+.nav-logo-hotel.pavilion { height: 112px; }
+.navbar.scrolled .nav-logo-hotel.pavilion { height: 92px; }
 
-/* On the transparent (over-hero) header, the logos have maroon/gold detail
-   on transparent backgrounds — they need a soft cream backplate to stay
-   legible against dark imagery. Padding is tight because each logo already
-   has built-in internal whitespace. */
+/* Logo sits transparent over the hero — the PNG has its own alpha. A subtle
+   drop-shadow keeps the maroon/gold detail readable on light imagery without
+   adding a visible plate behind it. */
 .navbar.transparent .nav-logo {
-  background: rgba(246, 241, 231, 0.95);
-  padding: 4px 10px;
-  border-radius: 2px;
-  box-shadow: 0 8px 24px rgba(14, 34, 55, 0.18);
-}
-.navbar.scrolled.transparent .nav-logo {
-  background: rgba(246, 241, 231, 0.97);
+  filter: drop-shadow(0 2px 6px rgba(14, 34, 55, 0.35));
 }
 
 /* Primary nav */
@@ -135,6 +128,17 @@
   pointer-events: none;
   transition: opacity 0.25s var(--t-easing), transform 0.25s var(--t-easing);
   transform-origin: top center;
+}
+/* Invisible bridge that fills the 18px gap between the trigger and the menu,
+   so moving the cursor down from "Our Hotels" to a menu item doesn't fire
+   mouseleave on the <li> and close the panel mid-click. */
+.mega::before {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: 0;
+  right: 0;
+  height: 22px;
 }
 .has-mega.open .mega { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
 .mega-item {
@@ -224,22 +228,22 @@
 }
 
 @media (max-width: 720px) {
-  .navbar-inner { height: 96px; }
-  .navbar.scrolled .navbar-inner { height: 78px; }
-  .mobile-panel { inset: 96px 0 0 0; }
-  .nav-logo-brand { height: 66px; }
-  .nav-logo-hotel.chancery { height: 56px; margin: 4px 18px 4px 2px; }
-  .nav-logo-hotel.pavilion { height: 70px; }
-  .navbar.scrolled .nav-logo-brand { height: 56px; }
-  .navbar.scrolled .nav-logo-hotel.chancery { height: 46px; margin: 4px 16px 4px 2px; }
-  .navbar.scrolled .nav-logo-hotel.pavilion { height: 58px; }
+  .navbar-inner { height: 112px; }
+  .navbar.scrolled .navbar-inner { height: 92px; }
+  .mobile-panel { inset: 112px 0 0 0; }
+  .nav-logo-brand { height: 82px; }
+  .nav-logo-hotel.chancery { height: 70px; margin: 4px 18px 4px 2px; }
+  .nav-logo-hotel.pavilion { height: 86px; }
+  .navbar.scrolled .nav-logo-brand { height: 70px; }
+  .navbar.scrolled .nav-logo-hotel.chancery { height: 58px; margin: 4px 16px 4px 2px; }
+  .navbar.scrolled .nav-logo-hotel.pavilion { height: 72px; }
 }
 
 @media (max-width: 480px) {
-  .navbar-inner { height: 80px; }
-  .navbar.scrolled .navbar-inner { height: 68px; }
-  .mobile-panel { inset: 80px 0 0 0; }
-  .nav-logo-brand { height: 54px; }
-  .nav-logo-hotel.chancery { height: 44px; margin: 4px 14px 4px 2px; }
-  .nav-logo-hotel.pavilion { height: 58px; }
+  .navbar-inner { height: 96px; }
+  .navbar.scrolled .navbar-inner { height: 82px; }
+  .mobile-panel { inset: 96px 0 0 0; }
+  .nav-logo-brand { height: 68px; }
+  .nav-logo-hotel.chancery { height: 56px; margin: 4px 14px 4px 2px; }
+  .nav-logo-hotel.pavilion { height: 72px; }
 }

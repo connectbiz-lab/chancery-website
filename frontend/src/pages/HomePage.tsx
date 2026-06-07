@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Hero } from "@/components/Hero";
 import { Loading } from "@/components/Loading";
@@ -23,7 +24,10 @@ export function HomePage() {
   if (page.loading || hotels.loading) return <Loading />;
 
   const p = page.data;
-  const heroImage = p?.hero_image ?? hotels.data?.[1]?.hero_image ?? null;
+  const pavilion = hotels.data?.find((h) => h.slug === "pavilion");
+  const chancery = hotels.data?.find((h) => h.slug === "chancery");
+  const heroImage = p?.hero_image ?? pavilion?.hero_image ?? null;
+  const introImage = chancery?.about_image ?? chancery?.hero_image ?? null;
 
   return (
     <>
@@ -47,17 +51,26 @@ export function HomePage() {
         ))}
       </Hero>
 
-      {/* Brand introduction */}
+      {/* Brand introduction — Claridges-style two-column */}
       <section className="section bg-cream">
-        <div ref={introRef} className="container narrow reveal">
-          <div className="section-head">
-            <p className="eyebrow center">The Chancery Group</p>
-            <h2 className="display">A quiet kind of luxury, since 1968.</h2>
-            <p className="lede">
-              {p?.intro_body ??
-                "Two distinguished hotels at the heart of Bangalore — bound by a shared commitment to timeless hospitality, elegant interiors and the city's most thoughtful dining."}
-            </p>
-            <hr className="divider center" />
+        <div ref={introRef} className="container reveal">
+          <div className="intro-claridges">
+            <div className="intro-claridges__text">
+              <p className="eyebrow">The Chancery Group</p>
+              <h2 className="display">A quiet kind of luxury, since 1968.</h2>
+              <p className="lede">
+                {p?.intro_body ??
+                  "Two distinguished hotels at the heart of Bangalore — bound by a shared commitment to timeless hospitality, elegant interiors and the city's most thoughtful dining."}
+              </p>
+              <hr className="divider" />
+            </div>
+            <span className="intro-claridges__divider" aria-hidden="true" />
+            <div className="intro-claridges__media">
+              <span className="intro-claridges__mat" aria-hidden="true" />
+              <div className="figure aspect-43">
+                {introImage && <img src={introImage} alt="The Chancery Hotel lobby" />}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -147,7 +160,7 @@ export function HomePage() {
 
       {/* Testimonials */}
       {testimonials.data && testimonials.data.length > 0 && (
-        <section className="section bg-ivory">
+        <section className="section tight bg-ivory">
           <div ref={testimonialsRef} className="container narrow reveal text-center">
             <p className="eyebrow center">Guest stories</p>
             <Testimonials items={testimonials.data} />
@@ -159,17 +172,64 @@ export function HomePage() {
 }
 
 function Testimonials({ items }: { items: { quote: string; name: string; title: string }[] }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const list = items.slice(0, 5);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const onScroll = () => {
+      const i = Math.round(track.scrollLeft / track.clientWidth);
+      setActive(i);
+    };
+    track.addEventListener("scroll", onScroll, { passive: true });
+    return () => track.removeEventListener("scroll", onScroll);
+  }, []);
+
+  function goTo(i: number) {
+    const track = trackRef.current;
+    if (!track) return;
+    track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" });
+  }
+
   return (
-    <div className="testimonial-stack">
-      {items.slice(0, 3).map((t, i) => (
-        <figure key={i} className="testimonial">
-          <blockquote className="italic-quote">"{t.quote}"</blockquote>
-          <figcaption>
-            <span className="t-name">{t.name}</span>
-            <span className="t-title">{t.title}</span>
-          </figcaption>
-        </figure>
-      ))}
+    <div className="testimonial-carousel">
+      <div
+        ref={trackRef}
+        className="testimonial-track"
+        aria-roledescription="carousel"
+        aria-label="Guest testimonials"
+      >
+        {list.map((t, i) => (
+          <figure
+            key={i}
+            className="testimonial"
+            aria-roledescription="slide"
+            aria-label={`${i + 1} of ${list.length}`}
+          >
+            <blockquote className="italic-quote">&ldquo;{t.quote}&rdquo;</blockquote>
+            <figcaption>
+              <span className="t-name">{t.name}</span>
+              <span className="t-title">{t.title}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      {list.length > 1 && (
+        <div className="testimonial-dots" role="tablist">
+          {list.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              className="testimonial-dot"
+              aria-current={active === i}
+              aria-label={`Show testimonial ${i + 1}`}
+              onClick={() => goTo(i)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

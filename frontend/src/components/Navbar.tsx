@@ -13,8 +13,8 @@ interface NavItem {
 }
 
 const PROPERTIES: Array<{ slug: HotelSlug; label: string; sublabel: string }> = [
-  { slug: "chancery", label: "The Chancery Hotel", sublabel: "Lavelle Road" },
   { slug: "pavilion", label: "The Chancery Pavilion", sublabel: "Residency Road" },
+  { slug: "chancery", label: "The Chancery Hotel", sublabel: "Lavelle Road" },
 ];
 
 const PRIMARY: NavItem[] = [

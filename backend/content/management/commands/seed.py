@@ -178,7 +178,7 @@ class Command(BaseCommand):
                 "anchored in the heritage of one of the city's most refined "
                 "neighbourhoods."
             ),
-            order=1,
+            order=2,
         )
         attach(chancery, "hero_image", img_path(source, "/images/chancery/hero.jpg"))
         attach(chancery, "about_image", img_path(source, "/images/chancery/about.jpg"))
@@ -215,7 +215,7 @@ class Command(BaseCommand):
                 "outdoor pool, and a grand ballroom that has hosted some of "
                 "Bangalore's most memorable celebrations."
             ),
-            order=2,
+            order=1,
         )
         attach(pavilion, "hero_image", img_path(source, "/images/pavilion/hero.jpg"))
         attach(pavilion, "about_image", img_path(source, "/images/pavilion/about.jpg"))

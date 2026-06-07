@@ -22,17 +22,117 @@
 /* Offers on dark band */
 .offer-card .figure { aspect-ratio: 4 / 3; margin-bottom: 1.5rem; }
 
-/* Testimonial stack */
-.testimonial-stack {
-  display: grid; gap: 4rem;
-  margin-top: 2.5rem;
+/* Brand introduction — Claridges-style two-column */
+.intro-claridges {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: clamp(2rem, 5vw, 4.5rem);
 }
-.testimonial { margin: 0; }
+.intro-claridges__text { max-width: 32rem; }
+.intro-claridges__text .display { margin-bottom: 0.5em; }
+.intro-claridges__text .divider { margin-top: 2rem; margin-bottom: 0; }
+
+.intro-claridges__divider {
+  align-self: stretch;
+  width: 1px;
+  background: var(--c-line);
+  position: relative;
+}
+.intro-claridges__divider::before,
+.intro-claridges__divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 10px; height: 10px;
+  border: 1px solid var(--c-gold);
+  background: var(--c-cream);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.intro-claridges__divider::before { top: calc(50% - 9px); }
+.intro-claridges__divider::after  { top: calc(50% + 9px); }
+
+.intro-claridges__media {
+  position: relative;
+  padding-top: 2rem;
+  padding-right: 2rem;
+}
+.intro-claridges__mat {
+  position: absolute;
+  inset: 0 0 2rem 2rem;
+  background: var(--c-ivory-2);
+  z-index: 0;
+}
+.intro-claridges__media .figure {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 880px) {
+  .intro-claridges { grid-template-columns: 1fr; row-gap: 2.5rem; }
+  .intro-claridges__divider { display: none; }
+  .intro-claridges__media { padding: 0; }
+  .intro-claridges__mat { display: none; }
+  .intro-claridges__text { max-width: none; }
+}
+
+/* Testimonial carousel — single quote visible, horizontal scroll-snap */
+.testimonial-carousel {
+  margin-top: 1.25rem;
+}
+.testimonial-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.testimonial-track::-webkit-scrollbar { display: none; }
+
+.testimonial {
+  margin: 0;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 7rem;
+}
+.testimonial .italic-quote { max-width: 56ch; }
 .testimonial figcaption {
   margin-top: 1.5rem;
   display: flex; flex-direction: column;
   align-items: center;
   gap: 0.25rem;
+}
+
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.testimonial-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--c-line);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s var(--t-easing), transform 0.3s var(--t-easing);
+}
+.testimonial-dot:hover { background: var(--c-gold-soft); }
+.testimonial-dot[aria-current="true"] {
+  background: var(--c-gold);
+  transform: scale(1.35);
 }
 .t-name {
   font-family: var(--f-sans);
