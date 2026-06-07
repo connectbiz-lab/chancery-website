@@ -9,6 +9,8 @@ interface HeroProps {
   size?: "full" | "page" | "compact";
   align?: "left" | "center";
   children?: ReactNode;
+  /** Optional row pinned at the very bottom of the hero (e.g. icon shortcuts). */
+  footerNav?: ReactNode;
 }
 
 export function Hero({
@@ -19,6 +21,7 @@ export function Hero({
   size = "page",
   align = "center",
   children,
+  footerNav,
 }: HeroProps) {
   const cls = ["hero", `hero-${size}`, `hero-align-${align}`].join(" ");
   return (
@@ -35,6 +38,7 @@ export function Hero({
         {subheading && <p className="hero-sub">{subheading}</p>}
         {children && <div className="hero-children">{children}</div>}
       </div>
+      {footerNav && <div className="hero-footer-nav">{footerNav}</div>}
     </section>
   );
 }

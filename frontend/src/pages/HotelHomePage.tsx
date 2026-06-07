@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
+import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
 import { api, useAsync } from "@/lib/api";
@@ -40,6 +41,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
         subheading={hotelData.address}
         size="full"
         align="center"
+        footerNav={<HeroIconNav scope={hotel} />}
       >
         <BookButton hotel={hotel} className="btn gold">Book your stay</BookButton>
         <Link to={`/${hotel}/accommodation`} className="btn light">Explore rooms</Link>

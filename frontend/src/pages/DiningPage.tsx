@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Hero } from "@/components/Hero";
+import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
 import { api, useAsync } from "@/lib/api";
@@ -21,10 +22,11 @@ export function DiningPage({ hotel }: { hotel: HotelSlug }) {
       <PageMeta title={p?.meta_title ?? "Dining"} description={p?.meta_description} />
       <Hero
         image={p?.hero_image ?? h.data?.hero_image ?? null}
-        eyebrow={p?.hero_eyebrow}
+        eyebrow={p?.hero_eyebrow ?? h.data?.name}
         heading={p?.hero_heading ?? "Dining"}
         subheading={p?.hero_subheading}
         size="page"
+        footerNav={<HeroIconNav scope={hotel} />}
       />
       <section className="section">
         <div className="container">

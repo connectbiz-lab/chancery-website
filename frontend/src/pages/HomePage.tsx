@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
+import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
 import { api, useAsync } from "@/lib/api";
@@ -15,6 +16,18 @@ export function HomePage() {
   const offers = useAsync(() => api.offers(), []);
   const testimonials = useAsync(() => api.testimonials(), []);
   const restaurants = useAsync(() => api.restaurants(), []);
+  const { hash } = useLocation();
+
+  // SPA arrivals at /#hotels (e.g., from a hotel page's "Our Hotels" icon)
+  // need a manual scroll-into-view — react-router doesn't honor hashes.
+  // Wait a tick so the section has actually mounted after the data loads.
+  useEffect(() => {
+    if (hash !== "#hotels") return;
+    const id = setTimeout(() => {
+      document.getElementById("hotels")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+    return () => clearTimeout(id);
+  }, [hash]);
 
   const introRef = useReveal<HTMLDivElement>();
   const propertiesRef = useReveal<HTMLDivElement>();
@@ -44,6 +57,7 @@ export function HomePage() {
         subheading={p?.hero_subheading}
         size="full"
         align="center"
+        footerNav={<HeroIconNav />}
       >
         {hotels.data?.map((h) => (
           <Link key={h.slug} to={`/${h.slug}`} className="btn light">
@@ -77,7 +91,7 @@ export function HomePage() {
       </section>
 
       {/* Two hotels showcase */}
-      <section className="section bg-ivory">
+      <section id="hotels" className="section bg-ivory" style={{ scrollMarginTop: "120px" }}>
         <div ref={propertiesRef} className="container wide reveal">
           <div className="section-head">
             <p className="eyebrow center">Our hotels</p>

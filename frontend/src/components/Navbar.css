@@ -162,17 +162,26 @@
   margin-top: 4px;
 }
 
-/* CTA + hamburger */
+/* CTA + hamburger — minimal right-side group */
 .nav-cta { display: flex; align-items: center; }
 .navbar.transparent .nav-cta .btn { border-color: var(--c-gold); }
 
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+.navbar.transparent .nav-right .btn { border-color: var(--c-gold); }
+
 .hamburger {
-  display: none;
+  display: block;
   width: 40px; height: 40px;
   background: transparent;
   border: 0;
   cursor: pointer;
   position: relative;
+  color: inherit;
 }
 .hamburger span {
   position: absolute;
