@@ -35,12 +35,6 @@ export function Hero({
         {subheading && <p className="hero-sub">{subheading}</p>}
         {children && <div className="hero-children">{children}</div>}
       </div>
-      {size === "full" && (
-        <div className="hero-scroll" aria-hidden="true">
-          <span>Scroll</span>
-          <span className="hero-scroll-line" />
-        </div>
-      )}
     </section>
   );
 }
