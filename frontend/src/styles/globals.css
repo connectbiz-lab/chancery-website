@@ -57,6 +57,17 @@
 
 * { box-sizing: border-box; }
 
+/* Form controls inherit the page's typography stack instead of falling back
+   to the browser's default (system Arial/Helvetica). Otherwise hamburger
+   buttons, side-menu close, and other bare <button> elements render in
+   Arial even though the rest of the site uses Inter / Fraunces. */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+}
+
 html, body, #root { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
