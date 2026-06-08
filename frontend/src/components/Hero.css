@@ -65,11 +65,14 @@
 .hero h1, .hero .display {
   color: var(--c-ivory);
   margin-bottom: 0.35em;
-  /* Soft navy halo replaces the global overlay — keeps the title readable
-     against bright sky / cream walls without dimming the photograph. */
+  /* Three-layer halo so the title reads against the brightest cream walls
+     (Chancery facade) without dimming the photograph. A wider soft layer
+     + a tight inner stroke + a deep base shadow keep weight while staying
+     editorial — not the "photoshop drop shadow" look. */
   text-shadow:
-    0 2px 18px rgba(14, 34, 55, 0.55),
-    0 1px 3px rgba(14, 34, 55, 0.45);
+    0 1px 2px rgba(14, 34, 55, 0.7),
+    0 2px 8px rgba(14, 34, 55, 0.55),
+    0 4px 28px rgba(14, 34, 55, 0.45);
 }
 
 .hero-sub {
