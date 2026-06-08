@@ -3,7 +3,10 @@
   width: 100%;
   color: var(--c-ivory);
   display: grid;
-  align-items: end;
+  /* Row 1 absorbs remaining height with the headline centered; row 2 is the
+     optional icon-shortcut strip pinned at the foot. Both rows stay above
+     the absolute .hero-bg via the .hero-inner / .hero-footer-nav z-index. */
+  grid-template-rows: 1fr auto;
   overflow: hidden;
   isolation: isolate;
 }
@@ -28,38 +31,55 @@
 }
 .hero-overlay {
   position: absolute; inset: 0;
+  /* No more global dim — the photo reads at full brightness. A very faint
+     vignette below the midline keeps the gold button + address line
+     readable on bright daytime walls. Text legibility on the headline is
+     handled by the text-shadow rules below, not by darkening the photo. */
   background:
     linear-gradient(180deg,
-      rgba(14, 34, 55, 0.45) 0%,
-      rgba(14, 34, 55, 0.58) 45%,
-      rgba(14, 34, 55, 0.72) 100%);
+      rgba(14, 34, 55, 0) 0%,
+      rgba(14, 34, 55, 0) 50%,
+      rgba(14, 34, 55, 0.22) 100%);
 }
 
 .hero-inner {
   position: relative;
   z-index: 1;
-  padding-bottom: clamp(3.5rem, 7vw, 7rem);
+  width: 100%;
+  grid-row: 1;
+  /* Sit the content block at the bottom of the upper row so it lands near
+     the hero's geometric centre, with the small padding-bottom keeping a
+     gap above the icon row. align-self: center put it at the upper third
+     because the icon row consumes the lower band; this reads more balanced. */
+  align-self: end;
+  padding-bottom: clamp(1.25rem, 4vh, 3.5rem);
 }
 .hero-align-center .hero-inner { margin-inline: auto; }
 
 .hero .eyebrow {
   color: var(--c-gold-soft);
-  text-shadow: 0 1px 6px rgba(14, 34, 55, 0.55);
+  text-shadow: 0 1px 10px rgba(14, 34, 55, 0.75);
 }
 .hero .eyebrow::before { opacity: 0.85; }
 
 .hero h1, .hero .display {
   color: var(--c-ivory);
   margin-bottom: 0.35em;
+  /* Soft navy halo replaces the global overlay — keeps the title readable
+     against bright sky / cream walls without dimming the photograph. */
+  text-shadow:
+    0 2px 18px rgba(14, 34, 55, 0.55),
+    0 1px 3px rgba(14, 34, 55, 0.45);
 }
 
 .hero-sub {
   font-family: var(--f-serif);
   font-size: clamp(1.05rem, 1vw + 0.6rem, 1.35rem);
-  color: rgba(246, 241, 231, 0.9);
+  color: rgba(246, 241, 231, 0.95);
   max-width: 60ch;
   margin: 0.6rem auto 0;
   line-height: 1.5;
+  text-shadow: 0 1px 10px rgba(14, 34, 55, 0.6);
 }
 .hero-align-left .hero-sub { margin-left: 0; }
 
@@ -74,6 +94,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
+  grid-row: 2;
   padding: clamp(1.5rem, 3vw, 2.5rem) var(--gutter) clamp(2rem, 3vw, 3rem);
 }
 

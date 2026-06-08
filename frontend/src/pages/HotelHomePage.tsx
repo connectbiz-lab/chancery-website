@@ -44,7 +44,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
         footerNav={<HeroIconNav scope={hotel} />}
       >
         <BookButton hotel={hotel} className="btn gold">Book your stay</BookButton>
-        <Link to={`/${hotel}/accommodation`} className="btn light">Explore rooms</Link>
+        <a href="#rooms" className="btn light">Explore rooms</a>
       </Hero>
 
       {/* Stats / intro */}
@@ -96,9 +96,9 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
         </div>
       </section>
 
-      {/* Rooms preview */}
+      {/* Rooms preview — anchor target for the hero "Explore rooms" button. */}
       {rooms.data && rooms.data.length > 0 && (
-        <section className="section bg-cream">
+        <section id="rooms" className="section bg-cream" style={{ scrollMarginTop: "120px" }}>
           <div className="container">
             <div className="section-head">
               <p className="eyebrow center">Stay</p>
