@@ -41,7 +41,12 @@ export function DestinationPage({ hotel }: { hotel: HotelSlug }) {
       <PageMeta title={p?.meta_title ?? "Destination"} description={p?.meta_description} />
       <Hero
         image={p?.hero_image ?? hotelData.hero_image}
-        eyebrow={p?.hero_eyebrow ?? hotelData.name}
+        eyebrow={
+          <span className="hero-eyebrow-stack">
+            <span>{hotelData.name}</span>
+            <span>{p?.hero_eyebrow ?? "Destination"}</span>
+          </span>
+        }
         heading={p?.hero_heading ?? hotelData.location}
         subheading={p?.hero_subheading}
         size="page"

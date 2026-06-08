@@ -190,12 +190,15 @@ class Command(BaseCommand):
             google_count=3200,
             intro_heading="Timeless elegance on Lavelle Road",
             intro_body=(
-                "Since 1968, The Chancery Hotel has welcomed Bangalore's "
-                "discerning travellers with quiet luxury, attentive service, "
-                "and the storied charm of Lavelle Road. 126 rooms, two "
-                "restaurants, and a collection of intimate event spaces — all "
-                "anchored in the heritage of one of the city's most refined "
-                "neighbourhoods."
+                "The Chancery is a 4-star corporate city-centre hotel with 25 "
+                "years of excellence in the hospitality sector. 126 spacious, "
+                "well-appointed rooms and suites; 6,800 sq ft of banqueting "
+                "space; and a joint venture with Toyota Enterprises that "
+                "brings authentic Japanese hospitality on-site — Matsuri "
+                "(renowned Japanese specialty restaurant) and Sara Spa with "
+                "Sento services. Strategically located on Lavelle Road with "
+                "access to the city's corporate houses, shopping malls and "
+                "entertainment centres."
             ),
             order=2,
         )
@@ -229,10 +232,13 @@ class Command(BaseCommand):
             intro_heading="Contemporary luxury on Residency Road",
             intro_body=(
                 "The Chancery Pavilion is the flagship of the Chancery group — "
-                "223 rooms and suites rising above Residency Road, with a "
-                "rooftop microbrewery, an all-day dining destination, an "
-                "outdoor pool, and a grand ballroom that has hosted some of "
-                "Bangalore's most memorable celebrations."
+                "19 years of opulent hospitality, with 223 tastefully designed "
+                "rooms and suites rising above Residency Road. 20,000 sq ft of "
+                "banqueting space, an entire floor dedicated to lady "
+                "travellers, Alchemy (the award-winning rooftop restaurant "
+                "and microbrewery), Ithaca's 24/7 coffee shop overlooking the "
+                "pool, and a glittering lobby anchored by a well-equipped "
+                "gymnasium and outdoor swimming pool."
             ),
             order=1,
         )
@@ -406,10 +412,12 @@ class Command(BaseCommand):
                 "cuisine": "Japanese",
                 "timing": "12:00 – 15:00 & 18:00 – 23:00",
                 "description": (
-                    "A culinary quest to the mystical land of Japan. Chef "
-                    "Masayoshi Okada San brings 30 years of experience in "
-                    "authentic Sushi, Tempura & Sashimi — one of Bangalore's "
-                    "finest Japanese dining experiences."
+                    "A culinary quest to the mystical land of Japan, helmed by "
+                    "Executive Chef Masayoshi Okada. With 30 years of experience "
+                    "in Japanese cuisine gained overseas, Chef Okada blends "
+                    "local ingredients with authentic Sushi, Tempura, Sashimi "
+                    "and Hiyayakko — a celebration of Japanese culture in "
+                    "every dish."
                 ),
                 "hero": "/images/chancery/matsuri-team.jpg",
                 "images": [
@@ -441,10 +449,12 @@ class Command(BaseCommand):
                 "cuisine": "Modern Indian",
                 "timing": "12:00 PM – 12:30 AM",
                 "description": (
-                    "Rooftop al fresco dining with a microbrewery on the "
-                    "10th floor, crafted in association with Cavalier "
-                    "Australia. Lush views of Cubbon Park with special craft "
-                    "beers and modern Indian dishes."
+                    "Award-winning rooftop restaurant and microbrewery with "
+                    "panoramic views of Bengaluru — menu curated by celebrity "
+                    "Chef Hari Nayak with progressive Indian cuisine, and craft "
+                    "beers brewed in association with Cavalier Australia. "
+                    "Seasonal and specialty brews on tap, with a confluence of "
+                    "rich Indian authentic flavours."
                 ),
                 "hero": "/images/pavilion/alchemy-rooftop-sunset.jpg",
                 "images": [
@@ -846,13 +856,17 @@ class Command(BaseCommand):
              "our love of service, craft and ceremony."),
             ("catering", "Outdoor Catering",
              "Outdoor Catering | Chancery Hotels",
-             "Bring Chancery's hospitality to your venue. Off-site catering "
-             "for weddings, corporate events and private celebrations.",
+             "Large-scale outdoor catering by Chancery Hotels — 50 to 10,000+ "
+             "guests, FSSAI-compliant, with end-to-end logistics and trained chefs.",
              "/images/pavilion/ithaca-buffet-hall.jpg",
-             "Outdoor catering", "Chancery hospitality, wherever you celebrate",
-             "Our catering team brings the kitchens of South Parade, Ithaca "
-             "and Alchemy to venues across Bangalore. Tell us about your event "
-             "and we'll craft a menu that fits the occasion."),
+             "Outdoor catering", "Proficient in large-scale outdoor catering",
+             "Chancery Hotels brings its legacy of hospitality excellence into "
+             "the domain of large-scale outdoor catering, with the capability to "
+             "efficiently execute orders ranging from 50 to over 10,000 guests. "
+             "Professional culinary expertise, robust infrastructure and strict "
+             "quality control deliver consistent taste, hygiene and timely "
+             "service at scale — backed by trained chefs, standardised "
+             "processes and FSSAI-compliant practices."),
             ("privacy", "Privacy Policy", "Privacy Policy | Chancery Hotels",
              "Learn how we collect, use and protect your information when you "
              "interact with Chancery Hotels.",

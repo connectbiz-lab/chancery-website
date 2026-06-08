@@ -57,13 +57,101 @@
 .hero-align-center .hero-inner { margin-inline: auto; }
 
 .hero .eyebrow {
-  color: var(--c-gold-soft);
-  /* Bumped from the 0.72rem global token — eyebrows on the hero have to
-     scan against full-bleed photography, not flat cream surfaces. */
+  /* Ivory wins over gold-soft against bright daylight cream walls — gold
+     dashes still mark the brand accent. Bumped from the 0.72rem global
+     token so the eyebrow scans against full-bleed photography. */
+  color: var(--c-ivory);
   font-size: 0.82rem;
   text-shadow: 0 1px 10px rgba(14, 34, 55, 0.75);
 }
-.hero .eyebrow::before { opacity: 0.85; width: 2.75rem; }
+.hero .eyebrow::before {
+  background: var(--c-gold);
+  opacity: 0.95;
+  width: 2.75rem;
+}
+
+/* Stacked eyebrow for hotel sub-pages: hotel name is the DOMINANT visual
+   on the hero (replaces the over-large default headline), page label is
+   the secondary, and the original <h1> gets reduced to a small italic
+   tagline below. The wrapping <p class="eyebrow"> still applies color +
+   shadow; the inner spans take over sizing. */
+.hero-eyebrow-stack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.05;
+}
+.hero-eyebrow-stack > span { display: block; }
+
+/* Primary line — hotel name. Big Fraunces serif, same family / size as
+   the main hero page heading so sub-page hotel branding reads with the
+   same weight as the hotel home title. white-space: nowrap forces a
+   single line so "The Chancery Pavilion" doesn't break across two rows. */
+.hero-eyebrow-stack > span:first-child {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4vw + 0.8rem, 4rem);
+  letter-spacing: -0.01em;
+  text-transform: none;
+  line-height: 1.07;
+  white-space: nowrap;
+}
+/* Gold dash separator — widened to match the bigger type above + below. */
+.hero-eyebrow-stack > span:first-child::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 1px;
+  background: var(--c-gold);
+  opacity: 0.95;
+  margin: 1.25rem auto 1.25rem;
+}
+/* Secondary line — page label. Same Fraunces serif as hotel name, just
+   smaller so the hierarchy reads hotel > page > italic tagline. */
+.hero-eyebrow-stack > span:last-child {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.6vw + 0.7rem, 2.6rem);
+  letter-spacing: -0.005em;
+  text-transform: none;
+  line-height: 1.07;
+}
+
+/* Stacked eyebrow uses its own gold dash, so hide the parent
+   .eyebrow::before and drop the parent's bottom padding. Tighten margin
+   to the now-smaller tagline so the whole composition reads as one unit. */
+.hero .eyebrow:has(.hero-eyebrow-stack)::before { display: none; }
+.hero .eyebrow:has(.hero-eyebrow-stack) {
+  padding-bottom: 0;
+  margin-bottom: 1.5rem;
+}
+
+/* Widen the hero-inner from the default 880px (container narrow) to
+   1240px when a stacked eyebrow is present, so the big serif hotel name
+   has room to render on one line at the desktop font size. The narrow
+   constraint stays for plain-eyebrow heroes (hotel home, brand home). */
+.hero-page .hero-inner:has(.hero-eyebrow-stack) {
+  max-width: var(--max-w);
+}
+
+/* When a stacked eyebrow is present on a size="page" hero, demote the
+   <h1> to an italic Cormorant tagline that supports the hotel + page
+   label above. Without this rule the default .h1 clamp (~60-90px) would
+   shout louder than the hotel branding. */
+.hero-page .hero-inner:has(.hero-eyebrow-stack) h1 {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 400;
+  /* Smallest of the three — page label above must read louder than this
+     so the hotel + page identity wins over the copy line. */
+  font-size: clamp(1rem, 0.55vw + 0.75rem, 1.3rem);
+  letter-spacing: 0.005em;
+  line-height: 1.3;
+  text-transform: none;
+  max-width: 32ch;
+  margin-inline: auto;
+  opacity: 0.92;
+}
 
 .hero h1, .hero .display {
   color: var(--c-ivory);

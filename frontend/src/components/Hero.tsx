@@ -3,7 +3,7 @@ import "./Hero.css";
 
 interface HeroProps {
   image: string | null;
-  eyebrow?: string;
+  eyebrow?: ReactNode;
   heading: string;
   subheading?: string;
   size?: "full" | "page" | "compact";

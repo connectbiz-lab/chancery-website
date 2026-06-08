@@ -30,10 +30,12 @@ export function HomePage() {
   }, [hash]);
 
   const introRef = useReveal<HTMLDivElement>();
+  const journeyRef = useReveal<HTMLDivElement>();
   const propertiesRef = useReveal<HTMLDivElement>();
   const diningRef = useReveal<HTMLDivElement>();
   const offersRef = useReveal<HTMLDivElement>();
   const testimonialsRef = useReveal<HTMLDivElement>();
+  const awardsRef = useReveal<HTMLDivElement>();
 
   if (page.loading || hotels.loading) return <Loading />;
 
@@ -87,6 +89,55 @@ export function HomePage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Our journey — three-generation heritage timeline */}
+      <section className="section bg-ivory journey">
+        <div ref={journeyRef} className="container reveal">
+          <div className="section-head">
+            <p className="eyebrow center">Our journey</p>
+            <h2 className="h1">Three generations, one address book</h2>
+            <p className="lede">
+              An integrated family group with interests in farming, real estate and
+              hospitality — Chancery&rsquo;s story across Bengaluru began long before
+              its first hotel opened.
+            </p>
+          </div>
+          <ol className="journey-timeline" aria-label="Chancery Hotels history">
+            <li>
+              <span className="journey-year">1960s &ndash; 1990s</span>
+              <span className="journey-mark" aria-hidden="true" />
+              <p className="journey-note">
+                The family group establishes itself across entertainment,
+                cinema theatres, commercial and residential projects.
+              </p>
+            </li>
+            <li>
+              <span className="journey-year">2000</span>
+              <span className="journey-mark" aria-hidden="true" />
+              <p className="journey-note">
+                The Chancery opens on Lavelle Road &mdash; the family&rsquo;s
+                first hotel.
+              </p>
+            </li>
+            <li>
+              <span className="journey-year">2006</span>
+              <span className="journey-mark" aria-hidden="true" />
+              <p className="journey-note">
+                The Chancery Pavilion opens on Residency Road &mdash; 223
+                rooms, the flagship of the group.
+              </p>
+            </li>
+            <li>
+              <span className="journey-year">2012</span>
+              <span className="journey-mark" aria-hidden="true" />
+              <p className="journey-note">
+                Joint venture with Toyota Enterprises brings Matsuri,
+                Sara Spa and authentic Japanese hospitality to The Chancery.
+              </p>
+            </li>
+          </ol>
         </div>
       </section>
 
@@ -177,6 +228,43 @@ export function HomePage() {
           </div>
         </section>
       )}
+
+      {/* Awards & Accolades — credibility row sourced from Chancery PPT (Dec) */}
+      <section className="section bg-cream awards">
+        <div ref={awardsRef} className="container reveal">
+          <div className="section-head">
+            <p className="eyebrow center">Awards &amp; accolades</p>
+            <h2 className="h1">Recognised by the city, the press, and our guests</h2>
+          </div>
+          <div className="awards-grid">
+            <article className="awards-card">
+              <p className="awards-card__owner">The Chancery Hotel</p>
+              <p className="awards-card__lead">Tripadvisor Traveller&rsquo;s Choice Award &mdash; 2025</p>
+              <p className="awards-card__lead">Tripadvisor Traveller&rsquo;s Choice Award &mdash; 2023 <span className="awards-card__sub">(The Chancery Pavilion)</span></p>
+            </article>
+
+            <article className="awards-card">
+              <p className="awards-card__owner">Matsuri</p>
+              <ul className="awards-list">
+                <li><strong>Best Japanese Restaurant</strong> &mdash; Times Food Award, 2014, 2015 &amp; 2016</li>
+                <li><strong>Best Sushi</strong> &mdash; Eazy Diner Food Award, 2017</li>
+                <li><strong>Epicurean Restaurant Award</strong> &mdash; 2024</li>
+                <li><strong>Best Japanese Premium Dining</strong> &mdash; Times Food &amp; Nightlife Award, 2025</li>
+              </ul>
+            </article>
+
+            <article className="awards-card">
+              <p className="awards-card__owner">Alchemy</p>
+              <ul className="awards-list">
+                <li><strong>Best Modern Indian Premium Dining</strong> &mdash; Times Food Nightlife Award, 2023, 2024 &amp; 2025</li>
+                <li><strong>Best Microbrewery, Luxurious Nightout</strong> &mdash; Times Food Nightlife Award, 2025</li>
+                <li><strong>Best Modern Indian Restaurant</strong> &mdash; EazyDiner Foodie Awards, 2019</li>
+                <li><strong>Brewer World &mdash; Beer of India 2023:</strong> Gold (Fruited Sour Ale), Silver (American Porter), Silver (Experimental Grain Beer)</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials */}
       {testimonials.data && testimonials.data.length > 0 && (

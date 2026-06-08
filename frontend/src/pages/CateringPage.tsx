@@ -8,8 +8,17 @@ import "./pages.css";
 const OCCASIONS = [
   ["Weddings & receptions", "Multi-cuisine menus crafted around your traditions."],
   ["Corporate events", "Lunch, dinner and cocktail catering for offices and venues."],
-  ["Private celebrations", "Anniversaries, milestones, milestone family gatherings."],
+  ["Private celebrations", "Anniversaries, milestones, family gatherings."],
   ["Premium cocktail experiences", "Curated bar service from our beverage team."],
+];
+
+const CAPABILITIES = [
+  ["Menu planning", "Custom menus designed around your cuisine, scale and dietary requirements."],
+  ["Bulk production", "Trained chefs and standardised kitchens for consistent quality at any volume."],
+  ["Secure packaging", "Temperature-controlled logistics from the kitchen to your venue."],
+  ["FSSAI compliance", "Hygiene, food safety and quality audits on every order — no exceptions."],
+  ["On-ground service", "Front-of-house teams that deliver Chancery service standards on-site."],
+  ["Corporate to community", "From boardroom lunches to weddings of 10,000+ — one accountable partner."],
 ];
 
 export function CateringPage() {
@@ -41,6 +50,26 @@ export function CateringPage() {
           </div>
           <ul className="amenities" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
             {OCCASIONS.map(([title, body]) => (
+              <li key={title}>
+                <span style={{ display: "block" }}>
+                  <strong style={{ fontFamily: "var(--f-display)", fontSize: "1.15rem", color: "var(--c-navy)", display: "block", marginBottom: "0.25rem" }}>{title}</strong>
+                  <span style={{ color: "var(--c-muted)" }}>{body}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-head left">
+            <p className="eyebrow">End-to-end</p>
+            <h2 className="h2">What we handle</h2>
+            <p className="lede">From menu planning to on-ground service, every order ships under one roof and one accountable team.</p>
+          </div>
+          <ul className="amenities" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
+            {CAPABILITIES.map(([title, body]) => (
               <li key={title}>
                 <span style={{ display: "block" }}>
                   <strong style={{ fontFamily: "var(--f-display)", fontSize: "1.15rem", color: "var(--c-navy)", display: "block", marginBottom: "0.25rem" }}>{title}</strong>
