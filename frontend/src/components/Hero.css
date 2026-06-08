@@ -58,9 +58,12 @@
 
 .hero .eyebrow {
   color: var(--c-gold-soft);
+  /* Bumped from the 0.72rem global token — eyebrows on the hero have to
+     scan against full-bleed photography, not flat cream surfaces. */
+  font-size: 0.82rem;
   text-shadow: 0 1px 10px rgba(14, 34, 55, 0.75);
 }
-.hero .eyebrow::before { opacity: 0.85; }
+.hero .eyebrow::before { opacity: 0.85; width: 2.75rem; }
 
 .hero h1, .hero .display {
   color: var(--c-ivory);
