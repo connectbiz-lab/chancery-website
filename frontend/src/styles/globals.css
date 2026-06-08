@@ -197,6 +197,7 @@ a:hover { color: var(--c-gold-deep); }
   letter-spacing: 0.22em;
   text-transform: uppercase;
   padding: 1.1em 2.2em;
+  min-height: 44px; /* WCAG 2.1 SC 2.5.5 touch target minimum */
   border: 1px solid var(--c-navy);
   background: var(--c-navy);
   color: var(--c-ivory);
@@ -226,7 +227,7 @@ a:hover { color: var(--c-gold-deep); }
 }
 .btn.light:hover { background: var(--c-ivory); color: var(--c-navy); border-color: var(--c-ivory); }
 
-.btn.small { padding: 0.85em 1.6em; font-size: 0.7rem; }
+.btn.small { padding: 0.85em 1.6em; font-size: 0.7rem; min-height: 44px; }
 
 .link-arrow {
   display: inline-flex;
@@ -238,7 +239,8 @@ a:hover { color: var(--c-gold-deep); }
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--c-navy);
-  padding-bottom: 0.4rem;
+  padding: 0.7rem 0 0.5rem;
+  min-height: 44px; /* WCAG touch target — was rendering at ~29px on offer cards */
   border-bottom: 1px solid var(--c-navy);
   transition: gap 0.25s var(--t-easing), color 0.2s var(--t-easing), border-color 0.2s var(--t-easing);
 }

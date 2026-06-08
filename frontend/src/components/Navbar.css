@@ -176,7 +176,7 @@
 
 .hamburger {
   display: block;
-  width: 40px; height: 40px;
+  width: 44px; height: 44px; /* WCAG touch target — was 40 */
   background: transparent;
   border: 0;
   cursor: pointer;
