@@ -54,9 +54,9 @@ export function HomePage() {
 
       <Hero
         image={heroImage}
-        eyebrow={p?.hero_eyebrow ?? "Two Bangalore landmarks"}
-        heading={p?.hero_heading ?? "Refined hospitality across the city"}
-        subheading={p?.hero_subheading}
+        eyebrow={p?.hero_eyebrow ?? "The Chancery Group of Hotels"}
+        heading={p?.hero_heading ?? "Redefining hospitality"}
+        subheading={p?.hero_subheading ?? "Understated luxury with purpose."}
         size="full"
         align="center"
         footerNav={<HeroIconNav />}

@@ -824,11 +824,11 @@ class Command(BaseCommand):
              "The Chancery Group of Hotels: Premium luxury hotels in Bangalore "
              "offering world-class rooms, fine dining, event venues & exclusive packages.",
              "/images/pavilion/hero.jpg",
-             "Two Bangalore landmarks",
-             "Refined hospitality across the city",
-             "Two distinguished hotels at the heart of Bangalore — bound by a "
-             "shared commitment to timeless hospitality, elegant interiors and "
-             "the city's most thoughtful dining."),
+             "The Chancery Group of Hotels",
+             "Redefining hospitality",
+             "Understated luxury with purpose — two distinguished hotels at the "
+             "heart of Bangalore, bound by a shared commitment to timeless "
+             "hospitality, elegant interiors and the city's most thoughtful dining."),
             ("rooms", "Suites & Rooms", "Suites & Rooms | Chancery Hotels Bangalore",
              "Explore the full collection of rooms and suites across The "
              "Chancery Hotel and The Chancery Pavilion.",

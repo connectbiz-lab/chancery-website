@@ -90,7 +90,6 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
               <p className="lede">
                 {hotelData.intro_body}
               </p>
-              <Link to={`/${hotel}/gallery`} className="link-arrow">Our story</Link>
             </div>
           </div>
         </div>
