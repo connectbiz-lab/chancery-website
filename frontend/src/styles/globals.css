@@ -37,7 +37,7 @@
 
   /* ---------- rhythm ---------- */
   --gutter:      clamp(1.25rem, 3vw, 2.5rem);
-  --section-y:   clamp(4rem, 9vw, 9rem);
+  --section-y:   clamp(2.5rem, 5.5vw, 5.5rem);
   --max-w:       1240px;
   --max-w-text:  68ch;
 
@@ -223,9 +223,9 @@ a:hover { color: var(--c-gold-deep); }
   background: var(--c-gold-deep); border-color: var(--c-gold-deep); color: var(--c-ivory);
 }
 .btn.light {
-  background: transparent; border-color: rgba(246, 241, 231, 0.6); color: var(--c-ivory);
+  background: var(--c-ivory); border-color: var(--c-ivory); color: var(--c-navy);
 }
-.btn.light:hover { background: var(--c-ivory); color: var(--c-navy); border-color: var(--c-ivory); }
+.btn.light:hover { background: var(--c-gold); color: var(--c-navy); border-color: var(--c-gold); }
 
 .btn.small { padding: 0.85em 1.6em; font-size: 0.7rem; min-height: 44px; }
 

@@ -52,7 +52,7 @@
      gap above the icon row. align-self: center put it at the upper third
      because the icon row consumes the lower band; this reads more balanced. */
   align-self: end;
-  padding-bottom: clamp(1.25rem, 4vh, 3.5rem);
+  padding-bottom: clamp(5.5rem, 15vh, 11rem);
 }
 .hero-align-center .hero-inner { margin-inline: auto; }
 
@@ -134,24 +134,9 @@
   max-width: var(--max-w);
 }
 
-/* When a stacked eyebrow is present on a size="page" hero, demote the
-   <h1> to an italic Cormorant tagline that supports the hotel + page
-   label above. Without this rule the default .h1 clamp (~60-90px) would
-   shout louder than the hotel branding. */
-.hero-page .hero-inner:has(.hero-eyebrow-stack) h1 {
-  font-family: var(--f-serif);
-  font-style: italic;
-  font-weight: 400;
-  /* Smallest of the three — page label above must read louder than this
-     so the hotel + page identity wins over the copy line. */
-  font-size: clamp(1rem, 0.55vw + 0.75rem, 1.3rem);
-  letter-spacing: 0.005em;
-  line-height: 1.3;
-  text-transform: none;
-  max-width: 32ch;
-  margin-inline: auto;
-  opacity: 0.92;
-}
+/* When a stacked eyebrow is present, the page tagline <h1> is hidden —
+   hotel + page label above already carry the identity. */
+.hero-page .hero-inner:has(.hero-eyebrow-stack) h1 { display: none; }
 
 .hero h1, .hero .display {
   color: var(--c-ivory);
@@ -166,15 +151,7 @@
     0 4px 28px rgba(14, 34, 55, 0.45);
 }
 
-.hero-sub {
-  font-family: var(--f-serif);
-  font-size: clamp(1.05rem, 1vw + 0.6rem, 1.35rem);
-  color: rgba(246, 241, 231, 0.95);
-  max-width: 60ch;
-  margin: 0.6rem auto 0;
-  line-height: 1.5;
-  text-shadow: 0 1px 10px rgba(14, 34, 55, 0.6);
-}
+.hero-sub { display: none; }
 .hero-align-left .hero-sub { margin-left: 0; }
 
 .hero-children {

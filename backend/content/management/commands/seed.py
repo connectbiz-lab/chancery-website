@@ -205,7 +205,7 @@ class Command(BaseCommand):
         attach(chancery, "hero_image", seed_image(source, "/images/chancery/hero.jpg"))
         attach(chancery, "about_image", img_path(source, "/images/chancery/about.jpg"))
         attach(chancery, "banner_image", img_path(source, "/images/common/chancery-banner.jpg"))
-        attach(chancery, "logo", img_path(source, "/images/common/TCH.png"))
+        attach(chancery, "logo", seed_image(source, "/images/common/TCH.png"))
 
         pavilion = Hotel.objects.create(
             slug="pavilion",
@@ -245,7 +245,7 @@ class Command(BaseCommand):
         attach(pavilion, "hero_image", seed_image(source, "/images/pavilion/hero.jpg"))
         attach(pavilion, "about_image", img_path(source, "/images/pavilion/about.jpg"))
         attach(pavilion, "banner_image", img_path(source, "/images/common/pavilion-banner.jpg"))
-        attach(pavilion, "logo", img_path(source, "/images/common/TCP_LOGO.png"))
+        attach(pavilion, "logo", seed_image(source, "/images/common/TCP_LOGO.png"))
 
         self.stdout.write("  · hotels (Chancery, Pavilion)")
         return chancery, pavilion
