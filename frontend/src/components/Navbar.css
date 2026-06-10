@@ -85,8 +85,22 @@
   filter: drop-shadow(0 2px 6px rgba(14, 34, 55, 0.35));
 }
 
-/* Primary nav */
-.primary { flex: 1; display: flex; justify-content: center; }
+/* Primary nav — hidden by default, slides in once the navbar shrinks
+   on scroll so the inline menu only appears alongside the compact bar. */
+.primary {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.3s var(--t-easing), transform 0.3s var(--t-easing);
+}
+.navbar.scrolled .primary {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
 .primary ul {
   list-style: none; margin: 0; padding: 0;
   display: flex; gap: 1.8rem; align-items: center;

@@ -50,8 +50,9 @@
      the hero's geometric centre, with the small padding-bottom keeping a
      gap above the icon row. align-self: center put it at the upper third
      because the icon row consumes the lower band; this reads more balanced. */
-  align-self: end;
-  padding-bottom: clamp(5.5rem, 15vh, 11rem);
+  align-self: center;
+  padding-top: clamp(2rem, 5vh, 4rem);
+  padding-bottom: clamp(2rem, 5vh, 4rem);
 }
 .hero-align-center .hero-inner { margin-inline: auto; }
 

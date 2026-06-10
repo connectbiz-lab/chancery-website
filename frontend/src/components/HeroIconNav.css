@@ -7,6 +7,12 @@
   align-items: flex-start;
   gap: clamp(1.75rem, 5vw, 4.5rem);
   flex-wrap: wrap;
+  transition: opacity 0.35s var(--t-easing), transform 0.35s var(--t-easing);
+}
+.hero-icon-nav.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
 }
 
 .hero-icon-nav a {
@@ -30,14 +36,20 @@
   place-items: center;
   width: 56px;
   height: 56px;
-  border: 1px solid rgba(246, 241, 231, 0.45);
+  background: var(--c-ivory);
+  color: var(--c-navy);
+  border: 1px solid var(--c-ivory);
   border-radius: 50%;
-  transition: border-color 0.25s var(--t-easing), background 0.25s var(--t-easing);
+  box-shadow: 0 4px 18px rgba(14, 34, 55, 0.18);
+  transition: background 0.25s var(--t-easing),
+              border-color 0.25s var(--t-easing),
+              color 0.25s var(--t-easing);
 }
 .hero-icon-nav a:hover .hero-icon-nav__glyph,
 .hero-icon-nav a:focus-visible .hero-icon-nav__glyph {
-  border-color: var(--c-gold-soft);
-  background: rgba(200, 162, 97, 0.08);
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  color: var(--c-navy);
 }
 
 .hero-icon-nav__label {

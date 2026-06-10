@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   HotelsIcon,
@@ -28,6 +29,14 @@ export function HeroIconNav({ scope = "pavilion" }: HeroIconNavProps) {
   const onHome = pathname === "/";
   const hotelsHref = onHome ? "#hotels" : "/#hotels";
 
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const items = [
     { Icon: HotelsIcon,  label: "Our Hotels", to: hotelsHref },
     { Icon: DiningIcon,  label: "Dining",     to: `/${scope}/dining` },
@@ -37,7 +46,11 @@ export function HeroIconNav({ scope = "pavilion" }: HeroIconNavProps) {
   ];
 
   return (
-    <ul className="hero-icon-nav" aria-label="Quick navigation">
+    <ul
+      className={`hero-icon-nav ${scrolled ? "is-hidden" : ""}`}
+      aria-label="Quick navigation"
+      aria-hidden={scrolled}
+    >
       {items.map(({ Icon, label, to }) => {
         const glyph = <span className="hero-icon-nav__glyph"><Icon size={30} /></span>;
         const text = <span className="hero-icon-nav__label">{label}</span>;

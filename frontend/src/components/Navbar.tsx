@@ -72,6 +72,17 @@ export function Navbar() {
             )}
           </Link>
 
+          <nav className="primary" aria-label="Primary">
+            <ul>
+              <li><Link to={`/${scope}`}>Hotels</Link></li>
+              <li><Link to={`/${scope}/dining`}>Dining</Link></li>
+              <li><Link to={`/${scope}/plan-your-event`}>Events</Link></li>
+              <li><Link to={`/${scope}/special-offers`}>Offers</Link></li>
+              <li><Link to={`/${scope}/gallery`}>Gallery</Link></li>
+              <li><Link to={`/${scope}/contact-us`}>Contact</Link></li>
+            </ul>
+          </nav>
+
           <div className="nav-right">
             <BookButton hotel={scope} className="btn small gold">Book Now</BookButton>
             <button
