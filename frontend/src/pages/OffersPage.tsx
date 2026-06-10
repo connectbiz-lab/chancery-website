@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
