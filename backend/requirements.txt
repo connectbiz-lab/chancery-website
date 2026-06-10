@@ -1,7 +1,7 @@
 asgiref==3.11.1
-Django==5.2.15
+Django<=5.2.15
 django-cors-headers==4.9.0
-djangorestframework==3.17.1
-pillow==12.2.0
-python-dotenv==1.2.2
+djangorestframework>=3.14
+pillow>=10
+python-dotenv>=1.0
 sqlparse==0.5.5
