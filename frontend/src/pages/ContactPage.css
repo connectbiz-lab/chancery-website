@@ -39,6 +39,18 @@
   gap: 1.5rem;
 }
 @media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } }
-.form-status { margin-top: 1.25rem; font-size: 0.9rem; }
-.form-status.ok  { color: var(--c-gold-deep); }
-.form-status.err { color: #c43; }
+.form-status {
+  margin: 1.5rem 0 0;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-left: 3px solid currentColor;
+}
+.form-status.ok  {
+  color: var(--c-gold-deep);
+  background: rgba(196, 163, 87, 0.10);
+}
+.form-status.err {
+  color: #c43;
+  background: rgba(204, 68, 51, 0.08);
+}

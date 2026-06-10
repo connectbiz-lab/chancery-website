@@ -151,16 +151,20 @@ export function ContactPage({ hotel }: { hotel: HotelSlug }) {
                   onChange={(e) => update("message", e.target.value)} />
               </div>
 
+              {status === "ok" && (
+                <p className="form-status ok" role="status">
+                  Thank you. Our team will be in touch shortly.
+                </p>
+              )}
+              {status === "err" && (
+                <p className="form-status err" role="alert">
+                  Something went wrong. Please try again or call us directly.
+                </p>
+              )}
+
               <button type="submit" className="btn" disabled={status === "sending"}>
                 {status === "sending" ? "Sending…" : "Send enquiry"}
               </button>
-
-              {status === "ok" && (
-                <p className="form-status ok">Thank you. Our team will be in touch shortly.</p>
-              )}
-              {status === "err" && (
-                <p className="form-status err">Something went wrong. Please try again or call us directly.</p>
-              )}
             </form>
           </div>
         </div>

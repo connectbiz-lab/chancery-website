@@ -30,15 +30,17 @@
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  /* No more global dim — the photo reads at full brightness. A very faint
-     vignette below the midline keeps the gold button + address line
-     readable on bright daytime walls. Text legibility on the headline is
-     handled by the text-shadow rules below, not by darkening the photo. */
+  /* Soft horizontal band centred on the text region — keeps the photo's
+     top and bottom strips at full brightness while giving the ivory
+     eyebrow + headline a darker plate to sit on. Pavilion's cream
+     facade was overpowering the text shadows otherwise. */
   background:
     linear-gradient(180deg,
       rgba(14, 34, 55, 0) 0%,
-      rgba(14, 34, 55, 0) 50%,
-      rgba(14, 34, 55, 0.22) 100%);
+      rgba(14, 34, 55, 0.18) 25%,
+      rgba(14, 34, 55, 0.36) 50%,
+      rgba(14, 34, 55, 0.18) 75%,
+      rgba(14, 34, 55, 0.30) 100%);
 }
 
 .hero-inner {
