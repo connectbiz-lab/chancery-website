@@ -1051,5 +1051,8 @@ class Command(BaseCommand):
                     hero_eyebrow=eyebrow, hero_heading=heading,
                     intro_body=intro,
                 )
-                attach(page, "hero_image", seed_image(source, data["hero"]))
+                # Prefer a per-page hero from seed_assets/pages/<hotel>-<kind>-hero.png
+                # when one exists; otherwise fall back to the hotel facade.
+                page_hero = local_path(f"pages/{hotel.slug}-{kind}-hero.png")
+                attach(page, "hero_image", page_hero or seed_image(source, data["hero"]))
         self.stdout.write(f"  · pages ({Page.objects.count()})")
