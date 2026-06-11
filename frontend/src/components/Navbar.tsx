@@ -75,6 +75,7 @@ export function Navbar() {
           <nav className="primary" aria-label="Primary">
             <ul>
               <li><Link to={`/${scope}`}>Hotels</Link></li>
+              <li><Link to={`/${scope}/accommodation`}>Stay</Link></li>
               <li><Link to={`/${scope}/dining`}>Dining</Link></li>
               <li><Link to={`/${scope}/plan-your-event`}>Events</Link></li>
               <li><Link to={`/${scope}/special-offers`}>Offers</Link></li>

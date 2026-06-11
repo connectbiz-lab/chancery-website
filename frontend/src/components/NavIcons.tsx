@@ -42,6 +42,20 @@ export function HotelsIcon({ size, className }: IconProps) {
   );
 }
 
+export function StayIcon({ size, className }: IconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      {/* Hotel bed silhouette — headboard, mattress, pillow, base. */}
+      <path d="M3 19v-7" />
+      <path d="M21 19v-3" />
+      <path d="M3 16h18" />
+      <path d="M3 19h18" />
+      <path d="M5 16v-3a2 2 0 0 1 2-2h14" />
+      <rect x="7.5" y="11" width="6" height="2.5" rx="0.4" />
+    </svg>
+  );
+}
+
 export function DiningIcon({ size, className }: IconProps) {
   return (
     <svg {...baseProps(size, className)}>

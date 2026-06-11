@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   HotelsIcon,
+  StayIcon,
   DiningIcon,
   EventsIcon,
   OffersIcon,
@@ -39,6 +40,7 @@ export function HeroIconNav({ scope = "pavilion" }: HeroIconNavProps) {
 
   const items = [
     { Icon: HotelsIcon,  label: "Our Hotels", to: hotelsHref },
+    { Icon: StayIcon,    label: "Stay",       to: `/${scope}/accommodation` },
     { Icon: DiningIcon,  label: "Dining",     to: `/${scope}/dining` },
     { Icon: EventsIcon,  label: "Events",     to: `/${scope}/plan-your-event` },
     { Icon: OffersIcon,  label: "Offers",     to: `/${scope}/special-offers` },

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { BookButton } from "./BookButton";
 import {
   HotelsIcon,
+  StayIcon,
   DiningIcon,
   EventsIcon,
   OffersIcon,
@@ -21,6 +22,7 @@ interface SideMenuProps {
 
 const items = [
   { Icon: HotelsIcon,  label: "Our Hotels", to: (s: HotelSlug) => `/${s}` },
+  { Icon: StayIcon,    label: "Stay",       to: (s: HotelSlug) => `/${s}/accommodation` },
   { Icon: DiningIcon,  label: "Dining",     to: (s: HotelSlug) => `/${s}/dining` },
   { Icon: EventsIcon,  label: "Events",     to: (s: HotelSlug) => `/${s}/plan-your-event` },
   { Icon: OffersIcon,  label: "Offers",     to: (s: HotelSlug) => `/${s}/special-offers` },
