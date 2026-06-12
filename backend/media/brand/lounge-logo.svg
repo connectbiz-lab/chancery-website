@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="The Lounge logo">
+  <defs>
+    <style>.r{fill:none;stroke:#fff;stroke-width:2}.t{fill:#fff;font-family:'Cormorant Garamond',Georgia,serif}</style>
+  </defs>
+  <line class="r" x1="40" y1="60" x2="280" y2="60"/>
+  <line class="r" x1="40" y1="260" x2="280" y2="260"/>
+  <text class="t" x="160" y="175" font-size="86" font-style="italic" text-anchor="middle">L</text>
+  <text class="t" x="160" y="220" font-size="14" letter-spacing="6" text-anchor="middle">THE LOUNGE</text>
+  <text class="t" x="160" y="240" font-size="9" letter-spacing="4" text-anchor="middle" opacity="0.65">LOBBY BAR</text>
+</svg>
