@@ -28,7 +28,7 @@ export function Hero({
     <section className={cls} role="banner">
       {image && (
         <div className="hero-bg" aria-hidden="true">
-          <img src={image} alt="" />
+          <img src={image} alt="" fetchPriority="high" loading="eager" />
           <div className="hero-overlay" />
         </div>
       )}
