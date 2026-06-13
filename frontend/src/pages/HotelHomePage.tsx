@@ -22,23 +22,32 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
   const introRef = useReveal<HTMLDivElement>();
   const aboutRef = useReveal<HTMLDivElement>();
 
-  if (page.loading || h.loading || !h.data) return <Loading />;
-
   const hotelData = h.data;
   const pageData = page.data;
+  // Slug → human name fallback so the Hero shell can render the moment the
+  // route mounts, without waiting on /api/hotels/<slug>/. The CMS still
+  // overwrites these once the API resolves; this only fills the loading gap.
+  const HOTEL_NAME_FALLBACK: Record<HotelSlug, string> = {
+    chancery: "The Chancery Hotel",
+    pavilion: "The Chancery Pavilion",
+  };
+  const heroHeading = hotelData?.name ?? HOTEL_NAME_FALLBACK[hotel];
+  const heroEyebrow = hotelData
+    ? `${hotelData.location_tag} · ${hotelData.location}`
+    : "Bangalore";
 
   return (
     <>
       <PageMeta
-        title={pageData?.meta_title ?? hotelData.name}
-        description={pageData?.meta_description ?? hotelData.tagline}
+        title={pageData?.meta_title ?? hotelData?.name ?? heroHeading}
+        description={pageData?.meta_description ?? hotelData?.tagline}
       />
 
       <Hero
-        image={hotelData.hero_image}
-        eyebrow={`${hotelData.location_tag} · ${hotelData.location}`}
-        heading={hotelData.name}
-        subheading={hotelData.address}
+        image={hotelData?.hero_image ?? null}
+        eyebrow={heroEyebrow}
+        heading={heroHeading}
+        subheading={hotelData?.address}
         size="full"
         align="center"
         footerNav={<HeroIconNav scope={hotel} />}
@@ -47,53 +56,59 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
         <a href="#rooms" className="btn light">Explore rooms</a>
       </Hero>
 
-      {/* Stats / intro */}
-      <section className="section bg-cream">
-        <div ref={introRef} className="container reveal">
-          <div className="section-head">
-            <p className="eyebrow center">{hotelData.name}</p>
-            <h2 className="display">
-              {pageData?.intro_body ? hotelData.intro_heading || hotelData.tagline : hotelData.tagline}
-            </h2>
-            <p className="lede">{pageData?.intro_body ?? hotelData.intro_body}</p>
-          </div>
+      {!hotelData && <Loading />}
 
-          <div className="stat-row three">
-            <div className="stat">
-              <span className="stat-num">{hotelData.rooms_count}</span>
-              <span className="stat-label">Rooms & suites</span>
-            </div>
-            <div className="stat">
-              <span className="stat-num">{restaurants.data?.length ?? "—"}</span>
-              <span className="stat-label">Restaurants</span>
-            </div>
-            <div className="stat">
-              <span className="stat-num">{venues.data?.length ?? "—"}</span>
-              <span className="stat-label">Event venues</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {hotelData && (
+        <>
+          {/* Stats / intro */}
+          <section className="section bg-cream">
+            <div ref={introRef} className="container reveal">
+              <div className="section-head">
+                <p className="eyebrow center">{hotelData.name}</p>
+                <h2 className="display">
+                  {pageData?.intro_body ? hotelData.intro_heading || hotelData.tagline : hotelData.tagline}
+                </h2>
+                <p className="lede">{pageData?.intro_body ?? hotelData.intro_body}</p>
+              </div>
 
-      {/* About — image + text */}
-      <section className="section bg-ivory">
-        <div ref={aboutRef} className="container reveal">
-          <div className="editorial-row">
-            <div className="editorial-figure">
-              <div className="figure aspect-port">
-                {hotelData.about_image && <img src={hotelData.about_image} alt={hotelData.name} />}
+              <div className="stat-row three">
+                <div className="stat">
+                  <span className="stat-num">{hotelData.rooms_count}</span>
+                  <span className="stat-label">Rooms & suites</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-num">{restaurants.data?.length ?? "—"}</span>
+                  <span className="stat-label">Restaurants</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-num">{venues.data?.length ?? "—"}</span>
+                  <span className="stat-label">Event venues</span>
+                </div>
               </div>
             </div>
-            <div className="editorial-text">
-              <p className="eyebrow">Heritage & service</p>
-              <h2 className="h2">A welcome that has lasted generations</h2>
-              <p className="lede">
-                {hotelData.intro_body}
-              </p>
+          </section>
+
+          {/* About — image + text */}
+          <section className="section bg-ivory">
+            <div ref={aboutRef} className="container reveal">
+              <div className="editorial-row">
+                <div className="editorial-figure">
+                  <div className="figure aspect-port">
+                    {hotelData.about_image && <img src={hotelData.about_image} alt={hotelData.name} />}
+                  </div>
+                </div>
+                <div className="editorial-text">
+                  <p className="eyebrow">Heritage & service</p>
+                  <h2 className="h2">A welcome that has lasted generations</h2>
+                  <p className="lede">
+                    {hotelData.intro_body}
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
+        </>
+      )}
 
       {/* Rooms preview — anchor target for the hero "Explore rooms" button. */}
       {rooms.data && rooms.data.length > 0 && (
@@ -197,7 +212,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
           <div className="container">
             <div className="section-head left">
               <p className="eyebrow">Gallery</p>
-              <h2 className="h2">Inside {hotelData.short_name}</h2>
+              <h2 className="h2">Inside {hotelData?.short_name ?? heroHeading}</h2>
             </div>
             <div className="image-grid">
               {gallery.data.slice(0, 6).map((g) => (
@@ -211,21 +226,23 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
       )}
 
       {/* Contact teaser */}
-      <section className="section bg-navy tight">
-        <div className="container narrow text-center">
-          <p className="eyebrow center" style={{ color: "var(--c-gold-soft)" }}>Reach the team</p>
-          <h2 className="h2" style={{ color: "var(--c-ivory)" }}>{hotelData.address}</h2>
-          <p className="lede" style={{ color: "rgba(246,241,231,0.85)" }}>
-            <a href={`tel:${hotelData.phone.replace(/\s+/g, "")}`} style={{ color: "var(--c-ivory)" }}>{hotelData.phone}</a>
-            {" · "}
-            <a href={`mailto:${hotelData.email}`} style={{ color: "var(--c-ivory)" }}>{hotelData.email}</a>
-          </p>
-          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "2rem", flexWrap: "wrap" }}>
-            <Link to={`/${hotel}/contact-us`} className="btn light">Contact us</Link>
-            <BookButton hotel={hotel} className="btn gold">Book your stay</BookButton>
+      {hotelData && (
+        <section className="section bg-navy tight">
+          <div className="container narrow text-center">
+            <p className="eyebrow center" style={{ color: "var(--c-gold-soft)" }}>Reach the team</p>
+            <h2 className="h2" style={{ color: "var(--c-ivory)" }}>{hotelData.address}</h2>
+            <p className="lede" style={{ color: "rgba(246,241,231,0.85)" }}>
+              <a href={`tel:${hotelData.phone.replace(/\s+/g, "")}`} style={{ color: "var(--c-ivory)" }}>{hotelData.phone}</a>
+              {" · "}
+              <a href={`mailto:${hotelData.email}`} style={{ color: "var(--c-ivory)" }}>{hotelData.email}</a>
+            </p>
+            <div style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "2rem", flexWrap: "wrap" }}>
+              <Link to={`/${hotel}/contact-us`} className="btn light">Contact us</Link>
+              <BookButton hotel={hotel} className="btn gold">Book your stay</BookButton>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

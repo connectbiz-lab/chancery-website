@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
 import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
-import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
 import { api, useAsync } from "@/lib/api";
 import { useReveal } from "@/lib/reveal";
@@ -37,12 +37,13 @@ export function HomePage() {
   const testimonialsRef = useReveal<HTMLDivElement>();
   const awardsRef = useReveal<HTMLDivElement>();
 
-  if (page.loading || hotels.loading) return <Loading />;
-
   const p = page.data;
   const pavilion = hotels.data?.find((h) => h.slug === "pavilion");
   const chancery = hotels.data?.find((h) => h.slug === "chancery");
-  const heroImage = p?.hero_image ?? pavilion?.hero_image ?? null;
+  // Fallback matches the <link rel="preload"> in index.html so the <img> can
+  // paint from the preload cache immediately on first mount, instead of waiting
+  // for the /api/page/home + /api/hotels round-trips to resolve a URL.
+  const heroImage = p?.hero_image ?? pavilion?.hero_image ?? "/media/pages/brand-home-hero.png";
   const introImage = chancery?.about_image ?? chancery?.hero_image ?? null;
 
   return (
@@ -51,6 +52,24 @@ export function HomePage() {
         title={p?.meta_title ?? "Chancery Hotels — Luxury Hotels in Bangalore"}
         description={p?.meta_description}
       />
+
+      {/*
+        Idle-prefetch the hotel hero images we just learned about from
+        /api/hotels/. When the visitor clicks "Pavilion" or "Chancery", the SPA
+        navigates to /pavilion or /chancery and HotelHomePage mounts a Hero
+        <img> for that same URL — the browser should serve it from cache
+        instead of starting a fresh 600KB–1.7MB download. rel="prefetch" keeps
+        the priority low so it never competes with the current page's LCP.
+      */}
+      {hotels.data && (
+        <Helmet>
+          {hotels.data
+            .filter((h) => h.hero_image)
+            .map((h) => (
+              <link key={h.slug} rel="prefetch" as="image" href={h.hero_image!} />
+            ))}
+        </Helmet>
+      )}
 
       <Hero
         image={heroImage}
