@@ -101,25 +101,6 @@ export function ContactPage({ hotel }: { hotel: HotelSlug }) {
                   </div>
                 )}
               </div>
-
-              {(hotelData.departments ?? []).length > 0 && (
-                <div className="contact-departments">
-                  <span className="label">Departments</span>
-                  <ul className="dept-list">
-                    {hotelData.departments.map((d) => (
-                      <li key={d.label}>
-                        <span className="dept-name">{d.label}</span>
-                        <a href={`mailto:${d.email}`}>{d.email}</a>
-                        {d.phone && (
-                          <a href={`tel:${d.phone.replace(/[\s-]+/g, "")}`} className="dept-phone">
-                            {d.phone}
-                          </a>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
             </aside>
 
             <form className="contact-form" onSubmit={submit}>
@@ -191,6 +172,28 @@ export function ContactPage({ hotel }: { hotel: HotelSlug }) {
               </button>
             </form>
           </div>
+
+          {(hotelData.departments ?? []).length > 0 && (
+            <div className="dept-band">
+              <div className="dept-band__head">
+                <p className="eyebrow">Departments</p>
+                <h2 className="h3">Reach the right team</h2>
+              </div>
+              <div className="dept-grid">
+                {hotelData.departments.map((d) => (
+                  <div className="dept-card" key={d.label}>
+                    <span className="dept-name">{d.label}</span>
+                    <a href={`mailto:${d.email}`}>{d.email}</a>
+                    {d.phone && (
+                      <a href={`tel:${d.phone.replace(/[\s-]+/g, "")}`} className="dept-phone">
+                        {d.phone}
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </>
