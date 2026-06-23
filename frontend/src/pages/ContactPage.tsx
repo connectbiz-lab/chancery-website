@@ -102,7 +102,7 @@ export function ContactPage({ hotel }: { hotel: HotelSlug }) {
                 )}
               </div>
 
-              {hotelData.departments.length > 0 && (
+              {(hotelData.departments ?? []).length > 0 && (
                 <div className="contact-departments">
                   <span className="label">Departments</span>
                   <ul className="dept-list">
