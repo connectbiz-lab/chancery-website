@@ -1,15 +1,8 @@
-// app/page.tsx
-import { createClient } from '@/lib/supabase/server'
-
-export default async function Home() {
-  const supabase = await createClient()
-  const { data: hotels, error } = await supabase.from('hotel').select('slug,name').order('order')
+export default function Home() {
   return (
-    <main style={{ padding: 24, fontFamily: 'system-ui' }}>
-      <h1>Chancery — data layer smoke test</h1>
-      {error && <p style={{ color: 'crimson' }}>Error: {error.message}</p>}
-      <ul>{(hotels ?? []).map((h) => <li key={h.slug}>{h.name}</li>)}</ul>
-      <p>{(hotels ?? []).length} hotel(s) found.</p>
+    <main className="container section">
+      <p className="eyebrow">Chancery Hotels</p>
+      <h1 style={{ fontFamily: 'var(--f-display)' }}>Design tokens load</h1>
     </main>
   )
 }
