@@ -1,4 +1,7 @@
+from django.db.models import Q
 from rest_framework import serializers
+
+from leads.models import DEPARTMENT_CHOICES, DepartmentContact
 
 from .models import (
     FAQItem,
@@ -53,7 +56,24 @@ class HotelMiniSerializer(serializers.ModelSerializer):
         fields = ["id", "slug", "name", "short_name", "location"]
 
 
+_DEPT_ORDER = {key: i for i, (key, _) in enumerate(DEPARTMENT_CHOICES)}
+
+
 class HotelSerializer(serializers.ModelSerializer):
+    departments = serializers.SerializerMethodField()
+
+    def get_departments(self, obj):
+        """Public department contacts for this hotel + brand-level ('both'),
+        sourced from the routing table so display and routing share one truth."""
+        rows = DepartmentContact.objects.filter(
+            Q(hotel=obj.slug) | Q(hotel="both"), is_active=True, public=True
+        )
+        rows = sorted(rows, key=lambda r: _DEPT_ORDER.get(r.department, 99))
+        return [
+            {"label": r.get_department_display(), "email": r.notify_email, "phone": r.phone}
+            for r in rows
+        ]
+
     class Meta:
         model = Hotel
         fields = [
@@ -65,8 +85,11 @@ class HotelSerializer(serializers.ModelSerializer):
             "location",
             "address",
             "phone",
+            "phone_alt",
+            "fax",
             "whatsapp",
             "email",
+            "departments",
             "rooms_count",
             "established",
             "location_tag",

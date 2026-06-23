@@ -80,11 +80,16 @@ export function ContactPage({ hotel }: { hotel: HotelSlug }) {
                 <div>
                   <span className="label">Phone</span>
                   <p><a href={`tel:${hotelData.phone.replace(/\s+/g, "")}`}>{hotelData.phone}</a></p>
+                  {hotelData.phone_alt && (
+                    <p><a href={`tel:${hotelData.phone_alt.replace(/[\s-]+/g, "")}`}>{hotelData.phone_alt}</a></p>
+                  )}
                 </div>
-                <div>
-                  <span className="label">Email</span>
-                  <p><a href={`mailto:${hotelData.email}`}>{hotelData.email}</a></p>
-                </div>
+                {hotelData.fax && (
+                  <div>
+                    <span className="label">Fax</span>
+                    <p>{hotelData.fax}</p>
+                  </div>
+                )}
                 {hotelData.whatsapp && (
                   <div>
                     <span className="label">WhatsApp</span>
@@ -96,6 +101,25 @@ export function ContactPage({ hotel }: { hotel: HotelSlug }) {
                   </div>
                 )}
               </div>
+
+              {hotelData.departments.length > 0 && (
+                <div className="contact-departments">
+                  <span className="label">Departments</span>
+                  <ul className="dept-list">
+                    {hotelData.departments.map((d) => (
+                      <li key={d.label}>
+                        <span className="dept-name">{d.label}</span>
+                        <a href={`mailto:${d.email}`}>{d.email}</a>
+                        {d.phone && (
+                          <a href={`tel:${d.phone.replace(/[\s-]+/g, "")}`} className="dept-phone">
+                            {d.phone}
+                          </a>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </aside>
 
             <form className="contact-form" onSubmit={submit}>

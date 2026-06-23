@@ -25,12 +25,21 @@ export interface HotelMini {
   location: string;
 }
 
+export interface DepartmentContact {
+  label: string;
+  email: string;
+  phone: string;
+}
+
 export interface Hotel extends HotelMini {
   tagline: string;
   address: string;
   phone: string;
+  phone_alt: string;
+  fax: string;
   whatsapp: string;
   email: string;
+  departments: DepartmentContact[];
   rooms_count: number;
   established: string;
   location_tag: string;

@@ -48,3 +48,61 @@ class NewsletterSubscriber(models.Model):
 
     def __str__(self):
         return self.email
+
+
+DEPARTMENT_CHOICES = [
+    ("reservations", "Reservations"),
+    ("sales", "Sales"),
+    ("events", "Meetings & Events"),
+    ("catering", "Outdoor Catering"),
+    ("careers", "Careers"),
+    ("general", "General Enquiry"),
+]
+
+HOTEL_SCOPE_CHOICES = [
+    ("chancery", "The Chancery Hotel"),
+    ("pavilion", "Chancery Pavilion"),
+    ("both", "Both / Brand-level"),
+]
+
+
+class DepartmentContact(models.Model):
+    """
+    Routing table: who gets notified for a given (hotel, department) enquiry.
+
+    Channel-agnostic by design — each row holds an email now and a WhatsApp
+    number / Slack webhook for later. v1 sends email; turning on WhatsApp or
+    Slack is just filling in the field here, no schema change. This is the single
+    place that decides WHO is notified; the columns are the CHANNELS.
+    """
+
+    hotel = models.CharField(max_length=20, choices=HOTEL_SCOPE_CHOICES)
+    department = models.CharField(max_length=30, choices=DEPARTMENT_CHOICES)
+    notify_email = models.EmailField(help_text="Primary inbox for this enquiry type.")
+    cc_emails = models.CharField(
+        max_length=400, blank=True, help_text="Optional extra recipients, comma-separated."
+    )
+    phone = models.CharField(
+        max_length=40, blank=True, help_text="Optional direct line shown to guests for this department."
+    )
+    public = models.BooleanField(
+        default=True, help_text="Show this department's email/phone publicly on the contact page."
+    )
+    whatsapp_number = models.CharField(
+        max_length=20,
+        blank=True,
+        help_text="Digits incl. country code, no '+'. Team WhatsApp alerts (used later).",
+    )
+    slack_webhook = models.URLField(
+        blank=True, help_text="Optional Slack/Teams incoming webhook for fast alerts."
+    )
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = [("hotel", "department")]
+        ordering = ["hotel", "department"]
+        verbose_name = "Department contact (routing)"
+        verbose_name_plural = "Department contacts (routing)"
+
+    def __str__(self):
+        return f"{self.get_hotel_display()} — {self.get_department_display()} → {self.notify_email}"

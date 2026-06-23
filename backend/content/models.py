@@ -60,7 +60,11 @@ class Hotel(models.Model):
     tagline = models.CharField(max_length=300, blank=True)
     location = models.CharField(max_length=200, blank=True, help_text="e.g. Lavelle Road")
     address = models.CharField(max_length=300, blank=True)
-    phone = models.CharField(max_length=40, blank=True)
+    phone = models.CharField(max_length=40, blank=True, help_text="Primary line, shown everywhere.")
+    phone_alt = models.CharField(
+        max_length=80, blank=True, help_text="Secondary / board line, e.g. 'Board: 080-69894666'."
+    )
+    fax = models.CharField(max_length=40, blank=True)
     whatsapp = models.CharField(max_length=20, blank=True, help_text="Digits only, no +")
     email = models.EmailField(blank=True)
     rooms_count = models.PositiveIntegerField(default=0)
