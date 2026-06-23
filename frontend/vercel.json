@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/proxy-api/:path(.*)", "destination": "http://3.111.60.193/api/:path" },
+    { "source": "/media/:path(.*)", "destination": "http://3.111.60.193/media/:path" },
+    { "source": "/((?!proxy-api/|media/).*)", "destination": "/index.html" }
+  ]
+}

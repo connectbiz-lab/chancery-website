@@ -4,12 +4,25 @@ import type {
   SiteContent, Testimonial, Venue,
 } from "./types";
 
-const API_BASE = "/api";
+// Dev: Vite proxies "/api" to Django. Prod: "/api" is reserved by Vercel for
+// Serverless Functions, so we proxy the backend under "/proxy-api" via vercel.json.
+const API_BASE = import.meta.env.PROD ? "/proxy-api" : "/api";
+
+// DRF returns absolute image URLs built from the backend host
+// (e.g. http://3.111.60.193/media/... or http://127.0.0.1:8000/media/...).
+// Strip the host so URLs become same-origin relative: in dev the Vite proxy
+// forwards /media + /api, and in prod the Vercel rewrites do — which also keeps
+// the (http) backend off an https page, avoiding mixed-content blocking.
+const BACKEND_HOST = /https?:\/\/(?:3\.111\.60\.193|127\.0\.0\.1:8000|localhost:8000)/g;
+
+function relativizeHosts(json: string): string {
+  return json.replace(BACKEND_HOST, "");
+}
 
 async function get<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, { headers: { Accept: "application/json" } });
   if (!res.ok) throw new Error(`API ${path} → ${res.status}`);
-  return res.json() as Promise<T>;
+  return JSON.parse(relativizeHosts(await res.text())) as T;
 }
 
 async function post<T>(path: string, body: unknown): Promise<T> {

@@ -24,6 +24,9 @@ frontend/dist/
 frontend/.vite/
 *.log
 
+# Vercel
+.vercel/
+
 # OS
 .DS_Store
 Thumbs.db
