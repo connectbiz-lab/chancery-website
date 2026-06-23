@@ -95,20 +95,20 @@ export function BookTableModal({ open, onClose, hotel, restaurant }: Props) {
             <h2 className="h3">Book a table</h2>
             <form className="btm-form" onSubmit={submit}>
               <div className="btm-grid">
-                <label className="field">
+                <label className="field f-wide">
                   <span>Full name</span>
                   <input type="text" required value={form.name}
                     onChange={(e) => set("name", e.target.value)} />
                 </label>
                 <label className="field">
-                  <span>Email</span>
-                  <input type="email" required value={form.email}
-                    onChange={(e) => set("email", e.target.value)} />
-                </label>
-                <label className="field">
                   <span>Phone</span>
                   <input type="tel" value={form.phone}
                     onChange={(e) => set("phone", e.target.value)} />
+                </label>
+                <label className="field f-full">
+                  <span>Email</span>
+                  <input type="email" required value={form.email}
+                    onChange={(e) => set("email", e.target.value)} />
                 </label>
                 <label className="field">
                   <span>Guests</span>

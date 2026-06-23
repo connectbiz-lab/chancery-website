@@ -42,21 +42,31 @@
 .btm-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.9rem 1.1rem;
+  gap: 0.7rem 1rem;
 }
-@media (max-width: 520px) { .btm-grid { grid-template-columns: 1fr 1fr; } }
+.btm-grid .f-wide { grid-column: span 2; }
+.btm-grid .f-full { grid-column: 1 / -1; }
+@media (max-width: 520px) {
+  .btm-grid { grid-template-columns: 1fr 1fr; }
+  .btm-grid .f-wide, .btm-grid .f-full { grid-column: 1 / -1; }
+}
 
 .btm-form .field { display: flex; flex-direction: column; }
 .btm-form .field > span {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.06em;
   color: var(--c-muted);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
 }
-.btm-form input,
-.btm-form textarea { padding: 0.55rem 0.7rem; font-size: 0.95rem; }
-.btm-msg { margin-top: 0.9rem; }
-.btm-form .btn { margin-top: 1.5rem; }
+/* Higher specificity than the site-wide input rule so the compact height wins. */
+.btm-dialog .btm-form input,
+.btm-dialog .btm-form textarea {
+  padding: 0.45rem 0.65rem;
+  font-size: 0.95rem;
+}
+.btm-form textarea { min-height: 60px; }
+.btm-msg { margin-top: 0.7rem; }
+.btm-form .btn { margin-top: 1.25rem; }
 
 .btm-success { text-align: center; padding: 1rem 0.5rem; }
 .btm-success p:not(.eyebrow) { margin: 0 auto 1.75rem; max-width: 40ch; }
