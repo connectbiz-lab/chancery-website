@@ -15,11 +15,12 @@ create or replace function is_admin() returns boolean as $$
   select exists (select 1 from admin_users where user_id = auth.uid());
 $$ language sql stable security definer;
 
--- Table-level privileges. RLS sits on top of these grants: a query must pass
--- BOTH the privilege check and the policy. We grant broadly to anon/authenticated
--- and let the policies below do the real gating. admin_users is deliberately
--- excluded (admins reach it via service role / its own select policy only).
+-- Reset table privileges to a known-minimal posture, then grant only what RLS gates.
+-- (RLS governs SELECT/INSERT/UPDATE/DELETE row-by-row, but NOT TRUNCATE — so we must
+-- not leave TRUNCATE/TRIGGER/REFERENCES granted to anon/authenticated.)
+revoke all on all tables in schema public from anon, authenticated;
 grant select, insert, update, delete on all tables in schema public to anon, authenticated;
+-- admin_users: never anon-readable; authenticated may read (its own select policy gates rows).
 revoke all on admin_users from anon, authenticated;
 grant select on admin_users to authenticated;
 

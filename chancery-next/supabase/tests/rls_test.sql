@@ -38,4 +38,13 @@ select '4_lead_read_blocked' as test, count(*) = 0 as pass from lead;
 -- 5) anon CANNOT read department_contact (RLS filters to 0 rows)
 select '5_dept_read_blocked' as test, count(*) = 0 as pass from department_contact;
 
+-- 6) anon CANNOT truncate content (TRUNCATE bypasses RLS — must be blocked by privilege)
+do $$
+begin
+  truncate hotel cascade;
+  raise notice 'TEST 6_truncate_denied: FAIL (truncate succeeded)';
+exception when others then
+  raise notice 'TEST 6_truncate_denied: PASS';
+end $$;
+
 reset role;
