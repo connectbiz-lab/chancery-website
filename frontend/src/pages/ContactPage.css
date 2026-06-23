@@ -43,27 +43,42 @@
 
 .dept-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2rem 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.75rem 2.5rem;
 }
-.dept-card { display: flex; flex-direction: column; gap: 0.3rem; }
+.dept-card { display: flex; flex-direction: row; align-items: flex-start; gap: 0.9rem; }
+.dept-icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--c-line);
+  color: var(--c-gold-deep);
+}
+.dept-card__body { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
 .dept-name {
   font-family: var(--f-sans);
   font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--c-muted);
-  margin-bottom: 0.2rem;
 }
 .dept-card a {
   font-family: var(--f-serif);
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   color: var(--c-navy);
   width: fit-content;
+  max-width: 100%;
   border-bottom: 1px solid var(--c-line);
 }
 .dept-card a:hover { color: var(--c-gold-deep); border-color: var(--c-gold-deep); }
 .dept-card .dept-phone { font-size: 0.9rem; color: var(--c-muted); }
+
+/* Sit closer to the footer — the band already closes the page, so the full
+   section bottom padding left an oversized gap before the newsletter. */
+.contact-section { padding-bottom: clamp(1.5rem, 3vw, 2.5rem); }
 
 .contact-form .eyebrow { padding-left: 0; }
 .contact-form .eyebrow::before { display: none; }

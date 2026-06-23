@@ -1,12 +1,30 @@
 import { useState } from "react";
+import type { ComponentType } from "react";
 import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
+import {
+  ContactIcon,
+  DiningIcon,
+  EventsIcon,
+  HotelsIcon,
+  OffersIcon,
+  StayIcon,
+} from "@/components/NavIcons";
 import { PageMeta } from "@/components/PageMeta";
 import { api, useAsync } from "@/lib/api";
 import type { HotelSlug } from "@/lib/types";
 import "./pages.css";
 import "./ContactPage.css";
+
+// Flat line-icon per department so the right team is easy to spot at a glance.
+const DEPT_ICON: Record<string, ComponentType<{ size?: number; className?: string }>> = {
+  Reservations: StayIcon,
+  Sales: OffersIcon,
+  "Meetings & Events": EventsIcon,
+  "Outdoor Catering": DiningIcon,
+  Careers: HotelsIcon,
+};
 
 interface FormState {
   name: string;
@@ -66,7 +84,7 @@ export function ContactPage({ hotel }: { hotel: HotelSlug }) {
         size="compact"
         footerNav={<HeroIconNav scope={hotel} />}
       />
-      <section className="section">
+      <section className="section contact-section">
         <div className="container">
           <div className="contact-grid">
             <aside className="contact-info">
@@ -180,17 +198,23 @@ export function ContactPage({ hotel }: { hotel: HotelSlug }) {
                 <h2 className="h3">Reach the right team</h2>
               </div>
               <div className="dept-grid">
-                {hotelData.departments.map((d) => (
-                  <div className="dept-card" key={d.label}>
-                    <span className="dept-name">{d.label}</span>
-                    <a href={`mailto:${d.email}`}>{d.email}</a>
-                    {d.phone && (
-                      <a href={`tel:${d.phone.replace(/[\s-]+/g, "")}`} className="dept-phone">
-                        {d.phone}
-                      </a>
-                    )}
-                  </div>
-                ))}
+                {hotelData.departments.map((d) => {
+                  const Icon = DEPT_ICON[d.label] ?? ContactIcon;
+                  return (
+                    <div className="dept-card" key={d.label}>
+                      <span className="dept-icon"><Icon size={22} /></span>
+                      <div className="dept-card__body">
+                        <span className="dept-name">{d.label}</span>
+                        <a href={`mailto:${d.email}`}>{d.email}</a>
+                        {d.phone && (
+                          <a href={`tel:${d.phone.replace(/[\s-]+/g, "")}`} className="dept-phone">
+                            {d.phone}
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
