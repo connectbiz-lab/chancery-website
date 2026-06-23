@@ -17,6 +17,7 @@ import { OffersPage } from "@/pages/OffersPage";
 import { RoomsPage } from "@/pages/RoomsPage";
 import { SimpleContentPage } from "@/pages/SimpleContentPage";
 import { SiteMapPage } from "@/pages/SiteMapPage";
+import { VenueDetailPage } from "@/pages/VenueDetailPage";
 import type { HotelSlug } from "@/lib/types";
 
 function ValidHotel({ children }: { children: React.ReactNode }) {
@@ -77,6 +78,14 @@ export function App() {
           element={
             <ValidHotel>
               <HotelParam Component={EventsPage} />
+            </ValidHotel>
+          }
+        />
+        <Route
+          path=":hotel/plan-your-event/:venue"
+          element={
+            <ValidHotel>
+              <HotelParam Component={VenueDetailPage} />
             </ValidHotel>
           }
         />

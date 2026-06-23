@@ -13,10 +13,10 @@ class DepartmentContactAdmin(admin.ModelAdmin):
 
 @admin.register(Lead)
 class LeadAdmin(admin.ModelAdmin):
-    list_display = ["created_at", "name", "email", "interest", "hotel_interest", "restaurant", "status", "routed_to"]
+    list_display = ["created_at", "name", "email", "interest", "hotel_interest", "restaurant", "venue", "status", "routed_to"]
     list_filter = ["status", "interest", "hotel_interest", "created_at"]
     list_editable = ["status"]
-    search_fields = ["name", "email", "phone", "message", "restaurant"]
+    search_fields = ["name", "email", "phone", "message", "restaurant", "venue"]
     readonly_fields = ["created_at", "routed_to"]
     ordering = ["-created_at"]
 

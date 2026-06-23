@@ -8,7 +8,7 @@ class LeadSerializer(serializers.ModelSerializer):
         model = Lead
         fields = [
             "name", "email", "phone", "interest", "hotel_interest", "message", "page",
-            "restaurant", "covers", "preferred_date", "preferred_time",
+            "restaurant", "venue", "event_type", "covers", "preferred_date", "preferred_time",
         ]
 
 

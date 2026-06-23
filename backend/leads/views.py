@@ -13,11 +13,14 @@ def _notify_department(lead, recipients, dept_label):
     """Email the owning department. Reply-To is the guest, so staff just hit
     reply to respond to them directly."""
     is_table = lead.interest == "dining" and (lead.restaurant or lead.covers or lead.preferred_date)
-    subject = (
-        f"[Chancery — {dept_label}] Table request from {lead.name}"
-        if is_table
-        else f"[Chancery — {dept_label}] New enquiry from {lead.name}"
-    )
+    is_event = lead.interest == "event" and (lead.venue or lead.event_type or lead.covers)
+    if is_table:
+        subject = f"[Chancery — {dept_label}] Table request from {lead.name}"
+    elif is_event:
+        subject = f"[Chancery — {dept_label}] Event enquiry from {lead.name}"
+    else:
+        subject = f"[Chancery — {dept_label}] New enquiry from {lead.name}"
+
     table_block = ""
     if is_table:
         table_block = (
@@ -25,6 +28,13 @@ def _notify_department(lead, recipients, dept_label):
             f"Guests:     {lead.covers or '—'}\n"
             f"Date:       {lead.preferred_date or '—'}\n"
             f"Time:       {lead.preferred_time or '—'}\n"
+        )
+    elif is_event:
+        table_block = (
+            f"Event type: {lead.event_type or '—'}\n"
+            f"Venue:      {lead.venue or '—'}\n"
+            f"Guests:     {lead.covers or '—'}\n"
+            f"Date:       {lead.preferred_date or '—'}\n"
         )
     body = (
         "A new enquiry came in via the website.\n\n"

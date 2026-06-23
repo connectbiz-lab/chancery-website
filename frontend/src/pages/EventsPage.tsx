@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { EventEnquiryModal } from "@/components/EventEnquiryModal";
 import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
@@ -9,10 +11,18 @@ import type { HotelSlug, Venue } from "@/lib/types";
 import "./pages.css";
 import "./EventsPage.css";
 
+const OCCASIONS = [
+  { title: "Weddings", copy: "Grand celebrations and intimate ceremonies, styled to your vision." },
+  { title: "Conferences & Meetings", copy: "Boardrooms to ballrooms with full AV and business support." },
+  { title: "Social Gatherings", copy: "Birthdays, anniversaries and private dinners to remember." },
+  { title: "Corporate Events", copy: "Launches, offsites and award nights with seamless service." },
+];
+
 export function EventsPage({ hotel }: { hotel: HotelSlug }) {
   const page = useAsync(() => api.page("events", hotel), [hotel]);
   const h = useAsync(() => api.hotel(hotel), [hotel]);
   const venues = useAsync(() => api.venues(hotel), [hotel]);
+  const [enquire, setEnquire] = useState(false);
 
   if (page.loading || venues.loading || h.loading) return <Loading />;
   const p = page.data;
@@ -40,8 +50,22 @@ export function EventsPage({ hotel }: { hotel: HotelSlug }) {
               <p className="lede">{p.intro_body}</p>
             </div>
           )}
+
+          <div className="occasions">
+            {OCCASIONS.map((o) => (
+              <div className="occasion" key={o.title}>
+                <h3>{o.title}</h3>
+                <p>{o.copy}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="section-head" style={{ marginTop: "1rem" }}>
+            <p className="eyebrow center">Our spaces</p>
+            <h2 className="h2">Event spaces &amp; venues</h2>
+          </div>
           <div className="venues-grid">
-            {venues.data?.map((v) => <VenueCard key={v.id} v={v} />)}
+            {venues.data?.map((v) => <VenueCard key={v.id} v={v} hotel={hotel} />)}
           </div>
         </div>
       </section>
@@ -53,12 +77,16 @@ export function EventsPage({ hotel }: { hotel: HotelSlug }) {
             Tell us about your occasion
           </h2>
           <p className="lede" style={{ color: "rgba(246,241,231,0.85)" }}>
-            Our events team will craft a tailored proposal for your celebration —
+            Our Meetings &amp; Events team will craft a tailored proposal for your celebration —
             from intimate dinners to grand weddings.
           </p>
-          <Link to={`/${hotel}/contact-us`} className="btn light">Contact our events team</Link>
+          <button type="button" className="btn light" onClick={() => setEnquire(true)}>
+            Request a proposal
+          </button>
         </div>
       </section>
+
+      <EventEnquiryModal open={enquire} onClose={() => setEnquire(false)} hotel={hotel} />
     </>
   );
 }
@@ -73,9 +101,9 @@ const KINDS: Record<string, string> = {
   divisible: "Divisible Hall",
 };
 
-function VenueCard({ v }: { v: Venue }) {
+function VenueCard({ v, hotel }: { v: Venue; hotel: HotelSlug }) {
   return (
-    <article className="venue-card">
+    <Link to={`/${hotel}/plan-your-event/${v.slug}`} className="venue-card">
       <div className="figure">
         {v.hero_image ? <ResponsiveImage src={v.hero_image} alt={v.name} sizes="(max-width: 768px) 100vw, 50vw" /> : <div className="figure-placeholder" />}
       </div>
@@ -88,8 +116,9 @@ function VenueCard({ v }: { v: Venue }) {
         </p>
         <p className="copy">{v.description}</p>
         <VenueCapacities v={v} />
+        <span className="link-arrow">View details</span>
       </div>
-    </article>
+    </Link>
   );
 }
 
