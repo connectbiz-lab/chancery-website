@@ -1,11 +1,47 @@
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from .models import NewsletterSubscriber
+from .routing import resolve_routing
 from .serializers import LeadSerializer, NewsletterSubscriberSerializer
+
+
+def _notify_department(lead, recipients, dept_label):
+    """Email the owning department. Reply-To is the guest, so staff just hit
+    reply to respond to them directly."""
+    subject = f"[Chancery — {dept_label}] New enquiry from {lead.name}"
+    body = (
+        "A new enquiry came in via the website.\n\n"
+        f"Name:     {lead.name}\n"
+        f"Email:    {lead.email}\n"
+        f"Phone:    {lead.phone or '—'}\n"
+        f"Interest: {lead.get_interest_display()}\n"
+        f"Hotel:    {lead.get_hotel_interest_display()}\n"
+        f"Page:     {lead.page or '—'}\n\n"
+        f"Message:\n{lead.message or '—'}\n\n"
+        "— Reply to this email to respond to the guest directly."
+    )
+    EmailMessage(
+        subject, body, settings.DEFAULT_FROM_EMAIL, recipients, reply_to=[lead.email]
+    ).send()
+
+
+def _acknowledge_guest(lead, dept_label):
+    """Auto-acknowledge the guest so they know it's received and who will reply."""
+    subject = "We've received your enquiry — Chancery Hotels"
+    body = (
+        f"Dear {lead.name},\n\n"
+        "Thank you for contacting The Chancery Group of Hotels. We've received "
+        f"your enquiry and our {dept_label} team will be in touch shortly.\n\n"
+        "If your request is urgent, please call the property directly — the "
+        "numbers are on our Contact page.\n\n"
+        "Warm regards,\n"
+        "Chancery Hotels"
+    )
+    EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, [lead.email]).send()
 
 
 @api_view(["POST"])
@@ -15,21 +51,21 @@ def contact_submit(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     lead = serializer.save()
 
-    subject = f"[Chancery Hotels] New enquiry — {lead.interest}"
-    body = (
-        f"Name: {lead.name}\n"
-        f"Email: {lead.email}\n"
-        f"Phone: {lead.phone}\n"
-        f"Interest: {lead.get_interest_display()}\n"
-        f"Hotel: {lead.get_hotel_interest_display()}\n"
-        f"Page: {lead.page}\n\n"
-        f"Message:\n{lead.message}\n"
-    )
+    # Route to the right department (with safe fallback) and record where it went.
+    recipients, dept_label, _contact = resolve_routing(lead.hotel_interest, lead.interest)
+    lead.routed_to = ", ".join(recipients)
+    lead.save(update_fields=["routed_to"])
+
+    # Notifications never break the form — the lead is already persisted.
     try:
-        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [settings.DEFAULT_FROM_EMAIL])
+        _notify_department(lead, recipients, dept_label)
     except Exception:
-        # Don't break the form because email failed — lead is persisted.
         pass
+    try:
+        _acknowledge_guest(lead, dept_label)
+    except Exception:
+        pass
+
     return Response({"ok": True}, status=status.HTTP_201_CREATED)
 
 

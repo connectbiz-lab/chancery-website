@@ -16,6 +16,12 @@ HOTEL_INTEREST_CHOICES = [
     ("either", "No preference"),
 ]
 
+LEAD_STATUS_CHOICES = [
+    ("new", "New"),
+    ("in_progress", "In progress"),
+    ("resolved", "Resolved"),
+]
+
 
 class Lead(models.Model):
     name = models.CharField(max_length=200)
@@ -28,6 +34,10 @@ class Lead(models.Model):
     message = models.TextField(blank=True)
     page = models.CharField(
         max_length=120, blank=True, help_text="Page or context the lead was submitted from."
+    )
+    status = models.CharField(max_length=20, choices=LEAD_STATUS_CHOICES, default="new")
+    routed_to = models.CharField(
+        max_length=200, blank=True, help_text="Where the enquiry was emailed (audit trail)."
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
