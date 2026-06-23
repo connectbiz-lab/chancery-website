@@ -230,4 +230,3 @@ create index on room_category (hotel_id, "order");
 create index on restaurant (hotel_id, "order");
 create index on venue (hotel_id, "order");
 create index on gallery_image (hotel_id, category, "order");
-create index on page (kind, hotel_id);
