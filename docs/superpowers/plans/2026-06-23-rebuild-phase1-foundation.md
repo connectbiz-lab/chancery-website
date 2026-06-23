@@ -860,3 +860,22 @@ git commit -m "feat: supabase clients, generated types, data-layer smoke test"
 - **Spec coverage:** §2 architecture (app scaffold, two zones — admin zone routes come in phase 4), §2 security/RLS (Tasks 6–7), §3 schema incl. enums/conventions/storage (Tasks 3–5, 8), client/types groundwork for §7 rendering (Task 9). Migration (§6), public pages (§7), admin (§4), and notify engine (§5) are explicitly deferred to later phase plans.
 - **Type consistency:** table/column names here are the contract for generated `types.ts`; later phases consume `Database` from `lib/supabase/types.ts`. `is_admin()` and `admin_users` are referenced consistently across 0004 and 0005.
 - **No placeholders:** every SQL/TS step contains full content and a concrete verify command.
+
+---
+
+## Execution notes & deviations (filled in after implementation, 2026-06-23)
+
+Phase 1 was executed via subagent-driven development (implementer + spec review + quality review per task). All 9 tasks landed; the data layer is verified. Deviations from the plan as written:
+
+1. **RLS needed table GRANTs (Task 6).** The plan's `0004_rls.sql` policies were correct but unreachable without table-level grants — in Supabase, RLS sits on top of GRANTs. Added a hardened grant block: `revoke all on all tables in schema public from anon, authenticated;` then `grant select, insert, update, delete ...`, plus `revoke all on admin_users ... grant select ... to authenticated`. This both enables the policies and closes a **critical TRUNCATE bypass** (RLS does not gate TRUNCATE; default grants included it). Test 6 (`anon TRUNCATE denied`) was added to `rls_test.sql`.
+2. **`is_admin()` hardened** with `set search_path = public, pg_temp` (security-definer best practice).
+3. **Future-table footgun documented in 0004.** The revoke/grant is a one-time snapshot — any new table in a later migration MUST re-enable RLS, add policies, and re-apply the revoke/grant.
+4. **Storage TRUNCATE intentionally NOT revoked (Task 8).** `storage.objects` is owned by `supabase_storage_admin`; the `postgres` migration role can't revoke it (silent no-op locally; `set role` would break `db reset`). Documented in `0005_storage.sql` as accepted: TRUNCATE is unreachable via Supabase's API surface (PostgREST has no TRUNCATE verb, doesn't expose the `storage` schema), and object writes are gated by the `media admin write` RLS policy.
+5. **`server.ts` marked `import 'server-only'`** so accidental client-component import of the service-role client fails at build time.
+6. **CI type check:** use `next build` rather than bare `npx tsc --noEmit` — the latter trips on Next.js's generated `.next/types` validator (a known typed-routes quirk), not project source.
+
+### Phase 2 watch-outs (carry into the migration-script plan)
+- The loader must run as **service-role** (`createAdminClient`) — content tables are admin-write only under RLS.
+- **Image-column convention:** `text` columns store the **Storage object path** (e.g. `hotels/foo.webp`), NOT a full URL; the app builds public URLs. The migration script must upload to the `media` bucket preserving Django's folder paths and write the path into the column.
+- `Venue.kind` (blank in Django) maps to a **nullable** enum — query code uses `IS NULL`, not `= ''`.
+- Nullable `unique (kind, hotel_id)` / `unique (hotel, department)` do not block duplicate NULL-hotel rows (Postgres treats NULLs as distinct) — faithful to Django, but the loader should not rely on these to dedupe brand-level rows.
