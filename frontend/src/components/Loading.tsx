@@ -1,15 +1,25 @@
+/**
+ * Page skeleton shown on first load (before the API data arrives). Mirrors the
+ * universal page shape — full-bleed hero band, a centered title, and a row of
+ * cards — so the layout appears instantly and shimmers in place instead of
+ * flashing a "Loading…" line. Navbar/Footer live in the Layout, outside this.
+ */
 export function Loading() {
   return (
-    <div style={{
-      minHeight: "60dvh",
-      display: "grid",
-      placeContent: "center",
-      color: "var(--c-muted)",
-      letterSpacing: "0.18em",
-      textTransform: "uppercase",
-      fontSize: "0.7rem",
-    }}>
-      Loading…
+    <div aria-busy="true" aria-label="Loading">
+      <div className="skeleton sk-hero" />
+      <div className="container" style={{ padding: "4.5rem 0" }}>
+        <div className="skeleton sk-bar" style={{ width: "26%", margin: "0 auto 1.5rem" }} />
+        <div
+          className="skeleton sk-bar"
+          style={{ width: "55%", height: "2rem", margin: "0 auto 3rem" }}
+        />
+        <div className="sk-grid">
+          <div className="skeleton sk-card" />
+          <div className="skeleton sk-card" />
+          <div className="skeleton sk-card" />
+        </div>
+      </div>
     </div>
   );
 }

@@ -277,6 +277,22 @@ img, picture { display: block; max-width: 100%; height: auto; }
 .aspect-169 { aspect-ratio: 16 / 9; }
 .aspect-port{ aspect-ratio: 3 / 4; }
 
+/* ---------------- skeleton loading ---------------- */
+.skeleton { position: relative; overflow: hidden; background: var(--c-ivory-2); }
+.skeleton::after {
+  content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes skeleton-shimmer { 100% { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .skeleton::after { animation: none; } }
+
+.sk-hero { width: 100%; height: 58vh; min-height: 340px; background: var(--c-ivory-3, #e9e3d6); }
+.sk-bar { height: 0.85rem; border-radius: 6px; }
+.sk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.sk-card { aspect-ratio: 4 / 5; border-radius: var(--radius); }
+@media (max-width: 760px) { .sk-grid { grid-template-columns: 1fr; } }
+
 /* ---------------- scroll reveal ---------------- */
 
 .reveal {
