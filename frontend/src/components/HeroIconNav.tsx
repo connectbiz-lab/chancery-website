@@ -7,6 +7,7 @@ import {
   EventsIcon,
   OffersIcon,
   GalleryIcon,
+  ContactIcon,
 } from "./NavIcons";
 import type { HotelSlug } from "@/lib/types";
 import "./HeroIconNav.css";
@@ -45,6 +46,7 @@ export function HeroIconNav({ scope = "pavilion" }: HeroIconNavProps) {
     { Icon: EventsIcon,  label: "Events",     to: `/${scope}/plan-your-event` },
     { Icon: OffersIcon,  label: "Offers",     to: `/${scope}/special-offers` },
     { Icon: GalleryIcon, label: "Gallery",    to: `/${scope}/gallery` },
+    { Icon: ContactIcon, label: "Contact",    to: `/${scope}/contact-us` },
   ];
 
   return (
