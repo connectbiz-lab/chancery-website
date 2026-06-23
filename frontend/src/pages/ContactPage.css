@@ -16,6 +16,19 @@
   color: var(--c-charcoal);
   margin: 1rem 0 0.4rem;
 }
+.hc-map {
+  display: inline-block;
+  margin-left: 0.75rem;
+  font-family: var(--f-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-gold-deep);
+  border-bottom: 1px solid var(--c-gold-deep);
+  white-space: nowrap;
+}
+.hc-map::after { content: " ↗"; }
+.hc-map:hover { color: var(--c-navy); border-color: var(--c-navy); }
 .hc-phones { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin: 0 0 1.75rem; }
 .hc-phones a {
   font-family: var(--f-serif);

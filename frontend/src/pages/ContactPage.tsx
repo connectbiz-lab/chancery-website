@@ -36,11 +36,19 @@ interface FormState {
 }
 
 function HotelContact({ h }: { h: Hotel }) {
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${h.name}, ${h.address}`,
+  )}`;
   return (
     <article className="hotel-contact">
       <p className="eyebrow">{h.short_name}</p>
       <h2 className="h3">{h.name}</h2>
-      <p className="hc-address">{h.address}</p>
+      <p className="hc-address">
+        {h.address}
+        <a className="hc-map" href={mapUrl} target="_blank" rel="noopener">
+          View on map
+        </a>
+      </p>
       <p className="hc-phones">
         <a href={`tel:${h.phone.replace(/[\s-]+/g, "")}`}>{h.phone}</a>
         {h.phone_alt && (
