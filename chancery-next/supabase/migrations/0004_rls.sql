@@ -25,6 +25,10 @@ $$ language sql stable security definer set search_path = public, pg_temp;
 -- wrong privileges.
 revoke all on all tables in schema public from anon, authenticated;
 grant select, insert, update, delete on all tables in schema public to anon, authenticated;
+-- service_role is the server-side loader/writer (it has BYPASSRLS, but still needs
+-- table-level DML grants — the blanket revoke above does not touch it, but these
+-- tables were created without the service_role defaults, so grant them explicitly).
+grant select, insert, update, delete on all tables in schema public to service_role;
 -- admin_users: never anon-readable; authenticated may read (its own select policy gates rows).
 revoke all on admin_users from anon, authenticated;
 grant select on admin_users to authenticated;

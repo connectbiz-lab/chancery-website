@@ -65,9 +65,88 @@ async function uploadMedia(): Promise<number> {
   return uploaded
 }
 
+// Old-integer-id -> new-uuid maps, keyed by target table name. Populated as parents load.
+const idMaps: Record<string, Map<number, string>> = {}
+
+// Delete order = reverse FK dependency, so children go before parents.
+const DELETE_ORDER = [
+  'page_section', 'page', 'faq_item', 'faq_section', 'gallery_image',
+  'venue_image', 'venue', 'restaurant_image', 'restaurant', 'room_image',
+  'room_category', 'offer', 'testimonial', 'hotel', 'site_content', 'department_contact',
+]
+
+async function resetTarget() {
+  for (const t of DELETE_ORDER) {
+    const { error } = await supa.from(t).delete().not('id', 'is', null)   // matches all rows
+    if (error) throw new Error(`Reset failed for ${t}: ${error.message}`)
+  }
+  console.log('Target content tables cleared.')
+}
+
+type TableSpec = {
+  pg: string                 // target Postgres table
+  sqlite: string             // source Django table
+  fk?: { col: string; parent: string }   // FK column to remap and the parent table whose idMap to use
+  boolCols?: string[]        // SQLite 0/1 -> boolean
+  enumBlankCols?: string[]   // '' -> null (blank enum fields)
+  keepIntId?: boolean        // site_content: keep integer id (=1), no uuid/map
+}
+
+async function migrateTable(spec: TableSpec) {
+  const rows = db.prepare(`select * from ${spec.sqlite}`).all() as Record<string, unknown>[]
+  idMaps[spec.pg] = new Map<number, string>()
+  const out = rows.map((r) => {
+    const o: Record<string, unknown> = { ...r }
+    const oldId = r.id as number
+    if (!spec.keepIntId) {
+      const newId = randomUUID()
+      idMaps[spec.pg].set(oldId, newId)
+      o.id = newId
+    }
+    if (spec.fk) {
+      const raw = r[spec.fk.col] as number | null
+      if (raw == null) o[spec.fk.col] = null
+      else {
+        const mapped = idMaps[spec.fk.parent]?.get(raw)
+        if (!mapped) throw new Error(`${spec.pg}.${spec.fk.col}=${raw} has no ${spec.fk.parent} mapping`)
+        o[spec.fk.col] = mapped
+      }
+    }
+    for (const b of spec.boolCols ?? []) o[b] = !!r[b]
+    for (const e of spec.enumBlankCols ?? []) if (r[e] === '' || r[e] == null) o[e] = null
+    return o
+  })
+  if (out.length) {
+    const { error } = await supa.from(spec.pg).insert(out)
+    if (error) throw new Error(`Insert failed for ${spec.pg}: ${error.message}`)
+  }
+  console.log(`Loaded ${out.length} -> ${spec.pg}`)
+}
+
+async function loadAll() {
+  await migrateTable({ pg: 'site_content', sqlite: 'content_sitecontent', keepIntId: true })
+  await migrateTable({ pg: 'hotel', sqlite: 'content_hotel' })
+  await migrateTable({ pg: 'room_category', sqlite: 'content_roomcategory', fk: { col: 'hotel_id', parent: 'hotel' } })
+  await migrateTable({ pg: 'room_image', sqlite: 'content_roomimage', fk: { col: 'room_id', parent: 'room_category' } })
+  await migrateTable({ pg: 'restaurant', sqlite: 'content_restaurant', fk: { col: 'hotel_id', parent: 'hotel' } })
+  await migrateTable({ pg: 'restaurant_image', sqlite: 'content_restaurantimage', fk: { col: 'restaurant_id', parent: 'restaurant' } })
+  await migrateTable({ pg: 'venue', sqlite: 'content_venue', fk: { col: 'hotel_id', parent: 'hotel' }, enumBlankCols: ['kind'] })
+  await migrateTable({ pg: 'venue_image', sqlite: 'content_venueimage', fk: { col: 'venue_id', parent: 'venue' } })
+  await migrateTable({ pg: 'offer', sqlite: 'content_offer', fk: { col: 'hotel_id', parent: 'hotel' } })
+  await migrateTable({ pg: 'gallery_image', sqlite: 'content_galleryimage', fk: { col: 'hotel_id', parent: 'hotel' } })
+  await migrateTable({ pg: 'faq_section', sqlite: 'content_faqsection' })
+  await migrateTable({ pg: 'faq_item', sqlite: 'content_faqitem', fk: { col: 'section_id', parent: 'faq_section' } })
+  await migrateTable({ pg: 'testimonial', sqlite: 'content_testimonial' })
+  await migrateTable({ pg: 'page', sqlite: 'content_page', fk: { col: 'hotel_id', parent: 'hotel' } })
+  await migrateTable({ pg: 'page_section', sqlite: 'content_pagesection', fk: { col: 'page_id', parent: 'page' } })
+  await migrateTable({ pg: 'department_contact', sqlite: 'leads_departmentcontact', boolCols: ['public', 'is_active'] })
+}
+
 async function main() {
   console.log('Source DB:', SQLITE_PATH)
   await uploadMedia()
+  await resetTarget()
+  await loadAll()
 }
 
 main().then(() => { db.close(); process.exit(0) })
