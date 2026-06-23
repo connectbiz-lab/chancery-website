@@ -1,5 +1,6 @@
 // lib/queries/content.ts — server-side typed reads for the public site.
 import { db, cache } from './db'
+import { createAdminClient } from '@/lib/supabase/server'
 import type { Database } from '@/lib/supabase/types'
 
 type PageKind = Database['public']['Enums']['page_kind']
@@ -36,7 +37,8 @@ export const getHotel = cache(async (slug: string) => {
 })
 
 async function withDepartments<T extends { slug: string }>(hotel: T) {
-  const { data } = await db
+  const admin = createAdminClient()
+  const { data } = await admin
     .from('department_contact')
     .select('department, notify_email, phone')
     .or(`hotel.eq.${hotel.slug},hotel.eq.both`)
