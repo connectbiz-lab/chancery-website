@@ -32,10 +32,42 @@ const EXPECTED: Record<string, number> = {
   department_contact: 11,
 }
 
+const CONTENT_TYPES: Record<string, string> = {
+  '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+  '.png': 'image/png', '.svg': 'image/svg+xml', '.gif': 'image/gif',
+}
+
+function walkFiles(dir: string): string[] {
+  const out: string[] = []
+  for (const entry of readdirSync(dir)) {
+    if (entry.startsWith('.')) continue            // skip .DS_Store and dotfiles
+    const full = join(dir, entry)
+    if (statSync(full).isDirectory()) out.push(...walkFiles(full))
+    else out.push(full)
+  }
+  return out
+}
+
+async function uploadMedia(): Promise<number> {
+  const files = walkFiles(MEDIA_ROOT)
+  let uploaded = 0
+  for (const full of files) {
+    const objectPath = relative(MEDIA_ROOT, full).split('\\').join('/')   // posix paths in bucket
+    const ext = objectPath.slice(objectPath.lastIndexOf('.')).toLowerCase()
+    const contentType = CONTENT_TYPES[ext] ?? 'application/octet-stream'
+    const { error } = await supa.storage.from('media').upload(objectPath, readFileSync(full), {
+      contentType, upsert: true,
+    })
+    if (error) throw new Error(`Upload failed for ${objectPath}: ${error.message}`)
+    uploaded++
+  }
+  console.log(`Uploaded ${uploaded} media files.`)
+  return uploaded
+}
+
 async function main() {
   console.log('Source DB:', SQLITE_PATH)
-  const hotelCount = (db.prepare('select count(*) as n from content_hotel').get() as { n: number }).n
-  console.log('Legacy hotels:', hotelCount)
+  await uploadMedia()
 }
 
 main().then(() => { db.close(); process.exit(0) })
