@@ -318,13 +318,13 @@ img, picture { display: block; max-width: 100%; height: auto; }
 label { display: block; font-size: var(--t-small); margin-bottom: 0.4rem; color: var(--c-muted); }
 
 input[type="text"], input[type="email"], input[type="tel"], input[type="date"],
-input[type="number"], select, textarea {
+input[type="time"], input[type="number"], select, textarea {
   width: 100%;
-  padding: 0.95rem 1.1rem;
+  padding: 0.55rem 0.85rem;
   border: 1px solid var(--c-line);
   background: var(--c-paper);
   font: inherit;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--c-charcoal);
   border-radius: 0;
   transition: border-color 0.2s var(--t-easing);

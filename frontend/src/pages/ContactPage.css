@@ -102,20 +102,11 @@
   .field--wide, .field--full { grid-column: auto; }
 }
 
-/* Sleeker fields — tighter than the site-wide input default, scoped here. */
 .enquiry-form label {
   font-size: 0.74rem;
   letter-spacing: 0.04em;
   color: var(--c-muted);
   margin-bottom: 0.3rem;
-}
-.enquiry-form input[type="text"],
-.enquiry-form input[type="email"],
-.enquiry-form input[type="tel"],
-.enquiry-form select,
-.enquiry-form textarea {
-  padding: 0.55rem 0.75rem;
-  font-size: 0.95rem;
 }
 .enquiry-form textarea { min-height: 76px; resize: vertical; }
 

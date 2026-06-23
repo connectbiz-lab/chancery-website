@@ -58,12 +58,6 @@
   color: var(--c-muted);
   margin-bottom: 0.25rem;
 }
-/* Higher specificity than the site-wide input rule so the compact height wins. */
-.btm-dialog .btm-form input,
-.btm-dialog .btm-form textarea {
-  padding: 0.45rem 0.65rem;
-  font-size: 0.95rem;
-}
 .btm-form textarea { min-height: 60px; }
 .btm-msg { margin-top: 0.7rem; }
 .btm-form .btn { margin-top: 1.25rem; }
