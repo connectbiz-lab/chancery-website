@@ -70,6 +70,11 @@ button, input, select, textarea {
 
 html, body, #root { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+/* Guard against horizontal scroll from the off-canvas SideMenu (translateX off
+   to the right when closed). `clip` clips without creating a scroll container,
+   so it doesn't break the fixed navbar or any sticky elements; `hidden` is the
+   fallback for older browsers. */
+html, body { overflow-x: hidden; overflow-x: clip; }
 
 body {
   font-family: var(--f-sans);

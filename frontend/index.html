@@ -8,6 +8,106 @@
     <link rel="shortcut icon" href="/favicon.ico" />
 
     <!--
+      Default SEO + social meta. This is a client-rendered SPA, so social and
+      link-preview crawlers (WhatsApp, Facebook, LinkedIn, Slack) that don't run
+      JS only ever see this static HTML. PageMeta (react-helmet) overrides these
+      per route for JS-rendering crawlers like Googlebot. Update the absolute
+      URLs here if the site moves to a custom domain.
+    -->
+    <meta
+      name="description"
+      content="The Chancery Group of Hotels — two luxury hotels in Bangalore: The Chancery Hotel on Lavelle Road and The Chancery Pavilion on Residency Road. World-class rooms, fine dining, event venues and exclusive offers."
+    />
+    <!-- No static canonical / og:url: this is a SPA (every route serves this same
+         HTML), so PageMeta sets them per route for JS crawlers, and non-JS
+         crawlers correctly default to the actual fetched URL. -->
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Chancery Hotels" />
+    <meta property="og:title" content="Chancery Hotels | Luxury Hotels in Bangalore" />
+    <meta
+      property="og:description"
+      content="Two distinguished luxury hotels at the heart of Bangalore — timeless rooms, celebrated dining and elegant event venues."
+    />
+    <meta property="og:image" content="https://chancery-website-v2.vercel.app/og-cover.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chancery Hotels | Luxury Hotels in Bangalore" />
+    <meta
+      name="twitter:description"
+      content="Two distinguished luxury hotels at the heart of Bangalore — timeless rooms, celebrated dining and elegant event venues."
+    />
+    <meta name="twitter:image" content="https://chancery-website-v2.vercel.app/og-cover.jpg" />
+
+    <!-- Structured data: the hotel group + both properties (drives Google rich
+         results / local listings). Crawlers read this from the static HTML. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://chancery-website-v2.vercel.app/#group",
+          "name": "Chancery Hotels",
+          "alternateName": "The Chancery Group of Hotels",
+          "url": "https://chancery-website-v2.vercel.app/",
+          "logo": "https://chancery-website-v2.vercel.app/favicon.png",
+          "description": "A group of two luxury hotels in Bangalore, India."
+        },
+        {
+          "@type": "Hotel",
+          "@id": "https://chancery-website-v2.vercel.app/chancery#hotel",
+          "name": "The Chancery Hotel",
+          "url": "https://chancery-website-v2.vercel.app/chancery",
+          "parentOrganization": { "@id": "https://chancery-website-v2.vercel.app/#group" },
+          "image": "https://chancery-website-v2.vercel.app/og-cover.jpg",
+          "telephone": "+91 80 2227 6767",
+          "priceRange": "$$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "10/6, Lavelle Road",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560001",
+            "addressCountry": "IN"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": "1800"
+          }
+        },
+        {
+          "@type": "Hotel",
+          "@id": "https://chancery-website-v2.vercel.app/pavilion#hotel",
+          "name": "The Chancery Pavilion",
+          "url": "https://chancery-website-v2.vercel.app/pavilion",
+          "parentOrganization": { "@id": "https://chancery-website-v2.vercel.app/#group" },
+          "image": "https://chancery-website-v2.vercel.app/og-cover.jpg",
+          "telephone": "+91 80 4141 4141",
+          "priceRange": "$$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "#135, Residency Road",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560025",
+            "addressCountry": "IN"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": "1800"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!--
       Hero LCP preload. The home hero is served from /media on the same origin
       in production; in dev the Vite proxy forwards /media to Django. Preloading
       here lets the browser start the request during HTML parse instead of

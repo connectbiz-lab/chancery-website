@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Keep crawlers out of the API/media proxy paths (not content pages)
+Disallow: /proxy-api/
+
+Sitemap: https://chancery-website-v2.vercel.app/sitemap.xml
