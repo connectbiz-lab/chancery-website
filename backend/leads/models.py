@@ -35,6 +35,11 @@ class Lead(models.Model):
     page = models.CharField(
         max_length=120, blank=True, help_text="Page or context the lead was submitted from."
     )
+    # Table-booking fields (only set for "Book a Table" / dining enquiries).
+    restaurant = models.CharField(max_length=200, blank=True)
+    covers = models.PositiveSmallIntegerField(null=True, blank=True, help_text="Number of guests.")
+    preferred_date = models.DateField(null=True, blank=True)
+    preferred_time = models.CharField(max_length=20, blank=True)
     status = models.CharField(max_length=20, choices=LEAD_STATUS_CHOICES, default="new")
     routed_to = models.CharField(
         max_length=200, blank=True, help_text="Where the enquiry was emailed (audit trail)."
@@ -62,6 +67,7 @@ class NewsletterSubscriber(models.Model):
 
 DEPARTMENT_CHOICES = [
     ("reservations", "Reservations"),
+    ("dining", "Dining"),
     ("sales", "Sales"),
     ("events", "Meetings & Events"),
     ("catering", "Outdoor Catering"),

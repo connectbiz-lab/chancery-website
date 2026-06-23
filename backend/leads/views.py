@@ -12,7 +12,20 @@ from .serializers import LeadSerializer, NewsletterSubscriberSerializer
 def _notify_department(lead, recipients, dept_label):
     """Email the owning department. Reply-To is the guest, so staff just hit
     reply to respond to them directly."""
-    subject = f"[Chancery — {dept_label}] New enquiry from {lead.name}"
+    is_table = lead.interest == "dining" and (lead.restaurant or lead.covers or lead.preferred_date)
+    subject = (
+        f"[Chancery — {dept_label}] Table request from {lead.name}"
+        if is_table
+        else f"[Chancery — {dept_label}] New enquiry from {lead.name}"
+    )
+    table_block = ""
+    if is_table:
+        table_block = (
+            f"Restaurant: {lead.restaurant or '—'}\n"
+            f"Guests:     {lead.covers or '—'}\n"
+            f"Date:       {lead.preferred_date or '—'}\n"
+            f"Time:       {lead.preferred_time or '—'}\n"
+        )
     body = (
         "A new enquiry came in via the website.\n\n"
         f"Name:     {lead.name}\n"
@@ -20,6 +33,7 @@ def _notify_department(lead, recipients, dept_label):
         f"Phone:    {lead.phone or '—'}\n"
         f"Interest: {lead.get_interest_display()}\n"
         f"Hotel:    {lead.get_hotel_interest_display()}\n"
+        f"{table_block}"
         f"Page:     {lead.page or '—'}\n\n"
         f"Message:\n{lead.message or '—'}\n\n"
         "— Reply to this email to respond to the guest directly."

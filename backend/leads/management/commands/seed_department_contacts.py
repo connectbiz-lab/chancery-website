@@ -14,10 +14,12 @@ from leads.models import DepartmentContact
 ROUTING = [
     # The Chancery Hotel (TCH)
     ("chancery", "reservations", "reservations.tch@chanceryhotels.com", "", True),
+    ("chancery", "dining", "reservations.tch@chanceryhotels.com", "", False),
     ("chancery", "events", "ban.tch@chanceryhotels.com", "", True),
     ("chancery", "catering", "ban.tch@chanceryhotels.com", "", True),
     # Chancery Pavilion (TCP)
     ("pavilion", "reservations", "reservations.tcp@chanceryhotels.com", "080-6989 4646", True),
+    ("pavilion", "dining", "reservations.tcp@chanceryhotels.com", "", False),
     ("pavilion", "events", "ban.tcp@chanceryhotels.com", "", True),
     ("pavilion", "catering", "ban.tcp@chanceryhotels.com", "", True),
     # Brand-level (shared across both)

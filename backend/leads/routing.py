@@ -13,7 +13,7 @@ from .models import DepartmentContact
 # Public enquiry "interest" → routing department.
 INTEREST_TO_DEPARTMENT = {
     "stay": "reservations",
-    "dining": "general",
+    "dining": "dining",
     "event": "events",
     "catering": "catering",
     "careers": "careers",

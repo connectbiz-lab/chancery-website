@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { BookTableModal } from "@/components/BookTableModal";
 import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
@@ -54,6 +54,7 @@ export function DiningPage({ hotel }: { hotel: HotelSlug }) {
 
 function RestaurantBlock({ restaurant: r, flip, hotel }: { restaurant: Restaurant; flip: boolean; hotel: HotelSlug }) {
   const [active, setActive] = useState(0);
+  const [booking, setBooking] = useState(false);
   const images = r.images.length > 0
     ? r.images
     : (r.hero_image ? [{ image: r.hero_image, alt: r.name, order: 0 }] : []);
@@ -86,9 +87,17 @@ function RestaurantBlock({ restaurant: r, flip, hotel }: { restaurant: Restauran
         <p className="meta">{r.timing}</p>
         <p className="copy">{r.description}</p>
         <div className="dining-cta">
-          <Link to={`/${hotel}/contact-us`} className="btn">Make a reservation</Link>
+          <button type="button" className="btn" onClick={() => setBooking(true)}>
+            Book a table
+          </button>
         </div>
       </div>
+      <BookTableModal
+        open={booking}
+        onClose={() => setBooking(false)}
+        hotel={hotel}
+        restaurant={r.name}
+      />
     </article>
   );
 }
