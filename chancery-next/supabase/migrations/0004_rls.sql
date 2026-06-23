@@ -13,11 +13,16 @@ create policy admin_users_select on admin_users for select to authenticated
 
 create or replace function is_admin() returns boolean as $$
   select exists (select 1 from admin_users where user_id = auth.uid());
-$$ language sql stable security definer;
+$$ language sql stable security definer set search_path = public, pg_temp;
 
 -- Reset table privileges to a known-minimal posture, then grant only what RLS gates.
 -- (RLS governs SELECT/INSERT/UPDATE/DELETE row-by-row, but NOT TRUNCATE — so we must
 -- not leave TRUNCATE/TRIGGER/REFERENCES granted to anon/authenticated.)
+-- NOTE for future migrations: this revoke/grant covers only tables that exist
+-- right now ("on all tables" is a one-time snapshot, not a standing rule). Any
+-- table added in a later migration MUST repeat: enable RLS, add its policies,
+-- and re-apply this revoke/grant — otherwise it ships with no RLS and/or the
+-- wrong privileges.
 revoke all on all tables in schema public from anon, authenticated;
 grant select, insert, update, delete on all tables in schema public to anon, authenticated;
 -- admin_users: never anon-readable; authenticated may read (its own select policy gates rows).
