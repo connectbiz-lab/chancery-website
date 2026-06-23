@@ -4,6 +4,7 @@ import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { api, useAsync } from "@/lib/api";
 import type { HotelSlug, Room } from "@/lib/types";
 import "./pages.css";
@@ -61,7 +62,7 @@ function RoomBlock({ room, flip, hotel }: { room: Room; flip: boolean; hotel: Ho
     <article className={`room-row ${flip ? "flip" : ""}`}>
       <div className="room-gallery">
         <div className="figure aspect-43">
-          {images[active] && <img src={images[active].image} alt={images[active].alt || room.name} />}
+          {images[active] && <ResponsiveImage src={images[active].image} alt={images[active].alt || room.name} sizes="(max-width: 768px) 100vw, 60vw" />}
         </div>
         {images.length > 1 && (
           <div className="thumbs">
@@ -73,7 +74,7 @@ function RoomBlock({ room, flip, hotel }: { room: Room; flip: boolean; hotel: Ho
                 onClick={() => setActive(i)}
                 aria-label={`View image ${i + 1}`}
               >
-                <img src={img.image} alt="" />
+                <ResponsiveImage src={img.image} alt="" sizes="(max-width: 768px) 25vw, 12vw" />
               </button>
             ))}
           </div>

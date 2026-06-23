@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { api, useAsync } from "@/lib/api";
 import type { HotelSlug } from "@/lib/types";
 import "./pages.css";
@@ -42,7 +43,7 @@ export function OffersPage({ hotel }: { hotel: HotelSlug }) {
             {offers.data?.map((o) => (
               <article key={o.id} className="card">
                 <div className="figure aspect-43">
-                  {o.image && <img src={o.image} alt={o.title} />}
+                  {o.image && <ResponsiveImage src={o.image} alt={o.title} sizes="(max-width: 768px) 100vw, 50vw" />}
                 </div>
                 {o.tag && <p className="card-eyebrow">{o.tag}</p>}
                 <h3>{o.title}</h3>

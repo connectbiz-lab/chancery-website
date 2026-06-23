@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ResponsiveImage } from "./ResponsiveImage";
 import "./Hero.css";
 
 interface HeroProps {
@@ -28,13 +29,7 @@ export function Hero({
     <section className={cls} role="banner">
       {image && (
         <div className="hero-bg" aria-hidden="true">
-          <img
-            src={image}
-            alt=""
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-          />
+          <ResponsiveImage src={image} alt="" sizes="100vw" eager />
           <div className="hero-overlay" />
         </div>
       )}

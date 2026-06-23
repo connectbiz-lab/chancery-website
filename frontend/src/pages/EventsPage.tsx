@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { api, useAsync } from "@/lib/api";
 import type { HotelSlug, Venue } from "@/lib/types";
 import "./pages.css";
@@ -76,7 +77,7 @@ function VenueCard({ v }: { v: Venue }) {
   return (
     <article className="venue-card">
       <div className="figure">
-        {v.hero_image ? <img src={v.hero_image} alt={v.name} /> : <div className="figure-placeholder" />}
+        {v.hero_image ? <ResponsiveImage src={v.hero_image} alt={v.name} sizes="(max-width: 768px) 100vw, 50vw" /> : <div className="figure-placeholder" />}
       </div>
       <div className="venue-body">
         <p className="card-eyebrow">{KINDS[v.kind] || v.kind || "Venue"}</p>

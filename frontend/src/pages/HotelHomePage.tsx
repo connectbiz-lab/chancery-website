@@ -4,6 +4,7 @@ import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { api, useAsync } from "@/lib/api";
 import { useReveal } from "@/lib/reveal";
 import type { HotelSlug } from "@/lib/types";
@@ -94,7 +95,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
               <div className="editorial-row">
                 <div className="editorial-figure">
                   <div className="figure aspect-port">
-                    {hotelData.about_image && <img src={hotelData.about_image} alt={hotelData.name} />}
+                    {hotelData.about_image && <ResponsiveImage src={hotelData.about_image} alt={hotelData.name} sizes="(max-width: 768px) 100vw, 50vw" />}
                   </div>
                 </div>
                 <div className="editorial-text">
@@ -124,7 +125,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
             <div className="card-grid three">
               {rooms.data.slice(0, 3).map((r) => (
                 <Link key={r.id} to={`/${hotel}/accommodation`} className="card">
-                  <div className="figure">{r.hero_image && <img src={r.hero_image} alt={r.name} />}</div>
+                  <div className="figure">{r.hero_image && <ResponsiveImage src={r.hero_image} alt={r.name} sizes="(max-width: 768px) 50vw, 25vw" />}</div>
                   <h3>{r.name}</h3>
                   <p className="meta">{r.size_sqft ? `${r.size_sqft} sq. ft.` : ""} · {r.bed_type}</p>
                   <p className="copy">{r.description.slice(0, 120)}…</p>
@@ -149,7 +150,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
             <div className="card-grid three">
               {restaurants.data.map((r) => (
                 <Link key={r.id} to={`/${hotel}/dining`} className="card">
-                  <div className="figure">{r.hero_image && <img src={r.hero_image} alt={r.name} />}</div>
+                  <div className="figure">{r.hero_image && <ResponsiveImage src={r.hero_image} alt={r.name} sizes="(max-width: 768px) 50vw, 25vw" />}</div>
                   <h3>{r.name}</h3>
                   <p className="meta">{r.cuisine}</p>
                   <p className="copy">{r.description.slice(0, 130)}…</p>
@@ -191,7 +192,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
             <div className="card-grid three">
               {offers.data.slice(0, 3).map((o) => (
                 <div key={o.id} className="card">
-                  <div className="figure">{o.image && <img src={o.image} alt={o.title} />}</div>
+                  <div className="figure">{o.image && <ResponsiveImage src={o.image} alt={o.title} sizes="(max-width: 768px) 100vw, 33vw" />}</div>
                   <p className="card-eyebrow">{o.tag}</p>
                   <h3>{o.title}</h3>
                   <p className="copy">{o.description}</p>
@@ -217,7 +218,7 @@ export function HotelHomePage({ hotel }: { hotel: HotelSlug }) {
             <div className="image-grid">
               {gallery.data.slice(0, 6).map((g) => (
                 <Link key={g.id} to={`/${hotel}/gallery`} className="figure">
-                  <img src={g.image} alt={g.alt} />
+                  <ResponsiveImage src={g.image} alt={g.alt} sizes="(max-width: 768px) 50vw, 33vw" />
                 </Link>
               ))}
             </div>

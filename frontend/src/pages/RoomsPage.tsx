@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Hero } from "@/components/Hero";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { api, useAsync } from "@/lib/api";
 import "./pages.css";
 
@@ -39,7 +40,7 @@ export function RoomsPage() {
                 {hotelRooms.map((room) => (
                   <Link key={room.id} to={`/${hotel.slug}/accommodation`} className="card">
                     <div className="figure">
-                      {room.hero_image && <img src={room.hero_image} alt={room.name} />}
+                      {room.hero_image && <ResponsiveImage src={room.hero_image} alt={room.name} sizes="(max-width: 768px) 100vw, 50vw" />}
                     </div>
                     <h3>{room.name}</h3>
                     <p className="meta">

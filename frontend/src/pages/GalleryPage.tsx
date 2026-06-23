@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
 import { Loading } from "@/components/Loading";
 import { PageMeta } from "@/components/PageMeta";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { api, useAsync } from "@/lib/api";
 import type { HotelSlug } from "@/lib/types";
 import "./pages.css";
@@ -72,7 +73,7 @@ export function GalleryPage({ hotel }: { hotel: HotelSlug }) {
                 onClick={() => setLightbox(i)}
                 aria-label={g.alt}
               >
-                <img src={g.image} alt={g.alt} loading="lazy" />
+                <ResponsiveImage src={g.image} alt={g.alt} sizes="(max-width: 768px) 50vw, 33vw" />
               </button>
             ))}
           </div>
@@ -86,7 +87,7 @@ export function GalleryPage({ hotel }: { hotel: HotelSlug }) {
           className="lightbox"
           onClick={() => setLightbox(null)}
         >
-          <img src={filtered[lightbox].image} alt={filtered[lightbox].alt} />
+          <ResponsiveImage src={filtered[lightbox].image} alt={filtered[lightbox].alt} sizes="100vw" />
           <p className="lightbox-caption">{filtered[lightbox].alt}</p>
           <button
             type="button"

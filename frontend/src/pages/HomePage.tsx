@@ -5,6 +5,7 @@ import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
 import { PageMeta } from "@/components/PageMeta";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { api, useAsync } from "@/lib/api";
 import { useReveal } from "@/lib/reveal";
 import "./pages.css";
@@ -43,7 +44,7 @@ export function HomePage() {
   // Fallback matches the <link rel="preload"> in index.html so the <img> can
   // paint from the preload cache immediately on first mount, instead of waiting
   // for the /api/page/home + /api/hotels round-trips to resolve a URL.
-  const heroImage = p?.hero_image ?? pavilion?.hero_image ?? "/media/pages/brand-home-hero.png";
+  const heroImage = p?.hero_image ?? pavilion?.hero_image ?? "/media/pages/brand-home-hero.webp";
   const introImage = chancery?.about_image ?? chancery?.hero_image ?? null;
 
   return (
@@ -104,7 +105,13 @@ export function HomePage() {
             <div className="intro-claridges__media">
               <span className="intro-claridges__mat" aria-hidden="true" />
               <div className="figure aspect-43">
-                {introImage && <img src={introImage} alt="The Chancery Hotel lobby" />}
+                {introImage && (
+                  <ResponsiveImage
+                    src={introImage}
+                    alt="The Chancery Hotel lobby"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -171,7 +178,13 @@ export function HomePage() {
             {hotels.data?.map((h) => (
               <Link key={h.slug} to={`/${h.slug}`} className="property-card">
                 <div className="figure aspect-43">
-                  {h.hero_image && <img src={h.hero_image} alt={h.name} />}
+                  {h.hero_image && (
+                    <ResponsiveImage
+                      src={h.hero_image}
+                      alt={h.name}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  )}
                 </div>
                 <div className="property-body">
                   <p className="eyebrow">{h.location_tag} · {h.location}</p>
@@ -203,7 +216,15 @@ export function HomePage() {
                 to={`/${r.hotel.slug}/dining`}
                 className="card"
               >
-                <div className="figure">{r.hero_image && <img src={r.hero_image} alt={r.name} />}</div>
+                <div className="figure">
+                  {r.hero_image && (
+                    <ResponsiveImage
+                      src={r.hero_image}
+                      alt={r.name}
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                  )}
+                </div>
                 <p className="card-eyebrow">{r.hotel.short_name}</p>
                 <h3>{r.name}</h3>
                 <p className="meta">{r.cuisine} · {r.timing}</p>
@@ -228,7 +249,13 @@ export function HomePage() {
               {offers.data.slice(0, 3).map((o) => (
                 <div key={o.id} className="card offer-card">
                   <div className="figure aspect-43">
-                    {o.image && <img src={o.image} alt={o.title} />}
+                    {o.image && (
+                      <ResponsiveImage
+                        src={o.image}
+                        alt={o.title}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    )}
                   </div>
                   <p className="card-eyebrow" style={{ color: "var(--c-gold-soft)" }}>{o.tag}</p>
                   <h3 style={{ color: "var(--c-ivory)" }}>{o.title}</h3>
