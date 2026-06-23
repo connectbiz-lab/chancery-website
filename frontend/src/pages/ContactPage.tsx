@@ -13,6 +13,7 @@ import {
 } from "@/components/NavIcons";
 import { PageMeta } from "@/components/PageMeta";
 import { api, useAsync } from "@/lib/api";
+import { mapsUrl } from "@/lib/maps";
 import type { Hotel, HotelSlug } from "@/lib/types";
 import "./pages.css";
 import "./ContactPage.css";
@@ -36,9 +37,7 @@ interface FormState {
 }
 
 function HotelContact({ h }: { h: Hotel }) {
-  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${h.name}, ${h.address}`,
-  )}`;
+  const mapUrl = mapsUrl(h.name, h.address);
   return (
     <article className="hotel-contact">
       <p className="eyebrow">{h.short_name}</p>

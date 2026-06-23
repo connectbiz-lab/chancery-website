@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { api, useAsync } from "@/lib/api";
+import { mapsUrl } from "@/lib/maps";
 import "./Footer.css";
 
 export function Footer() {
@@ -102,7 +103,13 @@ export function Footer() {
                 <p className="eyebrow">{h.short_name}</p>
                 <p className="footer-address">{h.address}</p>
                 <p className="footer-line"><a href={`tel:${h.phone.replace(/\s+/g, "")}`}>{h.phone}</a></p>
+                {h.phone_alt && (
+                  <p className="footer-line"><a href={`tel:${h.phone_alt.replace(/[\s-]+/g, "")}`}>{h.phone_alt}</a></p>
+                )}
                 <p className="footer-line"><a href={`mailto:${h.email}`}>{h.email}</a></p>
+                <p className="footer-line">
+                  <a href={mapsUrl(h.name, h.address)} target="_blank" rel="noopener">View on map ↗</a>
+                </p>
                 <p className="footer-links">
                   <Link to={`/${h.slug}/accommodation`}>Rooms</Link>
                   <Link to={`/${h.slug}/dining`}>Dining</Link>
