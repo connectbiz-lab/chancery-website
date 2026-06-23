@@ -142,11 +142,23 @@ async function loadAll() {
   await migrateTable({ pg: 'department_contact', sqlite: 'leads_departmentcontact', boolCols: ['public', 'is_active'] })
 }
 
+async function verifyCounts() {
+  const failures: string[] = []
+  for (const [table, expected] of Object.entries(EXPECTED)) {
+    const { count, error } = await supa.from(table).select('*', { count: 'exact', head: true })
+    if (error) { failures.push(`${table}: count error ${error.message}`); continue }
+    if (count !== expected) failures.push(`${table}: expected ${expected}, got ${count}`)
+  }
+  if (failures.length) throw new Error('Count verification FAILED:\n' + failures.join('\n'))
+  console.log('Count verification PASSED for all', Object.keys(EXPECTED).length, 'tables.')
+}
+
 async function main() {
   console.log('Source DB:', SQLITE_PATH)
   await uploadMedia()
   await resetTarget()
   await loadAll()
+  await verifyCounts()
 }
 
 main().then(() => { db.close(); process.exit(0) })
