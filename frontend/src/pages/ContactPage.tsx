@@ -113,14 +113,8 @@ export function ContactPage({ hotel }: { hotel: HotelSlug }) {
       <PageMeta title={p?.meta_title ?? "Contact us"} description={p?.meta_description} />
       <Hero
         image={p?.hero_image ?? current?.hero_image ?? null}
-        eyebrow={
-          <span className="hero-eyebrow-stack">
-            <span>The Chancery Group of Hotels</span>
-            <span>{p?.hero_eyebrow ?? "Contact"}</span>
-          </span>
-        }
-        heading={p?.hero_heading ?? "Reach us"}
-        subheading={p?.hero_subheading}
+        eyebrow="The Chancery Group of Hotels"
+        heading="Get in touch"
         size="compact"
         footerNav={<HeroIconNav scope={hotel} />}
       />
