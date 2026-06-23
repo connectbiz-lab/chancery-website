@@ -9,14 +9,14 @@
 /* Newsletter band — sits on cream, distinct from the ivory testimonial section above */
 .newsletter {
   background: var(--c-cream);
-  padding: clamp(4rem, 7vw, 7rem) 0;
+  padding: clamp(2.5rem, 4vw, 3.5rem) 0;
   text-align: center;
 }
 .newsletter .eyebrow.center { color: var(--c-gold-deep); }
 .newsletter-form {
   display: flex;
   gap: 0.75rem;
-  margin: 2rem auto 0;
+  margin: 1.5rem auto 0;
   max-width: 520px;
 }
 .newsletter-form input {
