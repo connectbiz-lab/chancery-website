@@ -872,7 +872,8 @@ Phase 1 was executed via subagent-driven development (implementer + spec review 
 3. **Future-table footgun documented in 0004.** The revoke/grant is a one-time snapshot — any new table in a later migration MUST re-enable RLS, add policies, and re-apply the revoke/grant.
 4. **Storage TRUNCATE intentionally NOT revoked (Task 8).** `storage.objects` is owned by `supabase_storage_admin`; the `postgres` migration role can't revoke it (silent no-op locally; `set role` would break `db reset`). Documented in `0005_storage.sql` as accepted: TRUNCATE is unreachable via Supabase's API surface (PostgREST has no TRUNCATE verb, doesn't expose the `storage` schema), and object writes are gated by the `media admin write` RLS policy.
 5. **`server.ts` marked `import 'server-only'`** so accidental client-component import of the service-role client fails at build time.
-6. **CI type check:** use `next build` rather than bare `npx tsc --noEmit` — the latter trips on Next.js's generated `.next/types` validator (a known typed-routes quirk), not project source.
+6. **`service_role` needed an explicit grant (found during Phase 2).** Because postgres-created tables get no default Supabase grants, `0004_rls.sql` granted DML to `anon`/`authenticated` but not `service_role` — the server-side write path. Phase 2's migration loader hit `permission denied` (BYPASSRLS does not bypass table-level grants). Added `grant select, insert, update, delete on all tables in schema public to service_role;` to `0004_rls.sql`. Verified a clean `db reset` + `npm run migrate` reproduces all gold counts.
+7. **CI type check:** use `next build` rather than bare `npx tsc --noEmit` — the latter trips on Next.js's generated `.next/types` validator (a known typed-routes quirk), not project source.
 
 ### Phase 2 watch-outs (carry into the migration-script plan)
 - The loader must run as **service-role** (`createAdminClient`) — content tables are admin-write only under RLS.
