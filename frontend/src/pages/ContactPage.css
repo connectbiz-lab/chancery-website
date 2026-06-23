@@ -66,20 +66,20 @@
 
 /* ---------------- Landscape enquiry form, below ---------------- */
 .enquiry-band {
-  margin-top: clamp(3rem, 6vw, 5rem);
-  padding: clamp(2rem, 4vw, 3rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
   background: var(--c-paper);
   border: 1px solid var(--c-line);
 }
-.enquiry-band__head { margin-bottom: 1.75rem; }
+.enquiry-band__head { margin-bottom: 1.25rem; }
 .enquiry-band__head .eyebrow { padding-left: 0; }
 .enquiry-band__head .eyebrow::before { display: none; }
-.enquiry-band__head h2 { margin: 0.25rem 0 0; }
+.enquiry-band__head h2 { margin: 0.2rem 0 0; }
 
 .enquiry-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem 1.5rem;
+  gap: 0.9rem 1.25rem;
 }
 .field { display: flex; flex-direction: column; }
 .field--wide { grid-column: span 2; }
@@ -89,8 +89,25 @@
   .field--wide, .field--full { grid-column: auto; }
 }
 
+/* Sleeker fields — tighter than the site-wide input default, scoped here. */
+.enquiry-form label {
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--c-muted);
+  margin-bottom: 0.3rem;
+}
+.enquiry-form input[type="text"],
+.enquiry-form input[type="email"],
+.enquiry-form input[type="tel"],
+.enquiry-form select,
+.enquiry-form textarea {
+  padding: 0.55rem 0.75rem;
+  font-size: 0.95rem;
+}
+.enquiry-form textarea { min-height: 76px; resize: vertical; }
+
 .enquiry-actions {
-  margin-top: 1.75rem;
+  margin-top: 1.25rem;
   display: flex;
   align-items: center;
   gap: 1.5rem;
