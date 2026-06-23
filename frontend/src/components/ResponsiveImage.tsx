@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import type { CSSProperties } from "react";
 
 /**
@@ -37,19 +38,34 @@ export function ResponsiveImage({
   className,
   style,
 }: Props) {
+  const [loaded, setLoaded] = useState(false);
+  // Fade lazy images in once decoded so they don't pop/flash against the
+  // figure's placeholder background. The hero (eager) renders instantly to
+  // protect LCP. Seed `loaded` from `img.complete` so browser-cached images
+  // (which may not fire onLoad) are never stuck invisible.
+  const markIfCached = useCallback((img: HTMLImageElement | null) => {
+    if (img?.complete) setLoaded(true);
+  }, []);
+
   if (!src) return null;
   const srcSet = buildSrcSet(src);
+  const fade = !eager;
+  const cls = [className, fade ? "imgfade" : "", fade && loaded ? "is-loaded" : ""]
+    .filter(Boolean)
+    .join(" ");
   return (
     <img
+      ref={fade ? markIfCached : undefined}
       src={src}
       srcSet={srcSet}
       sizes={srcSet ? sizes : undefined}
       alt={alt}
-      className={className}
+      className={cls || undefined}
       style={style}
       loading={eager ? "eager" : "lazy"}
       decoding="async"
       fetchPriority={eager ? "high" : "auto"}
+      onLoad={fade ? () => setLoaded(true) : undefined}
     />
   );
 }

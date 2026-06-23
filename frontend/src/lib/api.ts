@@ -19,10 +19,25 @@ function relativizeHosts(json: string): string {
   return json.replace(BACKEND_HOST, "");
 }
 
-async function get<T>(path: string): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, { headers: { Accept: "application/json" } });
-  if (!res.ok) throw new Error(`API ${path} → ${res.status}`);
-  return JSON.parse(relativizeHosts(await res.text())) as T;
+// Session cache: dedupe in-flight requests and serve repeat navigations
+// instantly, so we don't re-show the full-page "Loading…" and wait on a fresh
+// round-trip every time. The data is read-only marketing content — safe to keep
+// for the page session (cleared on a full reload). Caching the promise (not just
+// the value) also dedupes concurrent identical calls.
+const cache = new Map<string, Promise<unknown>>();
+
+function get<T>(path: string): Promise<T> {
+  let req = cache.get(path);
+  if (!req) {
+    req = fetch(`${API_BASE}${path}`, { headers: { Accept: "application/json" } })
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`API ${path} → ${res.status}`);
+        return JSON.parse(relativizeHosts(await res.text()));
+      });
+    req.catch(() => cache.delete(path)); // never cache a failure
+    cache.set(path, req);
+  }
+  return req as Promise<T>;
 }
 
 async function post<T>(path: string, body: unknown): Promise<T> {

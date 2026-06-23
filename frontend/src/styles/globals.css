@@ -263,6 +263,14 @@ img, picture { display: block; max-width: 100%; height: auto; }
 }
 .figure:hover img { transform: scale(1.04); }
 
+/* Lazy images fade in once decoded (see ResponsiveImage) so they resolve
+   smoothly over the figure's placeholder background instead of popping in. */
+.imgfade { opacity: 0; transition: opacity 0.45s var(--t-easing); }
+.imgfade.is-loaded { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .imgfade { opacity: 1; transition: none; }
+}
+
 .aspect-43  { aspect-ratio: 4 / 3; }
 .aspect-32  { aspect-ratio: 3 / 2; }
 .aspect-11  { aspect-ratio: 1 / 1; }
