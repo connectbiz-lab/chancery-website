@@ -9,7 +9,7 @@ export const revalidate = 3600
 export async function generateMetadata() {
   const page = await getPage('rooms')
   return buildMetadata({
-    title: page?.meta_title || page?.title || 'Rooms & Suites',
+    title: page?.meta_title || page?.title || 'Suites & Rooms',
     description: page?.meta_description ?? undefined,
     path: '/rooms',
     ogImagePath: page?.hero_image,
@@ -46,7 +46,7 @@ export default async function RoomsPage() {
                 <p className="lede">{hotel.tagline}</p>
               </div>
               <div className="card-grid three">
-                {hotelRooms.slice(0, 3).map((room: any) => (
+                {hotelRooms.map((room: any) => (
                   <Link key={room.id} href={`/${hotel.slug}/accommodation`} className="card">
                     <div className="figure">
                       {room.hero_image && (
