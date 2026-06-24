@@ -6,12 +6,6 @@
   gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
 }
-.dining-row.flip > .dining-gallery { order: 2; }
-
-.dining-gallery .figure { aspect-ratio: 4 / 5; }
-.dining-gallery .thumbs { display: flex; gap: 0.65rem; margin-top: 0.75rem; }
-/* `.thumb` styles come from AccommodationPage.css */
-
 .dining-text .meta {
   font-family: var(--f-sans);
   font-size: 0.78rem;
@@ -32,5 +26,4 @@
 
 @media (max-width: 900px) {
   .dining-row { grid-template-columns: 1fr; gap: 2rem; }
-  .dining-row.flip > .dining-gallery { order: unset; }
 }

@@ -8,7 +8,7 @@ type Img = { image: string; alt: string }
  *  Mirrors the legacy AccommodationPage room gallery — reuses the legacy
  *  `.room-gallery`/`.figure.aspect-43`/`.thumbs`/`.thumb` classNames so the
  *  ported page CSS styles it. Takes plain props (no server-only imports). */
-export function MediaGallery({ hero, images, name }: { hero: string | null; images: Img[]; name: string }) {
+export function MediaGallery({ hero, images, name, aspect = '4 / 3' }: { hero: string | null; images: Img[]; name: string; aspect?: string }) {
   const all: Img[] = images.length > 0
     ? images
     : (hero ? [{ image: hero, alt: name }] : [])
@@ -17,7 +17,7 @@ export function MediaGallery({ hero, images, name }: { hero: string | null; imag
   const main = all[Math.min(active, all.length - 1)]
   return (
     <div className="room-gallery">
-      <div className="figure aspect-43">
+      <div className="figure aspect-43" style={{ aspectRatio: aspect }}>
         <Media path={main.image} alt={main.alt || name} sizes="(max-width: 768px) 100vw, 60vw" />
       </div>
       {all.length > 1 && (
