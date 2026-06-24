@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Media } from "./Media";
 import "./Hero.css";
 
@@ -12,6 +12,9 @@ interface HeroProps {
   children?: ReactNode;
   /** Optional row pinned at the very bottom of the hero (e.g. icon shortcuts). */
   footerNav?: ReactNode;
+  /** CSS object-position for the background crop. Defaults to `center top`;
+   *  override per page when the photo's subject sits lower (e.g. `center 60%`). */
+  focal?: string;
 }
 
 export function Hero({
@@ -23,12 +26,17 @@ export function Hero({
   align = "center",
   children,
   footerNav,
+  focal,
 }: HeroProps) {
   const cls = ["hero", `hero-${size}`, `hero-align-${align}`].join(" ");
   return (
     <section className={cls} role="banner">
       {image && (
-        <div className="hero-bg" aria-hidden="true">
+        <div
+          className="hero-bg"
+          aria-hidden="true"
+          style={focal ? ({ "--hero-focal": focal } as CSSProperties) : undefined}
+        >
           <Media path={image} alt={heading} priority sizes="100vw" />
           <div className="hero-overlay" />
         </div>

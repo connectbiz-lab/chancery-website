@@ -26,7 +26,7 @@
 .hero-bg img {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: var(--hero-focal, center top);
 }
 .hero-overlay {
   position: absolute; inset: 0;

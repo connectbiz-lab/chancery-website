@@ -44,6 +44,7 @@ export default async function AccommodationPage({ params }: { params: Promise<{ 
         heading={p?.hero_heading ?? 'Rooms & suites'}
         subheading={p?.hero_subheading ?? undefined}
         size="page"
+        focal={hotel === 'pavilion' ? 'center 62%' : undefined}
         footerNav={<HeroIconNav scope={hotel as HotelSlug} />}
       />
       <section className="section">
