@@ -1,0 +1,177 @@
+.hero {
+  position: relative;
+  width: 100%;
+  color: var(--c-ivory);
+  display: grid;
+  /* Row 1 absorbs remaining height with the headline centered; row 2 is the
+     optional icon-shortcut strip pinned at the foot. Both rows stay above
+     the absolute .hero-bg via the .hero-inner / .hero-footer-nav z-index. */
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-full    { min-height: 62dvh; }
+.hero-page    { min-height: 54dvh; padding-top: 6rem; }
+.hero-compact { min-height: 40dvh; padding-top: 5rem; }
+
+.hero-align-center { text-align: center; }
+.hero-align-left   { text-align: left; }
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  /* Soft horizontal band centred on the text region — keeps the photo's
+     top and bottom strips at full brightness while giving the ivory
+     eyebrow + headline a darker plate to sit on. Pavilion's cream
+     facade was overpowering the text shadows otherwise. */
+  background:
+    linear-gradient(180deg,
+      rgba(14, 34, 55, 0) 0%,
+      rgba(14, 34, 55, 0.18) 25%,
+      rgba(14, 34, 55, 0.36) 50%,
+      rgba(14, 34, 55, 0.18) 75%,
+      rgba(14, 34, 55, 0.30) 100%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  grid-row: 1;
+  /* Sit the content block at the bottom of the upper row so it lands near
+     the hero's geometric centre, with the small padding-bottom keeping a
+     gap above the icon row. align-self: center put it at the upper third
+     because the icon row consumes the lower band; this reads more balanced. */
+  align-self: center;
+  padding-top: clamp(2rem, 5vh, 4rem);
+  padding-bottom: clamp(2rem, 5vh, 4rem);
+}
+.hero-align-center .hero-inner { margin-inline: auto; }
+
+.hero .eyebrow {
+  /* Ivory wins over gold-soft against bright daylight cream walls — gold
+     dashes still mark the brand accent. Bumped from the 0.72rem global
+     token so the eyebrow scans against full-bleed photography. */
+  color: var(--c-ivory);
+  font-size: 0.82rem;
+  text-shadow: 0 1px 10px rgba(14, 34, 55, 0.75);
+}
+.hero .eyebrow::before {
+  background: var(--c-gold);
+  opacity: 0.95;
+  width: 2.75rem;
+}
+
+/* Stacked eyebrow for hotel sub-pages: hotel name is the DOMINANT visual
+   on the hero (replaces the over-large default headline), page label is
+   the secondary, and the original <h1> gets reduced to a small italic
+   tagline below. The wrapping <p class="eyebrow"> still applies color +
+   shadow; the inner spans take over sizing. */
+.hero-eyebrow-stack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.05;
+}
+.hero-eyebrow-stack > span { display: block; }
+
+/* Primary line — hotel name. Big Fraunces serif, same family / size as
+   the main hero page heading so sub-page hotel branding reads with the
+   same weight as the hotel home title. white-space: nowrap forces a
+   single line so "The Chancery Pavilion" doesn't break across two rows. */
+.hero-eyebrow-stack > span:first-child {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4vw + 0.8rem, 4rem);
+  letter-spacing: -0.01em;
+  text-transform: none;
+  line-height: 1.07;
+  white-space: nowrap;
+}
+/* Gold dash separator — widened to match the bigger type above + below. */
+.hero-eyebrow-stack > span:first-child::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 1px;
+  background: var(--c-gold);
+  opacity: 0.95;
+  margin: 1.25rem auto 1.25rem;
+}
+/* Secondary line — page label. Same Fraunces serif as hotel name, just
+   smaller so the hierarchy reads hotel > page > italic tagline. */
+.hero-eyebrow-stack > span:last-child {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.6vw + 0.7rem, 2.6rem);
+  letter-spacing: -0.005em;
+  text-transform: none;
+  line-height: 1.07;
+}
+
+/* Stacked eyebrow uses its own gold dash, so hide the parent
+   .eyebrow::before and drop the parent's bottom padding. Tighten margin
+   to the now-smaller tagline so the whole composition reads as one unit. */
+.hero .eyebrow:has(.hero-eyebrow-stack)::before { display: none; }
+.hero .eyebrow:has(.hero-eyebrow-stack) {
+  padding-bottom: 0;
+  margin-bottom: 1.5rem;
+}
+
+/* Widen the hero-inner from the default 880px (container narrow) to
+   1240px when a stacked eyebrow is present, so the big serif hotel name
+   has room to render on one line at the desktop font size. The narrow
+   constraint stays for plain-eyebrow heroes (hotel home, brand home). */
+.hero-page .hero-inner:has(.hero-eyebrow-stack) {
+  max-width: var(--max-w);
+}
+
+/* When a stacked eyebrow is present, the page tagline <h1> is hidden —
+   hotel + page label above already carry the identity. */
+.hero-page .hero-inner:has(.hero-eyebrow-stack) h1 { display: none; }
+
+.hero h1, .hero .display {
+  color: var(--c-ivory);
+  margin-bottom: 0.35em;
+  /* Three-layer halo so the title reads against the brightest cream walls
+     (Chancery facade) without dimming the photograph. A wider soft layer
+     + a tight inner stroke + a deep base shadow keep weight while staying
+     editorial — not the "photoshop drop shadow" look. */
+  text-shadow:
+    0 1px 2px rgba(14, 34, 55, 0.7),
+    0 2px 8px rgba(14, 34, 55, 0.55),
+    0 4px 28px rgba(14, 34, 55, 0.45);
+}
+
+.hero-sub { display: none; }
+.hero-align-left .hero-sub { margin-left: 0; }
+
+.hero-children {
+  margin-top: 2.25rem;
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  justify-content: inherit;
+}
+.hero-align-center .hero-children { justify-content: center; }
+
+.hero-footer-nav {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  grid-row: 2;
+  padding: clamp(1.5rem, 3vw, 2.5rem) var(--gutter) clamp(2rem, 3vw, 3rem);
+}
+
+@media (max-width: 600px) {
+  .hero-page    { min-height: 48dvh; }
+  .hero-compact { min-height: 34dvh; }
+}
