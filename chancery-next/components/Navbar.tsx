@@ -38,8 +38,13 @@ export function Navbar({ site, hotels }: NavbarProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close the side menu whenever the route changes.
-  useEffect(() => { setMenuOpen(false); }, [pathname]);
+  // Close the side menu whenever the route changes — adjusted during render on
+  // pathname change rather than in an effect.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    if (menuOpen) setMenuOpen(false);
+  }
 
   // Pavilion is the flagship — every brand-level page (home, /book, /careers,
   // etc.) defaults scoped links there. We deliberately do NOT remember the

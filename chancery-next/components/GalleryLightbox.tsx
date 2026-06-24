@@ -26,8 +26,13 @@ export function GalleryLightbox({ images }: { images: Img[] }) {
     [images, filter],
   )
 
-  // Reset the lightbox if the filter changes the set under it.
-  useEffect(() => { setLightbox(null) }, [filter])
+  // Reset the lightbox if the filter changes the set under it — adjusted during
+  // render on filter change rather than in an effect.
+  const [lastFilter, setLastFilter] = useState(filter)
+  if (filter !== lastFilter) {
+    setLastFilter(filter)
+    setLightbox(null)
+  }
 
   // Escape closes the lightbox.
   useEffect(() => {

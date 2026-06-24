@@ -16,6 +16,10 @@ export type HotelSlug = 'chancery' | 'pavilion'
 export const linesOf = (text: string | null): string[] =>
   (text ?? '').split('\n').map((l) => l.trim()).filter(Boolean)
 
+// Shared comparator for the many `order`-sorted embedded relations.
+const byOrder = <T extends { order: number | null }>(a: T, b: T): number =>
+  (a.order ?? 0) - (b.order ?? 0)
+
 export const getSiteContent = cache(async () => {
   const { data, error } = await db.from('site_content').select('*').eq('id', 1).single()
   if (error) throw error
@@ -62,11 +66,11 @@ export const getRooms = cache(async (hotelSlug?: string) => {
     .order('order')
   if (error) throw error
   return (data ?? [])
-    .filter((r: any) => !hotelSlug || r.hotel?.slug === hotelSlug)
-    .map((r: any) => ({
+    .filter((r) => !hotelSlug || r.hotel?.slug === hotelSlug)
+    .map((r) => ({
       ...r,
       amenities_list: linesOf(r.amenities),
-      images: (r.images ?? []).sort((a: any, b: any) => a.order - b.order),
+      images: (r.images ?? []).sort(byOrder),
     }))
 })
 
@@ -76,8 +80,8 @@ export const getRestaurants = cache(async (hotelSlug?: string) => {
     .order('order')
   if (error) throw error
   return (data ?? [])
-    .filter((r: any) => !hotelSlug || r.hotel?.slug === hotelSlug)
-    .map((r: any) => ({ ...r, images: (r.images ?? []).sort((a: any, b: any) => a.order - b.order) }))
+    .filter((r) => !hotelSlug || r.hotel?.slug === hotelSlug)
+    .map((r) => ({ ...r, images: (r.images ?? []).sort(byOrder) }))
 })
 
 export const getVenues = cache(async (hotelSlug?: string) => {
@@ -86,23 +90,23 @@ export const getVenues = cache(async (hotelSlug?: string) => {
     .order('order')
   if (error) throw error
   return (data ?? [])
-    .filter((r: any) => !hotelSlug || r.hotel?.slug === hotelSlug)
-    .map((r: any) => ({ ...r, images: (r.images ?? []).sort((a: any, b: any) => a.order - b.order) }))
+    .filter((r) => !hotelSlug || r.hotel?.slug === hotelSlug)
+    .map((r) => ({ ...r, images: (r.images ?? []).sort(byOrder) }))
 })
 
 export const getOffers = cache(async (hotelSlug?: string) => {
   const { data, error } = await db.from('offer').select('*, hotel:hotel_id(slug)').order('order')
   if (error) throw error
   // Offers with null hotel are shared (apply to both); hotel-scoped match the slug.
-  return (data ?? []).filter((o: any) => !hotelSlug || !o.hotel || o.hotel.slug === hotelSlug)
+  return (data ?? []).filter((o) => !hotelSlug || !o.hotel || o.hotel.slug === hotelSlug)
 })
 
 export const getGallery = cache(async (hotelSlug?: string, category?: string) => {
   const { data, error } = await db.from('gallery_image').select('*, hotel:hotel_id(slug)').order('order')
   if (error) throw error
   return (data ?? [])
-    .filter((g: any) => !hotelSlug || !g.hotel || g.hotel.slug === hotelSlug)
-    .filter((g: any) => !category || g.category === category)
+    .filter((g) => !hotelSlug || !g.hotel || g.hotel.slug === hotelSlug)
+    .filter((g) => !category || g.category === category)
 })
 
 export const getTestimonials = cache(async () => {
@@ -115,7 +119,7 @@ export const getFaq = cache(async () => {
   const { data, error } = await db.from('faq_section')
     .select('*, items:faq_item(question,answer,order)').order('order')
   if (error) throw error
-  return (data ?? []).map((s: any) => ({ ...s, items: (s.items ?? []).sort((a: any, b: any) => a.order - b.order) }))
+  return (data ?? []).map((s) => ({ ...s, items: (s.items ?? []).sort(byOrder) }))
 })
 
 export const getPage = cache(async (kind: string, hotelSlug?: string) => {
@@ -127,9 +131,9 @@ export const getPage = cache(async (kind: string, hotelSlug?: string) => {
     .select('*, hotel:hotel_id(slug), sections:page_section(*)')
     .eq('kind', kind as PageKind)
   if (error) throw error
-  const match = (data ?? []).find((p: any) =>
+  const match = (data ?? []).find((p) =>
     hotelSlug ? p.hotel?.slug === hotelSlug : !p.hotel_id,
   )
   if (!match) return null
-  return { ...match, sections: ((match as any).sections ?? []).sort((a: any, b: any) => a.order - b.order) }
+  return { ...match, sections: (match.sections ?? []).sort(byOrder) }
 })

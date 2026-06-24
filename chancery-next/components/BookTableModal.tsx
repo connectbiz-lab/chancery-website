@@ -18,12 +18,16 @@ export function BookTableModal({ open, onClose, hotel, restaurant }: Props) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle')
 
   // Each fresh open starts from a clean form (the component stays mounted).
-  useEffect(() => {
+  // Adjust state during render on the open→close transition rather than in an
+  // effect (React's "you might not need an effect" pattern).
+  const [wasOpen, setWasOpen] = useState(open)
+  if (open !== wasOpen) {
+    setWasOpen(open)
     if (open) {
       setForm({ ...EMPTY })
       setStatus('idle')
     }
-  }, [open])
+  }
 
   // Close on Escape; lock body scroll while open.
   useEffect(() => {
@@ -89,7 +93,7 @@ export function BookTableModal({ open, onClose, hotel, restaurant }: Props) {
             <p className="eyebrow">Request received</p>
             <h2 className="h3">Thank you, {form.name.split(' ')[0] || 'guest'}.</h2>
             <p>
-              Your table request for <strong>{restaurant}</strong> has reached our team — we'll
+              Your table request for <strong>{restaurant}</strong> has reached our team — we&rsquo;ll
               confirm by email or phone shortly.
             </p>
             <button type="button" className="btn" onClick={onClose}>Close</button>

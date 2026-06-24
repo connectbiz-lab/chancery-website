@@ -47,7 +47,7 @@ export default async function DiningPage({ params }: { params: Promise<{ hotel: 
             </div>
           )}
           <div className="dining-list">
-            {restaurants.map((r: any, idx: number) => (
+            {restaurants.map((r, idx) => (
               <article key={r.id} className={`dining-row ${idx % 2 === 1 ? 'flip' : ''}`}>
                 <MediaGallery hero={r.hero_image} images={r.images} name={r.name} aspect="4 / 5" />
                 <div className="dining-text">

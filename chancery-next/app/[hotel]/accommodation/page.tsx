@@ -46,7 +46,7 @@ export default async function AccommodationPage({ params }: { params: Promise<{ 
             </div>
           )}
           <div className="rooms-list">
-            {rooms.map((room: any, idx: number) => (
+            {rooms.map((room, idx) => (
               <article key={room.id} className={`room-row ${idx % 2 === 1 ? 'flip' : ''}`}>
                 <MediaGallery hero={room.hero_image} images={room.images} name={room.name} />
                 <div className="room-text">

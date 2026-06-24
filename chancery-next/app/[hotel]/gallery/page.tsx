@@ -1,6 +1,6 @@
 import { HotelSplitHero } from '@/components/HotelSplitHero'
 import { GalleryLightbox } from '@/components/GalleryLightbox'
-import { getHotel, getPage, getGallery, type HotelSlug } from '@/lib/queries/content'
+import { getHotel, getPage, getGallery } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 import './GalleryPage.css'
@@ -37,7 +37,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ hotel:
       />
       <section className="section">
         <div className="container">
-          <GalleryLightbox images={gallery.map((g: any) => ({ image: g.image, alt: g.alt, category: g.category }))} />
+          <GalleryLightbox images={gallery.map((g) => ({ image: g.image, alt: g.alt, category: g.category }))} />
         </div>
       </section>
     </>

@@ -27,12 +27,16 @@ export function EventEnquiryModal({ open, onClose, hotel, venue = '' }: Props) {
   const [form, setForm] = useState({ ...EMPTY })
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle')
 
-  useEffect(() => {
+  // Reset to a clean form each time the modal opens — adjusted during render on
+  // the open transition rather than in an effect.
+  const [wasOpen, setWasOpen] = useState(open)
+  if (open !== wasOpen) {
+    setWasOpen(open)
     if (open) {
       setForm({ ...EMPTY })
       setStatus('idle')
     }
-  }, [open])
+  }
 
   useEffect(() => {
     if (!open) return

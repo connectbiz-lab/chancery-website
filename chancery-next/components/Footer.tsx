@@ -64,7 +64,7 @@ export function Footer({ site, hotels }: FooterProps) {
               {status === "sending" ? "Subscribing…" : "Subscribe"}
             </button>
           </form>
-          {status === "ok" && <p className="newsletter-status ok">Thank you — we'll be in touch.</p>}
+          {status === "ok" && <p className="newsletter-status ok">Thank you — we&rsquo;ll be in touch.</p>}
           {status === "err" && <p className="newsletter-status err">Something went wrong. Please try again.</p>}
         </div>
       </section>

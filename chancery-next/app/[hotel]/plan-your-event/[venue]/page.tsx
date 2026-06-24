@@ -27,7 +27,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { hotel, venue } = await params
   const venues = await getVenues(hotel)
-  const v = venues.find((x: any) => x.slug === venue)
+  const v = venues.find((x) => x.slug === venue)
   if (!v) return {}
   return buildMetadata({
     title: `${v.name} — ${v.hotel.name}`,
@@ -42,7 +42,7 @@ export default async function VenueDetailPage(
 ) {
   const { hotel, venue } = await params
   const venues = await getVenues(hotel)
-  const v = venues.find((x: any) => x.slug === venue)
+  const v = venues.find((x) => x.slug === venue)
   if (!v) notFound()
 
   const facts: Array<[string, string]> = (
@@ -83,7 +83,6 @@ export default async function VenueDetailPage(
       <HotelSplitHero
         eyebrow={`${v.hotel.name} · ${kindLabel}`}
         title={v.name}
-        description={v.tagline ?? null}
         image={v.hero_image}
       />
 
@@ -138,7 +137,7 @@ export default async function VenueDetailPage(
 
           {gallery.length > 0 && (
             <div className="venue-gallery">
-              {gallery.map((img: any, i: number) => (
+              {gallery.map((img, i) => (
                 <div className="figure" key={i}>
                   <Media path={img.image} alt={img.alt || v.name} sizes="(max-width: 768px) 100vw, 33vw" />
                 </div>

@@ -43,7 +43,7 @@ export default async function SpecialOffersPage({ params }: { params: Promise<{ 
             </div>
           )}
           <div className="card-grid">
-            {offers.map((o: any) => (
+            {offers.map((o) => (
               <article key={o.id} className="card">
                 <div className="figure aspect-43">
                   {o.image && <Media path={o.image} alt={o.title} sizes="(max-width: 768px) 100vw, 50vw" />}

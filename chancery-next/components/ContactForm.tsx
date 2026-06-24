@@ -65,7 +65,7 @@ export function ContactForm({ hotel }: { hotel: HotelSlug }) {
               onChange={(e) => update('phone', e.target.value)} />
           </div>
           <div className="field">
-            <label htmlFor="c-interest">I'm interested in</label>
+            <label htmlFor="c-interest">I&rsquo;m interested in</label>
             <select id="c-interest" value={form.interest}
               onChange={(e) => update('interest', e.target.value)}>
               <option value="stay">A stay / room booking</option>

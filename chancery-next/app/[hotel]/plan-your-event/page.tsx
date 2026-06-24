@@ -78,7 +78,7 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
             <h2 className="h2">Event spaces &amp; venues</h2>
           </div>
           <div className="venues-grid">
-            {venues.map((v: any) => (
+            {venues.map((v) => (
               <Link key={v.id} href={`/${hotel}/plan-your-event/${v.slug}`} className="venue-card">
                 <div className="figure">
                   {v.hero_image
@@ -86,7 +86,7 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
                     : <div className="figure-placeholder" />}
                 </div>
                 <div className="venue-body">
-                  <p className="card-eyebrow">{KINDS[v.kind] || v.kind || 'Venue'}</p>
+                  <p className="card-eyebrow">{(v.kind && KINDS[v.kind]) || v.kind || 'Venue'}</p>
                   <h3>{v.name}</h3>
                   <p className="meta">
                     {v.guests_max && <span>Up to {v.guests_max} guests</span>}
@@ -119,7 +119,9 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
   )
 }
 
-function VenueCapacities({ v }: { v: any }) {
+type Venue = Awaited<ReturnType<typeof getVenues>>[number]
+
+function VenueCapacities({ v }: { v: Venue }) {
   const rows: Array<[string, number]> = (
     [
       ['Theatre', v.cap_theatre],

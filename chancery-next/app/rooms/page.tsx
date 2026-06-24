@@ -35,7 +35,7 @@ export default async function RoomsPage() {
       />
 
       {hotels.map((hotel) => {
-        const hotelRooms = allRooms.filter((r: any) => r.hotel?.slug === hotel.slug)
+        const hotelRooms = allRooms.filter((r) => r.hotel?.slug === hotel.slug)
         if (hotelRooms.length === 0) return null
         return (
           <section key={hotel.slug} className="section">
@@ -46,7 +46,7 @@ export default async function RoomsPage() {
                 <p className="lede">{hotel.tagline}</p>
               </div>
               <div className="card-grid three">
-                {hotelRooms.map((room: any) => (
+                {hotelRooms.map((room) => (
                   <Link key={room.id} href={`/${hotel.slug}/accommodation`} className="card">
                     <div className="figure">
                       {room.hero_image && (
