@@ -19,6 +19,23 @@ function buildSrcSet(src: string): string | undefined {
   return WIDTHS.map((w) => `${base}-${w}.webp ${w}w`).join(", ");
 }
 
+/**
+ * The variant URL the browser would pick for a full-bleed (`sizes="100vw"`)
+ * image at the current viewport — i.e. exactly what a `<Hero>` `<img>` requests.
+ *
+ * Use this for `rel="prefetch"` of an upcoming hero: prefetch ignores
+ * `imagesrcset` (only `preload` honours it), so prefetching the bare master
+ * warms a cache key the destination never requests. Prefetching the computed
+ * variant warms the exact entry, so navigation paints from cache.
+ */
+export function fullBleedVariant(src: string): string {
+  if (!src.endsWith(".webp") || typeof window === "undefined") return src;
+  const base = src.slice(0, -".webp".length);
+  const need = window.innerWidth * (window.devicePixelRatio || 1);
+  const w = WIDTHS.find((x) => x >= need) ?? WIDTHS[WIDTHS.length - 1];
+  return `${base}-${w}.webp`;
+}
+
 interface Props {
   src: string | null;
   alt: string;

@@ -5,7 +5,7 @@ import { BookButton } from "@/components/BookButton";
 import { Hero } from "@/components/Hero";
 import { HeroIconNav } from "@/components/HeroIconNav";
 import { PageMeta } from "@/components/PageMeta";
-import { ResponsiveImage } from "@/components/ResponsiveImage";
+import { ResponsiveImage, fullBleedVariant } from "@/components/ResponsiveImage";
 import { api, useAsync } from "@/lib/api";
 import { useReveal } from "@/lib/reveal";
 import "./pages.css";
@@ -61,13 +61,18 @@ export function HomePage() {
         <img> for that same URL — the browser should serve it from cache
         instead of starting a fresh 600KB–1.7MB download. rel="prefetch" keeps
         the priority low so it never competes with the current page's LCP.
+
+        We prefetch the responsive *variant* the Hero will actually request
+        (full-bleed 100vw at this viewport), not the bare master: prefetch
+        ignores imagesrcset, so prefetching the master warms a cache key the
+        destination never uses, leaving the navigation to re-download.
       */}
       {hotels.data && (
         <Helmet>
           {hotels.data
             .filter((h) => h.hero_image)
             .map((h) => (
-              <link key={h.slug} rel="prefetch" as="image" href={h.hero_image!} />
+              <link key={h.slug} rel="prefetch" as="image" href={fullBleedVariant(h.hero_image!)} />
             ))}
         </Helmet>
       )}
