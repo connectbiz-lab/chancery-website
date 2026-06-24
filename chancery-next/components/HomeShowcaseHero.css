@@ -1,0 +1,95 @@
+/* Editorial group-home hero — two hotels stacked, each with its own focus.
+   Reference-style details (ghost index, dashed offset frame, "Since" badge,
+   letter-spaced eyebrow, arrow CTA) rendered in Chancery's ivory/navy/gold. */
+.showcase {
+  background: var(--c-cream); /* pure white (#fff) — matches the navbar; ivory read too cream here */
+  color: var(--c-navy);
+  /* Top pad clears the fixed ~104px navbar with comfortable breathing room. */
+  padding: clamp(9rem, 11vh, 10rem) 0 clamp(3.5rem, 7vh, 6rem);
+}
+
+/* ---- Two hotels side by side (both visible together, no scroll) ---- */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+/* Drop the second column for an editorial, interlocked rhythm. */
+.hb {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.2rem, 2.4vw, 1.9rem);
+}
+/* Interlock (reference style): meta on TOP, photo pushed DOWN. Applied to the
+   Pavilion column; Chancery keeps photo-top / meta-below, so the two columns
+   zigzag rather than line up flat. */
+.hb-meta-top { flex-direction: column-reverse; }
+
+/* Figure: photo + dashed offset frame */
+.hb-figure {
+  position: relative;
+  display: block;
+  aspect-ratio: 7 / 5;
+}
+.hb-figure img {
+  border-radius: var(--radius, 4px);
+  box-shadow: 0 26px 60px -30px rgba(14, 34, 55, 0.5);
+  transition: transform 1.1s var(--t-easing);
+}
+.hb-figure:hover img { transform: scale(1.03); }
+.hb-frame {
+  position: absolute;
+  inset: -14px;
+  border: 1px dashed rgba(14, 34, 55, 0.35);
+  border-radius: calc(var(--radius, 4px) + 6px);
+  pointer-events: none;
+}
+/* Meta: eyebrow, big bold name, address, CTA */
+.hb-eyebrow {
+  font-family: var(--f-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--c-gold-deep, var(--c-gold));
+  margin: 0 0 1.1rem;
+}
+.hb-name {
+  font-family: var(--f-sans);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 3.6vw, 3.3rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--c-navy);
+  margin: 0;
+}
+.hb-addr {
+  font-family: var(--f-serif);
+  font-size: clamp(0.95rem, 1.2vw, 1.12rem);
+  line-height: 1.5;
+  color: var(--c-charcoal);
+  margin: 0;
+  white-space: nowrap;   /* keep the address on a single line */
+}
+.hb-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.8rem;
+  font-family: var(--f-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-navy);
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(14, 34, 55, 0.4);
+  transition: gap 0.3s var(--t-easing), border-color 0.3s var(--t-easing);
+}
+.hb-cta:hover { gap: 1rem; border-color: var(--c-gold); }
+
+@media (max-width: 760px) {
+  .showcase-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .showcase-grid > .hb:last-child { margin-top: 0; }
+  .hb-index { font-size: 5rem; }
+}

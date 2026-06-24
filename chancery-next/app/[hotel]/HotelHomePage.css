@@ -1,1 +1,19 @@
 /* HotelHomePage doesn't need much — borrows from pages.css. */
+
+/* Group-home editorial style for the About section: white surface, tight
+   padding, dashed offset frame on the photo (matches the showcase blocks). */
+.editorial-framed {
+  background: var(--c-cream); /* white */
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+.editorial-framed .editorial-figure { position: relative; }
+.editorial-framed .editorial-figure .figure { border-radius: var(--radius, 4px); }
+.editorial-framed .editorial-figure::after {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border: 1px dashed rgba(14, 34, 55, 0.35);
+  border-radius: calc(var(--radius, 4px) + 6px);
+  pointer-events: none;
+}

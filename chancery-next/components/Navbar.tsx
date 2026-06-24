@@ -30,10 +30,13 @@ export function Navbar({ site, hotels }: NavbarProps) {
   // navbar carving a solid bar across the top. Includes every hotel-scoped
   // sub-page (Dining, Events, Offers, Gallery, etc.) so navigating inside
   // a hotel feels like one continuous editorial spread.
+  // Editorial pages (group home + hotel landing pages) use the SOLID fixed
+  // navbar. Hotel SUB-pages still lead with a full-bleed photo hero, so the
+  // navbar floats transparent over those.
+  const isHotelHome = pathname === "/pavilion" || pathname === "/chancery";
   const onHeroPage =
-    pathname === "/" ||
-    pathname.startsWith("/chancery") ||
-    pathname.startsWith("/pavilion");
+    !isHotelHome &&
+    (pathname.startsWith("/chancery") || pathname.startsWith("/pavilion"));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);

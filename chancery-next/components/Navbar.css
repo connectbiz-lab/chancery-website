@@ -28,10 +28,10 @@
   display: flex;
   align-items: center;
   gap: 2rem;
-  height: 144px;
+  height: 104px;
   transition: height 0.3s var(--t-easing);
 }
-.navbar.scrolled .navbar-inner { height: 120px; }
+.navbar.scrolled .navbar-inner { height: 88px; }
 
 /* Brand */
 .brand {
@@ -59,24 +59,24 @@
   transition: height 0.3s var(--t-easing), opacity 0.3s var(--t-easing);
 }
 /* Master 'Chancery Hotels' lockup — square with built-in whitespace */
-.nav-logo-brand { height: 112px; }
-.navbar.scrolled .nav-logo-brand { height: 92px; }
+.nav-logo-brand { height: 78px; }
+.navbar.scrolled .nav-logo-brand { height: 66px; }
 
 /* Chancery (Lavelle Road) lockup — wide and short, golden script.
    The PNG crops tightly to the artwork, so it needs more visual breathing
    room than the brand and Pavilion marks (which have built-in whitespace). */
 .nav-logo-hotel.chancery {
-  height: 96px;
-  margin: 6px 28px 6px 4px;
+  height: 68px;
+  margin: 4px 24px 4px 4px;
 }
 .navbar.scrolled .nav-logo-hotel.chancery {
-  height: 80px;
-  margin: 4px 24px 4px 4px;
+  height: 58px;
+  margin: 4px 22px 4px 4px;
 }
 
 /* Pavilion lockup — tall portrait, includes 'Luxury Unbulloned' tagline */
-.nav-logo-hotel.pavilion { height: 112px; }
-.navbar.scrolled .nav-logo-hotel.pavilion { height: 92px; }
+.nav-logo-hotel.pavilion { height: 82px; }
+.navbar.scrolled .nav-logo-hotel.pavilion { height: 70px; }
 
 /* Logo sits transparent over the hero — the PNG has its own alpha. A subtle
    drop-shadow keeps the maroon/gold detail readable on light imagery without
@@ -85,21 +85,15 @@
   filter: drop-shadow(0 2px 6px rgba(14, 34, 55, 0.35));
 }
 
-/* Primary nav — hidden by default, slides in once the navbar shrinks
-   on scroll so the inline menu only appears alongside the compact bar. */
+/* Primary nav — visible inline on desktop (hidden under the hamburger on
+   mobile via the max-width rule below). */
 .primary {
   flex: 1;
   display: flex;
   justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-6px);
-  transition: opacity 0.3s var(--t-easing), transform 0.3s var(--t-easing);
-}
-.navbar.scrolled .primary {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0);
+  transition: opacity 0.3s var(--t-easing);
 }
 .primary ul {
   list-style: none; margin: 0; padding: 0;
@@ -251,15 +245,15 @@
 }
 
 @media (max-width: 720px) {
-  .navbar-inner { height: 112px; }
-  .navbar.scrolled .navbar-inner { height: 92px; }
-  .mobile-panel { inset: 112px 0 0 0; }
-  .nav-logo-brand { height: 82px; }
-  .nav-logo-hotel.chancery { height: 70px; margin: 4px 18px 4px 2px; }
-  .nav-logo-hotel.pavilion { height: 86px; }
-  .navbar.scrolled .nav-logo-brand { height: 70px; }
-  .navbar.scrolled .nav-logo-hotel.chancery { height: 58px; margin: 4px 16px 4px 2px; }
-  .navbar.scrolled .nav-logo-hotel.pavilion { height: 72px; }
+  .navbar-inner { height: 92px; }
+  .navbar.scrolled .navbar-inner { height: 80px; }
+  .mobile-panel { inset: 92px 0 0 0; }
+  .nav-logo-brand { height: 66px; }
+  .nav-logo-hotel.chancery { height: 60px; margin: 4px 14px 4px 2px; }
+  .nav-logo-hotel.pavilion { height: 72px; }
+  .navbar.scrolled .nav-logo-brand { height: 58px; }
+  .navbar.scrolled .nav-logo-hotel.chancery { height: 52px; margin: 4px 12px 4px 2px; }
+  .navbar.scrolled .nav-logo-hotel.pavilion { height: 64px; }
 }
 
 @media (max-width: 480px) {

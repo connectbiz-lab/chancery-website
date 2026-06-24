@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { BookButton } from '@/components/BookButton'
 import { Hero } from '@/components/Hero'
 import { HeroIconNav } from '@/components/HeroIconNav'
+import { HomeShowcaseHero } from '@/components/HomeShowcaseHero'
 import { Media } from '@/components/Media'
 import { Reveal } from '@/components/Reveal'
 import { TestimonialCarousel } from '@/components/TestimonialCarousel'
@@ -45,21 +46,30 @@ export default async function Home() {
 
   return (
     <>
-      <Hero
-        image={heroImage}
-        eyebrow={p?.hero_eyebrow ?? 'The Chancery Group of Hotels'}
-        heading={p?.hero_heading ?? 'Redefining hospitality'}
-        subheading={p?.hero_subheading ?? 'Understated luxury with purpose.'}
-        size="full"
-        align="center"
-        footerNav={<HeroIconNav />}
-      >
-        {hotels.map((h) => (
-          <Link key={h.slug} href={`/${h.slug}`} className="btn light">
-            {h.short_name}
-          </Link>
-        ))}
-      </Hero>
+      {pavilion && chancery ? (
+        <HomeShowcaseHero
+          pavilion={pavilion}
+          pavilionImage={pavilion.hero_image}
+          chancery={chancery}
+          chanceryImage={chancery.hero_image}
+        />
+      ) : (
+        <Hero
+          image={heroImage}
+          eyebrow={p?.hero_eyebrow ?? 'The Chancery Group of Hotels'}
+          heading={p?.hero_heading ?? 'Redefining hospitality'}
+          subheading={p?.hero_subheading ?? 'Understated luxury with purpose.'}
+          size="full"
+          align="center"
+          footerNav={<HeroIconNav />}
+        >
+          {hotels.map((h) => (
+            <Link key={h.slug} href={`/${h.slug}`} className="btn light">
+              {h.short_name}
+            </Link>
+          ))}
+        </Hero>
+      )}
 
       {/* Brand introduction — Claridges-style two-column */}
       <section className="section bg-cream">

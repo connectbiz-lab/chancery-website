@@ -15,6 +15,9 @@ interface HeroProps {
   /** CSS object-position for the background crop. Defaults to `center top`;
    *  override per page when the photo's subject sits lower (e.g. `center 60%`). */
   focal?: string;
+  /** Two background images shown side by side (a diptych) instead of one — used
+   *  on the group home to feature both hotels behind the shared heading. */
+  splitImages?: [string | null, string | null];
 }
 
 export function Hero({
@@ -27,11 +30,22 @@ export function Hero({
   children,
   footerNav,
   focal,
+  splitImages,
 }: HeroProps) {
   const cls = ["hero", `hero-${size}`, `hero-align-${align}`].join(" ");
   return (
     <section className={cls} role="banner">
-      {image && (
+      {splitImages ? (
+        <div className="hero-bg hero-split" aria-hidden="true">
+          <div className="hero-split-half">
+            <Media path={splitImages[0]} alt="" priority sizes="50vw" />
+          </div>
+          <div className="hero-split-half">
+            <Media path={splitImages[1]} alt="" priority sizes="50vw" />
+          </div>
+          <div className="hero-overlay" />
+        </div>
+      ) : image && (
         <div
           className="hero-bg"
           aria-hidden="true"

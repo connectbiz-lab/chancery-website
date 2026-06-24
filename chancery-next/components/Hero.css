@@ -28,6 +28,22 @@
   object-fit: cover;
   object-position: var(--hero-focal, center top);
 }
+
+/* Diptych: two hotel photos side by side behind the shared group heading. */
+.hero-split { display: flex; }
+.hero-split-half {
+  position: relative;   /* contain the next/image `fill` photo */
+  flex: 1 1 0;
+  overflow: hidden;
+}
+.hero-split-half + .hero-split-half {
+  border-left: 1px solid rgba(250, 249, 248, 0.35);
+}
+@media (max-width: 600px) {
+  /* Stack the two photos on narrow screens so neither is squeezed to a sliver. */
+  .hero-split { flex-direction: column; }
+  .hero-split-half + .hero-split-half { border-left: 0; border-top: 1px solid rgba(250, 249, 248, 0.35); }
+}
 .hero-overlay {
   position: absolute; inset: 0;
   /* Soft horizontal band centred on the text region — keeps the photo's

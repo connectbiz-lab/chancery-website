@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BookButton } from '@/components/BookButton'
-import { Hero } from '@/components/Hero'
-import { HeroIconNav } from '@/components/HeroIconNav'
+import { HotelSplitHero } from '@/components/HotelSplitHero'
 import { Media } from '@/components/Media'
 import { Reveal } from '@/components/Reveal'
 import {
@@ -58,18 +57,15 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
 
   return (
     <>
-      <Hero
-        image={h.hero_image ?? null}
+      <HotelSplitHero
+        slug={hotel as HotelSlug}
+        name={heroHeading}
         eyebrow={heroEyebrow}
-        heading={heroHeading}
-        subheading={h.address}
-        size="full"
-        align="center"
-        footerNav={<HeroIconNav scope={hotel as HotelSlug} />}
-      >
-        <BookButton hotel={hotel as HotelSlug} className="btn gold">Book your stay</BookButton>
-        <a href="#rooms" className="btn light">Explore rooms</a>
-      </Hero>
+        description={h.tagline || h.intro_body || ''}
+        image={h.hero_image ?? null}
+        address={h.address}
+        phone={h.phone}
+      />
 
       {/* Stats / intro */}
       <section className="section bg-cream">
@@ -99,8 +95,8 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
         </Reveal>
       </section>
 
-      {/* About — image + text */}
-      <section className="section bg-ivory">
+      {/* About — image + text, group-home editorial style (white, dashed frame). */}
+      <section className="section bg-cream editorial-framed">
         <Reveal className="container">
           <div className="editorial-row">
             <div className="editorial-figure">
