@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Fraunces, Cormorant_Garamond, Inter } from 'next/font/google'
 import './globals.css'
+import './pages.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ScrollToTop } from '@/components/ScrollToTop'

@@ -1,0 +1,314 @@
+/* Two-hotel property card */
+.property-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1.75rem;
+  color: var(--c-navy);
+  transition: transform 0.4s var(--t-easing);
+}
+.property-card:hover { color: var(--c-navy); }
+.property-card:hover .figure img { transform: scale(1.05); }
+.property-card .property-body { padding: 0; }
+.property-card .figure { aspect-ratio: 4 / 3; }
+.property-card h3 { margin: 0.5rem 0; }
+.property-card .copy {
+  font-family: var(--f-serif);
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--c-muted);
+  margin-bottom: 1.25rem;
+}
+
+/* Offers on dark band */
+.offer-card .figure { aspect-ratio: 4 / 3; margin-bottom: 1.5rem; }
+
+/* Brand introduction — Claridges-style two-column */
+.intro-claridges {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+}
+.intro-claridges__text { max-width: 32rem; }
+.intro-claridges__text .display { margin-bottom: 0.5em; }
+.intro-claridges__text .divider { margin-top: 2rem; margin-bottom: 0; }
+
+.intro-claridges__divider {
+  align-self: stretch;
+  width: 1px;
+  background: var(--c-line);
+  position: relative;
+}
+.intro-claridges__divider::before,
+.intro-claridges__divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 10px; height: 10px;
+  border: 1px solid var(--c-gold);
+  background: var(--c-cream);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.intro-claridges__divider::before { top: calc(50% - 9px); }
+.intro-claridges__divider::after  { top: calc(50% + 9px); }
+
+.intro-claridges__media {
+  position: relative;
+  padding-top: 2rem;
+  padding-right: 2rem;
+}
+.intro-claridges__mat {
+  position: absolute;
+  inset: 0 0 2rem 2rem;
+  background: var(--c-ivory-2);
+  z-index: 0;
+}
+.intro-claridges__media .figure {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 880px) {
+  .intro-claridges { grid-template-columns: 1fr; row-gap: 2.5rem; }
+  .intro-claridges__divider { display: none; }
+  .intro-claridges__media { padding: 0; }
+  .intro-claridges__mat { display: none; }
+  .intro-claridges__text { max-width: none; }
+}
+
+/* Our journey — heritage timeline (horizontal on desktop, vertical on mobile).
+   Stays inside the editorial palette: cream-ivory surface, gold milestone marks,
+   serif years, italic Cormorant notes. */
+.journey-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.75rem, 3vw, 3rem);
+  position: relative;
+}
+.journey-timeline::before {
+  /* Horizontal gold thread connecting the milestones on desktop */
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 4.25rem;
+  height: 1px;
+  background: var(--c-gold);
+  opacity: 0.45;
+  z-index: 0;
+}
+.journey-timeline > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.journey-year {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 1vw + 1.15rem, 2rem);
+  color: var(--c-navy);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.journey-mark {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--c-ivory);
+  border: 1px solid var(--c-gold);
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+.journey-mark::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--c-gold);
+}
+.journey-note {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 0.3vw + 0.9rem, 1.15rem);
+  line-height: 1.5;
+  color: var(--c-charcoal);
+  max-width: 22ch;
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .journey-timeline {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .journey-timeline::before {
+    /* Vertical thread on mobile */
+    left: 50%;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    height: auto;
+  }
+  .journey-note {
+    max-width: 30ch;
+  }
+}
+
+/* Awards & accolades — three-column credibility grid, editorial style.
+   Cream surface, hairline borders, gold rule between owner and items. */
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.75rem, 3vw, 2.75rem);
+}
+.awards-card {
+  background: var(--c-paper);
+  border: 1px solid var(--c-line);
+  padding: clamp(1.5rem, 2vw + 0.5rem, 2.5rem);
+  position: relative;
+}
+.awards-card__owner {
+  font-family: var(--f-display);
+  font-size: clamp(1.25rem, 0.6vw + 1rem, 1.6rem);
+  color: var(--c-navy);
+  margin: 0 0 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--c-gold);
+}
+.awards-card__lead {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--c-charcoal);
+  margin: 0 0 0.5rem;
+}
+.awards-card__sub {
+  font-style: italic;
+  color: var(--c-muted);
+  font-size: 0.85rem;
+}
+.awards-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.awards-list li {
+  font-family: var(--f-serif);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--c-charcoal);
+  padding-left: 1.25rem;
+  position: relative;
+}
+.awards-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.6rem;
+  height: 1px;
+  background: var(--c-gold);
+}
+.awards-list li strong {
+  font-family: var(--f-sans);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-navy);
+  display: inline;
+}
+
+@media (max-width: 980px) {
+  .awards-grid { grid-template-columns: 1fr; }
+}
+
+/* Testimonial carousel — single quote visible, horizontal scroll-snap */
+.testimonial-carousel {
+  margin-top: 1.25rem;
+}
+.testimonial-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.testimonial-track::-webkit-scrollbar { display: none; }
+
+.testimonial {
+  margin: 0;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 7rem;
+}
+.testimonial .italic-quote { max-width: 56ch; }
+.testimonial figcaption {
+  margin-top: 1.5rem;
+  display: flex; flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.testimonial-dot {
+  position: relative;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--c-line);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s var(--t-easing), transform 0.3s var(--t-easing);
+}
+/* Expand the touch area to ~37px without changing the 7px visual dot or layout
+   (WCAG 2.5.8 wants >=24px). The pseudo-element sits on top and catches taps. */
+.testimonial-dot::after {
+  content: "";
+  position: absolute;
+  inset: -15px;
+}
+.testimonial-dot:hover { background: var(--c-gold-soft); }
+.testimonial-dot[aria-current="true"] {
+  background: var(--c-gold);
+  transform: scale(1.35);
+}
+.t-name {
+  font-family: var(--f-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-navy);
+}
+.t-title {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--c-muted);
+}
