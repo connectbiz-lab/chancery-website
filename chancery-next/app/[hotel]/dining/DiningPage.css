@@ -6,6 +6,8 @@
   gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
 }
+.dining-row.flip > .room-gallery { order: 2; }
+
 .dining-text .meta {
   font-family: var(--f-sans);
   font-size: 0.78rem;
@@ -26,4 +28,5 @@
 
 @media (max-width: 900px) {
   .dining-row { grid-template-columns: 1fr; gap: 2rem; }
+  .dining-row.flip > .room-gallery { order: unset; }
 }
