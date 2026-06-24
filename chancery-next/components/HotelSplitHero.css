@@ -5,8 +5,9 @@
 .hsplit {
   background: var(--c-cream); /* white */
   color: var(--c-navy);
-  /* Top pad clears the fixed ~104px navbar with breathing room. */
-  padding: clamp(8rem, 11vh, 9.5rem) 0 clamp(3.5rem, 6vh, 5rem);
+  /* Top pad clears the fixed ~104px navbar with generous breathing room
+     between the menu and the image. */
+  padding: clamp(9.5rem, 13vh, 11.5rem) 0 clamp(2.5rem, 4vh, 3.5rem);
 }
 .hsplit-grid {
   display: grid;
@@ -50,10 +51,11 @@
   font-family: var(--f-sans);
   font-weight: 800;
   font-size: clamp(2.3rem, 4vw, 3.6rem);
-  line-height: 0.96;
+  line-height: 1.02;
   letter-spacing: -0.03em;
   color: var(--c-navy);
   margin: 0;
+  text-wrap: balance; /* even out multi-line titles */
 }
 .hsplit-desc {
   font-family: var(--f-serif);
@@ -61,7 +63,8 @@
   line-height: 1.6;
   color: var(--c-charcoal);
   margin: 1.3rem 0 0;
-  max-width: 40ch;
+  max-width: 42ch;
+  text-wrap: pretty; /* avoid orphan words on the last line */
 }
 .hsplit-ctas {
   display: flex;
@@ -91,6 +94,40 @@
   color: var(--c-muted);
 }
 .hsplit-foot a { color: inherit; }
+
+/* ---- Gold double-diamond section rule ---- */
+.section-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.6rem, 1.2vw, 1rem);
+  width: min(46rem, 80%);
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+}
+.section-rule-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(166, 124, 64, 0.55) 30%,
+    rgba(166, 124, 64, 0.55) 70%,
+    transparent
+  );
+}
+.section-rule-gems {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  flex-shrink: 0;
+}
+.section-rule-gems i {
+  display: block;
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--c-gold, #a67c40);
+  transform: rotate(45deg);
+}
 
 @media (max-width: 900px) {
   .hsplit-grid { grid-template-columns: 1fr; gap: 2rem; }

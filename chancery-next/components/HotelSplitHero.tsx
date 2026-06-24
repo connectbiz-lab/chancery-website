@@ -38,6 +38,12 @@ export function HotelSplitHero({
           {foot && <div className="hsplit-foot">{foot}</div>}
         </div>
       </div>
+      {/* Gold double-diamond rule — sits between the hero and the next section. */}
+      <div className="section-rule" aria-hidden="true">
+        <span className="section-rule-line" />
+        <span className="section-rule-gems"><i /><i /></span>
+        <span className="section-rule-line" />
+      </div>
     </section>
   )
 }
