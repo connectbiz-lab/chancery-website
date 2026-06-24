@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useHotelScope, type HotelSlug } from "@/lib/hotel-scope";
+import { type HotelSlug } from "@/lib/hotel-scope";
 import { mediaUrl } from "@/lib/media";
 import type { Tables } from "@/lib/supabase/types";
 import { BookButton } from "./BookButton";
@@ -15,8 +15,14 @@ interface NavbarProps {
 }
 
 export function Navbar({ site, hotels }: NavbarProps) {
-  const { active } = useHotelScope();
   const pathname = usePathname();
+  // Derive the active hotel from the route. The Navbar lives in the root
+  // layout — above the <HotelScope> provider in app/[hotel]/layout — so it
+  // can't read that context; the pathname is the reliable source here.
+  const active: HotelSlug | null =
+    pathname.startsWith("/pavilion") ? "pavilion"
+    : pathname.startsWith("/chancery") ? "chancery"
+    : null;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   // Pages that lead with a full-bleed hero — we float the navbar transparent
