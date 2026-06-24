@@ -2,7 +2,10 @@
 
 .dining-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0, …) so columns follow the fr ratio instead of blowing out:
+     next/image `fill` renders the gallery image out of flow, giving the
+     gallery column zero intrinsic width, which otherwise collapses it. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
 }
