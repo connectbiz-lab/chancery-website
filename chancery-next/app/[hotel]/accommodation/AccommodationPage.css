@@ -1,4 +1,4 @@
-.rooms-list { display: grid; gap: clamp(4rem, 8vw, 8rem); }
+.rooms-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(4rem, 8vw, 8rem); }
 
 .room-row {
   display: grid;
@@ -50,6 +50,6 @@
 .room-cta { margin-top: 0.5rem; }
 
 @media (max-width: 900px) {
-  .room-row { grid-template-columns: 1fr; gap: 2rem; }
+  .room-row { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   .room-row.flip > .room-gallery { order: unset; }
 }

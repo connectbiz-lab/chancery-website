@@ -1,4 +1,4 @@
-.dining-list { display: grid; gap: clamp(4rem, 8vw, 8rem); }
+.dining-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(4rem, 8vw, 8rem); }
 
 .dining-row {
   display: grid;
@@ -30,6 +30,6 @@
 .dining-cta { margin-top: 1rem; }
 
 @media (max-width: 900px) {
-  .dining-row { grid-template-columns: 1fr; gap: 2rem; }
+  .dining-row { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   .dining-row.flip > .room-gallery { order: unset; }
 }
