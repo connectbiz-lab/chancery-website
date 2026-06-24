@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Hero } from '@/components/Hero'
+import { HotelSplitHero } from '@/components/HotelSplitHero'
 import { Media } from '@/components/Media'
 import { EventEnquiryButton } from '@/components/EventEnquiryButton'
 import { getVenues, type HotelSlug } from '@/lib/queries/content'
@@ -80,16 +80,11 @@ export default async function VenueDetailPage(
 
   return (
     <>
-      <Hero
+      <HotelSplitHero
+        eyebrow={`${v.hotel.name} · ${kindLabel}`}
+        title={v.name}
+        description={v.tagline ?? null}
         image={v.hero_image}
-        eyebrow={
-          <span className="hero-eyebrow-stack">
-            <span>{v.hotel.name}</span>
-            <span>{kindLabel}</span>
-          </span>
-        }
-        heading={v.name}
-        size="page"
       />
 
       <section className="section">

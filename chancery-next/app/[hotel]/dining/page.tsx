@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
-import { Hero } from '@/components/Hero'
-import { HeroIconNav } from '@/components/HeroIconNav'
+import { HotelSplitHero } from '@/components/HotelSplitHero'
 import { MediaGallery } from '@/components/MediaGallery'
 import { DiningBookButton } from '@/components/DiningBookButton'
 import { getHotel, getPage, getRestaurants, type HotelSlug } from '@/lib/queries/content'
@@ -34,18 +33,11 @@ export default async function DiningPage({ params }: { params: Promise<{ hotel: 
 
   return (
     <>
-      <Hero
+      <HotelSplitHero
+        eyebrow={h.name}
+        title={p?.hero_heading ?? 'Dining'}
+        description={p?.hero_subheading ?? null}
         image={p?.hero_image ?? h.hero_image ?? null}
-        eyebrow={
-          <span className="hero-eyebrow-stack">
-            <span>{h.name}</span>
-            <span>{p?.hero_eyebrow ?? 'Dining'}</span>
-          </span>
-        }
-        heading={p?.hero_heading ?? 'Dining'}
-        subheading={p?.hero_subheading ?? undefined}
-        size="page"
-        footerNav={<HeroIconNav scope={hotel as HotelSlug} />}
       />
       <section className="section">
         <div className="container">

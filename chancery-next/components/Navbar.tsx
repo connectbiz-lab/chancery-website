@@ -25,18 +25,11 @@ export function Navbar({ site, hotels }: NavbarProps) {
     : null;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  // Pages that lead with a full-bleed hero — we float the navbar transparent
-  // over the photograph so the building extends behind it instead of the
-  // navbar carving a solid bar across the top. Includes every hotel-scoped
-  // sub-page (Dining, Events, Offers, Gallery, etc.) so navigating inside
-  // a hotel feels like one continuous editorial spread.
-  // Editorial pages (group home + hotel landing pages) use the SOLID fixed
-  // navbar. Hotel SUB-pages still lead with a full-bleed photo hero, so the
-  // navbar floats transparent over those.
-  const isHotelHome = pathname === "/pavilion" || pathname === "/chancery";
-  const onHeroPage =
-    !isHotelHome &&
-    (pathname.startsWith("/chancery") || pathname.startsWith("/pavilion"));
+  // Every page now leads with the editorial split hero on a light surface
+  // (image left, text right) — no full-bleed photo behind the navbar — so the
+  // navbar is always the SOLID fixed bar. The transparent-over-photo treatment
+  // is retired.
+  const onHeroPage = false;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);

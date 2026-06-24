@@ -58,14 +58,20 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
   return (
     <>
       <HotelSplitHero
-        slug={hotel as HotelSlug}
-        name={heroHeading}
+        title={heroHeading}
         eyebrow={heroEyebrow}
         description={h.tagline || h.intro_body || ''}
         image={h.hero_image ?? null}
-        address={h.address}
-        phone={h.phone}
-      />
+        foot={
+          <>
+            {h.address && <span>{h.address}</span>}
+            {h.phone && <a href={`tel:${h.phone.replace(/\s+/g, '')}`}>{h.phone}</a>}
+          </>
+        }
+      >
+        <BookButton hotel={hotel as HotelSlug} className="btn gold">Book your stay</BookButton>
+        <a href="#rooms" className="btn ghost-dark">Explore rooms</a>
+      </HotelSplitHero>
 
       {/* Stats / intro */}
       <section className="section bg-cream">

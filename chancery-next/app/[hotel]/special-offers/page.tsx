@@ -1,5 +1,4 @@
-import { Hero } from '@/components/Hero'
-import { HeroIconNav } from '@/components/HeroIconNav'
+import { HotelSplitHero } from '@/components/HotelSplitHero'
 import { Media } from '@/components/Media'
 import { BookButton } from '@/components/BookButton'
 import { getHotel, getPage, getOffers, type HotelSlug } from '@/lib/queries/content'
@@ -30,18 +29,11 @@ export default async function SpecialOffersPage({ params }: { params: Promise<{ 
 
   return (
     <>
-      <Hero
+      <HotelSplitHero
+        eyebrow={h?.name ?? 'The Chancery'}
+        title={p?.hero_heading ?? 'Special offers'}
+        description={p?.hero_subheading ?? null}
         image={p?.hero_image ?? h?.hero_image ?? null}
-        eyebrow={
-          <span className="hero-eyebrow-stack">
-            <span>{h?.name}</span>
-            <span>{p?.hero_eyebrow ?? 'Offers'}</span>
-          </span>
-        }
-        heading={p?.hero_heading ?? 'Special offers'}
-        subheading={p?.hero_subheading ?? undefined}
-        size="page"
-        footerNav={<HeroIconNav scope={hotel as HotelSlug} />}
       />
       <section className="section">
         <div className="container">

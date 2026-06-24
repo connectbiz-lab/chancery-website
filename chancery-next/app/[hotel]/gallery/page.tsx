@@ -1,5 +1,4 @@
-import { Hero } from '@/components/Hero'
-import { HeroIconNav } from '@/components/HeroIconNav'
+import { HotelSplitHero } from '@/components/HotelSplitHero'
 import { GalleryLightbox } from '@/components/GalleryLightbox'
 import { getHotel, getPage, getGallery, type HotelSlug } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
@@ -30,18 +29,11 @@ export default async function GalleryPage({ params }: { params: Promise<{ hotel:
 
   return (
     <>
-      <Hero
+      <HotelSplitHero
+        eyebrow={h?.name ?? 'The Chancery'}
+        title={p?.hero_heading ?? 'Gallery'}
+        description={p?.hero_subheading ?? null}
         image={p?.hero_image ?? h?.hero_image ?? null}
-        eyebrow={
-          <span className="hero-eyebrow-stack">
-            <span>{h?.name}</span>
-            <span>{p?.hero_eyebrow ?? 'Gallery'}</span>
-          </span>
-        }
-        heading={p?.hero_heading ?? 'Gallery'}
-        subheading={p?.hero_subheading ?? undefined}
-        size="page"
-        footerNav={<HeroIconNav scope={hotel as HotelSlug} />}
       />
       <section className="section">
         <div className="container">

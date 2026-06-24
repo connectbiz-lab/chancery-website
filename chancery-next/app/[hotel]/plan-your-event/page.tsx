@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Hero } from '@/components/Hero'
-import { HeroIconNav } from '@/components/HeroIconNav'
+import { HotelSplitHero } from '@/components/HotelSplitHero'
 import { Media } from '@/components/Media'
 import { EventEnquiryButton } from '@/components/EventEnquiryButton'
 import { getHotel, getPage, getVenues, type HotelSlug } from '@/lib/queries/content'
@@ -51,18 +50,11 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
 
   return (
     <>
-      <Hero
+      <HotelSplitHero
+        eyebrow={h.name}
+        title={p?.hero_heading ?? 'Plan your event'}
+        description={p?.hero_subheading ?? null}
         image={p?.hero_image ?? h.hero_image ?? null}
-        eyebrow={
-          <span className="hero-eyebrow-stack">
-            <span>{h.name}</span>
-            <span>{p?.hero_eyebrow ?? 'Events'}</span>
-          </span>
-        }
-        heading={p?.hero_heading ?? 'Plan your event'}
-        subheading={p?.hero_subheading ?? undefined}
-        size="page"
-        footerNav={<HeroIconNav scope={hotel as HotelSlug} />}
       />
       <section className="section">
         <div className="container">

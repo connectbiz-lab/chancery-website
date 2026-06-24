@@ -1,50 +1,41 @@
-// components/HotelSplitHero.tsx — editorial split hero for a hotel landing page.
-// Left: framed building photo on a light panel. Right: dark navy panel with the
-// location eyebrow, the hotel name set big and bold, a description, CTAs and a
-// foot detail row. Sits below the solid fixed navbar (no menu over the image).
-import Link from 'next/link'
-import { BookButton } from './BookButton'
+// components/HotelSplitHero.tsx — editorial split hero shared by every hotel
+// page: framed photo left (dashed offset frame), text right (gold eyebrow,
+// bold navy title, serif description). CTAs pass as children; an optional
+// foot row carries meta (address / phone). Light surface, content-height,
+// sits below the solid fixed navbar — no menu over the image.
+import type { ReactNode } from 'react'
 import { Media } from './Media'
-import type { HotelSlug } from '@/lib/queries/content'
 import './HotelSplitHero.css'
 
 export function HotelSplitHero({
-  slug,
-  name,
+  title,
   eyebrow,
   description,
   image,
-  address,
-  phone,
+  children,
+  foot,
 }: {
-  slug: HotelSlug
-  name: string
+  title: string
   eyebrow: string
-  description: string
+  description?: string | null
   image: string | null
-  address: string | null
-  phone: string | null
+  children?: ReactNode
+  foot?: ReactNode
 }) {
   return (
     <section className="hsplit" role="banner">
       <div className="container hsplit-grid">
         <div className="hsplit-media">
           <div className="hsplit-frame">
-            <Media path={image} alt={name} priority sizes="(max-width: 900px) 100vw, 50vw" />
+            <Media path={image} alt={title} priority sizes="(max-width: 900px) 100vw, 50vw" />
           </div>
         </div>
         <div className="hsplit-panel">
           <p className="hsplit-eyebrow">{eyebrow}</p>
-          <h1 className="hsplit-title">{name}</h1>
+          <h1 className="hsplit-title">{title}</h1>
           {description && <p className="hsplit-desc">{description}</p>}
-          <div className="hsplit-ctas">
-            <BookButton hotel={slug} className="btn gold">Book your stay</BookButton>
-            <a href="#rooms" className="btn ghost-dark">Explore rooms</a>
-          </div>
-          <div className="hsplit-foot">
-            {address && <span>{address}</span>}
-            {phone && <a href={`tel:${phone.replace(/\s+/g, '')}`}>{phone}</a>}
-          </div>
+          {children && <div className="hsplit-ctas">{children}</div>}
+          {foot && <div className="hsplit-foot">{foot}</div>}
         </div>
       </div>
     </section>
