@@ -1,0 +1,52 @@
+.rooms-list { display: grid; gap: clamp(4rem, 8vw, 8rem); }
+
+.room-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: center;
+}
+.room-row.flip > .room-gallery { order: 2; }
+
+.room-gallery .thumbs {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+.thumb {
+  width: 88px;
+  aspect-ratio: 4/3;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.25s var(--t-easing);
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb.active { border-color: var(--c-gold); }
+
+.room-text .meta {
+  font-family: var(--f-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin: 0 0 1.25rem;
+}
+.room-text .meta span + span { margin-left: 0.6rem; }
+.room-text .copy {
+  font-family: var(--f-serif);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--c-charcoal);
+  margin: 0 0 2rem;
+  max-width: 50ch;
+}
+.room-text .amenities { margin-bottom: 2.25rem; max-width: 38rem; }
+.room-cta { margin-top: 0.5rem; }
+
+@media (max-width: 900px) {
+  .room-row { grid-template-columns: 1fr; gap: 2rem; }
+  .room-row.flip > .room-gallery { order: unset; }
+}
