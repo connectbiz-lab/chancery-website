@@ -86,7 +86,7 @@ export const getRestaurants = cache(async (hotelSlug?: string) => {
 
 export const getVenues = cache(async (hotelSlug?: string) => {
   const { data, error } = await db.from('venue')
-    .select('*, hotel:hotel_id(slug,name,short_name,location), images:venue_image(image,alt,order)')
+    .select('*, hotel:hotel_id(slug,name,short_name,location,whatsapp), images:venue_image(image,alt,order)')
     .order('order')
   if (error) throw error
   return (data ?? [])

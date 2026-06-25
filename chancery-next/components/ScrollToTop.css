@@ -1,7 +1,8 @@
 .scroll-top {
   position: fixed;
-  bottom: clamp(1.25rem, 3vw, 2.25rem);
-  right: clamp(1.25rem, 3vw, 2.25rem);
+  /* Stacked above the floating WhatsApp button (56px), right edges aligned. */
+  bottom: calc(clamp(1rem, 3vw, 1.75rem) + 70px);
+  right: clamp(1rem, 3vw, 1.75rem);
   width: 48px;
   height: 48px;
   display: grid;

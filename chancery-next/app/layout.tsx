@@ -4,6 +4,7 @@ import './globals.css'
 import './pages.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import { FloatingWhatsApp } from '@/components/FloatingWhatsApp'
 import { ScrollToTop } from '@/components/ScrollToTop'
 import { JsonLd } from '@/components/JsonLd'
 import { getSiteContent, getHotels } from '@/lib/queries/content'
@@ -20,6 +21,8 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const [site, hotels] = await Promise.all([getSiteContent(), getHotels()])
+  const pavilionWa = hotels.find((h) => h.slug === 'pavilion')?.whatsapp ?? null
+  const chanceryWa = hotels.find((h) => h.slug === 'chancery')?.whatsapp ?? null
   return (
     <html lang="en" className={`${fraunces.variable} ${cormorant.variable} ${inter.variable}`}>
       <body>
@@ -28,6 +31,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {children}
         <Footer site={site} hotels={hotels} />
         <ScrollToTop />
+        <FloatingWhatsApp pavilion={pavilionWa} chancery={chanceryWa} />
       </body>
     </html>
   )

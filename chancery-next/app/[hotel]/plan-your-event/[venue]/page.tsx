@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { HotelSplitHero } from '@/components/HotelSplitHero'
 import { Media } from '@/components/Media'
 import { EventEnquiryButton } from '@/components/EventEnquiryButton'
+import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { getVenues, type HotelSlug } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
@@ -132,6 +133,12 @@ export default async function VenueDetailPage(
                 </div>
               )}
               <EventEnquiryButton hotel={hotel as HotelSlug} venue={v.name} label="Enquire about this venue" />
+              <WhatsAppButton
+                number={v.hotel.whatsapp}
+                message={`Hi, I'm enquiring about ${v.name} at ${v.hotel.name} for an event.`}
+              >
+                Enquire on WhatsApp
+              </WhatsAppButton>
             </aside>
           </div>
 
