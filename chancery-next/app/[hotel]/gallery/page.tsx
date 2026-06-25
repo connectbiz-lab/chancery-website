@@ -1,4 +1,4 @@
-import { HotelSplitHero } from '@/components/HotelSplitHero'
+import { CinematicHero } from '@/components/CinematicHero'
 import { GalleryLightbox } from '@/components/GalleryLightbox'
 import { getHotel, getPage, getGallery } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
@@ -29,11 +29,11 @@ export default async function GalleryPage({ params }: { params: Promise<{ hotel:
 
   return (
     <>
-      <HotelSplitHero
+      <CinematicHero
+        image={p?.hero_image ?? h?.hero_image ?? null}
         eyebrow={h?.name ?? 'The Chancery'}
         title={p?.hero_heading ?? 'Gallery'}
-        description={p?.hero_subheading ?? null}
-        image={p?.hero_image ?? h?.hero_image ?? null}
+        script={p?.hero_subheading ?? undefined}
       />
       <section className="section">
         <div className="container">

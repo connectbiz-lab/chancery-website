@@ -1,0 +1,88 @@
+/* CinematicHero — big crisp photo on a clean white surround, name set large in
+   the display serif overlaid bottom-right. Used across all hotel pages. */
+.chero {
+  position: relative;
+  height: clamp(540px, 82vh, 800px);
+  background: var(--c-cream);
+}
+
+/* Photo — clears the fixed ~104px navbar, even white margins, crisp rounded
+   corners, no drop shadow (clean white surround). */
+.chero-media {
+  position: absolute;
+  top: calc(104px + clamp(0.75rem, 2vw, 2rem));
+  left: clamp(1.5rem, 4vw, 4rem);
+  right: clamp(1.5rem, 4vw, 4rem);
+  bottom: clamp(1.5rem, 4vw, 4rem);
+  border-radius: clamp(12px, 1.4vw, 22px);
+  overflow: hidden;
+}
+/* Crop favours the focal point (default slightly above centre so building
+   rooflines aren't cropped on wide screens); a gentle scale keeps it immersive. */
+.chero-media img {
+  object-fit: cover;
+  object-position: var(--chero-focal, 50% 35%);
+  transform: scale(1.08);
+  transform-origin: var(--chero-focal, 50% 35%);
+}
+
+/* Name — large display serif, bottom-right, legible via a tight text-shadow
+   (no background scrim, so the surround stays pure white). */
+.chero-name {
+  position: absolute; right: clamp(2.5rem, 7vw, 7rem); bottom: clamp(3rem, 11vh, 7rem);
+  z-index: 3; text-align: right; color: var(--c-ivory); max-width: 80%;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+.chero-eyebrow {
+  display: block; font-family: var(--f-sans); font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 0.34em; text-transform: uppercase; color: #f2dca8; margin-bottom: 1rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+.chero-title {
+  font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(2.6rem, 6.2vw, 5.6rem); line-height: 0.95; letter-spacing: -0.015em;
+  margin: 0; color: var(--c-ivory); text-wrap: balance;
+}
+.chero-script {
+  display: block; margin-top: 0.5rem;
+  font-family: var(--f-display); font-style: italic; font-weight: 400;
+  font-size: clamp(1.2rem, 2.6vw, 2.1rem); color: #e6cb95;
+}
+
+/* Scroll cue, bottom-left on the white surround */
+.chero-scroll {
+  position: absolute; left: clamp(1.4rem, 4vw, 3rem); bottom: clamp(1.6rem, 6vh, 3.5rem);
+  z-index: 3; width: 24px; height: 40px;
+}
+.chero-scroll::before {
+  content: ""; position: absolute; left: 50%; top: 0; width: 1px; height: 100%;
+  background: rgba(14, 34, 55, 0.5); transform-origin: top;
+  animation: chero-scroll 2s var(--t-easing, ease) infinite;
+}
+@keyframes chero-scroll {
+  0% { transform: scaleY(0); opacity: 0; }
+  40% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1) translateY(40px); opacity: 0; }
+}
+
+/* Slim row below the hero — booking CTAs + address, on white. */
+.chero-foot { background: var(--c-cream); }
+.chero-foot .container {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.5rem;
+  padding: clamp(1rem, 2vw, 1.5rem) var(--gutter) clamp(1.5rem, 3vw, 2.5rem);
+}
+.chero-foot .chero-foot-meta {
+  margin-left: auto; font-family: var(--f-sans); font-size: 0.72rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--c-muted);
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+}
+.chero-foot .chero-foot-meta a { color: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  .chero-scroll::before { animation: none; }
+}
+@media (max-width: 720px) {
+  .chero { height: clamp(440px, 70vh, 620px); }
+  .chero-foot .container { flex-direction: column; align-items: flex-start; }
+  .chero-foot .chero-foot-meta { margin-left: 0; }
+}

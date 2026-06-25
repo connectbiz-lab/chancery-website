@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { HotelSplitHero } from '@/components/HotelSplitHero'
+import { CinematicHero } from '@/components/CinematicHero'
 import { Media } from '@/components/Media'
 import { EventEnquiryButton } from '@/components/EventEnquiryButton'
 import { getHotel, getPage, getVenues, type HotelSlug } from '@/lib/queries/content'
@@ -50,11 +50,11 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
 
   return (
     <>
-      <HotelSplitHero
+      <CinematicHero
+        image={p?.hero_image ?? h.hero_image ?? null}
         eyebrow={h.name}
         title={p?.hero_heading ?? 'Plan your event'}
-        description={p?.hero_subheading ?? null}
-        image={p?.hero_image ?? h.hero_image ?? null}
+        script={p?.hero_subheading ?? undefined}
       />
       <section className="section">
         <div className="container">

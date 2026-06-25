@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { HotelSplitHero } from '@/components/HotelSplitHero'
+import { CinematicHero } from '@/components/CinematicHero'
 import { MediaGallery } from '@/components/MediaGallery'
 import { DiningBookButton } from '@/components/DiningBookButton'
 import { getHotel, getPage, getRestaurants, type HotelSlug } from '@/lib/queries/content'
@@ -33,11 +33,11 @@ export default async function DiningPage({ params }: { params: Promise<{ hotel: 
 
   return (
     <>
-      <HotelSplitHero
+      <CinematicHero
+        image={p?.hero_image ?? h.hero_image ?? null}
         eyebrow={h.name}
         title={p?.hero_heading ?? 'Dining'}
-        description={p?.hero_subheading ?? null}
-        image={p?.hero_image ?? h.hero_image ?? null}
+        script={p?.hero_subheading ?? undefined}
       />
       <section className="section">
         <div className="container">

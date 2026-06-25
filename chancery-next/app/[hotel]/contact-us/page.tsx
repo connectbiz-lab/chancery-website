@@ -1,4 +1,4 @@
-import { HotelSplitHero } from '@/components/HotelSplitHero'
+import { CinematicHero } from '@/components/CinematicHero'
 import { ContactForm } from '@/components/ContactForm'
 import { DeptIcon } from '@/components/DeptIcon'
 import { getHotel, getHotels, getPage, type HotelSlug } from '@/lib/queries/content'
@@ -70,11 +70,11 @@ export default async function ContactUsPage({ params }: { params: Promise<{ hote
 
   return (
     <>
-      <HotelSplitHero
+      <CinematicHero
+        image={p?.hero_image ?? current?.hero_image ?? null}
         eyebrow={current?.name ?? 'The Chancery Group of Hotels'}
         title="Get in touch"
-        description={p?.hero_subheading ?? null}
-        image={p?.hero_image ?? current?.hero_image ?? null}
+        script={p?.hero_subheading ?? undefined}
       />
 
       <section className="section contact-section">

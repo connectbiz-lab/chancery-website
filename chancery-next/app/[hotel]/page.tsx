@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BookButton } from '@/components/BookButton'
-import { HotelSplitHero } from '@/components/HotelSplitHero'
+import { CinematicHero } from '@/components/CinematicHero'
 import { Media } from '@/components/Media'
 import { Reveal } from '@/components/Reveal'
 import {
@@ -57,21 +57,23 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
 
   return (
     <>
-      <HotelSplitHero
-        title={heroHeading}
-        eyebrow={heroEyebrow}
-        description={h.tagline || h.intro_body || ''}
+      <CinematicHero
         image={h.hero_image ?? null}
+        eyebrow={heroEyebrow}
+        title={heroHeading}
+        script={h.tagline || undefined}
+        focal={hotel === 'pavilion' ? '50% 22%' : undefined}
         foot={
           <>
-            {h.address && <span>{h.address}</span>}
-            {h.phone && <a href={`tel:${h.phone.replace(/\s+/g, '')}`}>{h.phone}</a>}
+            <BookButton hotel={hotel as HotelSlug} className="btn gold">Book your stay</BookButton>
+            <a href="#rooms" className="btn ghost">Explore rooms</a>
+            <span className="chero-foot-meta">
+              {h.address && <span>{h.address}</span>}
+              {h.phone && <a href={`tel:${h.phone.replace(/\s+/g, '')}`}>{h.phone}</a>}
+            </span>
           </>
         }
-      >
-        <BookButton hotel={hotel as HotelSlug} className="btn gold">Book your stay</BookButton>
-        <a href="#rooms" className="btn ghost-dark">Explore rooms</a>
-      </HotelSplitHero>
+      />
 
       {/* Stats / intro */}
       <section className="section bg-cream">
