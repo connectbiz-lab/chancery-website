@@ -1,23 +1,46 @@
-/* Two-hotel property card */
-.property-card {
+/* By-the-numbers metrics grid — group scale / event-space showcase */
+.metrics-head {
+  max-width: 60ch;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+.metrics-head .display { margin: 0.6rem 0 1.1rem; }
+.metrics-grid {
   display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 1.75rem;
-  color: var(--c-navy);
-  transition: transform 0.4s var(--t-easing);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 1.6vw, 1.5rem);
 }
-.property-card:hover { color: var(--c-navy); }
-.property-card:hover .figure img { transform: scale(1.05); }
-.property-card .property-body { padding: 0; }
-.property-card .figure { aspect-ratio: 4 / 3; }
-.property-card h3 { margin: 0.5rem 0; }
-.property-card .copy {
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--c-navy);
+  color: var(--c-ivory);
+  border-radius: var(--radius, 4px);
+  padding: clamp(1.5rem, 2.2vw, 2.1rem);
+}
+.metric-num {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 3.4vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--c-gold);
+}
+.metric-label {
+  font-family: var(--f-sans);
+  font-weight: 600;
+  font-size: 1.02rem;
+  margin-top: 0.95rem;
+  color: var(--c-ivory);
+}
+.metric-sub {
   font-family: var(--f-serif);
-  font-size: 1.15rem;
-  line-height: 1.55;
-  color: var(--c-muted);
-  margin-bottom: 1.25rem;
+  font-size: 0.96rem;
+  line-height: 1.45;
+  margin-top: 0.35rem;
+  color: rgba(246, 241, 231, 0.66);
 }
+@media (max-width: 860px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .metrics-grid { grid-template-columns: 1fr; } }
 
 /* Offers on dark band */
 .offer-card .figure { aspect-ratio: 4 / 3; margin-bottom: 1.5rem; }
@@ -181,18 +204,14 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--c-gold);
 }
-.awards-card__lead {
-  font-family: var(--f-serif);
-  font-style: italic;
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: var(--c-charcoal);
-  margin: 0 0 0.5rem;
-}
-.awards-card__sub {
-  font-style: italic;
-  color: var(--c-muted);
-  font-size: 0.85rem;
+.awards-card__hotel {
+  font-family: var(--f-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--c-gold-deep, var(--c-gold));
+  margin: 0 0 0.4rem;
 }
 .awards-list {
   list-style: none;

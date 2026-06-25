@@ -150,32 +150,38 @@ export default async function Home() {
         </Reveal>
       </section>
 
-      {/* Two hotels showcase */}
-      <section id="hotels" className="section bg-ivory" style={{ scrollMarginTop: '120px' }}>
-        <Reveal className="container wide">
-          <div className="section-head">
-            <p className="eyebrow center">Our hotels</p>
-            <h2 className="h1">Two addresses, one promise</h2>
+      {/* By the numbers — group scale, led by event-space strength. Replaces the
+          old "Two addresses, one promise" hotel picker (the hero already
+          showcases both hotels). Stats sourced from the group's snapshot. */}
+      <section id="hotels" className="section bg-cream metrics" style={{ scrollMarginTop: '120px' }}>
+        <Reveal className="container">
+          <div className="metrics-head">
+            <p className="eyebrow">The Chancery Group at a glance</p>
+            <h2 className="display">By the numbers</h2>
+            <p className="lede">
+              From 26,800 sq ft of banqueting to 2,500 events a year, the Chancery
+              Group is one of Bangalore&rsquo;s largest stages for weddings,
+              conferences and celebrations — backed by the depth of a homegrown
+              hospitality brand a quarter-century in the making.
+            </p>
           </div>
-          <div className="two-up">
-            {hotels.map((h) => (
-              <Link key={h.slug} href={`/${h.slug}`} className="property-card">
-                <div className="figure aspect-43">
-                  {h.hero_image && (
-                    <Media
-                      path={h.hero_image}
-                      alt={h.name}
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  )}
-                </div>
-                <div className="property-body">
-                  <p className="eyebrow">{h.location_tag} · {h.location}</p>
-                  <h3 className="h2">{h.name}</h3>
-                  <p className="copy">{h.tagline}</p>
-                  <span className="link-arrow">Discover</span>
-                </div>
-              </Link>
+          <div className="metrics-grid">
+            {[
+              { n: '26,800', label: 'Sq ft of banqueting', sub: 'Combined across both hotels' },
+              { n: '2,500+', label: 'Events hosted / year', sub: 'Weddings, conferences & socials' },
+              { n: '10,000', label: 'Catering capacity', sub: 'Outdoor events of any scale' },
+              { n: '1.2L+', label: 'F&B covers / year', sub: 'Restaurant, banquet & catering' },
+              { n: '349', label: 'Rooms & suites', sub: '223 Pavilion + 126 Chancery' },
+              { n: '25+', label: 'Years of excellence', sub: 'Award-winning operations in Bangalore' },
+              { n: '94+%', label: 'Occupancy rate', sub: 'Consistently above benchmark' },
+              { n: '4.5+/5', label: 'Guest satisfaction', sub: 'Tripadvisor, Google & Booking.com' },
+              { n: '600+', label: 'Staff strength', sub: 'Trained hospitality professionals' },
+            ].map((m) => (
+              <div key={m.label} className="metric-card">
+                <span className="metric-num">{m.n}</span>
+                <span className="metric-label">{m.label}</span>
+                <span className="metric-sub">{m.sub}</span>
+              </div>
             ))}
           </div>
         </Reveal>
@@ -267,12 +273,15 @@ export default async function Home() {
           </div>
           <div className="awards-grid">
             <article className="awards-card">
-              <p className="awards-card__owner">The Chancery Hotel</p>
-              <p className="awards-card__lead">Tripadvisor Traveller&rsquo;s Choice Award &mdash; 2025</p>
-              <p className="awards-card__lead">Tripadvisor Traveller&rsquo;s Choice Award &mdash; 2023 <span className="awards-card__sub">(The Chancery Pavilion)</span></p>
+              <p className="awards-card__owner">Tripadvisor Traveller&rsquo;s Choice</p>
+              <ul className="awards-list">
+                <li><strong>The Chancery Hotel</strong> &mdash; 2025</li>
+                <li><strong>The Chancery Pavilion</strong> &mdash; 2023</li>
+              </ul>
             </article>
 
             <article className="awards-card">
+              <p className="awards-card__hotel">The Chancery Hotel</p>
               <p className="awards-card__owner">Matsuri</p>
               <ul className="awards-list">
                 <li><strong>Best Japanese Restaurant</strong> &mdash; Times Food Award, 2014, 2015 &amp; 2016</li>
@@ -283,6 +292,7 @@ export default async function Home() {
             </article>
 
             <article className="awards-card">
+              <p className="awards-card__hotel">The Chancery Pavilion</p>
               <p className="awards-card__owner">Alchemy</p>
               <ul className="awards-list">
                 <li><strong>Best Modern Indian Premium Dining</strong> &mdash; Times Food Nightlife Award, 2023, 2024 &amp; 2025</li>
