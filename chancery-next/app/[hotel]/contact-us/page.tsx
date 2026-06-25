@@ -3,7 +3,6 @@ import { ContactForm } from '@/components/ContactForm'
 import { DeptIcon } from '@/components/DeptIcon'
 import { getHotel, getHotels, getPage, type HotelSlug } from '@/lib/queries/content'
 import { mapsUrl } from '@/lib/maps'
-import { whatsappHref } from '@/lib/whatsapp'
 import { buildMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
 import './ContactPage.css'
@@ -39,15 +38,6 @@ function HotelContact({ h }: { h: HotelWithDepts }) {
         <a href={`tel:${h.phone.replace(/[\s-]+/g, '')}`}>{h.phone}</a>
         {h.phone_alt && (
           <a href={`tel:${h.phone_alt.replace(/[\s-]+/g, '')}`}>{h.phone_alt}</a>
-        )}
-        {whatsappHref(h.whatsapp, `Hi, I have an enquiry about ${h.name}.`) && (
-          <a
-            href={whatsappHref(h.whatsapp, `Hi, I have an enquiry about ${h.name}.`)!}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            WhatsApp
-          </a>
         )}
       </p>
       {(h.departments ?? []).length > 0 && (

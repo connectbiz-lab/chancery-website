@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation'
 import { HotelSplitHero } from '@/components/HotelSplitHero'
 import { MediaGallery } from '@/components/MediaGallery'
 import { DiningBookButton } from '@/components/DiningBookButton'
-import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { getHotel, getPage, getRestaurants, type HotelSlug } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
 import type { Metadata } from 'next'
@@ -58,12 +57,6 @@ export default async function DiningPage({ params }: { params: Promise<{ hotel: 
                   <p className="copy">{r.description}</p>
                   <div className="dining-cta">
                     <DiningBookButton hotel={hotel as HotelSlug} restaurant={r.name} />
-                    <WhatsAppButton
-                      number={h.whatsapp}
-                      message={`Hi, I'd like to book a table at ${r.name} (${h.name}).`}
-                    >
-                      Book on WhatsApp
-                    </WhatsAppButton>
                   </div>
                 </div>
               </article>

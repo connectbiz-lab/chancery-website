@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BookButton } from '@/components/BookButton'
 import { HotelSplitHero } from '@/components/HotelSplitHero'
-import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { Media } from '@/components/Media'
 import { Reveal } from '@/components/Reveal'
 import {
@@ -72,9 +71,6 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
       >
         <BookButton hotel={hotel as HotelSlug} className="btn gold">Book your stay</BookButton>
         <a href="#rooms" className="btn ghost-dark">Explore rooms</a>
-        <WhatsAppButton number={h.whatsapp} message={`Hi, I have an enquiry about ${h.name}.`}>
-          WhatsApp us
-        </WhatsAppButton>
       </HotelSplitHero>
 
       {/* Stats / intro */}
