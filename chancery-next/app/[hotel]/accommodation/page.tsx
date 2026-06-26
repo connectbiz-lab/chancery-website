@@ -4,6 +4,7 @@ import { CinematicHero } from '@/components/CinematicHero'
 import { MediaGallery } from '@/components/MediaGallery'
 import { getHotel, getPage, getRooms, type HotelSlug } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './AccommodationPage.css'
 
@@ -32,6 +33,13 @@ export default async function AccommodationPage({ params }: { params: Promise<{ 
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: h.name, path: `/${hotel}` },
+          { name: 'Accommodation', path: `/${hotel}/accommodation` },
+        ]}
+      />
       <CinematicHero
         image={p?.hero_image ?? h.hero_image ?? null}
         eyebrow={h.name}

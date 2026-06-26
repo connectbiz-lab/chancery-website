@@ -5,6 +5,7 @@ import { Media } from '@/components/Media'
 import { EventEnquiryButton } from '@/components/EventEnquiryButton'
 import { getVenues, type HotelSlug } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './VenueDetailPage.css'
 
@@ -80,6 +81,14 @@ export default async function VenueDetailPage(
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: v.hotel.name, path: `/${hotel}` },
+          { name: 'Plan Your Event', path: `/${hotel}/plan-your-event` },
+          { name: v.name, path: `/${hotel}/plan-your-event/${venue}` },
+        ]}
+      />
       <CinematicHero
         image={v.hero_image}
         eyebrow={`${v.hotel.name} · ${kindLabel}`}

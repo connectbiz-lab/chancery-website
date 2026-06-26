@@ -14,7 +14,9 @@ import {
   getVenues,
   type HotelSlug,
 } from '@/lib/queries/content'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, hotelJsonLd } from '@/lib/seo'
+import { JsonLd } from '@/components/JsonLd'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './HotelHomePage.css'
 
@@ -57,6 +59,13 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
 
   return (
     <>
+      <JsonLd data={hotelJsonLd(h)} />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: h.name, path: `/${hotel}` },
+        ]}
+      />
       <CinematicHero
         image={h.hero_image ?? null}
         eyebrow={heroEyebrow}

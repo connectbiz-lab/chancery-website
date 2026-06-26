@@ -5,6 +5,7 @@ import { Media } from '@/components/Media'
 import { EventEnquiryButton } from '@/components/EventEnquiryButton'
 import { getHotel, getPage, getVenues, type HotelSlug } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './EventsPage.css'
 
@@ -50,6 +51,13 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: h.name, path: `/${hotel}` },
+          { name: 'Plan Your Event', path: `/${hotel}/plan-your-event` },
+        ]}
+      />
       <CinematicHero
         image={p?.hero_image ?? h.hero_image ?? null}
         eyebrow={h.name}

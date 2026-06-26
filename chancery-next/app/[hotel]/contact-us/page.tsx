@@ -4,6 +4,7 @@ import { DeptIcon } from '@/components/DeptIcon'
 import { getHotel, getHotels, getPage, type HotelSlug } from '@/lib/queries/content'
 import { mapsUrl } from '@/lib/maps'
 import { buildMetadata } from '@/lib/seo'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './ContactPage.css'
 
@@ -70,6 +71,13 @@ export default async function ContactUsPage({ params }: { params: Promise<{ hote
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: current?.name ?? 'Hotel', path: `/${hotel}` },
+          { name: 'Contact Us', path: `/${hotel}/contact-us` },
+        ]}
+      />
       <CinematicHero
         image={p?.hero_image ?? current?.hero_image ?? null}
         eyebrow={current?.name ?? 'The Chancery Group of Hotels'}

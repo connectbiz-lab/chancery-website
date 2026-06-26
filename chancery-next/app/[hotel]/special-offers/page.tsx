@@ -3,6 +3,7 @@ import { Media } from '@/components/Media'
 import { BookButton } from '@/components/BookButton'
 import { getHotel, getPage, getOffers, type HotelSlug } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 
 export const revalidate = 3600
@@ -29,6 +30,13 @@ export default async function SpecialOffersPage({ params }: { params: Promise<{ 
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: h?.name ?? 'Hotel', path: `/${hotel}` },
+          { name: 'Special Offers', path: `/${hotel}/special-offers` },
+        ]}
+      />
       <CinematicHero
         image={p?.hero_image ?? h?.hero_image ?? null}
         eyebrow={h?.name ?? 'The Chancery'}

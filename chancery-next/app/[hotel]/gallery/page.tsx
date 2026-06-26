@@ -2,6 +2,7 @@ import { CinematicHero } from '@/components/CinematicHero'
 import { GalleryLightbox } from '@/components/GalleryLightbox'
 import { getHotel, getPage, getGallery } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './GalleryPage.css'
 
@@ -29,6 +30,13 @@ export default async function GalleryPage({ params }: { params: Promise<{ hotel:
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: h?.name ?? 'Hotel', path: `/${hotel}` },
+          { name: 'Gallery', path: `/${hotel}/gallery` },
+        ]}
+      />
       <CinematicHero
         image={p?.hero_image ?? h?.hero_image ?? null}
         eyebrow={h?.name ?? 'The Chancery'}
