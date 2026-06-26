@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { mediaUrl } from '@/lib/media'
 
@@ -34,12 +34,30 @@ export function GalleryLightbox({ images }: { images: Img[] }) {
     setLightbox(null)
   }
 
-  // Escape closes the lightbox.
+  // Escape closes; arrow keys page through the set.
   useEffect(() => {
     if (lightbox == null) return
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setLightbox(null)
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightbox(null)
+      else if (e.key === 'ArrowLeft') setLightbox((i) => (i! > 0 ? i! - 1 : i))
+      else if (e.key === 'ArrowRight') setLightbox((i) => (i! < filtered.length - 1 ? i! + 1 : i))
+    }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
+  }, [lightbox, filtered.length])
+
+  // Body scroll lock while the lightbox is open.
+  useEffect(() => {
+    if (lightbox == null) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prev }
+  }, [lightbox])
+
+  // Keep the active thumbnail centred in the strip as you navigate.
+  const activeThumb = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    activeThumb.current?.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' })
   }, [lightbox])
 
   const current = lightbox != null ? filtered[lightbox] : null
@@ -76,40 +94,76 @@ export function GalleryLightbox({ images }: { images: Img[] }) {
         <div
           role="dialog"
           aria-modal="true"
+          aria-label="Image gallery"
           className="lightbox"
           onClick={() => setLightbox(null)}
         >
-          <Image
-            src={mediaUrl(current.image)!}
-            alt={current.alt}
-            width={1200}
-            height={800}
-            sizes="100vw"
-            style={{ width: 'auto', height: 'auto', maxWidth: 'min(1200px, 90vw)', maxHeight: '80dvh', objectFit: 'contain' }}
-          />
-          <p className="lightbox-caption">{current.alt}</p>
           <button
             type="button"
             className="lightbox-close"
-            aria-label="Close"
+            aria-label="Close gallery"
             onClick={(e) => { e.stopPropagation(); setLightbox(null) }}
-          >×</button>
+          >
+            <span>Close</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+            </svg>
+          </button>
+
           {lightbox! > 0 && (
             <button
               type="button"
-              className="lightbox-prev"
-              aria-label="Previous"
+              className="lightbox-arrow prev"
+              aria-label="Previous image"
               onClick={(e) => { e.stopPropagation(); setLightbox(lightbox! - 1) }}
-            >‹</button>
+            >
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.4">
+                <path d="M15 5l-7 7 7 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           )}
           {lightbox! < filtered.length - 1 && (
             <button
               type="button"
-              className="lightbox-next"
-              aria-label="Next"
+              className="lightbox-arrow next"
+              aria-label="Next image"
               onClick={(e) => { e.stopPropagation(); setLightbox(lightbox! + 1) }}
-            >›</button>
+            >
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.4">
+                <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           )}
+
+          <div className="lightbox-stage" onClick={(e) => e.stopPropagation()}>
+            <Image
+              key={current.image}
+              src={mediaUrl(current.image)!}
+              alt={current.alt}
+              width={1200}
+              height={800}
+              sizes="(max-width: 900px) 92vw, 70vw"
+              style={{ width: 'auto', height: 'auto', maxWidth: 'min(900px, 92vw)', maxHeight: '64dvh', objectFit: 'contain' }}
+            />
+          </div>
+
+          <div className="lightbox-thumbs" onClick={(e) => e.stopPropagation()}>
+            {filtered.map((g, i) => (
+              <button
+                key={`${g.image}-${i}`}
+                ref={i === lightbox ? activeThumb : undefined}
+                type="button"
+                className={`lightbox-thumb ${i === lightbox ? 'active' : ''}`}
+                aria-label={g.alt}
+                aria-current={i === lightbox ? 'true' : undefined}
+                onClick={() => setLightbox(i)}
+              >
+                <Image src={mediaUrl(g.image)!} alt="" fill sizes="130px" style={{ objectFit: 'cover' }} />
+              </button>
+            ))}
+          </div>
+
+          <p className="lightbox-counter">{lightbox! + 1} / {filtered.length}</p>
         </div>
       )}
     </>
