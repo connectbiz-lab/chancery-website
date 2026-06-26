@@ -59,24 +59,24 @@
   transition: height 0.3s var(--t-easing), opacity 0.3s var(--t-easing);
 }
 /* Master 'Chancery Hotels' lockup — square with built-in whitespace */
-.nav-logo-brand { height: 78px; }
-.navbar.scrolled .nav-logo-brand { height: 66px; }
+.nav-logo-brand { height: 90px; }
+.navbar.scrolled .nav-logo-brand { height: 76px; }
 
 /* Chancery (Lavelle Road) lockup — wide and short, golden script.
    The PNG crops tightly to the artwork, so it needs more visual breathing
    room than the brand and Pavilion marks (which have built-in whitespace). */
 .nav-logo-hotel.chancery {
-  height: 68px;
+  height: 84px;
   margin: 4px 24px 4px 4px;
 }
 .navbar.scrolled .nav-logo-hotel.chancery {
-  height: 58px;
+  height: 72px;
   margin: 4px 22px 4px 4px;
 }
 
 /* Pavilion lockup — tall portrait, includes 'Luxury Unbulloned' tagline */
-.nav-logo-hotel.pavilion { height: 82px; }
-.navbar.scrolled .nav-logo-hotel.pavilion { height: 70px; }
+.nav-logo-hotel.pavilion { height: 92px; }
+.navbar.scrolled .nav-logo-hotel.pavilion { height: 80px; }
 
 /* Logo sits transparent over the hero — the PNG has its own alpha. A subtle
    drop-shadow keeps the maroon/gold detail readable on light imagery without
