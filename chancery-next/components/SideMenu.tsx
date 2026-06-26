@@ -13,16 +13,17 @@ import {
   CloseIcon,
 } from "./NavIcons";
 import type { HotelSlug } from "@/lib/hotel-scope";
+import type { Tables } from "@/lib/supabase/types";
 import "./SideMenu.css";
 
 interface SideMenuProps {
   open: boolean;
   scope: HotelSlug;
+  hotels: Tables<"hotel">[];
   onClose: () => void;
 }
 
 const items = [
-  { Icon: HotelsIcon,  label: "Our Hotels", to: (s: HotelSlug) => `/${s}` },
   { Icon: StayIcon,    label: "Stay",       to: (s: HotelSlug) => `/${s}/accommodation` },
   { Icon: DiningIcon,  label: "Dining",     to: (s: HotelSlug) => `/${s}/dining` },
   { Icon: EventsIcon,  label: "Events",     to: (s: HotelSlug) => `/${s}/plan-your-event` },
@@ -31,7 +32,7 @@ const items = [
   { Icon: ContactIcon, label: "Contact",    to: (s: HotelSlug) => `/${s}/contact-us` },
 ];
 
-export function SideMenu({ open, scope, onClose }: SideMenuProps) {
+export function SideMenu({ open, scope, hotels, onClose }: SideMenuProps) {
   // ESC to close + body scroll lock while open.
   useEffect(() => {
     if (!open) return;
@@ -72,6 +73,25 @@ export function SideMenu({ open, scope, onClose }: SideMenuProps) {
         </div>
 
         <nav className="side-menu__nav" aria-label="Main menu">
+          <p className="side-menu__group">Our Hotels</p>
+          <ul>
+            {hotels.map((h) => (
+              <li key={h.slug}>
+                <Link
+                  href={`/${h.slug}`}
+                  onClick={onClose}
+                  className={h.slug === scope ? "is-active" : undefined}
+                  aria-current={h.slug === scope ? "page" : undefined}
+                >
+                  <span className="side-menu__hotel">
+                    <span className="side-menu__label">{h.name}</span>
+                    {h.location && <span className="side-menu__sub">{h.location}</span>}
+                  </span>
+                  <span className="side-menu__icon"><HotelsIcon size={22} /></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
           <ul>
             {items.map(({ Icon, label, to }) => (
               <li key={label}>

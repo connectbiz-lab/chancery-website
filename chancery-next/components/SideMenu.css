@@ -76,6 +76,18 @@
   color: var(--c-gold-soft);
 }
 
+/* Small section label above the hotel switcher */
+.side-menu__group {
+  margin: 0;
+  padding: 0.25rem 2rem 0.75rem;
+  font-family: var(--f-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--c-gold-soft);
+}
+.side-menu__nav ul + ul { margin-top: 0.5rem; }
+
 .side-menu__label {
   font-family: var(--f-display);
   font-size: clamp(1.4rem, 1vw + 1.1rem, 1.85rem);
@@ -83,6 +95,16 @@
   letter-spacing: -0.005em;
   line-height: 1;
 }
+.side-menu__hotel { display: flex; flex-direction: column; gap: 0.4rem; }
+.side-menu__sub {
+  font-family: var(--f-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(246, 241, 231, 0.6);
+}
+.side-menu__nav a.is-active { background: rgba(246, 241, 231, 0.05); }
+.side-menu__nav a.is-active .side-menu__icon { border-color: var(--c-gold-soft); }
 .side-menu__icon {
   display: grid;
   place-items: center;

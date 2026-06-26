@@ -25,6 +25,12 @@ export function Navbar({ site, hotels }: NavbarProps) {
     : null;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hotelsOpen, setHotelsOpen] = useState(false);
+  // Both hotels, in display order, for the "Hotels" switcher.
+  const hotelList = useMemo(
+    () => [...hotels].sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
+    [hotels],
+  );
   // Every page now leads with the editorial split hero on a light surface
   // (image left, text right) — no full-bleed photo behind the navbar — so the
   // navbar is always the SOLID fixed bar. The transparent-over-photo treatment
@@ -44,6 +50,7 @@ export function Navbar({ site, hotels }: NavbarProps) {
   if (pathname !== lastPath) {
     setLastPath(pathname);
     if (menuOpen) setMenuOpen(false);
+    if (hotelsOpen) setHotelsOpen(false);
   }
 
   // Pavilion is the flagship — every brand-level page (home, /book, /careers,
@@ -86,7 +93,42 @@ export function Navbar({ site, hotels }: NavbarProps) {
 
           <nav className="primary" aria-label="Primary">
             <ul>
-              <li><Link href={`/${scope}`}>Hotels</Link></li>
+              <li
+                className={`has-mega ${hotelsOpen ? "open" : ""}`}
+                onMouseEnter={() => setHotelsOpen(true)}
+                onMouseLeave={() => setHotelsOpen(false)}
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget as Node)) setHotelsOpen(false);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") setHotelsOpen(false);
+                }}
+              >
+                <button
+                  type="button"
+                  className="nav-trigger"
+                  aria-haspopup="true"
+                  aria-expanded={hotelsOpen}
+                  onClick={() => setHotelsOpen((v) => !v)}
+                  onFocus={() => setHotelsOpen(true)}
+                >
+                  Hotels
+                </button>
+                <div className="mega" role="menu" aria-label="Select a hotel">
+                  {hotelList.map((h) => (
+                    <Link
+                      key={h.slug}
+                      href={`/${h.slug}`}
+                      className="mega-item"
+                      role="menuitem"
+                      onClick={() => setHotelsOpen(false)}
+                    >
+                      <span className="mega-label">{h.name}</span>
+                      {h.location && <span className="mega-sub">{h.location}</span>}
+                    </Link>
+                  ))}
+                </div>
+              </li>
               <li><Link href={`/${scope}/accommodation`}>Stay</Link></li>
               <li><Link href={`/${scope}/dining`}>Dining</Link></li>
               <li><Link href={`/${scope}/plan-your-event`}>Events</Link></li>
@@ -112,7 +154,7 @@ export function Navbar({ site, hotels }: NavbarProps) {
         </div>
       </header>
 
-      <SideMenu open={menuOpen} scope={scope} onClose={() => setMenuOpen(false)} />
+      <SideMenu open={menuOpen} scope={scope} hotels={hotelList} onClose={() => setMenuOpen(false)} />
     </>
   );
 }

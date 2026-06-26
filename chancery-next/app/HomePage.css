@@ -25,6 +25,30 @@
   letter-spacing: -0.01em;
   color: var(--c-gold);
 }
+/* Star rating (guest-satisfaction card) — sized to the .metric-num line box so
+   the label below stays aligned with the numeric cards in the same row. */
+.metric-stars {
+  position: relative;
+  display: inline-flex;
+  align-self: flex-start; /* hug the stars, not the card width, so the fill % clips correctly */
+  align-items: center;
+  height: clamp(2.4rem, 3.4vw, 3.2rem);
+}
+.metric-stars__row { display: flex; gap: 0.14em; }
+.metric-stars__row svg {
+  width: clamp(1.5rem, 2.1vw, 2rem);
+  height: clamp(1.5rem, 2.1vw, 2rem);
+  flex: 0 0 auto;
+}
+.metric-stars__base svg { fill: rgba(246, 241, 231, 0.32); }
+.metric-stars__fill {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  align-items: center;
+  overflow: hidden;
+}
+.metric-stars__fill svg { fill: var(--c-gold); }
+
 .metric-label {
   font-family: var(--f-sans);
   font-weight: 600;

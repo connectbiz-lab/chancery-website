@@ -34,9 +34,10 @@
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), 0 2px 14px rgba(0, 0, 0, 0.45);
 }
 .chero-eyebrow {
-  display: block; font-family: var(--f-sans); font-size: 0.8rem; font-weight: 700;
-  letter-spacing: 0.34em; text-transform: uppercase; color: #f2dca8; margin-bottom: 1rem;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  display: block; font-family: var(--f-sans); font-size: clamp(0.95rem, 1.15vw, 1.2rem);
+  font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #f6e3ad;
+  margin-bottom: 1.1rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 2px 16px rgba(0, 0, 0, 0.65);
 }
 .chero-title {
   font-family: var(--f-display); font-weight: 400;

@@ -166,7 +166,7 @@ export default async function Home() {
             </p>
           </div>
           <div className="metrics-grid">
-            {[
+            {([
               { n: '26,800', label: 'Sq ft of banqueting', sub: 'Combined across both hotels' },
               { n: '2,500+', label: 'Events hosted / year', sub: 'Weddings, conferences & socials' },
               { n: '10,000', label: 'Catering capacity', sub: 'Outdoor events of any scale' },
@@ -174,11 +174,13 @@ export default async function Home() {
               { n: '349', label: 'Rooms & suites', sub: '223 Pavilion + 126 Chancery' },
               { n: '25+', label: 'Years of excellence', sub: 'Award-winning operations in Bangalore' },
               { n: '94+%', label: 'Occupancy rate', sub: 'Consistently above benchmark' },
-              { n: '4.5+/5', label: 'Guest satisfaction', sub: 'Tripadvisor, Google & Booking.com' },
+              { rating: 4.5, label: 'Guest satisfaction', sub: '4.5 / 5 · Tripadvisor, Google & Booking.com' },
               { n: '600+', label: 'Staff strength', sub: 'Trained hospitality professionals' },
-            ].map((m) => (
+            ] as { n?: string; rating?: number; label: string; sub: string }[]).map((m) => (
               <div key={m.label} className="metric-card">
-                <span className="metric-num">{m.n}</span>
+                {m.rating != null
+                  ? <StarRating value={m.rating} />
+                  : <span className="metric-num">{m.n}</span>}
                 <span className="metric-label">{m.label}</span>
                 <span className="metric-sub">{m.sub}</span>
               </div>
@@ -315,5 +317,26 @@ export default async function Home() {
         </section>
       )}
     </>
+  )
+}
+
+// Star rating for the guest-satisfaction metric: a base row of muted stars with
+// a gold-filled row clipped to value/outOf, giving a crisp half-star at 4.5.
+function StarRating({ value, outOf = 5 }: { value: number; outOf?: number }) {
+  const star = 'M10 1.6l2.47 5.01 5.53.8-4 3.9.94 5.5L10 14.2l-4.95 2.6.95-5.5-4-3.9 5.53-.8L10 1.6z'
+  const stars = Array.from({ length: outOf }, (_, i) => (
+    <svg key={i} viewBox="0 0 20 20" aria-hidden="true"><path d={star} /></svg>
+  ))
+  return (
+    <span className="metric-stars" role="img" aria-label={`${value} out of ${outOf} stars`}>
+      <span className="metric-stars__row metric-stars__base" aria-hidden="true">{stars}</span>
+      <span
+        className="metric-stars__row metric-stars__fill"
+        style={{ width: `${(value / outOf) * 100}%` }}
+        aria-hidden="true"
+      >
+        {stars}
+      </span>
+    </span>
   )
 }

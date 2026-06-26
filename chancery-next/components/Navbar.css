@@ -160,7 +160,10 @@
   color: var(--c-navy);
 }
 .mega-item + .mega-item { border-top: 1px solid var(--c-line); margin-top: 0.6rem; padding-top: 0.9rem; }
-.mega-label { display: block; font-size: 0.95rem; }
+.mega-label {
+  display: block; font-size: 1.05rem; font-weight: 500;
+  text-transform: none; letter-spacing: 0;
+}
 .mega-sub {
   display: block;
   font-size: 0.7rem;
