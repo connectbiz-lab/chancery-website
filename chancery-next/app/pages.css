@@ -71,7 +71,7 @@
   background: transparent;
   overflow: hidden;
 }
-.card .figure { aspect-ratio: 4 / 5; margin-bottom: 1.5rem; }
+.card .figure { aspect-ratio: 1 / 1; margin-bottom: 1.5rem; }
 .card .card-eyebrow {
   font-family: var(--f-sans);
   font-size: 0.65rem;
