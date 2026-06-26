@@ -64,6 +64,13 @@ export function HomeShowcaseHero({
           {/* Chancery: photo on top, name below. */}
           <HotelBlock hotel={chancery} image={chanceryImage} imageFirst />
         </div>
+        {/* Continuation cue — tells visitors the page carries on below the hero. */}
+        <a href="#group-intro" className="showcase-scroll" aria-label="Scroll to explore the Chancery Group">
+          <span className="showcase-scroll__label">Discover the group</span>
+          <span className="showcase-scroll__rail" aria-hidden="true">
+            <span className="showcase-scroll__dot" />
+          </span>
+        </a>
       </div>
     </section>
   )

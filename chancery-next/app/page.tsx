@@ -72,7 +72,7 @@ export default async function Home() {
       )}
 
       {/* Brand introduction — Claridges-style two-column */}
-      <section className="section bg-cream">
+      <section id="group-intro" className="section bg-cream" style={{ scrollMarginTop: '110px' }}>
         <Reveal className="container">
           <div className="intro-claridges">
             <div className="intro-claridges__text">

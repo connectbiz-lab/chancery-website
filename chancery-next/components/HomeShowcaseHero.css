@@ -4,8 +4,10 @@
 .showcase {
   background: var(--c-cream); /* pure white (#fff) — matches the navbar; ivory read too cream here */
   color: var(--c-navy);
-  /* Top pad clears the fixed ~104px navbar with comfortable breathing room. */
-  padding: clamp(9rem, 11vh, 10rem) 0 clamp(3.5rem, 7vh, 6rem);
+  /* Top pad clears the fixed 104px navbar with a small breathing gap; bottom pad
+     kept tight so the next section sits just below the fold (the scroll cue
+     bridges the rest). */
+  padding: clamp(7.25rem, 9vh, 8.25rem) 0 clamp(2rem, 3vh, 3rem);
 }
 
 /* ---- Two hotels side by side (both visible together, no scroll) ---- */
@@ -88,8 +90,60 @@
 }
 .hb-cta:hover { gap: 1rem; border-color: var(--c-gold); }
 
+/* ---- Continuation cue — signals the page carries on below the hero.
+   Elegant treatment: a serif-italic caption above a hairline rail down which a
+   small gold dot glides. Centered under the two columns; links to next section. */
+.showcase-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+  margin-top: clamp(2.5rem, 4.5vw, 4rem);
+  text-decoration: none;
+}
+.showcase-scroll__label {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(0.98rem, 1.1vw, 1.12rem);
+  letter-spacing: 0.01em;
+  color: var(--c-charcoal);
+  opacity: 0.82;
+  transition: opacity 0.45s var(--t-easing);
+}
+.showcase-scroll__rail {
+  position: relative;
+  width: 1px;
+  height: 58px;
+  background: linear-gradient(to bottom, rgba(14, 34, 55, 0.3), rgba(14, 34, 55, 0));
+  overflow: hidden;
+}
+.showcase-scroll__dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: var(--c-gold);
+  box-shadow: 0 0 0 3px rgba(190, 150, 70, 0.12);
+  animation: showcase-scroll-travel 2.6s var(--t-easing) infinite;
+}
+.showcase-scroll:hover .showcase-scroll__label { opacity: 1; }
+@keyframes showcase-scroll-travel {
+  0%   { transform: translateY(-8px); opacity: 0; }
+  18%  { opacity: 1; }
+  82%  { opacity: 1; }
+  100% { transform: translateY(58px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .showcase-scroll__dot { animation: none; top: 50%; opacity: 0.9; }
+}
+
 @media (max-width: 760px) {
   .showcase-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .showcase-grid > .hb:last-child { margin-top: 0; }
   .hb-index { font-size: 5rem; }
+  /* Desktop-only affordance: on mobile the stacked cards already scroll naturally. */
+  .showcase-scroll { display: none; }
 }
