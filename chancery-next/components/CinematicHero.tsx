@@ -8,6 +8,8 @@ import './CinematicHero.css'
 
 export function CinematicHero({
   image,
+  video,
+  poster,
   eyebrow,
   title,
   script,
@@ -15,6 +17,10 @@ export function CinematicHero({
   foot,
 }: {
   image: string | null
+  /** Optional full URL to an autoplaying, muted, looping background video. Takes
+   *  precedence over `image` when set; `poster` (or `image`) is the still fallback. */
+  video?: string | null
+  poster?: string | null
   eyebrow: string
   title: string
   script?: string | null
@@ -28,7 +34,21 @@ export function CinematicHero({
     <>
       <section className="chero" role="banner">
         <div className="chero-media" style={mediaStyle}>
-          <Media path={image} alt={title} priority sizes="100vw" />
+          {video ? (
+            <video
+              className="chero-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster={poster ?? undefined}
+            >
+              <source src={video} type="video/mp4" />
+            </video>
+          ) : (
+            <Media path={image} alt={title} priority sizes="100vw" />
+          )}
         </div>
         <div className="chero-name">
           <span className="chero-eyebrow">{eyebrow}</span>

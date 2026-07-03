@@ -15,6 +15,7 @@ import {
   type HotelSlug,
 } from '@/lib/queries/content'
 import { buildMetadata, hotelJsonLd } from '@/lib/seo'
+import { mediaUrl } from '@/lib/media'
 import { JsonLd } from '@/components/JsonLd'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
@@ -60,6 +61,9 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
   const diningRestaurants = restaurants.filter((r) => r.hero_image)
   const heroHeading = h.name || HOTEL_NAME_FALLBACK[hotel as HotelSlug]
   const heroEyebrow = `${h.location_tag} · ${h.location}`
+  // Pavilion leads with a looping montage video hero; other hotels keep the photo.
+  const heroVideo = hotel === 'pavilion' ? mediaUrl('video/tcp-pavilion-hero.mp4') : null
+  const heroPoster = hotel === 'pavilion' ? mediaUrl('video/tcp-pavilion-hero-poster.jpg') : null
 
   return (
     <>
@@ -72,10 +76,12 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
       />
       <CinematicHero
         image={h.hero_image ?? null}
+        video={heroVideo}
+        poster={heroPoster}
         eyebrow={heroEyebrow}
         title={heroHeading}
         script={h.tagline || undefined}
-        focal={hotel === 'pavilion' ? '50% 22%' : undefined}
+        focal={heroVideo ? undefined : hotel === 'pavilion' ? '50% 22%' : undefined}
         foot={
           <>
             <BookButton hotel={hotel as HotelSlug} className="btn gold">Book your stay</BookButton>
