@@ -11,6 +11,16 @@
 }
 .dining-row.flip > .room-gallery { order: 2; }
 
+/* Imageless outlet (e.g. In-Room Dining): a centered single-column text block
+   rather than a half-empty two-column row. */
+.dining-row--text-only {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  text-align: center;
+}
+.dining-row--text-only .dining-text { max-width: 60ch; }
+.dining-row--text-only .copy { max-width: none; }
+
 .dining-text .meta {
   font-family: var(--f-sans);
   font-size: 0.78rem;

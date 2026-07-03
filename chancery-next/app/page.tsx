@@ -201,7 +201,7 @@ export default async function Home() {
             </p>
           </div>
           <div className="card-grid">
-            {restaurants.slice(0, 4).map((r) => (
+            {restaurants.filter((r) => r.hero_image).slice(0, 4).map((r) => (
               <Link
                 key={r.id}
                 href={`/${r.hotel.slug}/dining`}

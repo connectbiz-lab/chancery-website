@@ -54,6 +54,10 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
   ])
   if (!h) notFound()
 
+  // Photogenic dine-in restaurants only — excludes imageless service entries
+  // (e.g. In-Room Dining) from the count and card preview; they still show on
+  // the full dining page.
+  const diningRestaurants = restaurants.filter((r) => r.hero_image)
   const heroHeading = h.name || HOTEL_NAME_FALLBACK[hotel as HotelSlug]
   const heroEyebrow = `${h.location_tag} · ${h.location}`
 
@@ -101,7 +105,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
               <span className="stat-label">Rooms & suites</span>
             </div>
             <div className="stat">
-              <span className="stat-num">{restaurants.length || '—'}</span>
+              <span className="stat-num">{diningRestaurants.length || '—'}</span>
               <span className="stat-label">Restaurants</span>
             </div>
             <div className="stat">
@@ -161,7 +165,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
       )}
 
       {/* Dining preview */}
-      {restaurants.length > 0 && (
+      {diningRestaurants.length > 0 && (
         <section className="section bg-ivory">
           <div className="container">
             <div className="section-head">
@@ -169,7 +173,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
               <h2 className="h1">Tables of distinction</h2>
             </div>
             <div className="card-grid three">
-              {restaurants.map((r) => (
+              {diningRestaurants.map((r) => (
                 <Link key={r.id} href={`/${hotel}/dining`} className="card">
                   <div className="figure">{r.hero_image && <Media path={r.hero_image} alt={r.name} sizes="(max-width: 768px) 50vw, 25vw" />}</div>
                   <h3>{r.name}</h3>

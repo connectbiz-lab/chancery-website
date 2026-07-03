@@ -57,20 +57,32 @@ export default async function DiningPage({ params }: { params: Promise<{ hotel: 
             </div>
           )}
           <div className="dining-list">
-            {restaurants.map((r, idx) => (
-              <article key={r.id} className={`dining-row ${idx % 2 === 1 ? 'flip' : ''}`}>
-                <MediaGallery hero={r.hero_image} images={r.images} name={r.name} aspect="4 / 5" />
-                <div className="dining-text">
-                  <p className="eyebrow">{r.cuisine}</p>
-                  <h2 className="h2">{r.name}</h2>
-                  <p className="meta">{r.timing}</p>
-                  <p className="copy">{r.description}</p>
-                  <div className="dining-cta">
-                    <DiningBookButton hotel={hotel as HotelSlug} restaurant={r.name} />
+            {restaurants.map((r, idx) => {
+              // Imageless outlets (e.g. In-Room Dining) render as a centered
+              // text block instead of a half-empty two-column row.
+              const hasMedia = Boolean(r.hero_image || (r.images && r.images.length > 0))
+              return (
+                <article
+                  key={r.id}
+                  className={`dining-row ${hasMedia ? (idx % 2 === 1 ? 'flip' : '') : 'dining-row--text-only'}`}
+                >
+                  {hasMedia && (
+                    <MediaGallery hero={r.hero_image} images={r.images} name={r.name} aspect="4 / 5" />
+                  )}
+                  <div className="dining-text">
+                    <p className="eyebrow">{r.cuisine}</p>
+                    <h2 className="h2">{r.name}</h2>
+                    <p className="meta">{r.timing}</p>
+                    <p className="copy">{r.description}</p>
+                    {hasMedia && (
+                      <div className="dining-cta">
+                        <DiningBookButton hotel={hotel as HotelSlug} restaurant={r.name} />
+                      </div>
+                    )}
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>
