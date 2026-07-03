@@ -21,6 +21,19 @@ const CAPABILITIES: Array<[string, string]> = [
   ['Corporate to community', 'From boardroom lunches to weddings of 10,000+ — one accountable partner.'],
 ]
 
+// Sourced from the F&B fact sheet — organisations served and venues catered.
+const CLIENTS = ['Accenture', 'IBM', 'Mphasis', 'Bank of Baroda', 'BMRCL', 'Bosch', 'Norstella']
+
+const VENUES_CATERED: Array<[string, string]> = [
+  ['M. Chinnaswamy Stadium', 'International cricket stadium'],
+  ['KTPO Convention Centre', 'Exhibitions & conventions'],
+  ['Bangalore International Exhibition Centre', 'Large-scale exhibitions'],
+  ['Bangalore Palace Grounds', 'Open-air celebrations'],
+  ['National Cricket Academy', 'Sporting events & hospitality'],
+  ['Farm Houses', 'Private estates'],
+  ['Open Grounds', 'Custom outdoor setups'],
+]
+
 export async function generateMetadata() {
   const page = await getPage('catering')
   return buildMetadata({
@@ -82,6 +95,53 @@ export default async function CateringPage() {
                 <span style={{ display: 'block' }}>
                   <strong style={{ fontFamily: 'var(--f-display)', fontSize: '1.15rem', color: 'var(--c-navy)', display: 'block', marginBottom: '0.25rem' }}>{title}</strong>
                   <span style={{ color: 'var(--c-muted)' }}>{body}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-head left">
+            <p className="eyebrow">Trusted by</p>
+            <h2 className="h2">Chosen by leading organisations</h2>
+            <p className="lede">From global technology firms to national institutions, teams across Bengaluru rely on Chancery for their largest events.</p>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem 1rem' }}>
+            {CLIENTS.map((c) => (
+              <span
+                key={c}
+                style={{
+                  padding: '0.65rem 1.35rem',
+                  border: '1px solid rgba(14, 34, 55, 0.16)',
+                  borderRadius: '999px',
+                  fontFamily: 'var(--f-display)',
+                  fontSize: '1.05rem',
+                  color: 'var(--c-navy)',
+                }}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-ivory">
+        <div className="container">
+          <div className="section-head left">
+            <p className="eyebrow">Proven at scale</p>
+            <h2 className="h2">Venues we&rsquo;ve catered</h2>
+            <p className="lede">Stadiums, convention centres, palace grounds and open fields — wherever the occasion calls for it.</p>
+          </div>
+          <ul className="amenities" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))' }}>
+            {VENUES_CATERED.map(([name, kind]) => (
+              <li key={name}>
+                <span style={{ display: 'block' }}>
+                  <strong style={{ fontFamily: 'var(--f-display)', fontSize: '1.15rem', color: 'var(--c-navy)', display: 'block', marginBottom: '0.25rem' }}>{name}</strong>
+                  <span style={{ color: 'var(--c-muted)' }}>{kind}</span>
                 </span>
               </li>
             ))}
