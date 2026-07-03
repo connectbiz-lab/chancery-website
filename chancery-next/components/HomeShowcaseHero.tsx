@@ -28,7 +28,7 @@ function HotelBlock({ hotel, image, imageFirst }: { hotel: Hotel; image: string 
   const figure = (
     <Link href={`/${hotel.slug}`} className="hb-figure" aria-label={hotel.name} key="figure">
       <span className="hb-frame" aria-hidden="true" />
-      <Media path={image} alt={hotel.name} priority sizes="(max-width: 760px) 92vw, 46vw" />
+      <Media path={image} alt={hotel.name} priority blur sizes="(max-width: 760px) 92vw, 46vw" />
     </Link>
   )
   return (

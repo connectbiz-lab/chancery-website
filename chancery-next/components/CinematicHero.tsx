@@ -47,7 +47,7 @@ export function CinematicHero({
               <source src={video} type="video/mp4" />
             </video>
           ) : (
-            <Media path={image} alt={title} priority sizes="100vw" />
+            <Media path={image} alt={title} priority blur sizes="100vw" />
           )}
         </div>
         <div className="chero-name">

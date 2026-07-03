@@ -16,6 +16,9 @@
   bottom: clamp(1.5rem, 4vw, 4rem);
   border-radius: clamp(12px, 1.4vw, 22px);
   overflow: hidden;
+  /* Warm-neutral tone shown for the split-second before the photo/video-poster
+     paints — so the hero never flashes a blank white box while loading. */
+  background: linear-gradient(160deg, #c6baa8, #877a68);
 }
 /* Crop favours the focal point (default slightly above centre so building
    rooflines aren't cropped on wide screens); a gentle scale keeps it immersive. */
