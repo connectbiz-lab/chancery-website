@@ -169,7 +169,7 @@ export default async function Home() {
             {([
               { n: '26,800', label: 'Sq ft of banqueting', sub: 'Combined across both hotels' },
               { n: '2,500+', label: 'Events hosted / year', sub: 'Weddings, conferences & socials' },
-              { n: '10,000', label: 'Catering capacity', sub: 'Outdoor events of any scale' },
+              { n: '10,000+', label: 'Catering capacity', sub: 'Outdoor events of any scale' },
               { n: '1.2L+', label: 'F&B covers / year', sub: 'Restaurant, banquet & catering' },
               { n: '349', label: 'Rooms & suites', sub: '223 Pavilion + 126 Chancery' },
               { n: '25+', label: 'Years of excellence', sub: 'Award-winning operations in Bangalore' },

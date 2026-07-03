@@ -3,7 +3,7 @@
 // the display serif (eyebrow + italic script accent) overlaid bottom-right.
 // Optional `foot` renders a slim row just beneath the hero (CTAs / address).
 import type { CSSProperties, ReactNode } from 'react'
-import { Media } from './Media'
+import { HeroMedia } from './HeroMedia'
 import './CinematicHero.css'
 
 export function CinematicHero({
@@ -34,21 +34,7 @@ export function CinematicHero({
     <>
       <section className="chero" role="banner">
         <div className="chero-media" style={mediaStyle}>
-          {video ? (
-            <video
-              className="chero-video"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              poster={poster ?? undefined}
-            >
-              <source src={video} type="video/mp4" />
-            </video>
-          ) : (
-            <Media path={image} alt={title} priority blur sizes="100vw" />
-          )}
+          <HeroMedia image={image} video={video} poster={poster} alt={title} />
         </div>
         <div className="chero-name">
           <span className="chero-eyebrow">{eyebrow}</span>
