@@ -58,11 +58,24 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
           { name: 'Plan Your Event', path: `/${hotel}/plan-your-event` },
         ]}
       />
+      {/* Pavilion's events hero leads with the "Celebrate Every Occasion"
+          banquet-hall photo as a full-bleed hero (same treatment as every other
+          page), with the messaging overlaid in the site hero style. Other hotels
+          keep their standard photo hero. */}
       <CinematicHero
-        image={p?.hero_image ?? h.hero_image ?? null}
-        eyebrow={h.name}
-        title={p?.hero_heading ?? 'Plan your event'}
-        script={p?.hero_subheading ?? undefined}
+        image={
+          hotel === 'pavilion'
+            ? 'pages/pavilion-events-hall.webp'
+            : (p?.hero_image ?? h.hero_image ?? null)
+        }
+        eyebrow={hotel === 'pavilion' ? 'Celebrate every occasion' : h.name}
+        title={hotel === 'pavilion' ? 'With The Chancery Pavilion' : (p?.hero_heading ?? 'Plan your event')}
+        script={
+          hotel === 'pavilion'
+            ? 'Poolside venue · Banquet halls · Meeting rooms'
+            : (p?.hero_subheading ?? undefined)
+        }
+        focal={hotel === 'pavilion' ? '50% 38%' : undefined}
       />
       <section className="section">
         <div className="container">
