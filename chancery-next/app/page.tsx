@@ -196,8 +196,8 @@ export default async function Home() {
             <p className="eyebrow center">Dining</p>
             <h2 className="h1">A reputation built around the table</h2>
             <p className="lede">
-              From Chef Okada&apos;s sashimi at Matsuri to rooftop craft beers above
-              Cubbon Park, Chancery restaurants are destinations in themselves.
+              From Chef Okada&apos;s sashimi at Matsuri to rooftop craft beers
+              overlooking the city, Chancery restaurants are destinations in themselves.
             </p>
           </div>
           <div className="card-grid">
