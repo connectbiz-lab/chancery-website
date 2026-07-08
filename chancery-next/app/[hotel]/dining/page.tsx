@@ -4,6 +4,7 @@ import { MediaGallery } from '@/components/MediaGallery'
 import { DiningBookButton } from '@/components/DiningBookButton'
 import { getHotel, getPage, getRestaurants, type HotelSlug } from '@/lib/queries/content'
 import { buildMetadata, restaurantsJsonLd } from '@/lib/seo'
+import { mediaUrl } from '@/lib/media'
 import { JsonLd } from '@/components/JsonLd'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
@@ -33,6 +34,11 @@ export default async function DiningPage({ params }: { params: Promise<{ hotel: 
   if (!h) notFound()
   const p = page
 
+  // Pavilion's dining hero leads with a looping montage of Alchemy — its
+  // award-winning rooftop restaurant & microbrewery; other hotels keep the photo.
+  const heroVideo = hotel === 'pavilion' ? mediaUrl('video/alchemy-dining-hero.mp4') : null
+  const heroPoster = hotel === 'pavilion' ? mediaUrl('video/alchemy-dining-hero-poster.jpg') : null
+
   return (
     <>
       {restaurants.length > 0 && <JsonLd data={restaurantsJsonLd(restaurants, h)} />}
@@ -45,6 +51,8 @@ export default async function DiningPage({ params }: { params: Promise<{ hotel: 
       />
       <CinematicHero
         image={p?.hero_image ?? h.hero_image ?? null}
+        video={heroVideo}
+        poster={heroPoster}
         eyebrow={h.name}
         title={p?.hero_heading ?? 'Dining'}
         script={p?.hero_subheading ?? undefined}
