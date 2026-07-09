@@ -75,7 +75,7 @@ export default async function DiningPage({ params }: { params: Promise<{ hotel: 
                   className={`dining-row ${hasMedia ? (idx % 2 === 1 ? 'flip' : '') : 'dining-row--text-only'}`}
                 >
                   {hasMedia && (
-                    <MediaGallery hero={r.hero_image} images={r.images} name={r.name} aspect="4 / 5" />
+                    <MediaGallery hero={r.hero_image} images={r.images} name={r.name} aspect="3 / 2" fit="contain" />
                   )}
                   <div className="dining-text">
                     <p className="eyebrow">{r.cuisine}</p>

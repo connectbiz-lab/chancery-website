@@ -16,6 +16,19 @@
   gap: 0.65rem;
   margin-top: 0.75rem;
 }
+
+/* fit="contain" main image — show the whole photo uncropped, over a blurred
+   fill of itself so varied-aspect gallery images are never cut off. */
+.figure.mg-contain { overflow: hidden; background: #14110f; }
+.figure.mg-contain img { object-fit: contain !important; position: relative; z-index: 1; }
+.figure.mg-contain .mg-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(30px) brightness(0.55);
+  transform: scale(1.15);
+}
 .thumb {
   position: relative; /* contain the next/image `fill` thumbnail; without it the
                          absolutely-positioned img escapes to the nearest positioned
