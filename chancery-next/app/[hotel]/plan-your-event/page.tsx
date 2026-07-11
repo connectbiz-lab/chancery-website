@@ -5,6 +5,7 @@ import { Media } from '@/components/Media'
 import { EventEnquiryButton } from '@/components/EventEnquiryButton'
 import { getHotel, getPage, getVenues, type HotelSlug } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
+import { mediaUrl } from '@/lib/media'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './EventsPage.css'
@@ -58,9 +59,10 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
           { name: 'Plan Your Event', path: `/${hotel}/plan-your-event` },
         ]}
       />
-      {/* Pavilion's events hero leads with the "Celebrate Every Occasion"
-          banquet-hall photo as a full-bleed hero (same treatment as every other
-          page), with the messaging overlaid in the site hero style. Other hotels
+      {/* Pavilion's events hero leads with a looping montage of the event spaces
+          (Grand Ball Room, chandelier, banquet, lounge, poolside) on tablet/desktop;
+          the "Celebrate Every Occasion" banquet photo is the mobile + poster
+          fallback, with the messaging overlaid in the site hero style. Other hotels
           keep their standard photo hero. */}
       <CinematicHero
         image={
@@ -68,6 +70,8 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
             ? 'pages/pavilion-events-hall.webp'
             : (p?.hero_image ?? h.hero_image ?? null)
         }
+        video={hotel === 'pavilion' ? mediaUrl('video/tcp-events-hero.mp4') : null}
+        poster={hotel === 'pavilion' ? mediaUrl('video/tcp-events-hero-poster.jpg') : null}
         eyebrow={hotel === 'pavilion' ? 'Celebrate every occasion' : h.name}
         title={hotel === 'pavilion' ? 'With The Chancery Pavilion' : (p?.hero_heading ?? 'Plan your event')}
         script={
@@ -75,7 +79,6 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
             ? 'Poolside venue · Banquet halls · Meeting rooms'
             : (p?.hero_subheading ?? undefined)
         }
-        focal={hotel === 'pavilion' ? '50% 38%' : undefined}
       />
       <section className="section">
         <div className="container">
