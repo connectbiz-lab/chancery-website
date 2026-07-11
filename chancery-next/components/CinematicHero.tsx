@@ -14,6 +14,7 @@ export function CinematicHero({
   title,
   script,
   focal,
+  cornerName,
   foot,
 }: {
   image: string | null
@@ -26,13 +27,16 @@ export function CinematicHero({
   script?: string | null
   /** object-position for the crop, e.g. '50% 22%' to keep a building's roofline. */
   focal?: string
+  /** On phones, pin the name into the bottom-right corner (over the foreground)
+   *  so it clears a full-height centred subject like the events-hero groom. */
+  cornerName?: boolean
   /** Slim row rendered directly below the hero (booking CTAs, address). */
   foot?: ReactNode
 }) {
   const mediaStyle = focal ? ({ '--chero-focal': focal } as CSSProperties) : undefined
   return (
     <>
-      <section className="chero" role="banner">
+      <section className={`chero${cornerName ? ' chero--corner' : ''}`} role="banner">
         <div className="chero-media" style={mediaStyle}>
           <HeroMedia image={image} video={video} poster={poster} alt={title} />
         </div>

@@ -100,10 +100,16 @@
   .chero { height: clamp(440px, 70vh, 620px); }
   /* Anchor the name low and compact on phones so it sits over the foreground/
      floor rather than across the subject in a portrait crop. */
-  .chero-name { right: clamp(1.25rem, 5vw, 2rem); bottom: clamp(1rem, 3.5vh, 1.75rem); max-width: 82%; }
+  .chero-name { right: clamp(1rem, 4vw, 1.5rem); bottom: clamp(1rem, 3.5vh, 1.75rem); max-width: 82%; }
   .chero-title { font-size: clamp(1.5rem, 6.2vw, 2rem); }
-  .chero-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; margin-bottom: 0.45rem; }
-  .chero-script { font-size: clamp(0.95rem, 3.6vw, 1.2rem); margin-top: 0.3rem; }
+  .chero-eyebrow { font-size: 0.66rem; letter-spacing: 0.12em; margin-bottom: 0.4rem; }
+  .chero-script { font-size: clamp(0.9rem, 3.4vw, 1.1rem); margin-top: 0.3rem; }
+  /* Heroes with a full-height centred subject (e.g. events): shift the crop so the
+     subject sits left of centre, then pin the name into the now-open bottom-right
+     so the type never lands on the person. */
+  .chero--corner .chero-media img { object-position: 72% 50%; }
+  .chero--corner .chero-name { max-width: 60%; text-align: right; }
+  .chero--corner .chero-eyebrow { font-size: 0.6rem; letter-spacing: 0.1em; }
   .chero-foot .container { flex-direction: column; align-items: flex-start; }
   .chero-foot .chero-foot-meta { margin-left: 0; }
 }

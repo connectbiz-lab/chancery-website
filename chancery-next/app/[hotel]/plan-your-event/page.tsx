@@ -79,6 +79,7 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
             ? 'Poolside venue · Banquet halls · Meeting rooms'
             : (p?.hero_subheading ?? undefined)
         }
+        cornerName={hotel === 'pavilion'}
       />
       <section className="section">
         <div className="container">
