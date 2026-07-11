@@ -98,6 +98,12 @@
 }
 @media (max-width: 720px) {
   .chero { height: clamp(440px, 70vh, 620px); }
+  /* Anchor the name low and compact on phones so it sits over the foreground/
+     floor rather than across the subject in a portrait crop. */
+  .chero-name { right: clamp(1.25rem, 5vw, 2rem); bottom: clamp(1rem, 3.5vh, 1.75rem); max-width: 88%; }
+  .chero-title { font-size: clamp(2rem, 8.4vw, 2.9rem); }
+  .chero-eyebrow { font-size: 0.82rem; margin-bottom: 0.6rem; }
+  .chero-script { font-size: clamp(1.05rem, 4.2vw, 1.4rem); margin-top: 0.35rem; }
   .chero-foot .container { flex-direction: column; align-items: flex-start; }
   .chero-foot .chero-foot-meta { margin-left: 0; }
 }
