@@ -7,6 +7,7 @@ import { buildMetadata } from '@/lib/seo'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './AccommodationPage.css'
+import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
 
@@ -36,7 +37,7 @@ export default async function AccommodationPage({ params }: { params: Promise<{ 
       <Breadcrumbs
         items={[
           { name: 'Home', path: '/' },
-          { name: h.name, path: `/${hotel}` },
+          { name: h.name, path: hotelHomePath(hotel) },
           { name: 'Accommodation', path: `/${hotel}/accommodation` },
         ]}
       />

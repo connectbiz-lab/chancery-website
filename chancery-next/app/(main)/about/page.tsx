@@ -16,6 +16,7 @@ import {
 } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
 import './HomePage.css'
+import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
 
@@ -67,7 +68,7 @@ export default async function AboutPage() {
           footerNav={<HeroIconNav />}
         >
           {hotels.map((h) => (
-            <Link key={h.slug} href={`/${h.slug}`} className="btn light">
+            <Link key={h.slug} href={hotelHomePath(h.slug)} className="btn light">
               {h.short_name}
             </Link>
           ))}

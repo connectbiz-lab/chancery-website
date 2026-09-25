@@ -6,6 +6,7 @@
 import Link from 'next/link'
 import { Media } from './Media'
 import './HomeShowcaseHero.css'
+import { hotelHomePath } from '@/lib/routes'
 
 interface Hotel {
   slug: string
@@ -26,7 +27,7 @@ function HotelBlock({ hotel, image, imageFirst }: { hotel: Hotel; image: string 
     </div>
   )
   const figure = (
-    <Link href={`/${hotel.slug}`} className="hb-figure" aria-label={hotel.name} key="figure">
+    <Link href={hotelHomePath(hotel.slug)} className="hb-figure" aria-label={hotel.name} key="figure">
       <span className="hb-frame" aria-hidden="true" />
       <Media path={image} alt={hotel.name} priority blur sizes="(max-width: 760px) 92vw, 46vw" />
     </Link>
@@ -36,7 +37,7 @@ function HotelBlock({ hotel, image, imageFirst }: { hotel: Hotel; image: string 
       {imageFirst ? [figure, head] : [head, figure]}
       <div className="hb-foot">
         {hotel.address && <p className="hb-addr">{hotel.address}</p>}
-        <Link href={`/${hotel.slug}`} className="hb-cta">
+        <Link href={hotelHomePath(hotel.slug)} className="hb-cta">
           Explore the hotel <span aria-hidden="true">→</span>
         </Link>
       </div>

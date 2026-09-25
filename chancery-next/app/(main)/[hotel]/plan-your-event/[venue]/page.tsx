@@ -8,6 +8,7 @@ import { buildMetadata } from '@/lib/seo'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './VenueDetailPage.css'
+import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
 
@@ -84,7 +85,7 @@ export default async function VenueDetailPage(
       <Breadcrumbs
         items={[
           { name: 'Home', path: '/' },
-          { name: v.hotel.name, path: `/${hotel}` },
+          { name: v.hotel.name, path: hotelHomePath(hotel) },
           { name: 'Plan Your Event', path: `/${hotel}/plan-your-event` },
           { name: v.name, path: `/${hotel}/plan-your-event/${venue}` },
         ]}

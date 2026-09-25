@@ -8,6 +8,7 @@ import type { Tables } from "@/lib/supabase/types";
 import { BookButton } from "./BookButton";
 import { SideMenu } from "./SideMenu";
 import "./Navbar.css";
+import { hotelHomePath } from '@/lib/routes'
 
 interface NavbarProps {
   site: Tables<"site_content">;
@@ -118,7 +119,7 @@ export function Navbar({ site, hotels }: NavbarProps) {
                   {hotelList.map((h) => (
                     <Link
                       key={h.slug}
-                      href={`/${h.slug}`}
+                      href={hotelHomePath(h.slug)}
                       className="mega-item"
                       role="menuitem"
                       onClick={() => setHotelsOpen(false)}

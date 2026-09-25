@@ -9,6 +9,7 @@ import { mediaUrl } from '@/lib/media'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './EventsPage.css'
+import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
 
@@ -55,7 +56,7 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
       <Breadcrumbs
         items={[
           { name: 'Home', path: '/' },
-          { name: h.name, path: `/${hotel}` },
+          { name: h.name, path: hotelHomePath(hotel) },
           { name: 'Plan Your Event', path: `/${hotel}/plan-your-event` },
         ]}
       />

@@ -15,6 +15,7 @@ import {
 import type { HotelSlug } from "@/lib/hotel-scope";
 import type { Tables } from "@/lib/supabase/types";
 import "./SideMenu.css";
+import { hotelHomePath } from '@/lib/routes'
 
 interface SideMenuProps {
   open: boolean;
@@ -78,7 +79,7 @@ export function SideMenu({ open, scope, hotels, onClose }: SideMenuProps) {
             {hotels.map((h) => (
               <li key={h.slug}>
                 <Link
-                  href={`/${h.slug}`}
+                  href={hotelHomePath(h.slug)}
                   onClick={onClose}
                   className={h.slug === scope ? "is-active" : undefined}
                   aria-current={h.slug === scope ? "page" : undefined}

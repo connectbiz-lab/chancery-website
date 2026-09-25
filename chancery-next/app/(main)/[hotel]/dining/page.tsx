@@ -10,6 +10,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import '../accommodation/AccommodationPage.css' // shared `.room-gallery`/`.thumb` styles for MediaGallery
 import './DiningPage.css'
+import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
 
@@ -45,7 +46,7 @@ export default async function DiningPage({ params }: { params: Promise<{ hotel: 
       <Breadcrumbs
         items={[
           { name: 'Home', path: '/' },
-          { name: h.name, path: `/${hotel}` },
+          { name: h.name, path: hotelHomePath(hotel) },
           { name: 'Dining', path: `/${hotel}/dining` },
         ]}
       />

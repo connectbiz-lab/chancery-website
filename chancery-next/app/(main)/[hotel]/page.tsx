@@ -20,6 +20,7 @@ import { JsonLd } from '@/components/JsonLd'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './HotelHomePage.css'
+import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
 
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ hotel: st
   return buildMetadata({
     title: page?.meta_title || h.name || fallbackName,
     description: page?.meta_description || h.tagline,
-    path: `/${hotel}`,
+    path: hotelHomePath(hotel),
     ogImagePath: h.hero_image,
   })
 }
@@ -71,7 +72,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
       <Breadcrumbs
         items={[
           { name: 'Home', path: '/' },
-          { name: h.name, path: `/${hotel}` },
+          { name: h.name, path: hotelHomePath(hotel) },
         ]}
       />
       <CinematicHero

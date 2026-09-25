@@ -5,6 +5,7 @@ import { getHotel, getPage, getOffers, type HotelSlug } from '@/lib/queries/cont
 import { buildMetadata } from '@/lib/seo'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
+import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
 
@@ -33,7 +34,7 @@ export default async function SpecialOffersPage({ params }: { params: Promise<{ 
       <Breadcrumbs
         items={[
           { name: 'Home', path: '/' },
-          { name: h?.name ?? 'Hotel', path: `/${hotel}` },
+          { name: h?.name ?? 'Hotel', path: hotelHomePath(hotel) },
           { name: 'Special Offers', path: `/${hotel}/special-offers` },
         ]}
       />

@@ -1,6 +1,7 @@
 // lib/seo.ts — Metadata + JSON-LD structured-data builders.
 import type { Metadata } from 'next'
 import { mediaUrl } from './media'
+import { hotelHomePath } from '@/lib/routes'
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.chanceryhotels.com'
 // Guaranteed-present branded fallback: served by app/opengraph-image.tsx.
@@ -109,10 +110,10 @@ export function hotelJsonLd(h: HotelLd) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Hotel',
-    '@id': `${SITE_URL}/${h.slug}#hotel`,
+    '@id': `${SITE_URL}${hotelHomePath(h.slug)}#hotel`,
     name: h.name,
     description: h.intro_body || h.tagline,
-    url: `${SITE_URL}/${h.slug}`,
+    url: `${SITE_URL}${hotelHomePath(h.slug)}`,
     ...(image ? { image } : {}),
     ...(h.phone ? { telephone: h.phone } : {}),
     ...(h.email ? { email: h.email } : {}),

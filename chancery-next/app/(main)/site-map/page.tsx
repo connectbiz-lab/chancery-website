@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Hero } from '@/components/Hero'
 import { getHotels, getPage } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
+import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
 
@@ -65,7 +66,7 @@ export default async function SiteMapPage() {
               <div key={h.slug}>
                 <p className="eyebrow">{h.short_name}</p>
                 <ul className="list-clean" style={{ display: 'grid', gap: '0.5rem' }}>
-                  <li><Link href={`/${h.slug}`}>{h.short_name} home</Link></li>
+                  <li><Link href={hotelHomePath(h.slug)}>{h.short_name} home</Link></li>
                   {HOTEL_PAGES.map(([slug, label]) => (
                     <li key={slug}><Link href={`/${h.slug}/${slug}`}>{label}</Link></li>
                   ))}

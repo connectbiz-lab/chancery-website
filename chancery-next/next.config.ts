@@ -1,6 +1,10 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  // The Pavilion is the home page; its old hotel-home URL folds into /.
+  async redirects() {
+    return [{ source: '/pavilion', destination: '/', permanent: true }]
+  },
   images: {
     // We bypass Vercel's optimizer (it cached stale AVIF variants per source URL
     // with no clean purge, so heroes showed the previous photo in AVIF-requesting

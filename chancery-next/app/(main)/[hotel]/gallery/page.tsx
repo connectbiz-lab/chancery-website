@@ -5,6 +5,7 @@ import { buildMetadata } from '@/lib/seo'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './GalleryPage.css'
+import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
 
@@ -33,7 +34,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ hotel:
       <Breadcrumbs
         items={[
           { name: 'Home', path: '/' },
-          { name: h?.name ?? 'Hotel', path: `/${hotel}` },
+          { name: h?.name ?? 'Hotel', path: hotelHomePath(hotel) },
           { name: 'Gallery', path: `/${hotel}/gallery` },
         ]}
       />
