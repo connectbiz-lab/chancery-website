@@ -1,11 +1,11 @@
-/* HotelToggle — the reference's Winter / Summer pill, sitting top-left over the
-   hero photo: a hairline capsule on frosted glass, one segment per hotel, the
+/* HotelToggle — the reference's Winter / Summer pill, centred near the top of
+   the hero photo: a hairline capsule on frosted glass, one segment per hotel, the
    current segment filled ivory with navy type, the other in ivory. Each
    segment carries the hotel's "C" monogram on its outer side. */
 .hotel-toggle {
   position: absolute; z-index: 3;
   top: calc(104px + clamp(0.75rem, 2vw, 2rem) + clamp(0.9rem, 2.2vw, 1.75rem));
-  left: calc(clamp(1.5rem, 4vw, 4rem) + clamp(0.9rem, 2.2vw, 1.75rem));
+  left: 50%; transform: translateX(-50%);   /* centred on the photo (frame margins are symmetric) */
   display: inline-flex; align-items: center; padding: 4px;
   border: 1px solid rgba(250, 249, 248, 0.5); border-radius: 999px;
   background: rgba(250, 249, 248, 0.1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -39,7 +39,7 @@
 @media (max-width: 720px) {
   /* The photo frame is 24px in from each edge at 375px; the pill must stay
      inside it (≤ ~310px wide) — hence the tighter type, marks and insets. */
-  .hotel-toggle { top: calc(104px + 0.75rem + 0.6rem); left: calc(1.5rem + 0.5rem); padding: 3px; }
+  .hotel-toggle { top: calc(104px + 0.75rem + 0.6rem); padding: 3px; }
   .hotel-toggle-item { font-size: 0.56rem; letter-spacing: 0.04em; gap: 0.3rem; padding: 0.38rem 0.55rem; }
   .hotel-toggle-mark { width: 15px; height: 15px; }
   .hotel-toggle-item.pavilion .hotel-toggle-mark img { height: 33px; left: -8.8px; top: -0.8px; }
