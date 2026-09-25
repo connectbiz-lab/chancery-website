@@ -1,10 +1,11 @@
 'use client'
 // components/HotelToggleNav.tsx — client half of the hotel pill: one segment per
 // hotel, each carrying that hotel's own "C" monogram (cropped from its logo by
-// CSS), the current property filled ivory. Switching keeps you on the same
-// page — /pavilion/dining → /chancery/dining; the home (/) is the Pavilion.
+// CSS), the current property filled ivory. Each segment goes to that hotel's
+// HOME page (/ for the Pavilion, /chancery for the Chancery).
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { hotelHomePath } from '@/lib/routes'
 
 type Item = { slug: string; label: string; logo: string | null }
 
@@ -12,9 +13,6 @@ export function HotelToggleNav({ hotels }: { hotels: Item[] }) {
   const pathname = usePathname() ?? '/'
   const slugs = hotels.map((h) => h.slug)
   const current = slugs.find((s) => pathname === `/${s}` || pathname.startsWith(`/${s}/`)) ?? 'pavilion'
-  // The rest of the path after the hotel segment ('' on a hotel home or on /).
-  const rest = current && pathname.startsWith(`/${current}`) ? pathname.slice(current.length + 1) : ''
-  const hrefFor = (slug: string) => (slug === 'pavilion' && rest === '' ? '/' : `/${slug}${rest}`)
 
   return (
     <nav className="hotel-toggle" aria-label="Choose a hotel">
@@ -23,7 +21,7 @@ export function HotelToggleNav({ hotels }: { hotels: Item[] }) {
         return (
           <Link
             key={h.slug}
-            href={hrefFor(h.slug)}
+            href={hotelHomePath(h.slug)}
             className={`hotel-toggle-item ${h.slug}${active ? ' active' : ''}`}
             aria-current={active ? 'page' : undefined}
           >
