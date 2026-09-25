@@ -22,14 +22,17 @@ export const revalidate = 3600
 export async function generateMetadata() {
   const [page, site] = await Promise.all([getPage('home'), getSiteContent()])
   return buildMetadata({
-    title: page?.meta_title || site.site_title,
+    // The CMS 'home' meta title was written for the front door; this page is the group's story.
+    title: 'About the Chancery Group',
     description: page?.meta_description || site.tagline,
-    path: '/',
+    path: '/about',
     ogImagePath: page?.hero_image,
   })
 }
 
-export default async function Home() {
+// The Chancery Group page — both hotels, the group's story, dining, offers,
+// awards and guest stories. Lived at / until the Pavilion became the home.
+export default async function AboutPage() {
   const [page, hotels, offers, testimonials, restaurants] = await Promise.all([
     getPage('home'),
     getHotels(),

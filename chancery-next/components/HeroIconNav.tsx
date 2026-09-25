@@ -31,8 +31,9 @@ interface HeroIconNavProps {
 
 export function HeroIconNav({ scope = 'pavilion' }: HeroIconNavProps) {
   const pathname = usePathname()
-  const onHome = pathname === '/'
-  const hotelsHref = onHome ? '#hotels' : '/#hotels'
+  // The two-hotel picker lives on the group page (/about).
+  const onGroupPage = pathname === '/about'
+  const hotelsHref = onGroupPage ? '#hotels' : '/about#hotels'
 
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {

@@ -1,14 +1,11 @@
-import type { Metadata } from 'next'
+// app/layout.tsx — the BARE root layout: fonts, global styles and site metadata
+// only. Page chrome (Navbar + Footer) lives in app/(main)/layout.tsx; the
+// route group keeps every URL unchanged.
+import type { Metadata, Viewport } from 'next'
 import { Fraunces, Cormorant_Garamond, Inter } from 'next/font/google'
 import './globals.css'
 import './pages.css'
-import { Navbar } from '@/components/Navbar'
-import { Footer } from '@/components/Footer'
-import { ScrollToTop } from '@/components/ScrollToTop'
-import { JsonLd } from '@/components/JsonLd'
-import { getSiteContent, getHotels } from '@/lib/queries/content'
-import { organizationJsonLd, websiteJsonLd, SITE_URL } from '@/lib/seo'
-import type { Viewport } from 'next'
+import { SITE_URL } from '@/lib/seo'
 
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces', display: 'swap' })
 const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-cormorant', display: 'swap' })
@@ -29,18 +26,10 @@ export const viewport: Viewport = {
   themeColor: '#1a2238',
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const [site, hotels] = await Promise.all([getSiteContent(), getHotels()])
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${cormorant.variable} ${inter.variable}`}>
-      <body>
-        <JsonLd data={organizationJsonLd(site)} />
-        <JsonLd data={websiteJsonLd(site)} />
-        <Navbar site={site} hotels={hotels} />
-        {children}
-        <Footer site={site} hotels={hotels} />
-        <ScrollToTop />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

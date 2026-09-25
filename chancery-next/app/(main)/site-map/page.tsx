@@ -17,6 +17,7 @@ const HOTEL_PAGES: Array<[string, string]> = [
 
 const SITE_PAGES: Array<[string, string]> = [
   ['/', 'Home'],
+  ['/about', 'About the group'],
   ['/rooms', 'All rooms'],
   ['/faq', 'FAQ'],
   ['/careers', 'Careers'],

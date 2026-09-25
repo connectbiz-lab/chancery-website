@@ -2,8 +2,10 @@
 // a big crisp photo on a clean white surround, with the page name set large in
 // the display serif (eyebrow + italic script accent) overlaid bottom-right.
 // Optional `foot` renders a slim row just beneath the hero (CTAs / address).
+// The hotel pill (HotelToggle) sits top-left of the photo on every hero.
 import type { CSSProperties, ReactNode } from 'react'
 import { HeroMedia } from './HeroMedia'
+import { HotelToggle } from './HotelToggle'
 import './CinematicHero.css'
 
 export function CinematicHero({
@@ -40,6 +42,7 @@ export function CinematicHero({
         <div className="chero-media" style={mediaStyle}>
           <HeroMedia image={image} video={video} poster={poster} alt={title} />
         </div>
+        <HotelToggle />
         <div className="chero-name">
           <span className="chero-eyebrow">{eyebrow}</span>
           <h1 className="chero-title">{title}</h1>

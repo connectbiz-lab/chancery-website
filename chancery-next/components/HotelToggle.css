@@ -1,0 +1,48 @@
+/* HotelToggle — the reference's Winter / Summer pill, sitting top-left over the
+   hero photo: a hairline capsule on frosted glass, one segment per hotel, the
+   current segment filled ivory with navy type, the other in ivory. Each
+   segment carries the hotel's "C" monogram on its outer side. */
+.hotel-toggle {
+  position: absolute; z-index: 3;
+  top: calc(104px + clamp(0.75rem, 2vw, 2rem) + clamp(0.9rem, 2.2vw, 1.75rem));
+  left: calc(clamp(1.5rem, 4vw, 4rem) + clamp(0.9rem, 2.2vw, 1.75rem));
+  display: inline-flex; align-items: center; padding: 4px;
+  border: 1px solid rgba(250, 249, 248, 0.5); border-radius: 999px;
+  background: rgba(250, 249, 248, 0.1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.hotel-toggle-item {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.55rem 1.3rem; border-radius: 999px; border: 1px solid transparent;
+  font-size: clamp(0.78rem, 0.95vw, 0.9rem); letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap;
+  color: rgba(250, 249, 248, 0.92); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  transition: background 0.25s var(--t-easing), color 0.25s var(--t-easing), border-color 0.25s var(--t-easing);
+}
+.hotel-toggle-item:last-child { flex-direction: row-reverse; }
+.hotel-toggle-item:hover { color: var(--c-ivory); }
+.hotel-toggle-item.active {
+  background: var(--c-ivory); color: var(--c-navy); text-shadow: none;
+  border-color: rgba(255, 255, 255, 0.85); box-shadow: 0 1px 8px rgba(0, 0, 0, 0.18);
+}
+/* The monogram: a fixed box cropping the hotel logo down to its "C" mark —
+   white when inactive, in brand colour on the ivory fill when active. */
+.hotel-toggle-mark { position: relative; width: 20px; height: 20px; flex: none; overflow: hidden; }
+.hotel-toggle-mark img { position: absolute; max-width: none; filter: brightness(0) invert(1); opacity: 0.92; transition: filter 0.25s var(--t-easing); }
+.hotel-toggle-item.active .hotel-toggle-mark img { filter: none; opacity: 1; }
+/* TCP-clean.webp is 868×880; the plum C block sits at x 305–560, y 40–400.
+   Image height 44px makes the block ~18px tall; offset to centre it. */
+.hotel-toggle-item.pavilion .hotel-toggle-mark img { height: 44px; width: auto; left: -11.5px; top: -1px; }
+/* TCH-clean.webp is 978×545; the gold flourished C spans x 215–730, y 30–260 —
+   a wide mark (≈2.2:1), so its box is wider. Image width 82px → C ~20px tall. */
+.hotel-toggle-item.chancery .hotel-toggle-mark { width: 44px; }
+.hotel-toggle-item.chancery .hotel-toggle-mark img { width: 82px; height: auto; left: -18px; top: -2.5px; }
+
+@media (max-width: 720px) {
+  /* The photo frame is 24px in from each edge at 375px; the pill must stay
+     inside it (≤ ~310px wide) — hence the tighter type, marks and insets. */
+  .hotel-toggle { top: calc(104px + 0.75rem + 0.6rem); left: calc(1.5rem + 0.5rem); padding: 3px; }
+  .hotel-toggle-item { font-size: 0.56rem; letter-spacing: 0.04em; gap: 0.3rem; padding: 0.38rem 0.55rem; }
+  .hotel-toggle-mark { width: 15px; height: 15px; }
+  .hotel-toggle-item.pavilion .hotel-toggle-mark img { height: 33px; left: -8.8px; top: -0.8px; }
+  .hotel-toggle-item.chancery .hotel-toggle-mark { width: 32px; }
+  .hotel-toggle-item.chancery .hotel-toggle-mark img { width: 60px; left: -13.2px; top: -1.8px; }
+}

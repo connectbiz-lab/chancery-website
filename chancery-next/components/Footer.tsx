@@ -133,6 +133,7 @@ export function Footer({ site, hotels }: FooterProps) {
             <div className="footer-col">
               <p className="eyebrow">Site</p>
               <p className="footer-links column">
+                <Link href="/about">About the Group</Link>
                 <Link href="/rooms">All Rooms</Link>
                 <Link href="/faq">FAQ</Link>
                 <Link href="/careers">Careers</Link>

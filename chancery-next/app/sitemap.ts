@@ -3,7 +3,7 @@ import { SITE_URL } from '@/lib/seo'
 
 const HOTELS = ['chancery', 'pavilion']
 const HOTEL_PAGES = ['', '/accommodation', '/dining', '/plan-your-event', '/special-offers', '/gallery', '/contact-us']
-const BRAND_PAGES = ['', '/rooms', '/faq', '/careers', '/catering', '/site-map', '/privacy', '/terms', '/accessibility-statement']
+const BRAND_PAGES = ['', '/about', '/rooms', '/faq', '/careers', '/catering', '/site-map', '/privacy', '/terms', '/accessibility-statement']
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
