@@ -31,6 +31,7 @@ const items = [
   { Icon: OffersIcon,  label: "Offers",     to: (s: HotelSlug) => `/${s}/special-offers` },
   { Icon: GalleryIcon, label: "Gallery",    to: (s: HotelSlug) => `/${s}/gallery` },
   { Icon: ContactIcon, label: "Contact",    to: (s: HotelSlug) => `/${s}/contact-us` },
+  { Icon: HotelsIcon,  label: "About",      to: () => "/about" },
 ];
 
 export function SideMenu({ open, scope, hotels, onClose }: SideMenuProps) {

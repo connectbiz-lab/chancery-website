@@ -100,7 +100,13 @@
   .chero { height: clamp(440px, 70vh, 620px); }
   /* Anchor the name low and compact on phones so it sits over the foreground/
      floor rather than across the subject in a portrait crop. */
-  .chero-name { right: clamp(1rem, 4vw, 1.5rem); bottom: clamp(1rem, 3.5vh, 1.75rem); max-width: 82%; }
+  /* Inset from the PHOTO's edge, not the section's: the photo sits
+     clamp(1.5rem, 4vw, 4rem) in from the section, so the name needs that plus
+     its own gutter or its last glyphs spill onto the cream surround. */
+  .chero-name {
+    right: calc(clamp(1.5rem, 4vw, 4rem) + 0.75rem); bottom: clamp(1rem, 3.5vh, 1.75rem);
+    max-width: calc(100% - 2 * clamp(1.5rem, 4vw, 4rem) - 1.5rem);
+  }
   .chero-title { font-size: clamp(1.5rem, 6.2vw, 2rem); }
   .chero-eyebrow { font-size: 0.66rem; letter-spacing: 0.12em; margin-bottom: 0.4rem; }
   .chero-script { font-size: clamp(0.9rem, 3.4vw, 1.1rem); margin-top: 0.3rem; }
