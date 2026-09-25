@@ -20,8 +20,10 @@ export function Navbar({ site, hotels }: NavbarProps) {
   // Derive the active hotel from the route. The Navbar lives in the root
   // layout — above the <HotelScope> provider in app/[hotel]/layout — so it
   // can't read that context; the pathname is the reliable source here.
+  // The home (/) IS the Pavilion's page, so it carries the Pavilion mark too;
+  // other brand-level pages (/about, /careers …) keep the group mark.
   const active: HotelSlug | null =
-    pathname.startsWith("/pavilion") ? "pavilion"
+    pathname === "/" || pathname.startsWith("/pavilion") ? "pavilion"
     : pathname.startsWith("/chancery") ? "chancery"
     : null;
   const [scrolled, setScrolled] = useState(false);
