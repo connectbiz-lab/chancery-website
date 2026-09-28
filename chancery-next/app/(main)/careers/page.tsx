@@ -44,7 +44,7 @@ export default async function CareersPage() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow center">What we look for</p>
-            <h2 className="h1">Three things we hire for</h2>
+            <h2 className="h1">Three Things We Hire For</h2>
           </div>
           <div className="card-grid three">
             {PILLARS.map(([title, body]) => (
@@ -60,7 +60,7 @@ export default async function CareersPage() {
       <section className="section bg-navy tight">
         <div className="container narrow text-center">
           <p className="eyebrow center" style={{ color: 'var(--c-gold-soft)' }}>Apply</p>
-          <h2 className="h2" style={{ color: 'var(--c-ivory)' }}>Write to our HR team</h2>
+          <h2 className="h2" style={{ color: 'var(--c-ivory)' }}>Write to Our HR Team</h2>
           <p className="lede" style={{ color: 'rgba(246,241,231,0.85)' }}>
             Send a one-page CV and a short note about the role you&apos;re interested in.
             Tell us a little about the kind of hospitality you&apos;d like to be part of.

@@ -101,7 +101,7 @@ export function BookTableModal({ open, onClose, hotel, restaurant }: Props) {
         ) : (
           <>
             <p className="eyebrow">{restaurant}</p>
-            <h2 className="h3">Book a table</h2>
+            <h2 className="h3">Book a Table</h2>
             <form className="btm-form" onSubmit={submit}>
               <div className="btm-grid">
                 <label className="field f-wide">

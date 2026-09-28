@@ -23,7 +23,7 @@ export function BookSplash({ url, hotel }: { url: string; hotel: 'chancery' | 'p
     >
       <div>
         <p className="eyebrow center" style={{ color: 'var(--c-gold-soft)' }}>One moment</p>
-        <h1 className="h1" style={{ color: 'var(--c-ivory)' }}>Booking your stay</h1>
+        <h1 className="h1" style={{ color: 'var(--c-ivory)' }}>Booking Your Stay</h1>
         <p style={{ color: 'rgba(246,241,231,0.85)', maxWidth: '44ch', margin: '0 auto' }}>
           Redirecting to our secure booking system at{' '}
           {hotel === 'chancery' ? 'The Chancery Hotel, Lavelle Road' : 'The Chancery Pavilion, Residency Road'}.

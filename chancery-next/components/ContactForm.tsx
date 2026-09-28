@@ -45,7 +45,7 @@ export function ContactForm({ hotel }: { hotel: HotelSlug }) {
     <div className="enquiry-band">
       <div className="enquiry-band__head">
         <p className="eyebrow">Enquiry form</p>
-        <h2 className="h3">Send us a message</h2>
+        <h2 className="h3">Send Us a Message</h2>
       </div>
       <form className="enquiry-form" onSubmit={submit}>
         <div className="enquiry-grid">

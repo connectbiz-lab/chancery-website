@@ -44,7 +44,7 @@ export function Footer({ site, hotels }: FooterProps) {
         <div className="container narrow">
           <p className="eyebrow center">{s?.newsletter_heading ?? "Stay in touch"}</p>
           <h2 className="h2" style={{ textAlign: "center" }}>
-            News, openings and seasonal offers
+            News, Openings and Seasonal Offers
           </h2>
           <p className="lede" style={{ margin: "0 auto", textAlign: "center" }}>
             {s?.newsletter_description ??

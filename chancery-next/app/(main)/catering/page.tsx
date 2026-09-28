@@ -67,7 +67,7 @@ export default async function CateringPage() {
         <div className="container">
           <div className="section-head left">
             <p className="eyebrow">We cater for</p>
-            <h2 className="h2">Occasions of every scale</h2>
+            <h2 className="h2">Occasions of Every Scale</h2>
           </div>
           <ul className="amenities" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))' }}>
             {OCCASIONS.map(([title, body]) => (
@@ -86,7 +86,7 @@ export default async function CateringPage() {
         <div className="container">
           <div className="section-head left">
             <p className="eyebrow">End-to-end</p>
-            <h2 className="h2">What we handle</h2>
+            <h2 className="h2">What We Handle</h2>
             <p className="lede">From menu planning to on-ground service, every order ships under one roof and one accountable team.</p>
           </div>
           <ul className="amenities" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
@@ -106,7 +106,7 @@ export default async function CateringPage() {
         <div className="container">
           <div className="section-head left">
             <p className="eyebrow">Trusted by</p>
-            <h2 className="h2">Chosen by leading organisations</h2>
+            <h2 className="h2">Chosen by Leading Organisations</h2>
             <p className="lede">From global technology firms to national institutions, teams across Bengaluru rely on Chancery for their largest events.</p>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem 1rem' }}>
@@ -133,7 +133,7 @@ export default async function CateringPage() {
         <div className="container">
           <div className="section-head left">
             <p className="eyebrow">Proven at scale</p>
-            <h2 className="h2">Venues we&rsquo;ve catered</h2>
+            <h2 className="h2">Venues We&rsquo;ve Catered</h2>
             <p className="lede">Stadiums, convention centres, palace grounds and open fields — wherever the occasion calls for it.</p>
           </div>
           <ul className="amenities" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))' }}>
@@ -152,7 +152,7 @@ export default async function CateringPage() {
       <section className="section bg-navy tight">
         <div className="container narrow text-center">
           <p className="eyebrow center" style={{ color: 'var(--c-gold-soft)' }}>Request a proposal</p>
-          <h2 className="h2" style={{ color: 'var(--c-ivory)' }}>Tell us about your event</h2>
+          <h2 className="h2" style={{ color: 'var(--c-ivory)' }}>Tell Us About Your Event</h2>
           <Link href="/pavilion/contact-us" className="btn light">Contact our catering team</Link>
         </div>
       </section>

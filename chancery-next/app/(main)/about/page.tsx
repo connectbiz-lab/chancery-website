@@ -81,7 +81,7 @@ export default async function AboutPage() {
           <div className="intro-claridges">
             <div className="intro-claridges__text">
               <p className="eyebrow">The Chancery Group</p>
-              <h2 className="display">A quiet kind of luxury, since 1968.</h2>
+              <h2 className="display">A Quiet Kind of Luxury, Since 1968.</h2>
               <p className="lede">
                 {p?.intro_body ??
                   "Two distinguished hotels at the heart of Bangalore — bound by a shared commitment to timeless hospitality, elegant interiors and the city's most thoughtful dining."}
@@ -110,7 +110,7 @@ export default async function AboutPage() {
         <Reveal className="container">
           <div className="section-head">
             <p className="eyebrow center">Our journey</p>
-            <h2 className="h1">Three generations, one address book</h2>
+            <h2 className="h1">Three Generations, One Address Book</h2>
             <p className="lede">
               An integrated family group with interests in farming, real estate and
               hospitality — Chancery&rsquo;s story across Bengaluru began long before
@@ -161,7 +161,7 @@ export default async function AboutPage() {
         <Reveal className="container">
           <div className="metrics-head">
             <p className="eyebrow">The Chancery Group at a glance</p>
-            <h2 className="display">By the numbers</h2>
+            <h2 className="display">By the Numbers</h2>
             <p className="lede">
               From 26,800 sq ft of banqueting to 2,500 events a year, the Chancery
               Group is one of Bangalore&rsquo;s largest stages for weddings,
@@ -198,7 +198,7 @@ export default async function AboutPage() {
         <Reveal className="container">
           <div className="section-head">
             <p className="eyebrow center">Dining</p>
-            <h2 className="h1">A reputation built around the table</h2>
+            <h2 className="h1">A Reputation Built Around the Table</h2>
             <p className="lede">
               From Chef Okada&apos;s sashimi at Matsuri to rooftop craft beers
               overlooking the city, Chancery restaurants are destinations in themselves.
@@ -237,7 +237,7 @@ export default async function AboutPage() {
             <div className="section-head">
               <p className="eyebrow center">Special offers</p>
               <h2 className="h1" style={{ color: 'var(--c-ivory)' }}>
-                Curated packages
+                Curated Packages
               </h2>
             </div>
             <div className="card-grid three">
@@ -275,7 +275,7 @@ export default async function AboutPage() {
         <Reveal className="container">
           <div className="section-head">
             <p className="eyebrow center">Awards &amp; accolades</p>
-            <h2 className="h1">Recognised by the city, the press, and our guests</h2>
+            <h2 className="h1">Recognised by the City, the Press, and Our Guests</h2>
           </div>
           <div className="awards-grid">
             <article className="awards-card">

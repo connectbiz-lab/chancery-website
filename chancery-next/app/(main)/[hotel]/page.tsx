@@ -132,7 +132,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
             </div>
             <div className="editorial-text">
               <p className="eyebrow">Heritage & service</p>
-              <h2 className="h2">A welcome that has lasted generations</h2>
+              <h2 className="h2">A Welcome That Has Lasted Generations</h2>
               <p className="lede">
                 {h.intro_body}
               </p>
@@ -147,7 +147,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
           <div className="container">
             <div className="section-head">
               <p className="eyebrow center">Stay</p>
-              <h2 className="h1">Rooms & suites</h2>
+              <h2 className="h1">Rooms & Suites</h2>
               <p className="lede">
                 Spaces of quiet luxury — designed for travellers who notice the details.
               </p>
@@ -175,7 +175,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
           <div className="container">
             <div className="section-head">
               <p className="eyebrow center">Dining</p>
-              <h2 className="h1">Tables of distinction</h2>
+              <h2 className="h1">Tables of Distinction</h2>
             </div>
             <div className="card-grid three">
               {diningRestaurants.map((r) => (
@@ -217,7 +217,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
           <div className="container">
             <div className="section-head">
               <p className="eyebrow center">Offers</p>
-              <h2 className="h1">Curated packages</h2>
+              <h2 className="h1">Curated Packages</h2>
             </div>
             <div className="card-grid three">
               {offers.slice(0, 3).map((o) => (

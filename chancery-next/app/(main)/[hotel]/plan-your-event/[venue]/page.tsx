@@ -118,7 +118,7 @@ export default async function VenueDetailPage(
             <aside className="venue-detail__aside">
               {capacities.length > 0 && (
                 <div className="venue-panel">
-                  <h3 className="vp-title">Capacity by layout</h3>
+                  <h3 className="vp-title">Capacity by Layout</h3>
                   <table className="venue-cap">
                     <tbody>
                       {capacities.map(([label, n]) => (
@@ -130,7 +130,7 @@ export default async function VenueDetailPage(
               )}
               {pricing.length > 0 && (
                 <div className="venue-panel">
-                  <h3 className="vp-title">Indicative pricing</h3>
+                  <h3 className="vp-title">Indicative Pricing</h3>
                   <table className="venue-cap">
                     <tbody>
                       {pricing.map(([label, n]) => (

@@ -7,7 +7,7 @@ export default function NotFound() {
     <section className="section" style={{ minHeight: '70dvh', display: 'grid', placeItems: 'center' }}>
       <div className="container narrow text-center">
         <p className="eyebrow center">404</p>
-        <h1 className="display">Page not found</h1>
+        <h1 className="display">Page Not Found</h1>
         <p className="lede" style={{ margin: '0 auto 2rem' }}>
           The page you&apos;re looking for has moved or doesn&apos;t exist. Try the home page,
           or explore one of our two hotels.

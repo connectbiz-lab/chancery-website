@@ -109,7 +109,7 @@ export function EventEnquiryModal({ open, onClose, hotel, venue = '' }: Props) {
         ) : (
           <>
             <p className="eyebrow">{venue || 'Meetings & Events'}</p>
-            <h2 className="h3">Request a proposal</h2>
+            <h2 className="h3">Request a Proposal</h2>
             <form className="btm-form" onSubmit={submit}>
               <div className="btm-grid">
                 <label className="field f-wide">

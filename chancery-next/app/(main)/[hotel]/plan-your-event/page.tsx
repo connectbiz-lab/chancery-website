@@ -101,7 +101,7 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
 
           <div className="section-head" style={{ marginTop: '1rem' }}>
             <p className="eyebrow center">Our spaces</p>
-            <h2 className="h2">Event spaces &amp; venues</h2>
+            <h2 className="h2">Event Spaces &amp; Venues</h2>
           </div>
           <div className="venues-grid">
             {venues.map((v) => (
@@ -132,7 +132,7 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
         <div className="container narrow text-center">
           <p className="eyebrow center" style={{ color: 'var(--c-gold-soft)' }}>Plan with us</p>
           <h2 className="h2" style={{ color: 'var(--c-ivory)' }}>
-            Tell us about your occasion
+            Tell Us About Your Occasion
           </h2>
           <p className="lede" style={{ color: 'rgba(246,241,231,0.85)' }}>
             Our Meetings &amp; Events team will craft a tailored proposal for your celebration —
