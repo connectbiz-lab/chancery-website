@@ -61,9 +61,6 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
   // the full dining page.
   const diningRestaurants = restaurants.filter((r) => r.hero_image)
   const heroHeading = h.name || HOTEL_NAME_FALLBACK[hotel as HotelSlug]
-  // Just the tag — the tagline beneath already names the road, so adding the
-  // location here read 'Residency Road' twice in one hero.
-  const heroEyebrow = h.location_tag
   // Pavilion leads with a looping montage video hero; other hotels keep the photo.
   const heroVideo = hotel === 'pavilion' ? mediaUrl('video/tcp-pavilion-hero.mp4') : null
   const heroPoster = hotel === 'pavilion' ? mediaUrl('video/tcp-pavilion-hero-poster.jpg') : null
@@ -81,7 +78,6 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
         image={h.hero_image ?? null}
         video={heroVideo}
         poster={heroPoster}
-        eyebrow={heroEyebrow}
         title={heroHeading}
         script={h.tagline || undefined}
         focal={heroVideo ? undefined : hotel === 'pavilion' ? '50% 22%' : undefined}

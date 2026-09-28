@@ -24,7 +24,8 @@ export function CinematicHero({
    *  precedence over `image` when set; `poster` (or `image`) is the still fallback. */
   video?: string | null
   poster?: string | null
-  eyebrow: string
+  /** Optional kicker above the title; the hotel home hero runs without one. */
+  eyebrow?: string
   title: string
   script?: string | null
   /** object-position for the crop, e.g. '50% 22%' to keep a building's roofline. */
@@ -44,7 +45,7 @@ export function CinematicHero({
         </div>
         <HotelToggle />
         <div className="chero-name">
-          <span className="chero-eyebrow">{eyebrow}</span>
+          {eyebrow && <span className="chero-eyebrow">{eyebrow}</span>}
           <h1 className="chero-title">{title}</h1>
           {script && <span className="chero-script">{script}</span>}
         </div>
