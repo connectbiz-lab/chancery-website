@@ -7,14 +7,16 @@
   top: calc(104px + clamp(0.75rem, 2vw, 2rem) + clamp(0.9rem, 2.2vw, 1.75rem));
   left: 50%; transform: translateX(-50%);   /* centred on the photo (frame margins are symmetric) */
   display: inline-flex; align-items: center; padding: 4px;
-  border: 1px solid rgba(250, 249, 248, 0.5); border-radius: 999px;
-  background: rgba(250, 249, 248, 0.1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(250, 249, 248, 0.6); border-radius: 999px;
+  /* Navy-tinted glass (not clear) so the unselected name still reads on a
+     bright photo — clear glass lost the ivory type on light backgrounds. */
+  background: rgba(14, 34, 55, 0.42); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
 }
 .hotel-toggle-item {
   display: inline-flex; align-items: center; gap: 0.6rem;
   padding: 0.55rem 1.3rem; border-radius: 999px; border: 1px solid transparent;
   font-size: clamp(0.78rem, 0.95vw, 0.9rem); letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap;
-  color: rgba(250, 249, 248, 0.92); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  color: var(--c-ivory); text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   transition: background 0.25s var(--t-easing), color 0.25s var(--t-easing), border-color 0.25s var(--t-easing);
 }
 .hotel-toggle-item:last-child { flex-direction: row-reverse; }
