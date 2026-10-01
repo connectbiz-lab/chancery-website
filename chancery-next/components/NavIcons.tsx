@@ -121,6 +121,19 @@ export function ContactIcon({ size, className }: IconProps) {
 
 /* ── Amenity + occasion marks (hotel amenities grid, Events page occasions) ── */
 
+export function RestaurantIcon({ size, className }: IconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      {/* Fork and knife. */}
+      <path d="M7 3.5v6a2 2 0 0 0 2 2v9" />
+      <path d="M5 3.5v5" />
+      <path d="M9 3.5v5" />
+      <path d="M11 3.5v6a2 2 0 0 1-2 2" />
+      <path d="M17 20.5v-17c-2 1.5-3 4-3 7.5h3" />
+    </svg>
+  );
+}
+
 export function BarIcon({ size, className }: IconProps) {
   return (
     <svg {...baseProps(size, className)}>

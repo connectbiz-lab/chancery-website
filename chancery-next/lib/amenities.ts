@@ -3,7 +3,7 @@
 // a hotel with no list supplied simply shows no amenities section.
 import type { ComponentType } from 'react'
 import {
-  BarIcon, BusinessIcon, DiningIcon, FitnessIcon, LaundryIcon, PoolIcon,
+  BarIcon, BusinessIcon, FitnessIcon, LaundryIcon, PoolIcon, RestaurantIcon,
   RoomServiceIcon, TurndownIcon, ValetIcon, WakeUpIcon, WifiIcon,
 } from '@/components/NavIcons'
 
@@ -16,7 +16,7 @@ export type Amenity = {
 
 export const HOTEL_AMENITIES: Record<string, Amenity[]> = {
   pavilion: [
-    { Icon: DiningIcon, label: 'Restaurant', to: 'dining' },
+    { Icon: RestaurantIcon, label: 'Restaurant', to: 'dining' },
     { Icon: BarIcon, label: 'Bar', to: 'dining' },
     { Icon: FitnessIcon, label: 'Fitness Center' },
     { Icon: PoolIcon, label: 'Swimming Pool' },
