@@ -21,8 +21,16 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './HotelHomePage.css'
 import { hotelHomePath } from '@/lib/routes'
+import { HOTEL_AMENITIES } from '@/lib/amenities'
 
 export const revalidate = 3600
+
+// Per-hotel section copy supplied by the hotel teams ("Website Content" sheet,
+// Oct 2026). `aboutEyebrow: null` renders the About block with no kicker.
+const HOME_COPY: Record<HotelSlug, { aboutEyebrow: string | null; aboutHeading: string; diningHeading: string }> = {
+  pavilion: { aboutEyebrow: null, aboutHeading: 'Hospitality in the Heart of Bangalore', diningHeading: 'Symphony of Flavors' },
+  chancery: { aboutEyebrow: 'Business Hotel', aboutHeading: 'A Welcome That Has Lasted Generations', diningHeading: 'Tables of Distinction' },
+}
 
 // Slug → human name fallback so metadata/hero can resolve before the hotel row.
 const HOTEL_NAME_FALLBACK: Record<HotelSlug, string> = {
@@ -61,6 +69,8 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
   // the full dining page.
   const diningRestaurants = restaurants.filter((r) => r.hero_image)
   const heroHeading = h.name || HOTEL_NAME_FALLBACK[hotel as HotelSlug]
+  const copy = HOME_COPY[hotel as HotelSlug]
+  const amenities = HOTEL_AMENITIES[hotel] ?? []
   // Pavilion leads with a looping montage video hero; other hotels keep the photo.
   const heroVideo = hotel === 'pavilion' ? mediaUrl('video/tcp-pavilion-hero.mp4') : null
   const heroPoster = hotel === 'pavilion' ? mediaUrl('video/tcp-pavilion-hero-poster.jpg') : null
@@ -131,8 +141,8 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
               </div>
             </div>
             <div className="editorial-text">
-              <p className="eyebrow">Heritage & service</p>
-              <h2 className="h2">A Welcome That Has Lasted Generations</h2>
+              {copy.aboutEyebrow && <p className="eyebrow">{copy.aboutEyebrow}</p>}
+              <h2 className="h2">{copy.aboutHeading}</h2>
               <p className="lede">
                 {h.intro_body}
               </p>
@@ -148,9 +158,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
             <div className="section-head">
               <p className="eyebrow center">Stay</p>
               <h2 className="h1">Rooms & Suites</h2>
-              <p className="lede">
-                Spaces of quiet luxury — designed for travellers who notice the details.
-              </p>
+              <p className="lede">Designed for Discerning Travellers</p>
             </div>
             <div className="card-grid three">
               {rooms.slice(0, 3).map((r) => (
@@ -175,7 +183,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
           <div className="container">
             <div className="section-head">
               <p className="eyebrow center">Dining</p>
-              <h2 className="h1">Tables of Distinction</h2>
+              <h2 className="h1">{copy.diningHeading}</h2>
             </div>
             <div className="card-grid three">
               {diningRestaurants.map((r) => (
@@ -207,6 +215,33 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
             <div className="text-center">
               <Link href={`/${hotel}/plan-your-event`} className="btn light">Explore venues</Link>
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* General amenities — icon grid; Restaurant and Bar link to the dining page. */}
+      {amenities.length > 0 && (
+        <section className="section bg-ivory">
+          <div className="container">
+            <div className="section-head">
+              <p className="eyebrow center">Amenities</p>
+              <h2 className="h1">Hotel Amenities</h2>
+            </div>
+            <ul className="amenities-grid">
+              {amenities.map(({ Icon, label, to }) => {
+                const inner = (
+                  <>
+                    <span className="amenity-icon"><Icon size={28} /></span>
+                    <span className="amenity-label">{label}</span>
+                  </>
+                )
+                return (
+                  <li key={label} className="amenity">
+                    {to ? <Link href={`/${hotel}/${to}`}>{inner}</Link> : inner}
+                  </li>
+                )
+              })}
+            </ul>
           </div>
         </section>
       )}

@@ -65,6 +65,8 @@ export default async function VenueDetailPage(
       ['Cocktail / Reception', v.cap_cocktail],
     ] as Array<[string, number | null]>
   ).filter(([, n]) => n != null) as Array<[string, number]>
+  // A boardroom has one layout: no per-layout figures, just its seating.
+  if (capacities.length === 0 && v.kind === 'executive' && v.guests_max) capacities.push(['Boardroom Style', v.guests_max])
 
   const pricing: Array<[string, number]> = (
     [

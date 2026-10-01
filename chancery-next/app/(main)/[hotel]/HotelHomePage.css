@@ -17,3 +17,25 @@
   border-radius: calc(var(--radius, 4px) + 6px);
   pointer-events: none;
 }
+
+/* General amenities — a centred grid of ringed line icons with small-caps labels. */
+.amenities-grid {
+  list-style: none; margin: 0 auto; padding: 0; max-width: 62rem;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 2.25rem 1rem;
+}
+.amenity { flex: 0 0 150px; }
+.amenity, .amenity a {
+  display: flex; flex-direction: column; align-items: center; gap: 0.85rem;
+  text-align: center; color: var(--c-navy);
+}
+.amenity-icon {
+  display: grid; place-items: center; width: 68px; height: 68px;
+  border: 1px solid var(--c-gold); border-radius: 50%; color: var(--c-navy);
+  transition: background 0.25s var(--t-easing), color 0.25s var(--t-easing);
+}
+.amenity a:hover .amenity-icon { background: var(--c-navy); color: var(--c-ivory); }
+.amenity-label {
+  font-family: var(--f-sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase; line-height: 1.5; color: var(--c-charcoal);
+}
+@media (max-width: 520px) { .amenity { flex-basis: 42%; } }

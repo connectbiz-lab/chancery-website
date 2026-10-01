@@ -1,0 +1,183 @@
+[
+ {
+  "op": "update",
+  "table": "hotel",
+  "match": {
+   "slug": "pavilion"
+  },
+  "set": {
+   "intro_body": "The Chancery Pavilion is the flagship of the Chancery Group, with 20 years of timeless hospitality. 223 tastefully designed rooms and suites rising above Residency Road. With 20,000 sq. ft. of banqueting space, Alchemy’s award-winning rooftop dining featuring progressive Indian cuisine and a microbrewery, Ithaca’s 24/7 coffee shop overlooking the pool, and a glittering lobby, the hotel also offers a well-equipped gymnasium and outdoor swimming pool."
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Superior Room",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "bed_type": "King / Twin",
+   "description": "Elegantly furnished for a comfortable stay, with everything you need. A refined space designed for effortless comfort and relaxation.",
+   "amenities": "Free Wi-Fi\nSmart TV\nIron & Ironing Board\nElectric Kettle\nSafe Locker\nPremium Bath Amenities"
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Deluxe Room",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "bed_type": "King / Twin",
+   "description": "Contemporary interiors with plush furnishings and modern amenities, thoughtfully designed for a comfortable stay. Non-smoking rooms featuring a Smart TV and inviting city views.",
+   "amenities": "Free Wi-Fi\nCity / Pool View\nSmart TV\nIron & Ironing Board\nElectric Kettle\nSafe Locker\nPremium Bath Amenities"
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Club Pavilion",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "bed_type": "King / Twin",
+   "description": "Located on the upper floors, with a separate shower area and bathtub, complemented by an array of premium amenities for an elevated stay.",
+   "amenities": "Free Wi-Fi\nSmart TV\nIron & Ironing Board\nElectric Kettle\nSafe Locker\nPremium Bath Amenities"
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Executive Suite",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "bed_type": "King",
+   "description": "Spaciously designed with a separate living room and dining facilities, complemented by a powder room and a well-appointed four-fixture bathroom for a comfortable and refined stay.",
+   "amenities": "Free Wi-Fi\nSmart TV\nSeparate Living\nPowder Room\nIron & Ironing Board\nElectric Kettle\nSafe Locker\nPremium Bath Amenities"
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Presidential Suite",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "bed_type": "King",
+   "description": "This distinguished suite offers expansive living spaces, refined interiors and panoramic city views. Thoughtfully designed with spacious dining and lounge areas, it offers an exceptional setting for privacy, comfort and luxury.",
+   "amenities": "Grand Living Room\nJacuzzi\nDining Area\nFree Wi-Fi\nSmart TV\nIron & Ironing Board\nElectric Kettle\nSafe Locker\nPremium Bath Amenities"
+  }
+ },
+ {
+  "op": "insert_if_missing",
+  "table": "offer",
+  "match": {
+   "title": "Suite Escape",
+   "hotel": "pavilion"
+  },
+  "row": {
+   "hotel": "pavilion",
+   "title": "Suite Escape",
+   "tag": "Executive Suite",
+   "description": "Stay 2 Nights & Enjoy 50% Off the 3rd Night. Book our Executive Suite for a minimum of two nights and enjoy a flat 50% saving on your third night. With a spacious separate living area, the suite is thoughtfully designed for comfortable and memorable family stays.",
+   "promo_code": "",
+   "min_nights": 2,
+   "image": "rooms/executive-suite-living.webp",
+   "order": 9
+  }
+ },
+ {
+  "op": "update",
+  "table": "hotel",
+  "match": {
+   "slug": "chancery"
+  },
+  "set": {
+   "intro_body": "The Chancery, a contemporary boutique business hotel on Lavelle Road, combines classic character with modern comfort. Close to MG Road, UB City and Cubbon Park, it offers 126 Deluxe and Premium Rooms and Executive Suites, along with 6,800 sq. ft. of banquet space. Guests can enjoy round-the-clock dining at South Parade, authentic Japanese cuisine at Matsuri, and spa and sento experiences at Sara Spa. Through its partnership with Toyota Enterprises, the hotel also offers Japanese hospitality experiences across its rooms, restaurant and spa."
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "hotel_home",
+   "hotel": "chancery"
+  },
+  "set": {
+   "intro_body": "For 25 years, The Chancery has been part of Lavelle Road — one of the city's most refined addresses. 126 rooms, two restaurants, and an unhurried kind of luxury that only comes with time."
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Deluxe Room",
+   "hotel": "chancery"
+  },
+  "set": {
+   "description": "A comfortable, well-appointed room in the heart of Bangalore, with everything you need for a productive business stay."
+  }
+ },
+ {
+  "op": "update",
+  "table": "restaurant",
+  "match": {
+   "slug": "south-parade"
+  },
+  "set": {
+   "description": "Experience all-day dining at South Parade, our 24-hour multi-cuisine coffee shop with an elegant, contemporary ambiance and seating for up to 80 guests. The menu spans an extensive selection of Indian, Asian and Continental delicacies, alongside refreshing beverages and quick bites — perfect for breakfast meetings, family dining and celebrations."
+  }
+ },
+ {
+  "op": "update",
+  "table": "restaurant",
+  "match": {
+   "slug": "in-room-dining"
+  },
+  "set": {
+   "description": "Available across all 126 elegantly appointed guest rooms, our in-room dining brings a curated menu of comfort foods, local specialities and late-night snacks straight to your door — round the clock."
+  }
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "business-centre"
+  },
+  "set": {
+   "cap_banquet": null,
+   "cap_classroom": null,
+   "cap_cocktail": null,
+   "cap_theatre": null,
+   "cap_ushape": null
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "events",
+   "hotel": "chancery"
+  },
+  "set": {
+   "intro_body": "Five distinctive venues, from the 200-guest Lavelle Hall to the boardroom-style Business Centre — each suited to a different kind of occasion and backed by modern facilities and a professional events team."
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "offers",
+   "hotel": "chancery"
+  },
+  "set": {
+   "intro_body": "Seasonal packages for every kind of stay on Lavelle Road — whether you are booking early, staying longer or travelling on business."
+  }
+ }
+]

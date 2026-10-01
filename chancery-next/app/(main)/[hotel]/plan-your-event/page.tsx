@@ -10,14 +10,15 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './EventsPage.css'
 import { hotelHomePath } from '@/lib/routes'
+import { CorporateIcon, MeetingIcon, SocialIcon, WeddingIcon } from '@/components/NavIcons'
 
 export const revalidate = 3600
 
 const OCCASIONS = [
-  { title: 'Weddings', copy: 'Grand celebrations and intimate ceremonies, styled to your vision.' },
-  { title: 'Conferences & Meetings', copy: 'Boardrooms to ballrooms with full AV and business support.' },
-  { title: 'Social Gatherings', copy: 'Birthdays, anniversaries and private dinners to remember.' },
-  { title: 'Corporate Events', copy: 'Launches, offsites and award nights with seamless service.' },
+  { Icon: WeddingIcon, title: 'Weddings', copy: 'Grand celebrations and intimate ceremonies, styled to your vision.' },
+  { Icon: MeetingIcon, title: 'Conferences & Meetings', copy: 'Boardrooms to ballrooms with full AV and business support.' },
+  { Icon: SocialIcon, title: 'Social Gatherings', copy: 'Birthdays, anniversaries and private dinners to remember.' },
+  { Icon: CorporateIcon, title: 'Corporate Events', copy: 'Launches, offsites and award nights with seamless service.' },
 ]
 
 const KINDS: Record<string, string> = {
@@ -93,6 +94,7 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
           <div className="occasions">
             {OCCASIONS.map((o) => (
               <div className="occasion" key={o.title}>
+                <span className="occasion-icon"><o.Icon size={30} /></span>
                 <h3>{o.title}</h3>
                 <p>{o.copy}</p>
               </div>
@@ -157,6 +159,8 @@ function VenueCapacities({ v }: { v: Venue }) {
       ['Cocktail', v.cap_cocktail],
     ] as Array<[string, number | null]>
   ).filter(([, n]) => n != null) as Array<[string, number]>
+  // A boardroom has one layout: no per-layout figures, just its seating.
+  if (rows.length === 0 && v.kind === 'executive' && v.guests_max) rows.push(['Boardroom Style', v.guests_max])
   if (rows.length === 0) return null
   return (
     <table className="capacity-table" aria-label={`${v.name} capacities`}>

@@ -1,0 +1,297 @@
+[
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "home",
+   "hotel": null
+  },
+  "set": {
+   "hero_heading": "Redefining Hospitality"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "rooms",
+   "hotel": null
+  },
+  "set": {
+   "hero_heading": "Rooms & Suites"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "faq",
+   "hotel": null
+  },
+  "set": {
+   "hero_heading": "Frequently Asked Questions"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "careers",
+   "hotel": null
+  },
+  "set": {
+   "hero_heading": "Build a Career with Us"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "catering",
+   "hotel": null
+  },
+  "set": {
+   "hero_heading": "Proficient in Large-Scale Outdoor Catering"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "privacy",
+   "hotel": null
+  },
+  "set": {
+   "hero_heading": "Privacy Policy"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "terms",
+   "hotel": null
+  },
+  "set": {
+   "hero_heading": "Terms & Conditions"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "accessibility",
+   "hotel": null
+  },
+  "set": {
+   "hero_heading": "Accessibility Statement"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "sitemap",
+   "hotel": null
+  },
+  "set": {
+   "hero_heading": "Site Map"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "hotel_home",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_heading": "Contemporary Luxury in the Heart of the City."
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "hotel_home",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_heading": "An Address That Has Welcomed Bangalore Since 1968."
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "accommodation",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_heading": "Rooms & Suites at the Pavilion"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "accommodation",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_heading": "Rooms at the Chancery"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "dining",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_heading": "Three Restaurants, One Address"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "dining",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_heading": "Two Restaurants, One Address"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "events",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_heading": "Celebrations on Lavelle Road"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "events",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_heading": "Celebrations at the Pavilion"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "offers",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_heading": "Curated Packages"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "offers",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_heading": "Curated Packages"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "gallery",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_heading": "Inside The Chancery"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "gallery",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_heading": "Inside the Pavilion"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "contact",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_heading": "Reach the Chancery"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "contact",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_heading": "Reach the Pavilion"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "destination",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_heading": "Residency Road and Beyond"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "destination",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_heading": "Lavelle Road and Beyond"
+  }
+ },
+ {
+  "op": "update",
+  "table": "hotel",
+  "match": {
+   "slug": "pavilion"
+  },
+  "set": {
+   "intro_heading": "Contemporary Luxury on Residency Road"
+  }
+ },
+ {
+  "op": "update",
+  "table": "hotel",
+  "match": {
+   "slug": "chancery"
+  },
+  "set": {
+   "intro_heading": "Timeless Elegance on Lavelle Road"
+  }
+ }
+]
