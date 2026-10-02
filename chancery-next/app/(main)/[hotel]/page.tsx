@@ -23,6 +23,7 @@ import './HotelHomePage.css'
 import { hotelHomePath } from '@/lib/routes'
 import { HOTEL_AMENITIES } from '@/lib/amenities'
 import { ODC } from '@/lib/catering'
+import { PLACE_GROUPS } from '@/lib/destination'
 
 export const revalidate = 3600
 
@@ -54,7 +55,7 @@ export async function generateMetadata({ params }: { params: Promise<{ hotel: st
 
 export default async function HotelHome({ params }: { params: Promise<{ hotel: string }> }) {
   const { hotel } = await params
-  const [page, h, rooms, restaurants, venues, offers, gallery] = await Promise.all([
+  const [page, h, rooms, restaurants, venues, offers, gallery, destination] = await Promise.all([
     getPage('hotel_home', hotel),
     getHotel(hotel),
     getRooms(hotel),
@@ -62,6 +63,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
     getVenues(hotel),
     getOffers(hotel),
     getGallery(hotel),
+    getPage('destination', hotel),
   ])
   if (!h) notFound()
 
@@ -219,6 +221,31 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
           </div>
         </section>
       )}
+
+      {/* Destination & Activities teaser — the neighbourhood line from the CMS
+          'destination' page, and the five place groups as icon links. */}
+      <section className="section bg-ivory">
+        <Reveal className="container">
+          <div className="section-head">
+            <p className="eyebrow center">Destination &amp; Activities</p>
+            <h2 className="h1">{destination?.hero_heading || 'Bangalore, on Your Doorstep'}</h2>
+            {destination?.intro_body && <p className="lede">{destination.intro_body}</p>}
+          </div>
+          <ul className="amenities-grid">
+            {PLACE_GROUPS.map(({ Icon, title }) => (
+              <li key={title} className="amenity">
+                <Link href={`/${hotel}/destination`}>
+                  <span className="amenity-icon"><Icon size={28} /></span>
+                  <span className="amenity-label">{title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="text-center" style={{ marginTop: '3rem' }}>
+            <Link href={`/${hotel}/destination`} className="btn ghost">Explore the Destination</Link>
+          </div>
+        </Reveal>
+      </section>
 
       {/* Outdoor Catering — one of the group's main lines; teaser to /catering. */}
       <section className="section bg-cream">
