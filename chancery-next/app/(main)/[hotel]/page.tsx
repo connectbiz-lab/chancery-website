@@ -209,7 +209,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
             <div className="section-head">
               <p className="eyebrow center" style={{ color: 'var(--c-gold-soft)' }}>Plan your event</p>
               <h2 className="h1" style={{ color: 'var(--c-ivory)' }}>
-                {hotel === 'pavilion' ? 'From boardrooms to ballrooms' : 'Celebrations at a Lavelle address'}
+                {hotel === 'pavilion' ? 'From Boardrooms to Ballrooms' : 'Celebrations at a Lavelle Address'}
               </h2>
               <p className="lede" style={{ color: 'rgba(246,241,231,0.85)' }}>
                 {venues.length} distinctive venues — each one engineered for the kind of occasion you have in mind.
