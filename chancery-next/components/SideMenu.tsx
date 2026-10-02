@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { BookButton } from "./BookButton";
 import {
+  CorporateIcon,
   HotelsIcon,
   StayIcon,
   DiningIcon,
@@ -30,6 +31,7 @@ const items = [
   { Icon: EventsIcon,  label: "Events",     to: (s: HotelSlug) => `/${s}/plan-your-event` },
   { Icon: OffersIcon,  label: "Offers",     to: (s: HotelSlug) => `/${s}/special-offers` },
   { Icon: GalleryIcon, label: "Gallery",    to: (s: HotelSlug) => `/${s}/gallery` },
+  { Icon: CorporateIcon, label: "Awards",   to: (s: HotelSlug) => `/${s}/awards` },
   { Icon: ContactIcon, label: "Contact",    to: (s: HotelSlug) => `/${s}/contact-us` },
   { Icon: HotelsIcon,  label: "About",      to: () => "/about" },
 ];

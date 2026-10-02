@@ -125,6 +125,7 @@ export function Footer({ site, hotels }: FooterProps) {
                   <Link href={`/${h.slug}/accommodation`}>Rooms</Link>
                   <Link href={`/${h.slug}/dining`}>Dining</Link>
                   <Link href={`/${h.slug}/plan-your-event`}>Events</Link>
+                  <Link href={`/${h.slug}/awards`}>Awards</Link>
                   <Link href={`/${h.slug}/contact-us`}>Contact</Link>
                 </p>
               </div>

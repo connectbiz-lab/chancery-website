@@ -15,10 +15,18 @@ import {
   getTestimonials,
 } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
+import { AWARD_GROUPS, awardLine, type AwardScope } from '@/lib/awards'
 import './HomePage.css'
 import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
+
+// Card kicker on the awards grid: which property (or the group) an award belongs to.
+const AWARD_SCOPE_LABEL: Record<AwardScope, string> = {
+  pavilion: 'The Chancery Pavilion',
+  chancery: 'The Chancery Hotel',
+  group: 'The Chancery Group of Hotels',
+}
 
 export async function generateMetadata() {
   const [page, site] = await Promise.all([getPage('home'), getSiteContent()])
@@ -278,35 +286,22 @@ export default async function AboutPage() {
             <h2 className="h1">Recognised by the City, the Press, and Our Guests</h2>
           </div>
           <div className="awards-grid">
-            <article className="awards-card">
-              <p className="awards-card__owner">Tripadvisor Traveller&rsquo;s Choice</p>
-              <ul className="awards-list">
-                <li><strong>The Chancery Hotel</strong> &mdash; 2025</li>
-                <li><strong>The Chancery Pavilion</strong> &mdash; 2023</li>
-              </ul>
-            </article>
-
-            <article className="awards-card">
-              <p className="awards-card__hotel">The Chancery Hotel</p>
-              <p className="awards-card__owner">Matsuri</p>
-              <ul className="awards-list">
-                <li><strong>Best Japanese Restaurant</strong> &mdash; Times Food Award, 2014, 2015 &amp; 2016</li>
-                <li><strong>Best Sushi</strong> &mdash; Eazy Diner Food Award, 2017</li>
-                <li><strong>Epicurean Restaurant Award</strong> &mdash; 2024</li>
-                <li><strong>Best Japanese Premium Dining</strong> &mdash; Times Food &amp; Nightlife Award, 2025</li>
-              </ul>
-            </article>
-
-            <article className="awards-card">
-              <p className="awards-card__hotel">The Chancery Pavilion</p>
-              <p className="awards-card__owner">Alchemy</p>
-              <ul className="awards-list">
-                <li><strong>Best Modern Indian Premium Dining</strong> &mdash; Times Food Nightlife Award, 2023, 2024 &amp; 2025</li>
-                <li><strong>Best Microbrewery, Luxurious Nightout</strong> &mdash; Times Food Nightlife Award, 2025</li>
-                <li><strong>Best Modern Indian Restaurant</strong> &mdash; EazyDiner Foodie Awards, 2019</li>
-                <li><strong>Brewer World &mdash; Beer of India 2023:</strong> Gold (Fruited Sour Ale), Silver (American Porter), Silver (Experimental Grain Beer)</li>
-              </ul>
-            </article>
+            {AWARD_GROUPS.map((g) => (
+              <article className="awards-card" key={g.owner}>
+                <p className="awards-card__hotel">{AWARD_SCOPE_LABEL[g.scope]}</p>
+                <p className="awards-card__owner">{g.owner}</p>
+                <ul className="awards-list">
+                  {g.awards.map((a) => (
+                    <li key={a.title + a.years}><strong>{a.title}</strong> &mdash; {awardLine(a)}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <div className="text-center" style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            {hotels.map((h) => (
+              <Link key={h.slug} href={`/${h.slug}/awards`} className="btn ghost">{h.short_name} Awards</Link>
+            ))}
           </div>
         </Reveal>
       </section>
