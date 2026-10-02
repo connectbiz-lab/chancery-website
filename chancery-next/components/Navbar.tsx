@@ -96,6 +96,7 @@ export function Navbar({ site, hotels }: NavbarProps) {
               <li><Link href={`/${scope}/accommodation`}>Stay</Link></li>
               <li><Link href={`/${scope}/dining`}>Dining</Link></li>
               <li><Link href={`/${scope}/plan-your-event`}>Events</Link></li>
+              <li><Link href={`/${scope}/destination`}>Destination</Link></li>
               <li><Link href="/catering">Outdoor Catering</Link></li>
               <li><Link href={`/${scope}/special-offers`}>Offers</Link></li>
               <li><Link href={`/${scope}/gallery`}>Gallery</Link></li>
