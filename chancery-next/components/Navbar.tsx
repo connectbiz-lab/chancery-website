@@ -8,7 +8,6 @@ import type { Tables } from "@/lib/supabase/types";
 import { BookButton } from "./BookButton";
 import { SideMenu } from "./SideMenu";
 import "./Navbar.css";
-import { hotelHomePath } from '@/lib/routes'
 
 interface NavbarProps {
   site: Tables<"site_content">;
@@ -28,7 +27,6 @@ export function Navbar({ site, hotels }: NavbarProps) {
     : null;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hotelsOpen, setHotelsOpen] = useState(false);
   // Both hotels, in display order, for the "Hotels" switcher.
   const hotelList = useMemo(
     () => [...hotels].sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
@@ -53,7 +51,6 @@ export function Navbar({ site, hotels }: NavbarProps) {
   if (pathname !== lastPath) {
     setLastPath(pathname);
     if (menuOpen) setMenuOpen(false);
-    if (hotelsOpen) setHotelsOpen(false);
   }
 
   // Pavilion is the flagship — every brand-level page (home, /book, /careers,
@@ -96,45 +93,10 @@ export function Navbar({ site, hotels }: NavbarProps) {
 
           <nav className="primary" aria-label="Primary">
             <ul>
-              <li
-                className={`has-mega ${hotelsOpen ? "open" : ""}`}
-                onMouseEnter={() => setHotelsOpen(true)}
-                onMouseLeave={() => setHotelsOpen(false)}
-                onBlur={(e) => {
-                  if (!e.currentTarget.contains(e.relatedTarget as Node)) setHotelsOpen(false);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Escape") setHotelsOpen(false);
-                }}
-              >
-                <button
-                  type="button"
-                  className="nav-trigger"
-                  aria-haspopup="true"
-                  aria-expanded={hotelsOpen}
-                  onClick={() => setHotelsOpen((v) => !v)}
-                  onFocus={() => setHotelsOpen(true)}
-                >
-                  Hotels
-                </button>
-                <div className="mega" role="menu" aria-label="Select a hotel">
-                  {hotelList.map((h) => (
-                    <Link
-                      key={h.slug}
-                      href={hotelHomePath(h.slug)}
-                      className="mega-item"
-                      role="menuitem"
-                      onClick={() => setHotelsOpen(false)}
-                    >
-                      <span className="mega-label">{h.name}</span>
-                      {h.location && <span className="mega-sub">{h.location}</span>}
-                    </Link>
-                  ))}
-                </div>
-              </li>
               <li><Link href={`/${scope}/accommodation`}>Stay</Link></li>
               <li><Link href={`/${scope}/dining`}>Dining</Link></li>
               <li><Link href={`/${scope}/plan-your-event`}>Events</Link></li>
+              <li><Link href="/catering">Outdoor Catering</Link></li>
               <li><Link href={`/${scope}/special-offers`}>Offers</Link></li>
               <li><Link href={`/${scope}/gallery`}>Gallery</Link></li>
               <li><Link href={`/${scope}/contact-us`}>Contact</Link></li>

@@ -22,6 +22,7 @@ import type { Metadata } from 'next'
 import './HotelHomePage.css'
 import { hotelHomePath } from '@/lib/routes'
 import { HOTEL_AMENITIES } from '@/lib/amenities'
+import { ODC } from '@/lib/catering'
 
 export const revalidate = 3600
 
@@ -218,6 +219,32 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
           </div>
         </section>
       )}
+
+      {/* Outdoor Catering — one of the group's main lines; teaser to /catering. */}
+      <section className="section bg-cream">
+        <Reveal className="container">
+          <div className="editorial-row flip">
+            <div className="editorial-figure">
+              <div className="figure">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={ODC.photo.src}
+                  srcSet={`${ODC.photo.srcSmall} 640w, ${ODC.photo.src} 1200w`}
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  alt={ODC.photo.alt}
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div className="editorial-text">
+              <p className="eyebrow">Outdoor Catering</p>
+              <h2 className="h2">{ODC.tagline}</h2>
+              <p className="lede">{ODC.teaser}</p>
+              <Link href={ODC.path} className="btn ghost">Explore Outdoor Catering</Link>
+            </div>
+          </div>
+        </Reveal>
+      </section>
 
       {/* General amenities — icon grid; Restaurant and Bar link to the dining page. */}
       {amenities.length > 0 && (

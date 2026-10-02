@@ -119,60 +119,6 @@
   height: 1px; background: var(--c-gold);
 }
 
-/* Mega menu */
-.has-mega { position: relative; }
-.mega {
-  position: absolute;
-  top: calc(100% + 18px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--c-cream);
-  color: var(--c-navy);
-  padding: 1.5rem 1.75rem;
-  min-width: 280px;
-  box-shadow: var(--shadow-card);
-  border-top: 2px solid var(--c-gold);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s var(--t-easing), transform 0.25s var(--t-easing);
-  transform-origin: top center;
-}
-/* Invisible bridge that fills the 18px gap between the trigger and the menu,
-   so moving the cursor down from "Our Hotels" to a menu item doesn't fire
-   mouseleave on the <li> and close the panel mid-click. */
-.mega::before {
-  content: "";
-  position: absolute;
-  top: -22px;
-  left: 0;
-  right: 0;
-  height: 22px;
-}
-.has-mega.open .mega { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-.mega-item {
-  display: block;
-  padding: 0.5rem 0;
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: 1rem;
-  font-weight: 500;
-  font-family: var(--f-sans);
-  color: var(--c-navy);
-}
-.mega-item + .mega-item { border-top: 1px solid var(--c-line); margin-top: 0.6rem; padding-top: 0.9rem; }
-.mega-label {
-  display: block; font-size: 1.05rem; font-weight: 500;
-  text-transform: none; letter-spacing: 0;
-}
-.mega-sub {
-  display: block;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--c-muted);
-  margin-top: 4px;
-}
-
 /* CTA + hamburger — minimal right-side group */
 .nav-cta { display: flex; align-items: center; }
 .navbar.transparent .nav-cta .btn { border-color: var(--c-gold); }

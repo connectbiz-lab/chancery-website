@@ -312,6 +312,21 @@ export function CorporateIcon({ size, className }: IconProps) {
   );
 }
 
+export function GovernmentIcon({ size, className }: IconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      {/* Pillared civic building with a pediment. */}
+      <path d="M3.5 9.5L12 4l8.5 5.5z" />
+      <path d="M5 20h14" />
+      <path d="M4 17.5h16" />
+      <path d="M6.5 10v7.5" />
+      <path d="M10.25 10v7.5" />
+      <path d="M13.75 10v7.5" />
+      <path d="M17.5 10v7.5" />
+    </svg>
+  );
+}
+
 export function CloseIcon({ size, className }: IconProps) {
   return (
     <svg {...baseProps(size, className)}>

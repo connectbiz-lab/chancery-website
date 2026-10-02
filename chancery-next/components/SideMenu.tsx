@@ -5,6 +5,7 @@ import { BookButton } from "./BookButton";
 import {
   CorporateIcon,
   HotelsIcon,
+  RestaurantIcon,
   StayIcon,
   DiningIcon,
   EventsIcon,
@@ -29,6 +30,7 @@ const items = [
   { Icon: StayIcon,    label: "Stay",       to: (s: HotelSlug) => `/${s}/accommodation` },
   { Icon: DiningIcon,  label: "Dining",     to: (s: HotelSlug) => `/${s}/dining` },
   { Icon: EventsIcon,  label: "Events",     to: (s: HotelSlug) => `/${s}/plan-your-event` },
+  { Icon: RestaurantIcon, label: "Outdoor Catering", to: () => "/catering" },
   { Icon: OffersIcon,  label: "Offers",     to: (s: HotelSlug) => `/${s}/special-offers` },
   { Icon: GalleryIcon, label: "Gallery",    to: (s: HotelSlug) => `/${s}/gallery` },
   { Icon: CorporateIcon, label: "Awards",   to: (s: HotelSlug) => `/${s}/awards` },
