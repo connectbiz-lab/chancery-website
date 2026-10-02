@@ -86,7 +86,7 @@ export default async function CateringPage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={ODC.photo.src}
-                  srcSet={`${ODC.photo.srcSmall} 640w, ${ODC.photo.src} 1200w`}
+                  srcSet={`${ODC.photo.srcSmall} 640w, ${ODC.photo.srcMedium} 800w, ${ODC.photo.src} 1200w`}
                   sizes="(max-width: 900px) 100vw, 50vw"
                   alt={ODC.photo.alt}
                   loading="lazy"

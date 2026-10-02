@@ -1,7 +1,7 @@
 'use client'
 // components/HotelToggleNav.tsx — client half of the hotel pill: one segment per
-// hotel, each carrying that hotel's own "C" monogram (cropped from its logo by
-// CSS), the current property filled ivory. Each segment goes to that hotel's
+// hotel, each carrying that hotel's own "C" monogram (a small mark file), the
+// current property filled ivory. Each segment goes to that hotel's
 // HOME page (/ for the Pavilion, /chancery for the Chancery).
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -28,7 +28,7 @@ export function HotelToggleNav({ hotels }: { hotels: Item[] }) {
             {h.logo && (
               <span className="hotel-toggle-mark" aria-hidden>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={h.logo} alt="" />
+                <img src={h.logo} alt="" width={h.slug === 'chancery' ? 44 : 14} height={20} />
               </span>
             )}
             <span>{h.label}</span>

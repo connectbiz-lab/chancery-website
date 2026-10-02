@@ -12,6 +12,7 @@ export const ODC = {
   photo: {
     src: '/catering/odc-table-1200.webp',
     srcSmall: '/catering/odc-table-640.webp',
+    srcMedium: '/catering/odc-table-800.webp',
     alt: 'An outdoor banquet table set by Chancery Outdoor Catering',
   },
 } as const
