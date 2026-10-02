@@ -1,21 +1,18 @@
 import Link from 'next/link'
-import { BookButton } from '@/components/BookButton'
 import { Hero } from '@/components/Hero'
-import { HeroIconNav } from '@/components/HeroIconNav'
-import { HomeShowcaseHero } from '@/components/HomeShowcaseHero'
 import { Media } from '@/components/Media'
 import { Reveal } from '@/components/Reveal'
 import { TestimonialCarousel } from '@/components/TestimonialCarousel'
 import {
   getHotels,
-  getOffers,
   getPage,
   getRestaurants,
-  getSiteContent,
   getTestimonials,
 } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
 import { AWARD_GROUPS, awardLine, type AwardScope } from '@/lib/awards'
+import { ODC } from '@/lib/catering'
+import { mediaUrl } from '@/lib/media'
 import './HomePage.css'
 import { hotelHomePath } from '@/lib/routes'
 
@@ -28,24 +25,45 @@ const AWARD_SCOPE_LABEL: Record<AwardScope, string> = {
   group: 'The Chancery Group of Hotels',
 }
 
+// Vision, mission and values — from the Chancery Group deck ("Who We Are").
+const VISION =
+  'To be a distinguished leader in hotel development and management — delivering exceptional value to stakeholders and a world-class workplace for our teams.'
+const MISSION =
+  'Warm, heartfelt hospitality and impeccable service — creating unforgettable moments for every guest, every time.'
+const VALUES: { name: string; line: string }[] = [
+  { name: 'Excellence', line: 'The highest standards at every touchpoint' },
+  { name: 'Integrity', line: 'Honest and transparent with everyone' },
+  { name: 'Guest-Centricity', line: 'Anticipating needs before they are voiced' },
+  { name: 'Innovation', line: 'Evolving with purpose and agility' },
+  { name: 'People-First', line: 'Nurturing talent and empowering growth' },
+  { name: 'Sustainability', line: 'Minimising our environmental footprint' },
+]
+
+// Per-hotel facts the CMS does not hold: banqueting area (deck, "Brand
+// Portfolio") and opening year (the journey timeline below).
+const HOTEL_FACTS: Record<string, { banquetSqFt: string; opened: string }> = {
+  pavilion: { banquetSqFt: '20,000', opened: '2006' },
+  chancery: { banquetSqFt: '6,800', opened: '2000' },
+}
+
 export async function generateMetadata() {
-  const [page, site] = await Promise.all([getPage('home'), getSiteContent()])
+  const page = await getPage('home')
   return buildMetadata({
     // The CMS 'home' meta title was written for the front door; this page is the group's story.
     title: 'About the Chancery Group',
-    description: page?.meta_description || site.tagline,
+    description:
+      'The Chancery Group of Hotels — Bangalore’s homegrown hospitality group: The Chancery Pavilion on Residency Road, The Chancery Hotel on Lavelle Road, award-winning restaurants and outdoor catering.',
     path: '/about',
     ogImagePath: page?.hero_image,
   })
 }
 
-// The Chancery Group page — both hotels, the group's story, dining, offers,
-// awards and guest stories. Lived at / until the Pavilion became the home.
+// About the Chancery Group — who the group is, its story, purpose, the two
+// hotels it runs, its scale, dining, catering, awards and guest stories.
 export default async function AboutPage() {
-  const [page, hotels, offers, testimonials, restaurants] = await Promise.all([
+  const [page, hotels, testimonials, restaurants] = await Promise.all([
     getPage('home'),
     getHotels(),
-    getOffers(),
     getTestimonials(),
     getRestaurants(),
   ])
@@ -58,30 +76,14 @@ export default async function AboutPage() {
 
   return (
     <>
-      {pavilion && chancery ? (
-        <HomeShowcaseHero
-          pavilion={pavilion}
-          pavilionImage={pavilion.hero_image}
-          chancery={chancery}
-          chanceryImage={chancery.hero_image}
-        />
-      ) : (
-        <Hero
-          image={heroImage}
-          eyebrow={p?.hero_eyebrow ?? 'The Chancery Group of Hotels'}
-          heading={p?.hero_heading ?? 'Redefining hospitality'}
-          subheading={p?.hero_subheading ?? 'Understated luxury with purpose.'}
-          size="full"
-          align="center"
-          footerNav={<HeroIconNav />}
-        >
-          {hotels.map((h) => (
-            <Link key={h.slug} href={hotelHomePath(h.slug)} className="btn light">
-              {h.short_name}
-            </Link>
-          ))}
-        </Hero>
-      )}
+      <Hero
+        image={heroImage}
+        splitImages={pavilion && chancery ? [pavilion.hero_image, chancery.hero_image] : undefined}
+        eyebrow="The Chancery Group of Hotels"
+        heading="Understated Luxury with Purpose"
+        subheading="Bangalore’s distinguished homegrown hospitality brand for over two decades."
+        size="page"
+      />
 
       {/* Brand introduction — Claridges-style two-column */}
       <section id="group-intro" className="section bg-cream" style={{ scrollMarginTop: '110px' }}>
@@ -127,7 +129,7 @@ export default async function AboutPage() {
           </div>
           <ol className="journey-timeline" aria-label="Chancery Hotels history">
             <li>
-              <span className="journey-year">1960s &ndash; 1990s</span>
+              <span className="journey-year">1960s&ndash;90s</span>
               <span className="journey-mark" aria-hidden="true" />
               <p className="journey-note">
                 The family group establishes itself across entertainment,
@@ -158,14 +160,89 @@ export default async function AboutPage() {
                 Sara Spa and authentic Japanese hospitality to The Chancery.
               </p>
             </li>
+            <li>
+              <span className="journey-year">2015</span>
+              <span className="journey-mark" aria-hidden="true" />
+              <p className="journey-note">
+                Catering and food &amp; beverage operations expand.
+              </p>
+            </li>
+            <li>
+              <span className="journey-year">2020+</span>
+              <span className="journey-mark" aria-hidden="true" />
+              <p className="journey-note">
+                Planning begins for expansion across India.
+              </p>
+            </li>
           </ol>
         </Reveal>
       </section>
 
-      {/* By the numbers — group scale, led by event-space strength. Replaces the
-          old "Two addresses, one promise" hotel picker (the hero already
-          showcases both hotels). Stats sourced from the group's snapshot. */}
-      <section id="hotels" className="section bg-cream metrics" style={{ scrollMarginTop: '120px' }}>
+      {/* Who we are — vision, mission and the six values. */}
+      <section className="section bg-navy purpose">
+        <Reveal className="container">
+          <div className="section-head">
+            <p className="eyebrow center">Who We Are</p>
+            <h2 className="h1">Vision, Mission &amp; Values</h2>
+          </div>
+          <div className="purpose-pair">
+            <div>
+              <h3>Vision</h3>
+              <p>{VISION}</p>
+            </div>
+            <div>
+              <h3>Mission</h3>
+              <p>{MISSION}</p>
+            </div>
+          </div>
+          <ul className="values-grid">
+            {VALUES.map((v) => (
+              <li key={v.name}>
+                <strong>{v.name}</strong>
+                <span>{v.line}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </section>
+
+      {/* The group's hotels — logo cards, each leading to that hotel's home. */}
+      <section id="hotels" className="section bg-ivory" style={{ scrollMarginTop: '120px' }}>
+        <Reveal className="container">
+          <div className="section-head">
+            <p className="eyebrow center">Our Hotels</p>
+            <h2 className="h1">Two Iconic Properties in Bangalore</h2>
+          </div>
+          <div className="group-hotels">
+            {hotels.map((h) => {
+              const facts = HOTEL_FACTS[h.slug]
+              const logo = mediaUrl(h.logo)
+              return (
+                <Link key={h.slug} href={hotelHomePath(h.slug)} className="group-hotel">
+                  {logo && (
+                    <span className="group-hotel__logo">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={logo} alt="" loading="lazy" />
+                    </span>
+                  )}
+                  <h3>{h.name}</h3>
+                  <p className="group-hotel__address">{h.address}</p>
+                  <dl className="group-hotel__facts">
+                    <div><dd>{h.rooms_count}</dd><dt>Rooms &amp; suites</dt></div>
+                    {facts && <div><dd>{facts.banquetSqFt}</dd><dt>Sq ft of banqueting</dt></div>}
+                    {facts && <div><dd>{facts.opened}</dd><dt>Opened</dt></div>}
+                  </dl>
+                  <span className="link-arrow">Explore the Hotel</span>
+                </Link>
+              )
+            })}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* By the numbers — group scale, led by event-space strength. Stats
+          sourced from the group's snapshot. */}
+      <section className="section bg-cream metrics">
         <Reveal className="container">
           <div className="metrics-head">
             <p className="eyebrow">The Chancery Group at a glance</p>
@@ -202,7 +279,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Dining strip */}
-      <section className="section bg-cream">
+      <section className="section bg-ivory">
         <Reveal className="container">
           <div className="section-head">
             <p className="eyebrow center">Dining</p>
@@ -212,7 +289,7 @@ export default async function AboutPage() {
               overlooking the city, Chancery restaurants are destinations in themselves.
             </p>
           </div>
-          <div className="card-grid">
+          <div className="card-grid four">
             {restaurants.filter((r) => r.hero_image).slice(0, 4).map((r) => (
               <Link
                 key={r.id}
@@ -238,48 +315,34 @@ export default async function AboutPage() {
         </Reveal>
       </section>
 
-      {/* Offers */}
-      {offers.length > 0 && (
-        <section className="section bg-navy">
-          <Reveal className="container">
-            <div className="section-head">
-              <p className="eyebrow center">Special offers</p>
-              <h2 className="h1" style={{ color: 'var(--c-ivory)' }}>
-                Curated Packages
-              </h2>
+      {/* Outdoor Catering — one of the group's main lines; teaser to /catering. */}
+      <section className="section bg-cream">
+        <Reveal className="container">
+          <div className="editorial-row flip">
+            <div className="editorial-figure">
+              <div className="figure">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={ODC.photo.src}
+                  srcSet={`${ODC.photo.srcSmall} 640w, ${ODC.photo.srcMedium} 800w, ${ODC.photo.src} 1200w`}
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  alt={ODC.photo.alt}
+                  loading="lazy"
+                />
+              </div>
             </div>
-            <div className="card-grid three">
-              {offers.slice(0, 3).map((o) => (
-                <div key={o.id} className="card offer-card">
-                  <div className="figure aspect-43">
-                    {o.image && (
-                      <Media
-                        path={o.image}
-                        alt={o.title}
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    )}
-                  </div>
-                  <p className="card-eyebrow" style={{ color: 'var(--c-gold-soft)' }}>{o.tag}</p>
-                  <h3 style={{ color: 'var(--c-ivory)' }}>{o.title}</h3>
-                  <p className="copy" style={{ color: 'rgba(246,241,231,0.85)' }}>{o.description}</p>
-                  <BookButton
-                    hotel={o.hotel?.slug ?? 'pavilion'}
-                    promo={o.promo_code || undefined}
-                    className="link-arrow"
-                    style={{ color: 'var(--c-gold-soft)', borderColor: 'var(--c-gold-soft)' }}
-                  >
-                    Book
-                  </BookButton>
-                </div>
-              ))}
+            <div className="editorial-text">
+              <p className="eyebrow">Outdoor Catering</p>
+              <h2 className="h2">{ODC.tagline}</h2>
+              <p className="lede">{ODC.teaser}</p>
+              <Link href={ODC.path} className="btn ghost">Explore Outdoor Catering</Link>
             </div>
-          </Reveal>
-        </section>
-      )}
+          </div>
+        </Reveal>
+      </section>
 
       {/* Awards & Accolades — credibility row sourced from Chancery PPT (Dec) */}
-      <section className="section bg-cream awards">
+      <section className="section bg-ivory awards">
         <Reveal className="container">
           <div className="section-head">
             <p className="eyebrow center">Awards &amp; accolades</p>
@@ -308,7 +371,7 @@ export default async function AboutPage() {
 
       {/* Testimonials */}
       {testimonials.length > 0 && (
-        <section className="section tight bg-ivory">
+        <section className="section tight bg-cream">
           <Reveal className="container narrow text-center">
             <p className="eyebrow center">Guest stories</p>
             <TestimonialCarousel testimonials={testimonials.slice(0, 5)} />
