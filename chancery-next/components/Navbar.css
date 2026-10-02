@@ -186,6 +186,13 @@
 .mobile-cta { margin-top: 2.5rem; text-align: center; }
 .mobile-cta .btn { width: 100%; max-width: 320px; }
 
+/* Eight items (incl. the longer "Outdoor Catering") need tighter tracking on
+   smaller laptops, or the row wraps before the hamburger takes over at 1080. */
+@media (max-width: 1240px) {
+  .primary ul { gap: 1.1rem; }
+  .primary a, .primary .nav-trigger { letter-spacing: 0.16em; }
+}
+
 @media (max-width: 1080px) {
   .primary { display: none; }
   .hamburger { display: block; margin-left: auto; }
