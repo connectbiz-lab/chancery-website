@@ -6,6 +6,8 @@
 Local: pass the service-role key with --bearer (apikey + Authorization).
 Cloud: pass the sb_secret_ key WITHOUT --bearer (apikey header only).
 UUIDs differ between environments, so rows are matched by slug / name / kind+hotel.
+Ops: update / insert_if_missing / replace_children (image rows of one parent) /
+replace_gallery (a hotel's whole gallery).
 """
 import sys, json, urllib.request, urllib.parse
 ops_path, base, key = sys.argv[1:4]; bearer = '--bearer' in sys.argv; dry = '--dry-run' in sys.argv
@@ -23,12 +25,27 @@ def flt(match):
         else: parts.append(f"{k}=eq.{urllib.parse.quote(str(v))}")
     return '&'.join(parts)
 for op in json.load(open(ops_path)):
+    if op['op'] == 'replace_gallery':
+        # Replace a hotel's whole gallery with `rows` (deterministic, re-runnable).
+        hid = hotels[op['hotel']]
+        if not dry:
+            call('DELETE', f"/gallery_image?hotel_id=eq.{hid}")
+            call('POST', '/gallery_image', [dict(r, hotel_id=hid) for r in op['rows']])
+        print(f"{'would replace' if dry else 'replaced'} gallery of {op['hotel']}: {len(op['rows'])} images"); continue
     t, m = op['table'], op['match']; label = f"{t} {m}"
     rows = call('GET', f"/{t}?select=id&{flt(m)}")
     if op['op'] == 'update':
         if len(rows) != 1: print(f"SKIP ({len(rows)} rows matched) {label}"); continue
         if not dry: call('PATCH', f"/{t}?id=eq.{rows[0]['id']}", op['set'])
         print(f"{'would update' if dry else 'updated'} {label}: {list(op['set'])}")
+    elif op['op'] == 'replace_children':
+        # Replace ALL child image rows of one parent (room/venue/restaurant) with `rows`.
+        if len(rows) != 1: print(f"SKIP ({len(rows)} parents matched) {label}"); continue
+        fk, child = op['fk'], op['child']
+        if not dry:
+            call('DELETE', f"/{child}?{fk}=eq.{rows[0]['id']}")
+            call('POST', f"/{child}", [dict(r, **{fk: rows[0]['id']}) for r in op['rows']])
+        print(f"{'would replace' if dry else 'replaced'} {child} of {label}: {len(op['rows'])} images")
     elif op['op'] == 'insert_if_missing':
         if rows: print(f"exists, skipped insert {label}"); continue
         body = dict(op['row']);

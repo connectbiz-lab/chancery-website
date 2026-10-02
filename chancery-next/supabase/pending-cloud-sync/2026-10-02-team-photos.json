@@ -1,0 +1,1386 @@
+[
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Superior Room",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_image": "rooms/2026-pavilion-superior-room-2.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "room_category",
+  "match": {
+   "name": "Superior Room",
+   "hotel": "pavilion"
+  },
+  "child": "room_image",
+  "fk": "room_id",
+  "rows": [
+   {
+    "image": "rooms/2026-pavilion-superior-room-2.webp",
+    "alt": "Superior Room",
+    "order": 0
+   },
+   {
+    "image": "rooms/2026-pavilion-superior-room-1.webp",
+    "alt": "Superior Room — sitting area",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Deluxe Room",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_image": "rooms/2026-pavilion-deluxe-room-2.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "room_category",
+  "match": {
+   "name": "Deluxe Room",
+   "hotel": "pavilion"
+  },
+  "child": "room_image",
+  "fk": "room_id",
+  "rows": [
+   {
+    "image": "rooms/2026-pavilion-deluxe-room-2.webp",
+    "alt": "Deluxe Room",
+    "order": 0
+   },
+   {
+    "image": "rooms/2026-pavilion-deluxe-room-1.webp",
+    "alt": "Deluxe Room — sitting and dining area",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Club Pavilion",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_image": "rooms/2026-pavilion-club-pavilion-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "room_category",
+  "match": {
+   "name": "Club Pavilion",
+   "hotel": "pavilion"
+  },
+  "child": "room_image",
+  "fk": "room_id",
+  "rows": [
+   {
+    "image": "rooms/2026-pavilion-club-pavilion-1.webp",
+    "alt": "Club Pavilion",
+    "order": 0
+   },
+   {
+    "image": "rooms/2026-pavilion-club-pavilion-2.webp",
+    "alt": "Club Pavilion — bed and sitting area",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Executive Suite",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_image": "rooms/2026-pavilion-executive-suite-2.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "room_category",
+  "match": {
+   "name": "Executive Suite",
+   "hotel": "pavilion"
+  },
+  "child": "room_image",
+  "fk": "room_id",
+  "rows": [
+   {
+    "image": "rooms/2026-pavilion-executive-suite-2.webp",
+    "alt": "Executive Suite — bedroom",
+    "order": 0
+   },
+   {
+    "image": "rooms/2026-pavilion-executive-suite-1.webp",
+    "alt": "Executive Suite — living room",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Presidential Suite",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_image": "rooms/2026-pavilion-presidential-suite-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "room_category",
+  "match": {
+   "name": "Presidential Suite",
+   "hotel": "pavilion"
+  },
+  "child": "room_image",
+  "fk": "room_id",
+  "rows": [
+   {
+    "image": "rooms/2026-pavilion-presidential-suite-1.webp",
+    "alt": "Presidential Suite — bedroom",
+    "order": 0
+   },
+   {
+    "image": "rooms/2026-pavilion-presidential-suite-2.webp",
+    "alt": "Presidential Suite — living room",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Deluxe Room",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_image": "rooms/2026-chancery-deluxe-3.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "room_category",
+  "match": {
+   "name": "Deluxe Room",
+   "hotel": "chancery"
+  },
+  "child": "room_image",
+  "fk": "room_id",
+  "rows": [
+   {
+    "image": "rooms/2026-chancery-deluxe-3.webp",
+    "alt": "Deluxe Room — king bed",
+    "order": 0
+   },
+   {
+    "image": "rooms/2026-chancery-deluxe-1.webp",
+    "alt": "Deluxe Room — twin beds",
+    "order": 1
+   },
+   {
+    "image": "rooms/2026-chancery-deluxe-2.webp",
+    "alt": "Deluxe Room — twin beds and sitting area",
+    "order": 2
+   },
+   {
+    "image": "rooms/deluxe-01.webp",
+    "alt": "Deluxe Room",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Premium Room",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_image": "rooms/2026-chancery-premium-2.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "room_category",
+  "match": {
+   "name": "Premium Room",
+   "hotel": "chancery"
+  },
+  "child": "room_image",
+  "fk": "room_id",
+  "rows": [
+   {
+    "image": "rooms/2026-chancery-premium-2.webp",
+    "alt": "Premium Room — twin beds",
+    "order": 0
+   },
+   {
+    "image": "rooms/2026-chancery-premium-3.webp",
+    "alt": "Premium Room — work desk",
+    "order": 1
+   },
+   {
+    "image": "rooms/premium-01.webp",
+    "alt": "Premium Room — king bed",
+    "order": 2
+   },
+   {
+    "image": "rooms/premium-02.webp",
+    "alt": "Premium Room",
+    "order": 3
+   },
+   {
+    "image": "rooms/2026-chancery-premium-1.webp",
+    "alt": "Premium Room — bathroom",
+    "order": 4
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Suite Room",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_image": "rooms/2026-chancery-suite-2.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "room_category",
+  "match": {
+   "name": "Suite Room",
+   "hotel": "chancery"
+  },
+  "child": "room_image",
+  "fk": "room_id",
+  "rows": [
+   {
+    "image": "rooms/2026-chancery-suite-2.webp",
+    "alt": "Suite Room — bedroom",
+    "order": 0
+   },
+   {
+    "image": "rooms/2026-chancery-suite-1.webp",
+    "alt": "Suite Room — sitting area",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "name": "The Grand Ball Room",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_image": "venues/2026-pavilion-gbr-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "name": "The Grand Ball Room",
+   "hotel": "pavilion"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-pavilion-gbr-1.webp",
+    "alt": "The Grand Ball Room — banquet setup",
+    "order": 0
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-4.webp",
+    "alt": "The Grand Ball Room — view from the stage",
+    "order": 1
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-2.webp",
+    "alt": "The Grand Ball Room — banquet rounds",
+    "order": 2
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-3.webp",
+    "alt": "The Grand Ball Room — banquet rounds",
+    "order": 3
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-5.webp",
+    "alt": "The Grand Ball Room",
+    "order": 4
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-6.webp",
+    "alt": "The Grand Ball Room — evening banquet",
+    "order": 5
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-7.webp",
+    "alt": "The Grand Ball Room — theatre seating",
+    "order": 6
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "name": "Sigma",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_image": "venues/2026-pavilion-sigma-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "name": "Sigma",
+   "hotel": "pavilion"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-pavilion-sigma-1.webp",
+    "alt": "Sigma — U-shape setup",
+    "order": 0
+   },
+   {
+    "image": "venues/2026-pavilion-sigma-2.webp",
+    "alt": "Sigma",
+    "order": 1
+   },
+   {
+    "image": "venues/2026-pavilion-sigma-3.webp",
+    "alt": "Sigma",
+    "order": 2
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "name": "Esquire",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_image": "venues/2026-pavilion-esquire-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "name": "Esquire",
+   "hotel": "pavilion"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-pavilion-esquire-1.webp",
+    "alt": "Esquire — banquet rounds",
+    "order": 0
+   },
+   {
+    "image": "venues/2026-pavilion-esquire-2.webp",
+    "alt": "Esquire",
+    "order": 1
+   },
+   {
+    "image": "venues/esquire-2.webp",
+    "alt": "Esquire",
+    "order": 2
+   },
+   {
+    "image": "venues/esquire-3.webp",
+    "alt": "Esquire",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "name": "Indian Affair",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_image": "venues/2026-pavilion-indian-affair-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "name": "Indian Affair",
+   "hotel": "pavilion"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-pavilion-indian-affair-1.webp",
+    "alt": "Indian Affair — theatre seating",
+    "order": 0
+   },
+   {
+    "image": "venues/2026-pavilion-indian-affair-2.webp",
+    "alt": "Indian Affair",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "name": "Pavilion Board Room",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "hero_image": "venues/2026-pavilion-club-lounge-boardroom.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "name": "Pavilion Board Room",
+   "hotel": "pavilion"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-pavilion-club-lounge-boardroom.webp",
+    "alt": "Pavilion Board Room",
+    "order": 0
+   },
+   {
+    "image": "venues/2026-pavilion-club-lounge.webp",
+    "alt": "Club Lounge — cluster seating",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "name": "The Lavelle Hall",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_image": "venues/2026-chancery-lavelle-hall-2.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "name": "The Lavelle Hall",
+   "hotel": "chancery"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-chancery-lavelle-hall-2.webp",
+    "alt": "The Lavelle Hall — banquet rounds",
+    "order": 0
+   },
+   {
+    "image": "venues/2026-chancery-lavelle-hall-1.webp",
+    "alt": "The Lavelle Hall",
+    "order": 1
+   },
+   {
+    "image": "venues/2026-chancery-lavelle-hall-3.webp",
+    "alt": "The Lavelle Hall",
+    "order": 2
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "name": "Colors Hall",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_image": "venues/2026-chancery-colours-hall-2.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "name": "Colors Hall",
+   "hotel": "chancery"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-chancery-colours-hall-2.webp",
+    "alt": "Colors Hall — banquet rounds",
+    "order": 0
+   },
+   {
+    "image": "venues/2026-chancery-colours-hall-1.webp",
+    "alt": "Colors Hall — conference setup",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "name": "Walton Hall",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_image": "venues/2026-chancery-walton-hall-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "name": "Walton Hall",
+   "hotel": "chancery"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-chancery-walton-hall-1.webp",
+    "alt": "Walton Hall",
+    "order": 0
+   },
+   {
+    "image": "venues/2026-chancery-walton-hall-2.webp",
+    "alt": "Walton Hall — conference setup",
+    "order": 1
+   },
+   {
+    "image": "venues/walton-hall-01.webp",
+    "alt": "",
+    "order": 2
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "name": "Chancery Boardroom",
+   "hotel": "chancery"
+  },
+  "set": {
+   "hero_image": "venues/2026-chancery-boardroom-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "name": "Chancery Boardroom",
+   "hotel": "chancery"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-chancery-boardroom-1.webp",
+    "alt": "Chancery Boardroom",
+    "order": 0
+   },
+   {
+    "image": "venues/board-room-01.webp",
+    "alt": "",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "restaurant",
+  "match": {
+   "slug": "alchemy"
+  },
+  "set": {
+   "hero_image": "dining/2026-alchemy-4.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "restaurant",
+  "match": {
+   "slug": "alchemy"
+  },
+  "child": "restaurant_image",
+  "fk": "restaurant_id",
+  "rows": [
+   {
+    "image": "dining/2026-alchemy-4.webp",
+    "alt": "Alchemy at dusk",
+    "order": 0
+   },
+   {
+    "image": "dining/2026-alchemy-3.webp",
+    "alt": "Alchemy — rooftop terrace and microbrewery",
+    "order": 1
+   },
+   {
+    "image": "dining/2026-alchemy-1.webp",
+    "alt": "Alchemy — dining room",
+    "order": 2
+   },
+   {
+    "image": "dining/2026-alchemy-2.webp",
+    "alt": "Alchemy — table setting",
+    "order": 3
+   },
+   {
+    "image": "dining/2026-alchemy-5.webp",
+    "alt": "Alchemy — signature dish",
+    "order": 4
+   },
+   {
+    "image": "dining/2026-alchemy-6.webp",
+    "alt": "Alchemy — signature dish",
+    "order": 5
+   },
+   {
+    "image": "dining/alchemy-night-busy.webp",
+    "alt": "Alchemy",
+    "order": 6
+   },
+   {
+    "image": "dining/alchemy-rooftop-busy.webp",
+    "alt": "Alchemy",
+    "order": 7
+   },
+   {
+    "image": "dining/alchemy-interior-mixed.webp",
+    "alt": "Alchemy",
+    "order": 8
+   },
+   {
+    "image": "dining/alchemy-food.webp",
+    "alt": "Alchemy",
+    "order": 9
+   },
+   {
+    "image": "dining/alchemy-branding.webp",
+    "alt": "Alchemy",
+    "order": 10
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "restaurant",
+  "match": {
+   "slug": "ithaca"
+  },
+  "set": {
+   "hero_image": "dining/2026-ithaca-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "restaurant",
+  "match": {
+   "slug": "ithaca"
+  },
+  "child": "restaurant_image",
+  "fk": "restaurant_id",
+  "rows": [
+   {
+    "image": "dining/2026-ithaca-1.webp",
+    "alt": "Ithaca",
+    "order": 0
+   },
+   {
+    "image": "dining/2026-ithaca-2.webp",
+    "alt": "Ithaca — dining room",
+    "order": 1
+   },
+   {
+    "image": "dining/2026-ithaca-3.webp",
+    "alt": "Ithaca by the pool at night",
+    "order": 2
+   },
+   {
+    "image": "dining/2026-ithaca-4.webp",
+    "alt": "Ithaca — buffet",
+    "order": 3
+   },
+   {
+    "image": "dining/ithaca-busy.webp",
+    "alt": "Ithaca",
+    "order": 4
+   },
+   {
+    "image": "dining/ithaca-pool-busy.webp",
+    "alt": "Ithaca",
+    "order": 5
+   },
+   {
+    "image": "dining/ithaca-buffet-busy.webp",
+    "alt": "Ithaca",
+    "order": 6
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "restaurant",
+  "match": {
+   "slug": "the-lounge"
+  },
+  "set": {
+   "hero_image": "dining/2026-the-lounge-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "restaurant",
+  "match": {
+   "slug": "the-lounge"
+  },
+  "child": "restaurant_image",
+  "fk": "restaurant_id",
+  "rows": [
+   {
+    "image": "dining/2026-the-lounge-1.webp",
+    "alt": "The Lounge",
+    "order": 0
+   },
+   {
+    "image": "dining/2026-the-lounge-2.webp",
+    "alt": "The Lounge — bar",
+    "order": 1
+   },
+   {
+    "image": "dining/lounge-busy.webp",
+    "alt": "The Lounge",
+    "order": 2
+   },
+   {
+    "image": "dining/lounge-barview-busy.webp",
+    "alt": "The Lounge",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "restaurant",
+  "match": {
+   "slug": "matsuri"
+  },
+  "set": {
+   "hero_image": "dining/2026-matsuri-3.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "restaurant",
+  "match": {
+   "slug": "matsuri"
+  },
+  "child": "restaurant_image",
+  "fk": "restaurant_id",
+  "rows": [
+   {
+    "image": "dining/2026-matsuri-3.webp",
+    "alt": "Matsuri — dining room",
+    "order": 0
+   },
+   {
+    "image": "dining/2026-matsuri-1.webp",
+    "alt": "Matsuri — entrance",
+    "order": 1
+   },
+   {
+    "image": "dining/2026-matsuri-2.webp",
+    "alt": "Matsuri — private dining",
+    "order": 2
+   },
+   {
+    "image": "dining/matsuri-dish-01.webp",
+    "alt": "Matsuri",
+    "order": 3
+   },
+   {
+    "image": "dining/matsuri-dish-02.webp",
+    "alt": "Matsuri",
+    "order": 4
+   },
+   {
+    "image": "dining/matsuri-dish-03.webp",
+    "alt": "Matsuri",
+    "order": 5
+   },
+   {
+    "image": "dining/matsuri-chef-01.webp",
+    "alt": "Matsuri",
+    "order": 6
+   },
+   {
+    "image": "dining/matsuri-chef-02.webp",
+    "alt": "Matsuri",
+    "order": 7
+   },
+   {
+    "image": "dining/matsuri-02.webp",
+    "alt": "Matsuri",
+    "order": 8
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "restaurant",
+  "match": {
+   "slug": "south-parade"
+  },
+  "set": {
+   "hero_image": "dining/2026-south-parade-1.webp"
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "restaurant",
+  "match": {
+   "slug": "south-parade"
+  },
+  "child": "restaurant_image",
+  "fk": "restaurant_id",
+  "rows": [
+   {
+    "image": "dining/2026-south-parade-1.webp",
+    "alt": "South Parade",
+    "order": 0
+   },
+   {
+    "image": "dining/south-parade-02.webp",
+    "alt": "South Parade",
+    "order": 1
+   },
+   {
+    "image": "dining/south-parade-05.webp",
+    "alt": "South Parade",
+    "order": 2
+   },
+   {
+    "image": "dining/south-parade-04.webp",
+    "alt": "South Parade",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "op": "replace_gallery",
+  "hotel": "pavilion",
+  "rows": [
+   {
+    "image": "hotels/pavilion-hero-real.webp",
+    "alt": "Chancery Pavilion exterior at night",
+    "category": "hotel",
+    "order": 0
+   },
+   {
+    "image": "hotels/2026-pavilion-exterior-1.webp",
+    "alt": "The Chancery Pavilion exterior",
+    "category": "hotel",
+    "order": 1
+   },
+   {
+    "image": "hotels/2026-pavilion-pool-1.webp",
+    "alt": "Swimming pool",
+    "category": "hotel",
+    "order": 2
+   },
+   {
+    "image": "hotels/2026-pavilion-pool-2.webp",
+    "alt": "Swimming pool",
+    "category": "hotel",
+    "order": 3
+   },
+   {
+    "image": "hotels/2026-pavilion-gym-1.webp",
+    "alt": "Fitness centre",
+    "category": "hotel",
+    "order": 4
+   },
+   {
+    "image": "rooms/2026-pavilion-superior-room-2.webp",
+    "alt": "Superior Room",
+    "category": "rooms",
+    "order": 5
+   },
+   {
+    "image": "rooms/2026-pavilion-superior-room-1.webp",
+    "alt": "Superior Room — sitting area",
+    "category": "rooms",
+    "order": 6
+   },
+   {
+    "image": "rooms/2026-pavilion-deluxe-room-2.webp",
+    "alt": "Deluxe Room",
+    "category": "rooms",
+    "order": 7
+   },
+   {
+    "image": "rooms/2026-pavilion-deluxe-room-1.webp",
+    "alt": "Deluxe Room — sitting and dining area",
+    "category": "rooms",
+    "order": 8
+   },
+   {
+    "image": "rooms/2026-pavilion-club-pavilion-1.webp",
+    "alt": "Club Pavilion",
+    "category": "rooms",
+    "order": 9
+   },
+   {
+    "image": "rooms/2026-pavilion-club-pavilion-2.webp",
+    "alt": "Club Pavilion — bed and sitting area",
+    "category": "rooms",
+    "order": 10
+   },
+   {
+    "image": "rooms/2026-pavilion-executive-suite-2.webp",
+    "alt": "Executive Suite — bedroom",
+    "category": "rooms",
+    "order": 11
+   },
+   {
+    "image": "rooms/2026-pavilion-executive-suite-1.webp",
+    "alt": "Executive Suite — living room",
+    "category": "rooms",
+    "order": 12
+   },
+   {
+    "image": "rooms/2026-pavilion-presidential-suite-1.webp",
+    "alt": "Presidential Suite — bedroom",
+    "category": "rooms",
+    "order": 13
+   },
+   {
+    "image": "rooms/2026-pavilion-presidential-suite-2.webp",
+    "alt": "Presidential Suite — living room",
+    "category": "rooms",
+    "order": 14
+   },
+   {
+    "image": "dining/2026-alchemy-4.webp",
+    "alt": "Alchemy at dusk",
+    "category": "dining",
+    "order": 15
+   },
+   {
+    "image": "dining/2026-alchemy-3.webp",
+    "alt": "Alchemy — rooftop terrace and microbrewery",
+    "category": "dining",
+    "order": 16
+   },
+   {
+    "image": "dining/2026-alchemy-1.webp",
+    "alt": "Alchemy — dining room",
+    "category": "dining",
+    "order": 17
+   },
+   {
+    "image": "dining/2026-alchemy-2.webp",
+    "alt": "Alchemy — table setting",
+    "category": "dining",
+    "order": 18
+   },
+   {
+    "image": "dining/2026-alchemy-5.webp",
+    "alt": "Alchemy — signature dish",
+    "category": "dining",
+    "order": 19
+   },
+   {
+    "image": "dining/2026-alchemy-6.webp",
+    "alt": "Alchemy — signature dish",
+    "category": "dining",
+    "order": 20
+   },
+   {
+    "image": "gallery/alchemy-rooftop-sunset.webp",
+    "alt": "Alchemy rooftop at sunset",
+    "category": "dining",
+    "order": 21
+   },
+   {
+    "image": "gallery/alchemy-night.webp",
+    "alt": "Alchemy at night",
+    "category": "dining",
+    "order": 22
+   },
+   {
+    "image": "gallery/alchemy-food.webp",
+    "alt": "Alchemy — signature dishes",
+    "category": "dining",
+    "order": 23
+   },
+   {
+    "image": "dining/2026-ithaca-1.webp",
+    "alt": "Ithaca",
+    "category": "dining",
+    "order": 24
+   },
+   {
+    "image": "dining/2026-ithaca-2.webp",
+    "alt": "Ithaca — dining room",
+    "category": "dining",
+    "order": 25
+   },
+   {
+    "image": "dining/2026-ithaca-3.webp",
+    "alt": "Ithaca by the pool at night",
+    "category": "dining",
+    "order": 26
+   },
+   {
+    "image": "dining/2026-ithaca-4.webp",
+    "alt": "Ithaca — buffet",
+    "category": "dining",
+    "order": 27
+   },
+   {
+    "image": "gallery/ithaca-dining.webp",
+    "alt": "Ithaca dining hall",
+    "category": "dining",
+    "order": 28
+   },
+   {
+    "image": "gallery/ithaca-pool-view.webp",
+    "alt": "Ithaca poolside",
+    "category": "dining",
+    "order": 29
+   },
+   {
+    "image": "gallery/ithaca-buffet-hall.webp",
+    "alt": "Ithaca buffet hall",
+    "category": "dining",
+    "order": 30
+   },
+   {
+    "image": "dining/2026-the-lounge-1.webp",
+    "alt": "The Lounge",
+    "category": "dining",
+    "order": 31
+   },
+   {
+    "image": "dining/2026-the-lounge-2.webp",
+    "alt": "The Lounge — bar",
+    "category": "dining",
+    "order": 32
+   },
+   {
+    "image": "gallery/lounge-main.webp",
+    "alt": "The Lounge — reception",
+    "category": "dining",
+    "order": 33
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-1.webp",
+    "alt": "The Grand Ball Room — banquet setup",
+    "category": "events",
+    "order": 34
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-4.webp",
+    "alt": "The Grand Ball Room — view from the stage",
+    "category": "events",
+    "order": 35
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-7.webp",
+    "alt": "The Grand Ball Room — theatre seating",
+    "category": "events",
+    "order": 36
+   },
+   {
+    "image": "gallery/grand-ballroom-conference.webp",
+    "alt": "Grand Ball Room — conference",
+    "category": "events",
+    "order": 37
+   },
+   {
+    "image": "gallery/grand-ballroom-banquet.webp",
+    "alt": "Grand Ball Room — banquet",
+    "category": "events",
+    "order": 38
+   },
+   {
+    "image": "gallery/grand-ballroom-theatre.webp",
+    "alt": "Grand Ball Room — theatre",
+    "category": "events",
+    "order": 39
+   },
+   {
+    "image": "venues/2026-pavilion-esquire-1.webp",
+    "alt": "Esquire — banquet rounds",
+    "category": "events",
+    "order": 40
+   },
+   {
+    "image": "venues/2026-pavilion-sigma-1.webp",
+    "alt": "Sigma — U-shape setup",
+    "category": "events",
+    "order": 41
+   },
+   {
+    "image": "venues/2026-pavilion-indian-affair-1.webp",
+    "alt": "Indian Affair — theatre seating",
+    "category": "events",
+    "order": 42
+   },
+   {
+    "image": "venues/2026-pavilion-club-lounge-boardroom.webp",
+    "alt": "Pavilion Board Room",
+    "category": "events",
+    "order": 43
+   }
+  ]
+ },
+ {
+  "op": "replace_gallery",
+  "hotel": "chancery",
+  "rows": [
+   {
+    "image": "hotels/2026-chancery-exterior-1.webp",
+    "alt": "The Chancery Hotel exterior",
+    "category": "hotel",
+    "order": 0
+   },
+   {
+    "image": "hotels/2026-chancery-spa-2.webp",
+    "alt": "Sara Spa — reception",
+    "category": "hotel",
+    "order": 1
+   },
+   {
+    "image": "hotels/2026-chancery-spa-3.webp",
+    "alt": "Sara Spa — treatment room",
+    "category": "hotel",
+    "order": 2
+   },
+   {
+    "image": "hotels/2026-chancery-spa-1.webp",
+    "alt": "Sara Spa",
+    "category": "hotel",
+    "order": 3
+   },
+   {
+    "image": "hotels/2026-chancery-lobby-1.webp",
+    "alt": "Lobby and reception",
+    "category": "lobby",
+    "order": 4
+   },
+   {
+    "image": "gallery/lobby.webp",
+    "alt": "Chancery Hotel lobby",
+    "category": "lobby",
+    "order": 5
+   },
+   {
+    "image": "rooms/2026-chancery-deluxe-3.webp",
+    "alt": "Deluxe Room — king bed",
+    "category": "rooms",
+    "order": 6
+   },
+   {
+    "image": "rooms/2026-chancery-deluxe-1.webp",
+    "alt": "Deluxe Room — twin beds",
+    "category": "rooms",
+    "order": 7
+   },
+   {
+    "image": "rooms/2026-chancery-deluxe-2.webp",
+    "alt": "Deluxe Room — twin beds and sitting area",
+    "category": "rooms",
+    "order": 8
+   },
+   {
+    "image": "rooms/2026-chancery-premium-2.webp",
+    "alt": "Premium Room — twin beds",
+    "category": "rooms",
+    "order": 9
+   },
+   {
+    "image": "rooms/2026-chancery-premium-3.webp",
+    "alt": "Premium Room — work desk",
+    "category": "rooms",
+    "order": 10
+   },
+   {
+    "image": "gallery/premium-room-bed.webp",
+    "alt": "Premium Room",
+    "category": "rooms",
+    "order": 11
+   },
+   {
+    "image": "gallery/premium-room-workspace.webp",
+    "alt": "Premium Room — workspace",
+    "category": "rooms",
+    "order": 12
+   },
+   {
+    "image": "rooms/2026-chancery-suite-2.webp",
+    "alt": "Suite Room — bedroom",
+    "category": "rooms",
+    "order": 13
+   },
+   {
+    "image": "rooms/2026-chancery-suite-1.webp",
+    "alt": "Suite Room — sitting area",
+    "category": "rooms",
+    "order": 14
+   },
+   {
+    "image": "dining/2026-matsuri-3.webp",
+    "alt": "Matsuri — dining room",
+    "category": "dining",
+    "order": 15
+   },
+   {
+    "image": "dining/2026-matsuri-1.webp",
+    "alt": "Matsuri — entrance",
+    "category": "dining",
+    "order": 16
+   },
+   {
+    "image": "dining/2026-matsuri-2.webp",
+    "alt": "Matsuri — private dining",
+    "category": "dining",
+    "order": 17
+   },
+   {
+    "image": "gallery/matsuri-team.webp",
+    "alt": "Matsuri — Japanese",
+    "category": "dining",
+    "order": 18
+   },
+   {
+    "image": "gallery/matsuri-private.webp",
+    "alt": "Matsuri private dining",
+    "category": "dining",
+    "order": 19
+   },
+   {
+    "image": "dining/2026-south-parade-1.webp",
+    "alt": "South Parade",
+    "category": "dining",
+    "order": 20
+   },
+   {
+    "image": "gallery/south-parade-dining.webp",
+    "alt": "South Parade",
+    "category": "dining",
+    "order": 21
+   },
+   {
+    "image": "gallery/south-parade-buffet.webp",
+    "alt": "South Parade buffet",
+    "category": "dining",
+    "order": 22
+   },
+   {
+    "image": "gallery/south-parade-lobby.webp",
+    "alt": "South Parade entrance",
+    "category": "dining",
+    "order": 23
+   },
+   {
+    "image": "venues/2026-chancery-lavelle-hall-2.webp",
+    "alt": "The Lavelle Hall — banquet rounds",
+    "category": "events",
+    "order": 24
+   },
+   {
+    "image": "venues/2026-chancery-lavelle-hall-1.webp",
+    "alt": "The Lavelle Hall",
+    "category": "events",
+    "order": 25
+   },
+   {
+    "image": "venues/2026-chancery-lavelle-hall-3.webp",
+    "alt": "The Lavelle Hall",
+    "category": "events",
+    "order": 26
+   },
+   {
+    "image": "venues/2026-chancery-colours-hall-2.webp",
+    "alt": "Colors Hall — banquet rounds",
+    "category": "events",
+    "order": 27
+   },
+   {
+    "image": "venues/2026-chancery-colours-hall-1.webp",
+    "alt": "Colors Hall — conference setup",
+    "category": "events",
+    "order": 28
+   },
+   {
+    "image": "venues/2026-chancery-walton-hall-1.webp",
+    "alt": "Walton Hall",
+    "category": "events",
+    "order": 29
+   },
+   {
+    "image": "venues/2026-chancery-walton-hall-2.webp",
+    "alt": "Walton Hall — conference setup",
+    "category": "events",
+    "order": 30
+   },
+   {
+    "image": "venues/2026-chancery-boardroom-1.webp",
+    "alt": "Chancery Boardroom",
+    "category": "events",
+    "order": 31
+   }
+  ]
+ }
+]
