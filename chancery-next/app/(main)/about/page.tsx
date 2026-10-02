@@ -6,7 +6,6 @@ import { TestimonialCarousel } from '@/components/TestimonialCarousel'
 import {
   getHotels,
   getPage,
-  getRestaurants,
   getTestimonials,
 } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
@@ -59,13 +58,12 @@ export async function generateMetadata() {
 }
 
 // About the Chancery Group — who the group is, its story, purpose, the two
-// hotels it runs, its scale, dining, catering, awards and guest stories.
+// hotels it runs, its scale, catering, awards and guest stories.
 export default async function AboutPage() {
-  const [page, hotels, testimonials, restaurants] = await Promise.all([
+  const [page, hotels, testimonials] = await Promise.all([
     getPage('home'),
     getHotels(),
     getTestimonials(),
-    getRestaurants(),
   ])
 
   const p = page
@@ -278,45 +276,8 @@ export default async function AboutPage() {
         </Reveal>
       </section>
 
-      {/* Dining strip */}
-      <section className="section bg-ivory">
-        <Reveal className="container">
-          <div className="section-head">
-            <p className="eyebrow center">Dining</p>
-            <h2 className="h1">A Reputation Built Around the Table</h2>
-            <p className="lede">
-              From Chef Okada&apos;s sashimi at Matsuri to rooftop craft beers
-              overlooking the city, Chancery restaurants are destinations in themselves.
-            </p>
-          </div>
-          <div className="card-grid four">
-            {restaurants.filter((r) => r.hero_image).slice(0, 4).map((r) => (
-              <Link
-                key={r.id}
-                href={`/${r.hotel.slug}/dining`}
-                className="card"
-              >
-                <div className="figure">
-                  {r.hero_image && (
-                    <Media
-                      path={r.hero_image}
-                      alt={r.name}
-                      sizes="(max-width: 768px) 50vw, 25vw"
-                    />
-                  )}
-                </div>
-                <p className="card-eyebrow">{r.hotel.short_name}</p>
-                <h3>{r.name}</h3>
-                <p className="meta">{r.cuisine} · {r.timing}</p>
-                <p className="copy">{r.description}</p>
-              </Link>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
       {/* Outdoor Catering — one of the group's main lines; teaser to /catering. */}
-      <section className="section bg-cream">
+      <section className="section bg-ivory">
         <Reveal className="container">
           <div className="editorial-row flip">
             <div className="editorial-figure">
@@ -342,7 +303,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Awards & Accolades — credibility row sourced from Chancery PPT (Dec) */}
-      <section className="section bg-ivory awards">
+      <section className="section bg-cream awards">
         <Reveal className="container">
           <div className="section-head">
             <p className="eyebrow center">Awards &amp; accolades</p>
@@ -371,7 +332,7 @@ export default async function AboutPage() {
 
       {/* Testimonials */}
       {testimonials.length > 0 && (
-        <section className="section tight bg-cream">
+        <section className="section tight bg-ivory">
           <Reveal className="container narrow text-center">
             <p className="eyebrow center">Guest stories</p>
             <TestimonialCarousel testimonials={testimonials.slice(0, 5)} />
