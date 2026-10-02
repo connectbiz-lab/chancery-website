@@ -1,0 +1,86 @@
+/* Destination & Activities — "Around Bangalore" place groups. The in-hotel
+   experiences reuse the shared .card-grid / .card styles. */
+.dest-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.75rem, 3vw, 2.75rem);
+}
+.dest-group {
+  background: var(--c-paper);
+  border: 1px solid var(--c-line);
+  padding: clamp(1.5rem, 2vw + 0.5rem, 2.5rem);
+}
+/* Five groups: the last one spans the row instead of sitting alone on the left. */
+.dest-group:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.dest-group__head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--c-gold);
+}
+.dest-group__icon { display: inline-flex; color: var(--c-gold-deep); }
+.dest-group__head h3 {
+  font-family: var(--f-display);
+  font-size: clamp(1.25rem, 0.6vw + 1rem, 1.6rem);
+  color: var(--c-navy);
+  margin: 0;
+}
+.dest-places { list-style: none; margin: 0; padding: 0; }
+.dest-places li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--c-line);
+}
+.dest-places li:last-child { border-bottom: 0; padding-bottom: 0; }
+.dest-places strong {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--c-navy);
+  margin-bottom: 0.25rem;
+}
+.dest-places span {
+  display: block;
+  font-family: var(--f-serif);
+  font-size: clamp(1rem, 0.3vw + 0.92rem, 1.12rem);
+  line-height: 1.45;
+  color: var(--c-charcoal);
+}
+.dest-places a {
+  flex-shrink: 0;
+  font-family: var(--f-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--c-gold-deep);
+  text-decoration: none;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s var(--t-easing);
+}
+.dest-places a:hover { border-bottom-color: var(--c-gold-deep); }
+/* On the full-width last group, lay the places out in columns. */
+.dest-group:last-child:nth-child(odd) .dest-places {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 3vw, 2.75rem);
+}
+.dest-group:last-child:nth-child(odd) .dest-places li { border-bottom: 0; padding-bottom: 0; flex-direction: column; gap: 0.6rem; }
+@media (max-width: 860px) {
+  .dest-groups { grid-template-columns: 1fr; }
+  .dest-group:last-child:nth-child(odd) .dest-places { display: block; }
+  .dest-group:last-child:nth-child(odd) .dest-places li { border-bottom: 1px solid var(--c-line); padding-bottom: 1rem; }
+  .dest-group:last-child:nth-child(odd) .dest-places li:last-child { border-bottom: 0; padding-bottom: 0; }
+}
+/* Phones: the directions link drops under the description instead of squeezing it. */
+@media (max-width: 520px) {
+  .dest-places li { flex-direction: column; gap: 0.6rem; }
+}

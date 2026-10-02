@@ -327,6 +327,48 @@ export function GovernmentIcon({ size, className }: IconProps) {
   );
 }
 
+export function DestinationIcon({ size, className }: IconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      {/* Map pin. */}
+      <path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z" />
+      <circle cx="12" cy="10" r="2.3" />
+    </svg>
+  );
+}
+
+export function ParkIcon({ size, className }: IconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      {/* Round-crowned tree on a ground line. */}
+      <circle cx="12" cy="9" r="5.5" />
+      <path d="M12 12v9" />
+      <path d="M12 16.5l2.5-2.5" />
+      <path d="M7.5 21h9" />
+    </svg>
+  );
+}
+
+export function ShoppingIcon({ size, className }: IconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      {/* Shopping bag. */}
+      <path d="M5.5 8h13l-1 12.5h-11z" />
+      <path d="M9 10.5V7a3 3 0 0 1 6 0v3.5" />
+    </svg>
+  );
+}
+
+export function DayTripIcon({ size, className }: IconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      {/* Two hills under a rising sun. */}
+      <path d="M2.5 19.5l6-9 4 6 2.5-3.5 6.5 6.5z" />
+      <circle cx="17" cy="6.5" r="2.2" />
+    </svg>
+  );
+}
+
 export function CloseIcon({ size, className }: IconProps) {
   return (
     <svg {...baseProps(size, className)}>

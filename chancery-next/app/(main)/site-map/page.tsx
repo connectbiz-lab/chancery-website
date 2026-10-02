@@ -14,7 +14,7 @@ const HOTEL_PAGES: Array<[string, string]> = [
   ['gallery', 'Gallery'],
   ['awards', 'Awards & Accolades'],
   ['contact-us', 'Contact us'],
-  ['destination', 'Destination'],
+  ['destination', 'Destination & Activities'],
 ]
 
 const SITE_PAGES: Array<[string, string]> = [
