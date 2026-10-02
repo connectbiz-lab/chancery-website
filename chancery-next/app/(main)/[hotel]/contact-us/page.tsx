@@ -82,7 +82,7 @@ export default async function ContactUsPage({ params }: { params: Promise<{ hote
       <CinematicHero
         image={p?.hero_image ?? current?.hero_image ?? null}
         eyebrow={current?.name ?? 'The Chancery Group of Hotels'}
-        title="Get in touch"
+        title="Get in Touch"
         script={p?.hero_subheading ?? undefined}
       />
 
