@@ -167,7 +167,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
                   <div className="figure">{r.hero_image && <Media path={r.hero_image} alt={r.name} sizes="(max-width: 768px) 50vw, 25vw" />}</div>
                   <h3>{r.name}</h3>
                   <p className="meta">{r.size_sqft ? `${r.size_sqft} sq. ft.` : ''} · {r.bed_type}</p>
-                  <p className="copy">{r.description.slice(0, 120)}…</p>
+                  <p className="copy">{r.description}</p>
                 </Link>
               ))}
             </div>
@@ -192,7 +192,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
                   <div className="figure">{r.hero_image && <Media path={r.hero_image} alt={r.name} sizes="(max-width: 768px) 50vw, 25vw" />}</div>
                   <h3>{r.name}</h3>
                   <p className="meta">{r.cuisine}</p>
-                  <p className="copy">{r.description.slice(0, 130)}…</p>
+                  <p className="copy">{r.description}</p>
                 </Link>
               ))}
             </div>

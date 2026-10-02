@@ -231,7 +231,7 @@ export default async function AboutPage() {
                 <p className="card-eyebrow">{r.hotel.short_name}</p>
                 <h3>{r.name}</h3>
                 <p className="meta">{r.cuisine} · {r.timing}</p>
-                <p className="copy">{r.description.slice(0, 120)}…</p>
+                <p className="copy">{r.description}</p>
               </Link>
             ))}
           </div>

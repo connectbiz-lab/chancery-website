@@ -105,6 +105,7 @@
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: inherit;
   background: transparent;
   border: 0;
@@ -121,10 +122,12 @@
 
 /* CTA + hamburger — minimal right-side group */
 .nav-cta { display: flex; align-items: center; }
+.nav-cta .btn { white-space: nowrap; }
 .navbar.transparent .nav-cta .btn { border-color: var(--c-gold); }
 
 .nav-right {
   margin-left: auto;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: clamp(0.75rem, 2vw, 1.5rem);
@@ -186,11 +189,17 @@
 .mobile-cta { margin-top: 2.5rem; text-align: center; }
 .mobile-cta .btn { width: 100%; max-width: 320px; }
 
-/* Eight items (incl. the longer "Outdoor Catering") need tighter tracking on
-   smaller laptops, or the row wraps before the hamburger takes over at 1080. */
-@media (max-width: 1240px) {
+/* Eight items (incl. the longer "Outdoor Catering") beside the wider Chancery
+   logo and the Book Now button: nothing wraps or shrinks, so the row is
+   tightened in two steps before the hamburger takes over at 1080. */
+@media (max-width: 1360px) {
   .primary ul { gap: 1.1rem; }
   .primary a, .primary .nav-trigger { letter-spacing: 0.16em; }
+}
+@media (max-width: 1180px) {
+  .navbar-inner { gap: 1.25rem; }
+  .primary ul { gap: 0.9rem; }
+  .primary a, .primary .nav-trigger { font-size: 0.66rem; }
 }
 
 @media (max-width: 1080px) {

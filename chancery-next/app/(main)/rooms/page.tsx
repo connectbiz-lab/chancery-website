@@ -58,7 +58,7 @@ export default async function RoomsPage() {
                       {room.size_sqft ? `${room.size_sqft} sq. ft.` : ''}
                       {room.bed_type ? ` · ${room.bed_type}` : ''}
                     </p>
-                    <p className="copy">{room.description.slice(0, 130)}…</p>
+                    <p className="copy">{room.description}</p>
                   </Link>
                 ))}
               </div>
