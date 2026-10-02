@@ -75,7 +75,9 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
   const copy = HOME_COPY[hotel as HotelSlug]
   const amenities = HOTEL_AMENITIES[hotel] ?? []
   // Pavilion leads with a looping montage video hero; other hotels keep the photo.
-  const heroVideo = hotel === 'pavilion' ? mediaUrl('video/tcp-pavilion-hero.mp4') : null
+  // A new cut gets a new file name: browsers that saved the previous file keep
+  // playing it (it was served with a 24-hour cache), so the name must change.
+  const heroVideo = hotel === 'pavilion' ? mediaUrl('video/tcp-pavilion-hero-v3.mp4') : null
   const heroPoster = hotel === 'pavilion' ? mediaUrl('video/tcp-pavilion-hero-poster.jpg') : null
 
   return (
