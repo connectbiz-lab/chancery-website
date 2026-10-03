@@ -1,0 +1,94 @@
+[
+ {
+  "op": "update",
+  "table": "hotel",
+  "match": {
+   "slug": "pavilion"
+  },
+  "set": {
+   "tagline": "Modern Luxury, Warmly Hosted"
+  }
+ },
+ {
+  "op": "update",
+  "table": "hotel",
+  "match": {
+   "slug": "chancery"
+  },
+  "set": {
+   "tagline": "Where Business Feels at Home"
+  }
+ },
+ {
+  "op": "update",
+  "table": "offer",
+  "match": {
+   "title": "Early Bird Offer",
+   "hotel": null
+  },
+  "set": {
+   "tag": "Save 12%",
+   "description": "Book your stay at least 14 days in advance and enjoy 12% off the best available rate. Plan ahead and make your stay in Bengaluru even more rewarding."
+  }
+ },
+ {
+  "op": "update",
+  "table": "offer",
+  "match": {
+   "title": "Extended Stay Package",
+   "hotel": null
+  },
+  "set": {
+   "hotel": "chancery"
+  }
+ },
+ {
+  "op": "update",
+  "table": "offer",
+  "match": {
+   "title": "Weekend Package",
+   "hotel": null
+  },
+  "set": {
+   "hotel": "chancery"
+  }
+ },
+ {
+  "op": "update",
+  "table": "offer",
+  "match": {
+   "title": "Last Minute Deal",
+   "hotel": null
+  },
+  "set": {
+   "hotel": "chancery"
+  }
+ },
+ {
+  "op": "delete",
+  "table": "offer",
+  "match": {
+   "title": "Alchemy Microbrewery Package",
+   "hotel": "pavilion"
+  }
+ },
+ {
+  "op": "delete",
+  "table": "offer",
+  "match": {
+   "title": "Grand Ballroom Wedding Suite",
+   "hotel": "pavilion"
+  }
+ },
+ {
+  "op": "update",
+  "table": "offer",
+  "match": {
+   "title": "Suite Escape",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "description": "Stay 2 Nights & Enjoy 50% Off the 3rd Night. Book our Executive Suite for a minimum of two nights and enjoy a flat 50% saving on your third night. With a spacious separate living area, the suite is thoughtfully designed for comfortable and memorable family stays."
+  }
+ }
+]

@@ -6,8 +6,8 @@
 Local: pass the service-role key with --bearer (apikey + Authorization).
 Cloud: pass the sb_secret_ key WITHOUT --bearer (apikey header only).
 UUIDs differ between environments, so rows are matched by slug / name / kind+hotel.
-Ops: update / insert_if_missing / replace_children (image rows of one parent) /
-replace_gallery (a hotel's whole gallery).
+Ops: update / insert_if_missing / delete / replace_children (image rows of one parent) /
+replace_gallery (a hotel's whole gallery). In `set`, `hotel` is a slug (or null = shared).
 """
 import sys, json, urllib.request, urllib.parse
 ops_path, base, key = sys.argv[1:4]; bearer = '--bearer' in sys.argv; dry = '--dry-run' in sys.argv
@@ -36,8 +36,15 @@ for op in json.load(open(ops_path)):
     rows = call('GET', f"/{t}?select=id&{flt(m)}")
     if op['op'] == 'update':
         if len(rows) != 1: print(f"SKIP ({len(rows)} rows matched) {label}"); continue
-        if not dry: call('PATCH', f"/{t}?id=eq.{rows[0]['id']}", op['set'])
+        body = dict(op['set'])
+        # `hotel` in `set` is a slug (ids differ per environment); null = shared by both hotels.
+        if 'hotel' in body: body['hotel_id'] = None if body['hotel'] is None else hotels[body.pop('hotel')]; body.pop('hotel', None)
+        if not dry: call('PATCH', f"/{t}?id=eq.{rows[0]['id']}", body)
         print(f"{'would update' if dry else 'updated'} {label}: {list(op['set'])}")
+    elif op['op'] == 'delete':
+        if len(rows) != 1: print(f"SKIP ({len(rows)} rows matched) {label}"); continue
+        if not dry: call('DELETE', f"/{t}?id=eq.{rows[0]['id']}")
+        print(f"{'would delete' if dry else 'deleted'} {label}")
     elif op['op'] == 'replace_children':
         # Replace ALL child image rows of one parent (room/venue/restaurant) with `rows`.
         if len(rows) != 1: print(f"SKIP ({len(rows)} parents matched) {label}"); continue
