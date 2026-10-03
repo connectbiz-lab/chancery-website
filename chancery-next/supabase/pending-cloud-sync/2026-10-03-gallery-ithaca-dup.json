@@ -1,0 +1,254 @@
+[
+ {
+  "op": "replace_gallery",
+  "hotel": "pavilion",
+  "rows": [
+   {
+    "image": "hotels/pavilion-hero-real.webp",
+    "alt": "Chancery Pavilion exterior at night",
+    "category": "hotel",
+    "order": 0
+   },
+   {
+    "image": "hotels/2026-pavilion-exterior-1.webp",
+    "alt": "The Chancery Pavilion exterior",
+    "category": "hotel",
+    "order": 1
+   },
+   {
+    "image": "hotels/2026-pavilion-pool-1.webp",
+    "alt": "Swimming pool",
+    "category": "hotel",
+    "order": 2
+   },
+   {
+    "image": "hotels/2026-pavilion-pool-2.webp",
+    "alt": "Swimming pool",
+    "category": "hotel",
+    "order": 3
+   },
+   {
+    "image": "hotels/2026-pavilion-gym-1.webp",
+    "alt": "Fitness centre",
+    "category": "hotel",
+    "order": 4
+   },
+   {
+    "image": "rooms/2026-pavilion-superior-room-2.webp",
+    "alt": "Superior Room",
+    "category": "rooms",
+    "order": 5
+   },
+   {
+    "image": "rooms/2026-pavilion-superior-room-1.webp",
+    "alt": "Superior Room — sitting area",
+    "category": "rooms",
+    "order": 6
+   },
+   {
+    "image": "rooms/2026-pavilion-deluxe-room-2.webp",
+    "alt": "Deluxe Room",
+    "category": "rooms",
+    "order": 7
+   },
+   {
+    "image": "rooms/2026-pavilion-deluxe-room-1.webp",
+    "alt": "Deluxe Room — sitting and dining area",
+    "category": "rooms",
+    "order": 8
+   },
+   {
+    "image": "rooms/2026-pavilion-club-pavilion-1.webp",
+    "alt": "Club Pavilion",
+    "category": "rooms",
+    "order": 9
+   },
+   {
+    "image": "rooms/2026-pavilion-club-pavilion-2.webp",
+    "alt": "Club Pavilion — bed and sitting area",
+    "category": "rooms",
+    "order": 10
+   },
+   {
+    "image": "rooms/2026-pavilion-executive-suite-2.webp",
+    "alt": "Executive Suite — bedroom",
+    "category": "rooms",
+    "order": 11
+   },
+   {
+    "image": "rooms/2026-pavilion-executive-suite-1.webp",
+    "alt": "Executive Suite — living room",
+    "category": "rooms",
+    "order": 12
+   },
+   {
+    "image": "rooms/2026-pavilion-presidential-suite-1.webp",
+    "alt": "Presidential Suite — bedroom",
+    "category": "rooms",
+    "order": 13
+   },
+   {
+    "image": "rooms/2026-pavilion-presidential-suite-2.webp",
+    "alt": "Presidential Suite — living room",
+    "category": "rooms",
+    "order": 14
+   },
+   {
+    "image": "dining/2026-alchemy-4.webp",
+    "alt": "Alchemy at dusk",
+    "category": "dining",
+    "order": 15
+   },
+   {
+    "image": "dining/2026-alchemy-3.webp",
+    "alt": "Alchemy — rooftop terrace and microbrewery",
+    "category": "dining",
+    "order": 16
+   },
+   {
+    "image": "dining/2026-alchemy-1.webp",
+    "alt": "Alchemy — dining room",
+    "category": "dining",
+    "order": 17
+   },
+   {
+    "image": "dining/2026-alchemy-2.webp",
+    "alt": "Alchemy — table setting",
+    "category": "dining",
+    "order": 18
+   },
+   {
+    "image": "dining/2026-alchemy-5.webp",
+    "alt": "Alchemy — signature dish",
+    "category": "dining",
+    "order": 19
+   },
+   {
+    "image": "dining/2026-alchemy-6.webp",
+    "alt": "Alchemy — signature dish",
+    "category": "dining",
+    "order": 20
+   },
+   {
+    "image": "gallery/alchemy-rooftop-sunset.webp",
+    "alt": "Alchemy rooftop at sunset",
+    "category": "dining",
+    "order": 21
+   },
+   {
+    "image": "gallery/alchemy-night.webp",
+    "alt": "Alchemy at night",
+    "category": "dining",
+    "order": 22
+   },
+   {
+    "image": "gallery/alchemy-food.webp",
+    "alt": "Alchemy — signature dishes",
+    "category": "dining",
+    "order": 23
+   },
+   {
+    "image": "dining/2026-ithaca-1.webp",
+    "alt": "Ithaca",
+    "category": "dining",
+    "order": 24
+   },
+   {
+    "image": "dining/2026-ithaca-2.webp",
+    "alt": "Ithaca — dining room",
+    "category": "dining",
+    "order": 25
+   },
+   {
+    "image": "dining/2026-ithaca-3.webp",
+    "alt": "Ithaca by the pool at night",
+    "category": "dining",
+    "order": 26
+   },
+   {
+    "image": "dining/2026-ithaca-4.webp",
+    "alt": "Ithaca — buffet",
+    "category": "dining",
+    "order": 27
+   },
+   {
+    "image": "gallery/ithaca-pool-view.webp",
+    "alt": "Ithaca poolside",
+    "category": "dining",
+    "order": 28
+   },
+   {
+    "image": "gallery/ithaca-buffet-hall.webp",
+    "alt": "Ithaca buffet hall",
+    "category": "dining",
+    "order": 29
+   },
+   {
+    "image": "dining/2026-the-lounge-1.webp",
+    "alt": "The Lounge",
+    "category": "dining",
+    "order": 30
+   },
+   {
+    "image": "dining/2026-the-lounge-2.webp",
+    "alt": "The Lounge — bar",
+    "category": "dining",
+    "order": 31
+   },
+   {
+    "image": "gallery/lounge-main.webp",
+    "alt": "The Lounge — reception",
+    "category": "dining",
+    "order": 32
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-1.webp",
+    "alt": "The Grand Ball Room — banquet setup",
+    "category": "events",
+    "order": 33
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-4.webp",
+    "alt": "The Grand Ball Room — view from the stage",
+    "category": "events",
+    "order": 34
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-7.webp",
+    "alt": "The Grand Ball Room — theatre seating",
+    "category": "events",
+    "order": 35
+   },
+   {
+    "image": "gallery/grand-ballroom-conference.webp",
+    "alt": "Grand Ball Room — conference",
+    "category": "events",
+    "order": 36
+   },
+   {
+    "image": "venues/2026-pavilion-esquire-1.webp",
+    "alt": "Esquire — banquet rounds",
+    "category": "events",
+    "order": 37
+   },
+   {
+    "image": "venues/2026-pavilion-sigma-1.webp",
+    "alt": "Sigma — U-shape setup",
+    "category": "events",
+    "order": 38
+   },
+   {
+    "image": "venues/2026-pavilion-indian-affair-1.webp",
+    "alt": "Indian Affair — theatre seating",
+    "category": "events",
+    "order": 39
+   },
+   {
+    "image": "venues/2026-pavilion-club-lounge-boardroom.webp",
+    "alt": "Pavilion Board Room",
+    "category": "events",
+    "order": 40
+   }
+  ]
+ }
+]
