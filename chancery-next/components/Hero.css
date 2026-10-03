@@ -193,9 +193,13 @@
 }
 
 /* With the hotel pill in the hero (group pages such as Outdoor Catering), the
-   centred text must start below the pill — on phones the short hero otherwise
-   centres the eyebrow straight under it. The pill's bottom edge sits at about
-   104px + 1.35rem + 37px, so the content row begins past that. */
+   centred text must start below the pill — on a short viewport the hero
+   otherwise centres the eyebrow straight under it. Padding = the pill's top
+   offset (see .hotel-toggle) + its height (~3.25rem) + a clear gap; on phones
+   the pill is lower-and-smaller, so the figure is restated there. */
+.hero-has-toggle.hero-page {
+  padding-top: calc(104px + clamp(0.75rem, 2vw, 2rem) + clamp(0.9rem, 2.2vw, 1.75rem) + 3.25rem + 1.5rem);
+}
 @media (max-width: 720px) {
   .hero-has-toggle.hero-page { padding-top: 11.5rem; }
 }
