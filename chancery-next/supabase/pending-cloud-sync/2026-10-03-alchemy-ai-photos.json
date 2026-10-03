@@ -1,0 +1,53 @@
+[
+ {
+  "op": "replace_children",
+  "table": "restaurant",
+  "match": {
+   "slug": "alchemy"
+  },
+  "child": "restaurant_image",
+  "fk": "restaurant_id",
+  "rows": [
+   {
+    "image": "dining/2026-alchemy-4.webp",
+    "alt": "Alchemy at dusk",
+    "order": 0
+   },
+   {
+    "image": "dining/2026-alchemy-3.webp",
+    "alt": "Alchemy \u2014 rooftop terrace and microbrewery",
+    "order": 1
+   },
+   {
+    "image": "dining/2026-alchemy-1.webp",
+    "alt": "Alchemy \u2014 dining room",
+    "order": 2
+   },
+   {
+    "image": "dining/2026-alchemy-2.webp",
+    "alt": "Alchemy \u2014 table setting",
+    "order": 3
+   },
+   {
+    "image": "dining/2026-alchemy-5.webp",
+    "alt": "Alchemy \u2014 signature dish",
+    "order": 4
+   },
+   {
+    "image": "dining/2026-alchemy-6.webp",
+    "alt": "Alchemy \u2014 signature dish",
+    "order": 5
+   },
+   {
+    "image": "dining/alchemy-food.webp",
+    "alt": "Alchemy",
+    "order": 6
+   },
+   {
+    "image": "dining/alchemy-branding.webp",
+    "alt": "Alchemy",
+    "order": 7
+   }
+  ]
+ }
+]
