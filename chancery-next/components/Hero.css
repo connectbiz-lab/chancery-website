@@ -79,8 +79,15 @@
      dashes still mark the brand accent. Bumped from the 0.72rem global
      token so the eyebrow scans against full-bleed photography. */
   color: var(--c-ivory);
-  font-size: 0.82rem;
+  /* Same size and weight as the hotel heroes' kicker (.chero-eyebrow), so a
+     group page's "Outdoor Catering" reads like a hotel page's "Residency Road". */
+  font-size: clamp(0.95rem, 1.15vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.28em;
   text-shadow: 0 1px 10px rgba(14, 34, 55, 0.75);
+}
+@media (max-width: 600px) {
+  .hero .eyebrow { font-size: 0.8rem; letter-spacing: 0.2em; }
 }
 .hero .eyebrow::before {
   background: var(--c-gold);
