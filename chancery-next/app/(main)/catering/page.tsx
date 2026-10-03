@@ -75,6 +75,7 @@ export default async function CateringPage() {
         heading={p?.hero_heading ?? 'Chancery hospitality, wherever you celebrate'}
         subheading={p?.hero_subheading ?? undefined}
         size="page"
+        hotelToggle
       />
 
       {/* Intro — centred heading like the other sections, photo beneath, then the scale figures. */}

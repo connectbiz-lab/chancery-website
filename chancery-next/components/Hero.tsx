@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
+import { HotelToggle } from "./HotelToggle";
 import { Media } from "./Media";
 import "./Hero.css";
 
@@ -18,6 +19,9 @@ interface HeroProps {
   /** Two background images shown side by side (a diptych) instead of one — used
    *  on the group home to feature both hotels behind the shared heading. */
   splitImages?: [string | null, string | null];
+  /** Show the hotel pill (as on every hotel-page hero) so a group page such as
+   *  Outdoor Catering still offers a way into either hotel's own site. */
+  hotelToggle?: boolean;
 }
 
 export function Hero({
@@ -31,10 +35,12 @@ export function Hero({
   footerNav,
   focal,
   splitImages,
+  hotelToggle = false,
 }: HeroProps) {
-  const cls = ["hero", `hero-${size}`, `hero-align-${align}`].join(" ");
+  const cls = ["hero", `hero-${size}`, `hero-align-${align}`, hotelToggle ? "hero-has-toggle" : ""].filter(Boolean).join(" ");
   return (
     <section className={cls} role="banner">
+      {hotelToggle && <HotelToggle />}
       {splitImages ? (
         <div className="hero-bg hero-split" aria-hidden="true">
           <div className="hero-split-half">

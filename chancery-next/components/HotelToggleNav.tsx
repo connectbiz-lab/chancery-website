@@ -12,7 +12,10 @@ type Item = { slug: string; label: string; logo: string | null }
 export function HotelToggleNav({ hotels }: { hotels: Item[] }) {
   const pathname = usePathname() ?? '/'
   const slugs = hotels.map((h) => h.slug)
-  const current = slugs.find((s) => pathname === `/${s}` || pathname.startsWith(`/${s}/`)) ?? 'pavilion'
+  // The Pavilion's home is /; on a group page (e.g. /catering) neither hotel is
+  // current, so both segments stay unfilled and read as two destinations.
+  const current =
+    slugs.find((s) => pathname === `/${s}` || pathname.startsWith(`/${s}/`)) ?? (pathname === '/' ? 'pavilion' : null)
 
   return (
     <nav className="hotel-toggle" aria-label="Choose a hotel">
