@@ -1,0 +1,22 @@
+[
+ {
+  "op": "update",
+  "table": "hotel",
+  "match": {
+   "slug": "pavilion"
+  },
+  "set": {
+   "tagline": "Luxury Unbuttoned"
+  }
+ },
+ {
+  "op": "update",
+  "table": "hotel",
+  "match": {
+   "slug": "chancery"
+  },
+  "set": {
+   "tagline": "Bangalore's Finest Corporate Hotel"
+  }
+ }
+]
