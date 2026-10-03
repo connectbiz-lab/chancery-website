@@ -1,15 +1,18 @@
 import type { MetadataRoute } from 'next'
+import { getVenues } from '@/lib/queries/content'
 import { SITE_URL } from '@/lib/seo'
 
 const HOTELS = ['chancery', 'pavilion']
 const HOTEL_PAGES = ['', '/accommodation', '/dining', '/plan-your-event', '/special-offers', '/gallery', '/destination', '/awards', '/contact-us']
 const BRAND_PAGES = ['', '/about', '/rooms', '/faq', '/careers', '/catering', '/site-map', '/privacy', '/terms', '/accessibility-statement']
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date()
   const urls: string[] = [...BRAND_PAGES]
   // The Pavilion's home is / (already in BRAND_PAGES); /pavilion redirects there.
   for (const h of HOTELS) for (const p of HOTEL_PAGES) if (!(h === 'pavilion' && p === '')) urls.push(`/${h}${p}`)
+  // Venue pages come from the CMS, so the list can't drift from what's published.
+  for (const v of await getVenues()) if (v.hotel?.slug) urls.push(`/${v.hotel.slug}/plan-your-event/${v.slug}`)
   return urls.map((u) => ({
     url: `${SITE_URL}${u || '/'}`,
     lastModified,
