@@ -38,7 +38,7 @@ const CAPABILITIES: Array<[string, string]> = [
 ]
 
 // Sourced from the F&B fact sheet — organisations served and venues catered.
-const CLIENTS = ['Accenture', 'IBM', 'Mphasis', 'Bank of Baroda', 'BMRCL', 'Bosch', 'Norstella']
+const CLIENTS = ['Accenture', 'IBM', 'Mphasis', 'Bank of Baroda', 'BMRCL', 'Bosch', 'Norstella', 'Wabtec']
 
 const VENUES_CATERED: Array<[string, string]> = [
   ['M. Chinnaswamy Stadium', 'International cricket stadium'],

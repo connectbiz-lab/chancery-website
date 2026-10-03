@@ -32,6 +32,16 @@ for op in json.load(open(ops_path)):
             call('DELETE', f"/gallery_image?hotel_id=eq.{hid}")
             call('POST', '/gallery_image', [dict(r, hotel_id=hid) for r in op['rows']])
         print(f"{'would replace' if dry else 'replaced'} gallery of {op['hotel']}: {len(op['rows'])} images"); continue
+    if op['op'] == 'replace_faq':
+        # Replace the whole FAQ (sections + items) with `sections` — deterministic, re-runnable.
+        if not dry:
+            call('DELETE', '/faq_item?section_id=not.is.null')
+            call('DELETE', '/faq_section?title=not.is.null')
+            created = call('POST', '/faq_section', [{'title': s['title'], 'order': i + 1} for i, s in enumerate(op['sections'])])
+            ids = {s['title']: s['id'] for s in created}
+            items = [dict(q, section_id=ids[s['title']], order=j + 1) for s in op['sections'] for j, q in enumerate(s['items'])]
+            call('POST', '/faq_item', items)
+        print(f"{'would replace' if dry else 'replaced'} FAQ: {len(op['sections'])} sections, {sum(len(s['items']) for s in op['sections'])} questions"); continue
     t, m = op['table'], op['match']; label = f"{t} {m}"
     rows = call('GET', f"/{t}?select=id&{flt(m)}")
     if op['op'] == 'update':

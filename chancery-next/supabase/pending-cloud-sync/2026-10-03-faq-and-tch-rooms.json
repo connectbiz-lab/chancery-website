@@ -1,0 +1,197 @@
+[
+ {
+  "op": "replace_faq",
+  "sections": [
+   {
+    "title": "The Chancery Hotel · Reservations and Your Stay",
+    "items": [
+     {
+      "question": "What are the check-in and check-out times at The Chancery Hotel?",
+      "answer": "The check-in time at The Chancery Hotel is 2:00 pm and the check-out time is 12:00 pm. Early check-in and late check-out are subject to availability."
+     },
+     {
+      "question": "Can I book a room at The Chancery Hotel directly through the website?",
+      "answer": "Yes. Select Book Now to view available rooms, rates and offers for your preferred travel dates."
+     },
+     {
+      "question": "Is breakfast included with my stay at The Chancery Hotel?",
+      "answer": "Breakfast or meal inclusions depend on your selected room or package. Please check the booking details for more information."
+     },
+     {
+      "question": "Can you arrange an airport transfer?",
+      "answer": "Yes. Our team would be pleased to arrange airport transfers on request. Please contact the hotel in advance to check for availability and charges."
+     }
+    ]
+   },
+   {
+    "title": "The Chancery Hotel · General Amenities",
+    "items": [
+     {
+      "question": "What general amenities are available at The Chancery Hotel?",
+      "answer": "The Chancery Hotel offers all-day multi-cuisine dining at South Parade and authentic Japanese cuisine at Matsuri. Guests also have access to a fitness centre, Sara Spa, 24-hour in-room dining, daily turndown service, a business centre, valet parking, wake-up calls, and Wi-Fi and LAN connectivity."
+     },
+     {
+      "question": "Is in-room dining available at The Chancery Hotel?",
+      "answer": "Yes. Our 24-hour in-room dining menu offers a selection of dishes to enjoy in the comfort of your room, including Japanese specialities from Matsuri."
+     },
+     {
+      "question": "Does The Chancery Hotel offer a business centre?",
+      "answer": "Yes. Business centre facilities are available at The Chancery Hotel. For specific services or assistance during your stay, please contact the front desk."
+     },
+     {
+      "question": "Are pets allowed at The Chancery Hotel?",
+      "answer": "Pets are not currently accommodated at The Chancery Hotel."
+     }
+    ]
+   },
+   {
+    "title": "The Chancery Hotel · Dining",
+    "items": [
+     {
+      "question": "What dining options are available at The Chancery Hotel?",
+      "answer": "The Chancery Hotel is home to Matsuri, a well-known authentic Japanese restaurant curated by Chef Okada, and round-the-clock, multi-cuisine dining at South Parade."
+     },
+     {
+      "question": "Can guests who are not staying at The Chancery Hotel visit the restaurants?",
+      "answer": "Certainly. The Chancery Hotel welcomes both in-house guests and visitors to South Parade and Matsuri. To reserve a table at either restaurant, simply give us a call at 080 4118 8888."
+     }
+    ]
+   },
+   {
+    "title": "The Chancery Hotel · Meetings and Events",
+    "items": [
+     {
+      "question": "How do I enquire about an event venue at The Chancery Hotel?",
+      "answer": "To book or enquire about a venue for your event, kindly write to our sales team at sales@chanceryhotels.com."
+     },
+     {
+      "question": "Does The Chancery Hotel offer outdoor catering services?",
+      "answer": "Yes. The Chancery Hotel offers outdoor catering for weddings, corporate events, premium cocktail events and private celebrations. Kindly write to our ODC team at ban.tch@chanceryhotels.com or simply give us a call at +91 91489 97818."
+     }
+    ]
+   },
+   {
+    "title": "The Chancery Hotel · Accessibility",
+    "items": [
+     {
+      "question": "Can The Chancery Hotel assist guests with accessibility requirements?",
+      "answer": "Yes. The hotel offers step-free access in key areas and lift access. Please let us know your specific requirements when booking so our team can advise on suitable room arrangements and assist with your stay."
+     }
+    ]
+   },
+   {
+    "title": "The Chancery Pavilion · Reservations and Your Stay",
+    "items": [
+     {
+      "question": "What are the check-in and check-out times at The Chancery Pavilion?",
+      "answer": "The check-in time at The Chancery Pavilion is 2:00 pm and the check-out time is 12:00 pm. Early check-in and late check-out are subject to availability."
+     },
+     {
+      "question": "Can I book a room at The Chancery Pavilion directly through the website?",
+      "answer": "Yes. Select Book Now to view available rooms, rates and offers for your preferred travel dates."
+     },
+     {
+      "question": "Is breakfast included with my stay at The Chancery Pavilion?",
+      "answer": "Breakfast or meal inclusions depend on your selected room or package. Please check the booking details for more information."
+     },
+     {
+      "question": "Can you arrange an airport transfer?",
+      "answer": "Yes. Our team would be pleased to arrange airport transfers on request. Please contact the hotel in advance to check for availability and charges."
+     }
+    ]
+   },
+   {
+    "title": "The Chancery Pavilion · General Amenities",
+    "items": [
+     {
+      "question": "What general amenities are available at The Chancery Pavilion?",
+      "answer": "The Chancery Pavilion offers three dining experiences: award-winning open-air dining and craft beer at Alchemy; round-the-clock, multi-cuisine dining overlooking the pool at Ithaca; and snacks and light bites at The Lounge, open 24 hours a day. Guests also have access to a fitness centre open from 6:00 am to 9:00 pm, a swimming pool open from 6:00 am to 6:00 pm, 24-hour in-room dining, daily turndown service, on-site laundry, a business centre, valet parking, wake-up calls, and Wi-Fi and LAN connectivity."
+     },
+     {
+      "question": "Is in-room dining available at The Chancery Pavilion?",
+      "answer": "Yes. Our 24-hour in-room dining menu offers a selection of dishes to enjoy in the comfort of your room."
+     },
+     {
+      "question": "Does The Chancery Pavilion offer a business centre?",
+      "answer": "Yes. Business centre facilities are available at The Chancery Pavilion. For specific services or assistance during your stay, please contact the front desk."
+     },
+     {
+      "question": "Are pets allowed at The Chancery Pavilion?",
+      "answer": "Pets are not currently accommodated at The Chancery Pavilion."
+     }
+    ]
+   },
+   {
+    "title": "The Chancery Pavilion · Dining",
+    "items": [
+     {
+      "question": "What dining options are available at The Chancery Pavilion?",
+      "answer": "The Chancery Pavilion offers three dining experiences: award-winning open-air dining and craft beer at Alchemy; round-the-clock, multi-cuisine dining overlooking the pool at Ithaca; and snacks and light bites at The Lounge."
+     },
+     {
+      "question": "Can guests who are not staying at The Chancery Pavilion visit the restaurants?",
+      "answer": "Certainly. The Chancery Pavilion welcomes both in-house guests and visitors to enjoy a meal at any of our three restaurants. To reserve a table, simply give us a call at 080 4141 4141."
+     }
+    ]
+   },
+   {
+    "title": "The Chancery Pavilion · Meetings and Events",
+    "items": [
+     {
+      "question": "How do I enquire about an event venue at The Chancery Pavilion?",
+      "answer": "To book or enquire about a venue for your event, kindly write to our sales team at sales@chanceryhotels.com."
+     }
+    ]
+   },
+   {
+    "title": "The Chancery Pavilion · Accessibility",
+    "items": [
+     {
+      "question": "Can The Chancery Pavilion assist guests with accessibility requirements?",
+      "answer": "Yes. The hotel offers step-free access in key areas and lift access. Please let us know your specific requirements when booking so our team can advise on suitable room arrangements and assist with your stay."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Deluxe Room",
+   "hotel": "chancery"
+  },
+  "set": {
+   "size_sqft": 270,
+   "bed_type": "King / Twin",
+   "description": "Designed for a comfortable stay in the heart of Bangalore, the 270 sq. ft. Deluxe Room offers a choice of king or twin beds, a dedicated workspace and a bathroom with both a shower and bathtub.",
+   "amenities": "Free Wi-Fi\nSmart TV\nTea & Coffee Maker\nIron & Ironing Board\n24/7 In-Room Dining"
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Premium Room",
+   "hotel": "chancery"
+  },
+  "set": {
+   "size_sqft": 285,
+   "bed_type": "King / Twin",
+   "description": "The 285 sq. ft. Premium Room offers a choice of king or twin beds, a dedicated workspace and a bathroom with both a shower and bathtub. A considered choice for guests seeking a little more space during their stay.",
+   "amenities": "Free Wi-Fi\nSmart TV\nTea & Coffee Maker\nWork Desk\nCity View\nBathrobe & Slippers\nBidet Toilet\nUniversal Electric Sockets"
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Suite Room",
+   "hotel": "chancery"
+  },
+  "set": {
+   "description": "The Suite offers 450–485 sq. ft. of well-appointed space, with a separate bedroom and sitting area. It is an inviting choice for guests who value privacy and room to settle in.",
+   "amenities": "Free Wi-Fi\nSmart TV\nTea & Coffee Maker\nWork Desk\nSeparate Sitting Area\nCity View\nBathrobe & Slippers"
+  }
+ }
+]

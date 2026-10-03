@@ -369,6 +369,18 @@ export function DayTripIcon({ size, className }: IconProps) {
   );
 }
 
+export function SpaIcon({ size, className }: IconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      {/* Lotus — three petals over a water line. */}
+      <path d="M12 16c-2.5-1.6-3.6-4.3-3-7.5 1.7.9 2.7 2.4 3 4.5.3-2.1 1.3-3.6 3-4.5.6 3.2-.5 5.9-3 7.5z" />
+      <path d="M12 16c-3.2 0-5.6-1.5-7-4.2 2.6-.5 4.8.2 6.4 2" />
+      <path d="M12 16c3.2 0 5.6-1.5 7-4.2-2.6-.5-4.8.2-6.4 2" />
+      <path d="M4 19.5c2.7 1.3 5.3 1.3 8 0 2.7 1.3 5.3 1.3 8 0" />
+    </svg>
+  );
+}
+
 export function CloseIcon({ size, className }: IconProps) {
   return (
     <svg {...baseProps(size, className)}>
