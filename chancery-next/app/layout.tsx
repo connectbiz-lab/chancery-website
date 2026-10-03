@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: 'Chancery Hotels — Luxury Hotels in Bangalore', template: '%s | Chancery Hotels' },
-  description: 'Luxury hotels in Bangalore — The Chancery Hotel on Lavelle Road and The Chancery Pavilion on Residency Road. Award-winning dining, banquets and stays since 1968.',
+  description: 'Luxury hotels in Bangalore — The Chancery Hotel on Lavelle Road and The Chancery Pavilion on Residency Road. Award-winning dining, banquets and stays since 2000.',
   keywords: [
     'Chancery Hotels', 'luxury hotels Bangalore', 'The Chancery Hotel', 'Chancery Pavilion',
     'hotels Lavelle Road', 'hotels Residency Road', 'banquet halls Bangalore', 'wedding venues Bangalore',

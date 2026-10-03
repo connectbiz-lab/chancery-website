@@ -114,7 +114,7 @@ export function SideMenu({ open, scope, hotels, onClose }: SideMenuProps) {
 
         <div className="side-menu__foot">
           <p className="side-menu__tagline">The Chancery Group of Hotels</p>
-          <p className="side-menu__meta">Bangalore · Since 1968</p>
+          <p className="side-menu__meta">Bangalore · Since 2000</p>
         </div>
       </aside>
     </>

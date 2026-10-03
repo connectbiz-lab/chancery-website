@@ -10,7 +10,6 @@ import {
 } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
 import { AWARD_GROUPS, awardLine, type AwardScope } from '@/lib/awards'
-import { ODC } from '@/lib/catering'
 import { mediaUrl } from '@/lib/media'
 import './HomePage.css'
 import { hotelHomePath } from '@/lib/routes'
@@ -31,7 +30,7 @@ const MISSION =
   'Warm, heartfelt hospitality and impeccable service — creating unforgettable moments for every guest, every time.'
 const VALUES: { name: string; line: string }[] = [
   { name: 'Excellence', line: 'The highest standards at every touchpoint' },
-  { name: 'Integrity', line: 'Honest and transparent with everyone' },
+  { name: 'Integrity', line: 'Honest and transparent with all stakeholders' },
   { name: 'Guest-Centricity', line: 'Anticipating needs before they are voiced' },
   { name: 'Innovation', line: 'Evolving with purpose and agility' },
   { name: 'People-First', line: 'Nurturing talent and empowering growth' },
@@ -89,7 +88,7 @@ export default async function AboutPage() {
           <div className="intro-claridges">
             <div className="intro-claridges__text">
               <p className="eyebrow">The Chancery Group</p>
-              <h2 className="display">A Quiet Kind of Luxury, Since 1968.</h2>
+              <h2 className="display">A Quiet Kind of Luxury, Since 2000.</h2>
               <p className="lede">
                 {p?.intro_body ??
                   "Two distinguished hotels at the heart of Bangalore — bound by a shared commitment to timeless hospitality, elegant interiors and the city's most thoughtful dining."}
@@ -163,13 +162,6 @@ export default async function AboutPage() {
               <span className="journey-mark" aria-hidden="true" />
               <p className="journey-note">
                 Catering and food &amp; beverage operations expand.
-              </p>
-            </li>
-            <li>
-              <span className="journey-year">2020+</span>
-              <span className="journey-mark" aria-hidden="true" />
-              <p className="journey-note">
-                Planning begins for expansion across India.
               </p>
             </li>
           </ol>
@@ -257,7 +249,7 @@ export default async function AboutPage() {
               { n: '26,800', label: 'Sq ft of banqueting', sub: 'Combined across both hotels' },
               { n: '2,500+', label: 'Events hosted / year', sub: 'Weddings, conferences & socials' },
               { n: '10,000+', label: 'Catering capacity', sub: 'Outdoor events of any scale' },
-              { n: '1.2L+', label: 'F&B covers / year', sub: 'Restaurant, banquet & catering' },
+              { n: '2L+', label: 'F&B covers / year', sub: 'Restaurant, banquet & catering' },
               { n: '349', label: 'Rooms & suites', sub: '223 Pavilion + 126 Chancery' },
               { n: '25+', label: 'Years of excellence', sub: 'Award-winning operations in Bangalore' },
               { n: '94+%', label: 'Occupancy rate', sub: 'Consistently above benchmark' },
@@ -276,34 +268,8 @@ export default async function AboutPage() {
         </Reveal>
       </section>
 
-      {/* Outdoor Catering — one of the group's main lines; teaser to /catering. */}
-      <section className="section bg-ivory">
-        <Reveal className="container">
-          <div className="editorial-row flip">
-            <div className="editorial-figure">
-              <div className="figure">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={ODC.photo.src}
-                  srcSet={`${ODC.photo.srcSmall} 640w, ${ODC.photo.srcMedium} 800w, ${ODC.photo.src} 1200w`}
-                  sizes="(max-width: 900px) 100vw, 50vw"
-                  alt={ODC.photo.alt}
-                  loading="lazy"
-                />
-              </div>
-            </div>
-            <div className="editorial-text">
-              <p className="eyebrow">Outdoor Catering</p>
-              <h2 className="h2">{ODC.tagline}</h2>
-              <p className="lede">{ODC.teaser}</p>
-              <Link href={ODC.path} className="btn ghost">Explore Outdoor Catering</Link>
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
       {/* Awards & Accolades — credibility row sourced from Chancery PPT (Dec) */}
-      <section className="section bg-cream awards">
+      <section className="section bg-ivory awards">
         <Reveal className="container">
           <div className="section-head">
             <p className="eyebrow center">Awards &amp; accolades</p>
@@ -332,7 +298,7 @@ export default async function AboutPage() {
 
       {/* Testimonials */}
       {testimonials.length > 0 && (
-        <section className="section tight bg-ivory">
+        <section className="section tight bg-cream">
           <Reveal className="container narrow text-center">
             <p className="eyebrow center">Guest stories</p>
             <TestimonialCarousel testimonials={testimonials.slice(0, 5)} />

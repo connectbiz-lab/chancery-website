@@ -1,0 +1,304 @@
+[
+ {
+  "op": "replace_children",
+  "table": "restaurant",
+  "match": {
+   "slug": "ithaca"
+  },
+  "child": "restaurant_image",
+  "fk": "restaurant_id",
+  "rows": [
+   {
+    "image": "dining/2026-ithaca-1.webp",
+    "alt": "Ithaca",
+    "order": 0
+   },
+   {
+    "image": "dining/2026-ithaca-2.webp",
+    "alt": "Ithaca — dining room",
+    "order": 1
+   },
+   {
+    "image": "dining/2026-ithaca-3.webp",
+    "alt": "Ithaca by the pool at night",
+    "order": 2
+   },
+   {
+    "image": "dining/2026-ithaca-4.webp",
+    "alt": "Ithaca — buffet",
+    "order": 3
+   }
+  ]
+ },
+ {
+  "op": "replace_children",
+  "table": "restaurant",
+  "match": {
+   "slug": "the-lounge"
+  },
+  "child": "restaurant_image",
+  "fk": "restaurant_id",
+  "rows": [
+   {
+    "image": "dining/2026-the-lounge-1.webp",
+    "alt": "The Lounge",
+    "order": 0
+   },
+   {
+    "image": "dining/2026-the-lounge-2.webp",
+    "alt": "The Lounge — bar",
+    "order": 1
+   }
+  ]
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "name": "The Grand Ball Room",
+   "hotel": "pavilion"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-pavilion-gbr-1.webp",
+    "alt": "The Grand Ball Room — banquet setup",
+    "order": 0
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-4.webp",
+    "alt": "The Grand Ball Room — view from the stage",
+    "order": 1
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-5.webp",
+    "alt": "The Grand Ball Room",
+    "order": 2
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-6.webp",
+    "alt": "The Grand Ball Room — evening banquet",
+    "order": 3
+   },
+   {
+    "image": "venues/2026-pavilion-gbr-7.webp",
+    "alt": "The Grand Ball Room — theatre seating",
+    "order": 4
+   }
+  ]
+ },
+ {
+  "op": "replace_gallery",
+  "hotel": "chancery",
+  "rows": [
+   {
+    "image": "hotels/2026-chancery-exterior-1.webp",
+    "alt": "The Chancery Hotel exterior",
+    "category": "hotel",
+    "order": 0
+   },
+   {
+    "image": "hotels/2026-chancery-spa-2.webp",
+    "alt": "Sara Spa — reception",
+    "category": "hotel",
+    "order": 1
+   },
+   {
+    "image": "hotels/2026-chancery-spa-3.webp",
+    "alt": "Sara Spa — treatment room",
+    "category": "hotel",
+    "order": 2
+   },
+   {
+    "image": "hotels/2026-chancery-spa-1.webp",
+    "alt": "Sara Spa",
+    "category": "hotel",
+    "order": 3
+   },
+   {
+    "image": "hotels/2026-chancery-lobby-1.webp",
+    "alt": "Lobby and reception",
+    "category": "lobby",
+    "order": 4
+   },
+   {
+    "image": "gallery/lobby.webp",
+    "alt": "Chancery Hotel lobby",
+    "category": "lobby",
+    "order": 5
+   },
+   {
+    "image": "rooms/2026-chancery-deluxe-3.webp",
+    "alt": "Deluxe Room — king bed",
+    "category": "rooms",
+    "order": 6
+   },
+   {
+    "image": "rooms/2026-chancery-deluxe-1.webp",
+    "alt": "Deluxe Room — twin beds",
+    "category": "rooms",
+    "order": 7
+   },
+   {
+    "image": "rooms/2026-chancery-deluxe-2.webp",
+    "alt": "Deluxe Room — twin beds and sitting area",
+    "category": "rooms",
+    "order": 8
+   },
+   {
+    "image": "rooms/2026-chancery-premium-2.webp",
+    "alt": "Premium Room — twin beds",
+    "category": "rooms",
+    "order": 9
+   },
+   {
+    "image": "rooms/2026-chancery-premium-3.webp",
+    "alt": "Premium Room — work desk",
+    "category": "rooms",
+    "order": 10
+   },
+   {
+    "image": "gallery/premium-room-bed.webp",
+    "alt": "Premium Room",
+    "category": "rooms",
+    "order": 11
+   },
+   {
+    "image": "gallery/premium-room-workspace.webp",
+    "alt": "Premium Room — workspace",
+    "category": "rooms",
+    "order": 12
+   },
+   {
+    "image": "rooms/2026-chancery-suite-2.webp",
+    "alt": "Suite Room — bedroom",
+    "category": "rooms",
+    "order": 13
+   },
+   {
+    "image": "rooms/2026-chancery-suite-1.webp",
+    "alt": "Suite Room — sitting area",
+    "category": "rooms",
+    "order": 14
+   },
+   {
+    "image": "dining/2026-matsuri-3.webp",
+    "alt": "Matsuri — dining room",
+    "category": "dining",
+    "order": 15
+   },
+   {
+    "image": "dining/2026-matsuri-1.webp",
+    "alt": "Matsuri — entrance",
+    "category": "dining",
+    "order": 16
+   },
+   {
+    "image": "dining/2026-matsuri-2.webp",
+    "alt": "Matsuri — private dining",
+    "category": "dining",
+    "order": 17
+   },
+   {
+    "image": "gallery/matsuri-private.webp",
+    "alt": "Matsuri private dining",
+    "category": "dining",
+    "order": 18
+   },
+   {
+    "image": "dining/2026-south-parade-1.webp",
+    "alt": "South Parade",
+    "category": "dining",
+    "order": 19
+   },
+   {
+    "image": "gallery/south-parade-dining.webp",
+    "alt": "South Parade",
+    "category": "dining",
+    "order": 20
+   },
+   {
+    "image": "gallery/south-parade-buffet.webp",
+    "alt": "South Parade buffet",
+    "category": "dining",
+    "order": 21
+   },
+   {
+    "image": "gallery/south-parade-lobby.webp",
+    "alt": "South Parade entrance",
+    "category": "dining",
+    "order": 22
+   },
+   {
+    "image": "venues/2026-chancery-lavelle-hall-2.webp",
+    "alt": "The Lavelle Hall — banquet rounds",
+    "category": "events",
+    "order": 23
+   },
+   {
+    "image": "venues/2026-chancery-lavelle-hall-1.webp",
+    "alt": "The Lavelle Hall",
+    "category": "events",
+    "order": 24
+   },
+   {
+    "image": "venues/2026-chancery-lavelle-hall-3.webp",
+    "alt": "The Lavelle Hall",
+    "category": "events",
+    "order": 25
+   },
+   {
+    "image": "venues/2026-chancery-colours-hall-2.webp",
+    "alt": "Colors Hall — banquet rounds",
+    "category": "events",
+    "order": 26
+   },
+   {
+    "image": "venues/2026-chancery-colours-hall-1.webp",
+    "alt": "Colors Hall — conference setup",
+    "category": "events",
+    "order": 27
+   },
+   {
+    "image": "venues/2026-chancery-walton-hall-1.webp",
+    "alt": "Walton Hall",
+    "category": "events",
+    "order": 28
+   },
+   {
+    "image": "venues/2026-chancery-walton-hall-2.webp",
+    "alt": "Walton Hall — conference setup",
+    "category": "events",
+    "order": 29
+   },
+   {
+    "image": "venues/2026-chancery-boardroom-1.webp",
+    "alt": "Chancery Boardroom",
+    "category": "events",
+    "order": 30
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "hotel",
+  "match": {
+   "slug": "chancery"
+  },
+  "set": {
+   "intro_body": "The Chancery, a contemporary boutique business hotel on Lavelle Road, combines classic character with modern comfort. Close to MG Road, UB City and Cubbon Park, it offers 126 Deluxe and Premium Rooms and Executive Suites, along with 6,800 sq. ft. of banquet space. Guests can enjoy round-the-clock dining at South Parade, authentic Japanese cuisine at Matsuri, and spa experiences at Sara Spa. Through its partnership with Toyota Enterprises, the hotel also offers Japanese hospitality experiences across its rooms, restaurant and spa."
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "events",
+   "hotel": "chancery"
+  },
+  "set": {
+   "intro_body": "Five venues to choose from — the Lavelle Hall for receptions of up to 200 guests, the Business Centre for boardroom meetings, and three halls in between — each with modern facilities and a dedicated events team to run the day."
+  }
+ }
+]

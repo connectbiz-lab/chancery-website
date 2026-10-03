@@ -39,3 +39,14 @@
   text-transform: uppercase; line-height: 1.5; color: var(--c-charcoal);
 }
 @media (max-width: 520px) { .amenity { flex-basis: 42%; } }
+
+/* Outdoor Catering teaser photo beneath its centred heading. */
+.odc-teaser-figure { max-width: 56rem; margin: 0 auto; }
+.odc-teaser-figure .figure { aspect-ratio: 16 / 9; }
+
+/* Destination teaser on the navy band reuses the ringed amenity icons in ivory. */
+.dest-teaser .amenity, .dest-teaser .amenity a { color: var(--c-ivory); }
+.dest-teaser .amenity-icon { border-color: var(--c-gold-soft); color: var(--c-ivory); }
+.dest-teaser .amenity a:hover .amenity-icon { background: var(--c-ivory); color: var(--c-navy); }
+.dest-teaser .amenity-label { color: rgba(250, 249, 248, 0.85); }
+.dest-teaser .lede { color: rgba(250, 249, 248, 0.88); }

@@ -61,9 +61,9 @@ export const HOTEL_EXPERIENCES: Record<string, Experience[]> = {
       to: 'dining',
     },
     {
-      kicker: 'Sento-Inspired Wellness',
+      kicker: 'Wellness',
       title: 'Sara Spa',
-      body: 'A spa in the Japanese bathhouse tradition — named Best Luxury Hotel Spa in India in 2024.',
+      body: 'Treatments and quiet time away from the city — named Best Luxury Hotel Spa in India in 2024.',
       photo: { galleryAlt: /sara spa/i },
     },
     {
@@ -110,6 +110,7 @@ export const PLACE_GROUPS: PlaceGroup[] = [
     title: 'Arts, Science & Sport',
     places: [
       { name: 'National Gallery of Modern Art', note: 'Modern Indian art in a restored mansion set in its own gardens.' },
+      { name: 'Museum of Art & Photography (MAP)', note: 'A contemporary museum of South Asian art and photography on Kasturba Road.', mapQuery: 'Museum of Art and Photography, Kasturba Road, Bengaluru' },
       { name: 'Visvesvaraya Industrial & Technological Museum', note: 'Hands-on science galleries that are a favourite with families.' },
       { name: 'Jawaharlal Nehru Planetarium', note: 'Sky-theatre shows and a science park for curious minds.' },
       { name: 'M. Chinnaswamy Stadium', note: 'The home of cricket in Bengaluru.' },

@@ -242,7 +242,7 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(1rem, 2vw, 2rem);
   position: relative;
 }
@@ -250,8 +250,8 @@
   /* Horizontal gold thread connecting the milestones on desktop */
   content: "";
   position: absolute;
-  left: 8%;
-  right: 8%;
+  left: 10%;
+  right: 10%;
   top: 4.25rem;
   height: 1px;
   background: var(--c-gold);

@@ -3,7 +3,7 @@
 // "Chancery Group Deck — Refined" (Outdoor Catering slide) and the F&B fact sheet.
 export const ODC = {
   path: '/catering',
-  tagline: 'Fine Dining, at Any Scale',
+  tagline: 'Chancery Catering, at Any Scale',
   /** Guests per event, as published in the group deck. */
   guestRange: '50 – 10,000+',
   teaser:

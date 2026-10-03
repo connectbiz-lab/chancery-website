@@ -28,7 +28,7 @@ export default function OpengraphImage() {
         </div>
         <div style={{ fontSize: 88, fontWeight: 600, marginTop: 24 }}>Chancery Hotels</div>
         <div style={{ fontSize: 36, marginTop: 24, color: 'rgba(246,241,231,0.85)' }}>
-          Luxury Hotels in Bangalore · Since 1968
+          Luxury Hotels in Bangalore · Since 2000
         </div>
       </div>
     ),

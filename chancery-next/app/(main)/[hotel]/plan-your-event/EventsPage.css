@@ -7,8 +7,9 @@
 }
 @media (max-width: 800px) { .occasions { grid-template-columns: 1fr 1fr; gap: 1.75rem; } }
 @media (max-width: 460px) { .occasions { grid-template-columns: 1fr; } }
-.occasion { padding-top: 1.25rem; border-top: 2px solid var(--c-gold); }
-.occasion-icon { display: block; margin-bottom: 0.85rem; color: var(--c-gold-deep, var(--c-gold)); }
+/* Icon sits above the gold rule, title and copy below it (team feedback, Oct 2026). */
+.occasion { padding-top: 0; border-top: 0; }
+.occasion-icon { display: block; padding-bottom: 0.85rem; margin-bottom: 0.95rem; border-bottom: 2px solid var(--c-gold); color: var(--c-gold-deep, var(--c-gold)); }
 .occasion h3 { font-size: 1.2rem; margin: 0 0 0.5rem; }
 .occasion p { font-size: 0.95rem; line-height: 1.55; color: var(--c-muted); margin: 0; }
 

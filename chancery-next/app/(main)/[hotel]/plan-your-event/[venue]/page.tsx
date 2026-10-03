@@ -22,8 +22,6 @@ const KINDS: Record<string, string> = {
   divisible: 'Divisible Hall',
 }
 
-const inr = (n: number) => `₹${n.toLocaleString('en-IN')}`
-
 export async function generateMetadata(
   { params }: { params: Promise<{ hotel: string; venue: string }> },
 ): Promise<Metadata> {
@@ -67,14 +65,6 @@ export default async function VenueDetailPage(
   ).filter(([, n]) => n != null) as Array<[string, number]>
   // A boardroom has one layout: no per-layout figures, just its seating.
   if (capacities.length === 0 && v.kind === 'executive' && v.guests_max) capacities.push(['Boardroom Style', v.guests_max])
-
-  const pricing: Array<[string, number]> = (
-    [
-      ['Half day', v.half_day_inr],
-      ['Full day', v.full_day_inr],
-      ['Per plate', v.per_plate_inr],
-    ] as Array<[string, number | null]>
-  ).filter(([, n]) => n != null) as Array<[string, number]>
 
   const gallery = v.images.length > 0
     ? v.images
@@ -128,19 +118,6 @@ export default async function VenueDetailPage(
                       ))}
                     </tbody>
                   </table>
-                </div>
-              )}
-              {pricing.length > 0 && (
-                <div className="venue-panel">
-                  <h3 className="vp-title">Indicative Pricing</h3>
-                  <table className="venue-cap">
-                    <tbody>
-                      {pricing.map(([label, n]) => (
-                        <tr key={label}><th>{label}</th><td>{inr(n)}</td></tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <p className="vp-note">Final pricing depends on dates, menu and setup.</p>
                 </div>
               )}
               <EventEnquiryButton hotel={hotel as HotelSlug} venue={v.name} label="Enquire about this venue" />

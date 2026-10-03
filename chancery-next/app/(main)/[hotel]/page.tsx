@@ -190,7 +190,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
               <p className="eyebrow center">Dining</p>
               <h2 className="h1">{copy.diningHeading}</h2>
             </div>
-            <div className="card-grid three">
+            <div className={`card-grid three${diningRestaurants.length === 2 ? ' center-two' : ''}`}>
               {diningRestaurants.map((r) => (
                 <Link key={r.id} href={`/${hotel}/dining`} className="card">
                   <div className="figure">{r.hero_image && <Media path={r.hero_image} alt={r.name} sizes="(max-width: 768px) 50vw, 25vw" />}</div>
@@ -224,53 +224,28 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
         </section>
       )}
 
-      {/* Destination & Activities teaser — the neighbourhood line from the CMS
-          'destination' page, and the five place groups as icon links. */}
-      <section className="section bg-ivory">
-        <Reveal className="container">
-          <div className="section-head">
-            <p className="eyebrow center">Destination &amp; Activities</p>
-            <h2 className="h1">{destination?.hero_heading || 'Bangalore, on Your Doorstep'}</h2>
-            {destination?.intro_body && <p className="lede">{destination.intro_body}</p>}
-          </div>
-          <ul className="amenities-grid">
-            {PLACE_GROUPS.map(({ Icon, title }) => (
-              <li key={title} className="amenity">
-                <Link href={`/${hotel}/destination`}>
-                  <span className="amenity-icon"><Icon size={28} /></span>
-                  <span className="amenity-label">{title}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="text-center" style={{ marginTop: '3rem' }}>
-            <Link href={`/${hotel}/destination`} className="btn ghost">Explore the Destination</Link>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* Outdoor Catering — one of the group's main lines; teaser to /catering. */}
+      {/* Outdoor Catering — centred heading like the other sections, photo beneath. */}
       <section className="section bg-cream">
         <Reveal className="container">
-          <div className="editorial-row flip">
-            <div className="editorial-figure">
-              <div className="figure">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={ODC.photo.src}
-                  srcSet={`${ODC.photo.srcSmall} 640w, ${ODC.photo.srcMedium} 800w, ${ODC.photo.src} 1200w`}
-                  sizes="(max-width: 900px) 100vw, 50vw"
-                  alt={ODC.photo.alt}
-                  loading="lazy"
-                />
-              </div>
+          <div className="section-head wide">
+            <p className="eyebrow center">Outdoor Catering</p>
+            <h2 className="h1">{ODC.tagline}</h2>
+            <p className="lede">{ODC.teaser}</p>
+          </div>
+          <div className="odc-teaser-figure">
+            <div className="figure">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={ODC.photo.src}
+                srcSet={`${ODC.photo.srcSmall} 640w, ${ODC.photo.srcMedium} 800w, ${ODC.photo.src} 1200w`}
+                sizes="(max-width: 900px) 100vw, 56rem"
+                alt={ODC.photo.alt}
+                loading="lazy"
+              />
             </div>
-            <div className="editorial-text">
-              <p className="eyebrow">Outdoor Catering</p>
-              <h2 className="h2">{ODC.tagline}</h2>
-              <p className="lede">{ODC.teaser}</p>
-              <Link href={ODC.path} className="btn ghost">Explore Outdoor Catering</Link>
-            </div>
+          </div>
+          <div className="text-center" style={{ marginTop: '2.5rem' }}>
+            <Link href={ODC.path} className="btn ghost">Explore Outdoor Catering</Link>
           </div>
         </Reveal>
       </section>
@@ -301,6 +276,31 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
           </div>
         </section>
       )}
+
+      {/* Destination & Activities teaser — last of the hotel sections (team feedback):
+          the neighbourhood line from the CMS 'destination' page and the five place groups. */}
+      <section className="section bg-navy dest-teaser">
+        <Reveal className="container">
+          <div className="section-head">
+            <p className="eyebrow center">Destination &amp; Activities</p>
+            <h2 className="h1">{destination?.hero_heading || 'Bangalore, on Your Doorstep'}</h2>
+            {destination?.intro_body && <p className="lede">{destination.intro_body}</p>}
+          </div>
+          <ul className="amenities-grid">
+            {PLACE_GROUPS.map(({ Icon, title }) => (
+              <li key={title} className="amenity">
+                <Link href={`/${hotel}/destination`}>
+                  <span className="amenity-icon"><Icon size={28} /></span>
+                  <span className="amenity-label">{title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="text-center" style={{ marginTop: '3rem' }}>
+            <Link href={`/${hotel}/destination`} className="btn light">Explore the Destination</Link>
+          </div>
+        </Reveal>
+      </section>
 
       {/* Offers teaser */}
       {offers.length > 0 && (

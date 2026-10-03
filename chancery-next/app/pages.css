@@ -45,6 +45,10 @@
 /* Section heading helper */
 .section-head { text-align: center; max-width: 64ch; margin: 0 auto clamp(3rem, 5vw, 5rem); }
 .section-head .lede { margin-left: auto; margin-right: auto; }
+/* A head whose heading should stay on one line at desktop widths. */
+.section-head.wide { max-width: 60rem; }
+/* A lede inside any centred block is centred as a box too, not just its text. */
+.text-center .lede { margin-left: auto; margin-right: auto; }
 .section-head.left { text-align: left; margin-left: 0; }
 .section-head.left .lede { margin-left: 0; }
 .section-head.left .eyebrow { padding-left: 0; }
@@ -58,11 +62,13 @@
 }
 .card-grid.three { grid-template-columns: repeat(3, 1fr); }
 .card-grid.four  { grid-template-columns: repeat(4, 1fr); }
+/* Two cards in a three-column row sit centred instead of leaving the right third empty. */
+.card-grid.three.center-two { grid-template-columns: repeat(2, minmax(0, 24rem)); justify-content: center; }
 @media (max-width: 1000px) {
   .card-grid.three, .card-grid.four { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
-  .card-grid.three, .card-grid.four { grid-template-columns: 1fr; }
+  .card-grid.three, .card-grid.four, .card-grid.three.center-two { grid-template-columns: 1fr; }
 }
 
 .card {

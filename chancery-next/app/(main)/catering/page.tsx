@@ -24,7 +24,7 @@ const OCCASIONS = [
 ]
 
 // Signature offerings named in the group deck.
-const SIGNATURES = ['Regional Thalis', 'Matsuri Live Sushi & Teppanyaki', 'Continental Spreads']
+const SIGNATURES = ['Regional Fare', 'Matsuri Live Sushi & Teppanyaki', 'Continental Spreads']
 
 const ASSURED = ['FSSAI-compliant', 'Temperature-controlled logistics', 'Jain, vegan & gluten-free menus']
 
@@ -77,33 +77,33 @@ export default async function CateringPage() {
         size="page"
       />
 
-      {/* Intro — photo beside the headline claim and the scale figures. */}
+      {/* Intro — centred heading like the other sections, photo beneath, then the scale figures. */}
       <section className="section bg-cream">
         <Reveal className="container">
-          <div className="editorial-row odc-intro">
-            <div className="editorial-figure">
-              <div className="figure">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={ODC.photo.src}
-                  srcSet={`${ODC.photo.srcSmall} 640w, ${ODC.photo.srcMedium} 800w, ${ODC.photo.src} 1200w`}
-                  sizes="(max-width: 900px) 100vw, 50vw"
-                  alt={ODC.photo.alt}
-                  loading="lazy"
-                />
-              </div>
+          <div className="section-head wide">
+            <p className="eyebrow center">Outdoor Catering</p>
+            <h2 className="h1">{ODC.tagline}</h2>
+            {p?.intro_body && <p className="lede">{p.intro_body}</p>}
+          </div>
+          <div className="odc-intro-figure">
+            <div className="figure">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={ODC.photo.src}
+                srcSet={`${ODC.photo.srcSmall} 640w, ${ODC.photo.srcMedium} 800w, ${ODC.photo.src} 1200w`}
+                sizes="(max-width: 900px) 100vw, 56rem"
+                alt={ODC.photo.alt}
+                loading="lazy"
+              />
             </div>
-            <div className="editorial-text">
-              <p className="eyebrow">Outdoor Catering</p>
-              <h2 className="h1">{ODC.tagline}</h2>
-              {p?.intro_body && <p className="lede">{p.intro_body}</p>}
-              <dl className="odc-stats">
-                <div><dd>{ODC.guestRange}</dd><dt>Guests per event</dt></div>
-                <div><dd>{VENUES_CATERED.length}</dd><dt>Landmark venues catered</dt></div>
-                {award && <div><dd>{award.years}</dd><dt>{award.title}</dt></div>}
-              </dl>
-              <Link href="/pavilion/contact-us" className="btn">Request a Proposal</Link>
-            </div>
+          </div>
+          <dl className="odc-stats">
+            <div><dd>{ODC.guestRange}</dd><dt>Guests per event</dt></div>
+            <div><dd>{VENUES_CATERED.length}</dd><dt>Landmark venues catered</dt></div>
+            {award && <div><dd>{award.years}</dd><dt>{award.title}</dt></div>}
+          </dl>
+          <div className="text-center">
+            <Link href="/pavilion/contact-us" className="btn">Request a Proposal</Link>
           </div>
         </Reveal>
       </section>
@@ -111,7 +111,7 @@ export default async function CateringPage() {
       {/* Who we cater for */}
       <section className="section bg-ivory">
         <div className="container">
-          <div className="section-head">
+          <div className="section-head wide">
             <p className="eyebrow center">We Cater For</p>
             <h2 className="h1">Occasions of Every Scale</h2>
           </div>
@@ -130,7 +130,7 @@ export default async function CateringPage() {
       {/* Signature menus */}
       <section className="section bg-navy">
         <div className="container">
-          <div className="section-head">
+          <div className="section-head wide">
             <p className="eyebrow center" style={{ color: 'var(--c-gold-soft)' }}>Signature</p>
             <h2 className="h1" style={{ color: 'var(--c-ivory)' }}>Menus We Are Known For</h2>
           </div>
