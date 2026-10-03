@@ -32,6 +32,7 @@ export default async function RoomsPage() {
         heading={p?.hero_heading ?? 'Rooms & suites'}
         subheading={p?.hero_subheading ?? undefined}
         size="page"
+        hotelToggle
       />
 
       {hotels.map((hotel) => {

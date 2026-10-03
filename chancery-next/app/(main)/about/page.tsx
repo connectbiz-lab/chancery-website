@@ -80,6 +80,7 @@ export default async function AboutPage() {
         heading="Understated Luxury with Purpose"
         subheading="Bangalore’s distinguished homegrown hospitality brand for over two decades."
         size="page"
+        hotelToggle
       />
 
       {/* Brand introduction — Claridges-style two-column */}

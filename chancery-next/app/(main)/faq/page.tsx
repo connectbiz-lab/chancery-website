@@ -28,6 +28,7 @@ export default async function FAQPage() {
         heading={p?.hero_heading ?? 'Frequently asked questions'}
         subheading={p?.hero_subheading ?? undefined}
         size="page"
+        hotelToggle
       />
       <section className="section">
         <div className="container narrow">
