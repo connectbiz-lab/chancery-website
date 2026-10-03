@@ -74,6 +74,14 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
   const heroHeading = h.name || HOTEL_NAME_FALLBACK[hotel as HotelSlug]
   const copy = HOME_COPY[hotel as HotelSlug]
   const amenities = HOTEL_AMENITIES[hotel] ?? []
+  // Photos already on this page, so the gallery strip can show something else.
+  const shownAbove = new Set<string | null | undefined>([
+    h.hero_image, h.about_image,
+    ...rooms.slice(0, 3).map((r) => r.hero_image),
+    ...diningRestaurants.map((r) => r.hero_image),
+    ...offers.slice(0, 3).map((o) => o.image),
+  ])
+  const galleryStrip = gallery.filter((g) => !shownAbove.has(g.image)).slice(0, 6)
   // Pavilion leads with a looping montage video hero; other hotels keep the photo.
   // A new cut gets a new file name: browsers that saved the previous file keep
   // playing it (it was served with a 24-hour cache), so the name must change.
@@ -328,8 +336,9 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
         </section>
       )}
 
-      {/* Gallery preview */}
-      {gallery.length > 0 && (
+      {/* Gallery preview — skips photos the page has already shown (hero, about,
+          room, dining and offer cards), so the strip adds new views instead of repeats. */}
+      {galleryStrip.length > 0 && (
         <section className="section bg-ivory tight">
           <div className="container">
             <div className="section-head left">
@@ -337,7 +346,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
               <h2 className="h2">Inside {h.short_name || heroHeading}</h2>
             </div>
             <div className="image-grid">
-              {gallery.slice(0, 6).map((g) => (
+              {galleryStrip.map((g) => (
                 <Link key={g.id} href={`/${hotel}/gallery`} className="figure">
                   <Media path={g.image} alt={g.alt} sizes="(max-width: 768px) 50vw, 33vw" />
                 </Link>
