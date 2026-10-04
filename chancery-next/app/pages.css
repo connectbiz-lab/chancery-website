@@ -126,6 +126,8 @@
 .card .card-cta { margin-top: auto; }
 /* A bare Book link in a card (home offer cards) keeps its underline to the words. */
 .card > .link-arrow { align-self: flex-start; }
+/* The Site Map page is a list of links: each gets a finger-sized target. */
+.sitemap-columns a { display: inline-block; padding: 0.4rem 0; }
 
 /* Pretty stat row (numbers) */
 .stat-row {

@@ -80,6 +80,7 @@
    so their underlines stay against the words). */
 @media (max-width: 720px) {
   .hc-map { padding-top: 0.6rem; }
+  .hc-phones a { padding-top: 0.35rem; }
   .dept-card__body a { padding-top: 0.4rem; }
 }
 
