@@ -1,0 +1,4 @@
+[
+  {"op": "update", "table": "page", "match": {"kind": "offers", "hotel": "pavilion"},
+   "set": {"intro_body": "Seasonal packages for every kind of stay on Residency Road — whether you are booking early or settling into a suite for a longer stay."}}
+]
