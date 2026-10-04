@@ -75,7 +75,7 @@
   border-bottom: 1px solid var(--c-line);
 }
 .dept-card__body a:hover { color: var(--c-gold-deep); border-color: var(--c-gold-deep); }
-.dept-card__body .dept-phone { font-size: 0.95rem; color: var(--c-muted); }
+.dept-card__body .dept-phone { font-size: 0.95rem; color: var(--c-charcoal); }
 /* Phones: map, email and phone links get a finger-sized target (padding above,
    so their underlines stay against the words). */
 @media (max-width: 720px) {

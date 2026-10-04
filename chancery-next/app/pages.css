@@ -164,7 +164,8 @@
   .stat-row.three .stat-label { letter-spacing: 0.08em; }
   /* Call and email links inside a paragraph (the home page's contact band) get a
      finger-sized target. */
-  .lede a[href^="tel:"], .lede a[href^="mailto:"] { display: inline-block; padding: 0.4rem 0; }
+  .lede a[href^="tel:"], .lede a[href^="mailto:"] { display: block; padding: 0.4rem 0; }
+  .contact-sep { display: none; }
 }
 
 /* Pull quote / callout */

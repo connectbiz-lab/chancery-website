@@ -334,6 +334,11 @@ input:focus, textarea:focus, select:focus {
   border-color: var(--c-navy);
 }
 textarea { min-height: 7rem; resize: vertical; }
+/* iOS Safari zooms the whole page when a focused field's text is under 16px. */
+@media (max-width: 720px) {
+  input[type="text"], input[type="email"], input[type="tel"], input[type="date"],
+  input[type="time"], input[type="number"], select, textarea { font-size: 16px; }
+}
 
 /* ---------------- focus ring (accessibility) ---------------- */
 

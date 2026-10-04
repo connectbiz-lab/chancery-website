@@ -80,8 +80,10 @@ export function ContactForm({ hotel }: { hotel: HotelSlug }) {
             <label htmlFor="c-hotel">Property preference</label>
             <select id="c-hotel" value={form.hotel_interest}
               onChange={(e) => update('hotel_interest', e.target.value as HotelSlug | 'either')}>
-              <option value="chancery">The Chancery Hotel — Lavelle Road</option>
-              <option value="pavilion">Chancery Pavilion — Residency Road</option>
+              {/* Names only: with the road appended the closed dropdown cut its own
+                  label off on a phone; both addresses are shown just above the form. */}
+              <option value="chancery">The Chancery Hotel</option>
+              <option value="pavilion">The Chancery Pavilion</option>
               <option value="either">No preference</option>
             </select>
           </div>

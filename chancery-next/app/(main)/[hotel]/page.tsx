@@ -364,7 +364,8 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
           <h2 className="h2" style={{ color: 'var(--c-ivory)' }}>{h.address}</h2>
           <p className="lede" style={{ color: 'rgba(246,241,231,0.85)' }}>
             <a href={`tel:${h.phone.replace(/\s+/g, '')}`} style={{ color: 'var(--c-ivory)' }}>{h.phone}</a>
-            {' · '}
+            {/* On phones the two links stack, so the separator is hidden there. */}
+            <span className="contact-sep">{' · '}</span>
             <a href={`mailto:${h.email}`} style={{ color: 'var(--c-ivory)' }}>{h.email}</a>
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '2rem', flexWrap: 'wrap' }}>
