@@ -1,0 +1,31 @@
+[
+  {"op": "delete", "table": "offer", "match": {"title": "Extended Stay Package", "hotel": "chancery"}},
+  {"op": "delete", "table": "offer", "match": {"title": "Weekend Package", "hotel": "chancery"}},
+  {"op": "delete", "table": "offer", "match": {"title": "Last Minute Deal", "hotel": "chancery"}},
+  {"op": "delete", "table": "offer", "match": {"title": "Lavelle Road Heritage Stay", "hotel": "chancery"}},
+  {"op": "delete", "table": "offer", "match": {"title": "Lavelle Business Break", "hotel": "chancery"}},
+  {"op": "insert_if_missing", "table": "offer", "match": {"title": "Ultimate Weekend Package", "hotel": "chancery"},
+   "row": {
+     "hotel": "chancery",
+     "title": "Ultimate Weekend Package",
+     "tag": "Weekends",
+     "description": "Indulge in a delightful stay with our exclusive room offer, which includes a daily buffet breakfast at South Parade. Additionally, enjoy 15% off food and soft beverages (not applicable on alcoholic beverages) during your stay, making every meal a memorable experience.\n• Applicable on Fridays, Saturdays and Sundays, for a minimum stay of 2 nights\n• 10% discount on the best available rate\n• Daily buffet breakfast at South Parade\n• 15% savings on dining throughout your stay",
+     "image": "dining/south-parade-02.webp",
+     "promo_code": "",
+     "min_nights": 2,
+     "order": 2
+   }},
+  {"op": "insert_if_missing", "table": "offer", "match": {"title": "Lavelle Business Package", "hotel": "chancery"},
+   "row": {
+     "hotel": "chancery",
+     "title": "Lavelle Business Package",
+     "tag": "Weekdays",
+     "description": "Enhance your business trip with savings on our bed and breakfast rate, dining and airport transfers. Available from Monday to Friday each business week.\n• Buffet breakfast at South Parade\n• Round-trip airport transfers, once during the stay\n• 15% discount on dining throughout the stay (not applicable on alcoholic beverages)\n• 5% discount on the best available rate",
+     "image": "rooms/2026-chancery-premium-3.webp",
+     "promo_code": "",
+     "min_nights": null,
+     "order": 3
+   }},
+  {"op": "update", "table": "page", "match": {"kind": "offers", "hotel": "chancery"},
+   "set": {"intro_body": "Seasonal packages for every kind of stay on Lavelle Road — whether you are booking early, staying for the weekend or travelling on business."}}
+]

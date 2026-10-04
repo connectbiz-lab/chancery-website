@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { BookButton } from '@/components/BookButton'
 import { CinematicHero } from '@/components/CinematicHero'
 import { Media } from '@/components/Media'
+import { OfferCopy } from '@/components/OfferCopy'
 import { Reveal } from '@/components/Reveal'
 import {
   getGallery,
@@ -324,7 +325,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
                   <div className="figure">{o.image && <Media path={o.image} alt={o.title} sizes="(max-width: 768px) 100vw, 33vw" />}</div>
                   <p className="card-eyebrow">{o.tag}</p>
                   <h3>{o.title}</h3>
-                  <p className="copy">{o.description}</p>
+                  <OfferCopy text={o.description} />
                   <BookButton hotel={hotel as HotelSlug} promo={o.promo_code || undefined} className="link-arrow">Book</BookButton>
                 </div>
               ))}

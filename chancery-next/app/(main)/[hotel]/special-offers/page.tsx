@@ -1,6 +1,7 @@
 import { CinematicHero } from '@/components/CinematicHero'
 import { Media } from '@/components/Media'
 import { BookButton } from '@/components/BookButton'
+import { OfferCopy } from '@/components/OfferCopy'
 import { getHotel, getPage, getOffers, type HotelSlug } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
@@ -59,7 +60,7 @@ export default async function SpecialOffersPage({ params }: { params: Promise<{ 
                 </div>
                 {o.tag && <p className="card-eyebrow">{o.tag}</p>}
                 <h3>{o.title}</h3>
-                <p className="copy">{o.description}</p>
+                <OfferCopy text={o.description} />
                 {o.min_nights && <p className="meta">Minimum {o.min_nights} nights</p>}
                 <div className="card-cta">
                   <BookButton

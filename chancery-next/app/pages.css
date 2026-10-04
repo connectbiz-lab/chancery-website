@@ -102,6 +102,27 @@
   color: var(--c-charcoal);
   margin: 0 0 1.25rem;
 }
+/* An offer's inclusions (OfferCopy): the same serif as the paragraph above it,
+   each line marked with a short gold rule instead of a bullet. */
+.card .copy:has(+ .offer-includes) { margin-bottom: 0.8rem; }
+.card .offer-includes {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  font-family: var(--f-serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--c-charcoal);
+}
+.card .offer-includes li { position: relative; padding-left: 1.2rem; }
+.card .offer-includes li + li { margin-top: 0.35rem; }
+.card .offer-includes li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.72em;
+  width: 0.6rem; height: 1px;
+  background: var(--c-gold-deep);
+}
 .card .card-cta { margin-top: auto; }
 
 /* Pretty stat row (numbers) */
