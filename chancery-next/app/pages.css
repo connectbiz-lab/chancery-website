@@ -80,7 +80,7 @@
 .card .figure { aspect-ratio: 1 / 1; margin-bottom: 1.5rem; }
 .card .card-eyebrow {
   font-family: var(--f-sans);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--c-gold-deep);
@@ -124,6 +124,8 @@
   background: var(--c-gold-deep);
 }
 .card .card-cta { margin-top: auto; }
+/* A bare Book link in a card (home offer cards) keeps its underline to the words. */
+.card > .link-arrow { align-self: flex-start; }
 
 /* Pretty stat row (numbers) */
 .stat-row {
@@ -145,7 +147,7 @@
 }
 .stat-label {
   font-family: var(--f-sans);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--c-muted);
@@ -153,7 +155,14 @@
   display: block;
 }
 @media (max-width: 700px) {
-  .stat-row, .stat-row.three { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .stat-row { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  /* Three figures stay on one row (2 + 1 left the third stranded); the labels
+     tighten their tracking so "RESTAURANTS" fits a third of a phone. */
+  .stat-row.three { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .stat-row.three .stat-label { letter-spacing: 0.08em; }
+  /* Call and email links inside a paragraph (the home page's contact band) get a
+     finger-sized target. */
+  .lede a[href^="tel:"], .lede a[href^="mailto:"] { display: inline-block; padding: 0.4rem 0; }
 }
 
 /* Pull quote / callout */

@@ -24,7 +24,7 @@
    auto-height track, which let tall marks overflow the box. */
 .aw-mark img { max-width: 92px; max-height: 72px; width: auto; height: auto; object-fit: contain; }
 .aw-scope {
-  margin: 0 0 0.3rem; font-family: var(--f-sans); font-size: 0.66rem; font-weight: 500;
+  margin: 0 0 0.3rem; font-family: var(--f-sans); font-size: 0.72rem; font-weight: 500;
   letter-spacing: 0.22em; text-transform: uppercase; color: var(--c-gold-deep, var(--c-gold));
 }
 .aw-owner { margin: 0; font-family: var(--f-display); font-weight: 400; font-size: clamp(1.3rem, 0.7vw + 1.05rem, 1.7rem); color: var(--c-navy); }

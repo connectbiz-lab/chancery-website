@@ -44,6 +44,13 @@
 }
 .thumb img { width: 100%; height: 100%; object-fit: cover; }
 .thumb.active { border-color: var(--c-gold); }
+/* Phones: a gallery with many photos (Alchemy has eight) squeezed its thumbnails
+   to ~33px. Keep them finger-sized and let the row scroll sideways instead. */
+@media (max-width: 700px) {
+  .room-gallery .thumbs { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .room-gallery .thumbs::-webkit-scrollbar { display: none; }
+  .thumb { flex: none; width: 72px; }
+}
 
 .room-text .meta {
   font-family: var(--f-sans);

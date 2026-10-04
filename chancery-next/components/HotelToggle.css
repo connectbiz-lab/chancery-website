@@ -36,9 +36,15 @@
 .hotel-toggle-item.active .hotel-toggle-mark img { filter: none; opacity: 1; }
 
 @media (max-width: 720px) {
-  /* The photo frame is 24px in from each edge at 375px; the pill must stay
-     inside it (≤ ~310px wide) — hence the tighter type, marks and insets. */
+  /* The photo frame is 24px in from each edge on phones and the pill must stay
+     inside it, so its type scales with the screen: ~10px at 360, 10.5px at 375,
+     11.5px from 412 up (it was a fixed 9px — too small to read). The taller
+     padding makes each segment a ~38px tap target. */
   .hotel-toggle { top: calc(104px + 0.75rem + 0.6rem); padding: 3px; }
-  .hotel-toggle-item { font-size: 0.56rem; letter-spacing: 0.04em; gap: 0.3rem; padding: 0.38rem 0.55rem; }
+  .hotel-toggle-item { font-size: clamp(0.6rem, 2.8vw, 0.72rem); letter-spacing: 0.02em; gap: 0.3rem; padding: 0.68rem 0.5rem; }
   .hotel-toggle-mark img { height: 15px; }
+}
+/* The narrowest phones (320px): drop the monograms so both names still fit. */
+@media (max-width: 350px) {
+  .hotel-toggle-mark { display: none; }
 }

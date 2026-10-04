@@ -53,7 +53,7 @@
 
 .btm-form .field { display: flex; flex-direction: column; }
 .btm-form .field > span {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 0.06em;
   color: var(--c-muted);
   margin-bottom: 0.25rem;

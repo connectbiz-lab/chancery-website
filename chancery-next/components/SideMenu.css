@@ -81,7 +81,7 @@
   margin: 0;
   padding: 0.25rem 2rem 0.75rem;
   font-family: var(--f-sans);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--c-gold-soft);
@@ -98,7 +98,7 @@
 .side-menu__hotel { display: flex; flex-direction: column; gap: 0.4rem; }
 .side-menu__sub {
   font-family: var(--f-sans);
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(246, 241, 231, 0.6);
@@ -133,8 +133,18 @@
 .side-menu__meta {
   margin: 0.35rem 0 0;
   font-family: var(--f-sans);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--c-gold-soft);
+}
+
+/* Phones: tighter rows so more of the menu shows before it scrolls — each row
+   was ~83px, which left four of the ten links on screen. Rows stay ≥ 56px. */
+@media (max-width: 720px) {
+  .side-menu__head { padding: 1rem 1.5rem; }
+  .side-menu__nav { padding: 0.75rem 0; }
+  .side-menu__nav a { padding: 0.6rem 1.5rem; }
+  .side-menu__group { padding: 0.25rem 1.5rem 0.4rem; }
+  .side-menu__foot { padding: 1rem 1.5rem 1.25rem; }
 }

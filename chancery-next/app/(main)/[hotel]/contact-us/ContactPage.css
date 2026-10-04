@@ -20,7 +20,7 @@
   display: inline-block;
   margin-left: 0.75rem;
   font-family: var(--f-sans);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--c-gold-deep);
@@ -61,7 +61,7 @@
 .dept-card__body { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
 .dept-name {
   font-family: var(--f-sans);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--c-muted);
@@ -75,7 +75,13 @@
   border-bottom: 1px solid var(--c-line);
 }
 .dept-card__body a:hover { color: var(--c-gold-deep); border-color: var(--c-gold-deep); }
-.dept-card__body .dept-phone { font-size: 0.88rem; color: var(--c-muted); }
+.dept-card__body .dept-phone { font-size: 0.95rem; color: var(--c-muted); }
+/* Phones: map, email and phone links get a finger-sized target (padding above,
+   so their underlines stay against the words). */
+@media (max-width: 720px) {
+  .hc-map { padding-top: 0.6rem; }
+  .dept-card__body a { padding-top: 0.4rem; }
+}
 
 /* ---------------- Landscape enquiry form, below ---------------- */
 .enquiry-band {

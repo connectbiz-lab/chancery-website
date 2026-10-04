@@ -101,7 +101,7 @@
 .footer-links {
   margin: 1rem 0 0;
   display: flex; flex-wrap: wrap; gap: 0.4rem 1rem;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -114,7 +114,7 @@
   padding-top: 1.5rem;
   border-top: 1px solid rgba(246, 241, 231, 0.15);
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(246, 241, 231, 0.6);
@@ -126,4 +126,15 @@
 @media (max-width: 560px) {
   .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .newsletter-form { flex-direction: column; }
+}
+
+/* Phones: footer links are tapped with a thumb — each gets a ~34px target (they
+   were 20–25px tall), with the difference taken out of the gaps. Underlined
+   links pad upward only, so the underline stays against the words. */
+@media (max-width: 720px) {
+  .footer-line { margin-bottom: 0.1rem; }
+  .footer-line a { display: inline-block; padding-top: 0.5rem; }
+  .footer-links { gap: 0 1rem; }
+  .footer-links.column { gap: 0; }
+  .footer-links a { display: inline-block; padding: 0.6rem 0; }
 }
