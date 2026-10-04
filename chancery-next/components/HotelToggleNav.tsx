@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { hotelHomePath } from '@/lib/routes'
 
-type Item = { slug: string; label: string; logo: string | null }
+type Item = { slug: string; label: string; short: string; logo: string | null }
 
 export function HotelToggleNav({ hotels }: { hotels: Item[] }) {
   const pathname = usePathname() ?? '/'
@@ -27,6 +27,7 @@ export function HotelToggleNav({ hotels }: { hotels: Item[] }) {
             href={hotelHomePath(h.slug)}
             className={`hotel-toggle-item ${h.slug}${active ? ' active' : ''}`}
             aria-current={active ? 'page' : undefined}
+            aria-label={h.label}
           >
             {h.logo && (
               <span className="hotel-toggle-mark" aria-hidden>
@@ -34,7 +35,9 @@ export function HotelToggleNav({ hotels }: { hotels: Item[] }) {
                 <img src={h.logo} alt="" width={h.slug === 'chancery' ? 44 : 14} height={20} />
               </span>
             )}
-            <span>{h.label}</span>
+            {/* CSS shows one of the two: the full name, or the one-word name on phones. */}
+            <span className="hotel-toggle-full">{h.label}</span>
+            <span className="hotel-toggle-short">{h.short}</span>
           </Link>
         )
       })}

@@ -15,11 +15,21 @@ const MARKS: Record<string, string> = {
   chancery: '/brand/chancery-mark.webp',
 }
 
+// One-word names for phones, where the full "Chancery Pavilion | Chancery Hotel"
+// pair only fits the hero photo at ~10px type.
+const SHORT: Record<string, string> = {
+  pavilion: 'Pavilion',
+  chancery: 'Chancery',
+}
+
 export async function HotelToggle() {
   const hotels = await getHotels()
   return (
     <HotelToggleNav
-      hotels={hotels.map((h) => ({ slug: h.slug, label: h.short_name ?? h.name, logo: MARKS[h.slug] ?? null }))}
+      hotels={hotels.map((h) => {
+        const label = h.short_name ?? h.name
+        return { slug: h.slug, label, short: SHORT[h.slug] ?? label, logo: MARKS[h.slug] ?? null }
+      })}
     />
   )
 }
