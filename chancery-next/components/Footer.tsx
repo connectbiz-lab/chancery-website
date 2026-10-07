@@ -151,6 +151,15 @@ export function Footer({ site, hotels }: FooterProps) {
           <div className="footer-bottom">
             <p>© {year} Chancery Hotels. All rights reserved.</p>
             <p>{s?.tagline ?? "Luxury Hotels in Bangalore"}</p>
+            {/* Agency credit: the Iksha mark as an image, name as text, like the
+                other sites Iksha runs. The hotel's own brand is not repeated here. */}
+            <p className="footer-credit">
+              Powered by{" "}
+              <a href="https://ikshaconsulting.com" target="_blank" rel="noopener noreferrer">
+                <img src="/brand/iksha-mark.png" alt="" width={14} height={14} />
+                <span>Iksha Consulting</span>
+              </a>
+            </p>
           </div>
         </div>
       </section>
