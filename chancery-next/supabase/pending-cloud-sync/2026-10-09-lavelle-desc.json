@@ -1,0 +1,13 @@
+[
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "the-lavelle-hall",
+   "hotel": "chancery"
+  },
+  "set": {
+   "description": "A spacious and elegant banquet venue ideal for conferences, corporate events, receptions and social gatherings, accommodating up to 250 guests."
+  }
+ }
+]
