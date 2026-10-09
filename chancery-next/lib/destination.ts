@@ -35,20 +35,20 @@ export const HOTEL_EXPERIENCES: Record<string, Experience[]> = {
     {
       kicker: 'All-Day Dining by the Pool',
       title: 'Ithaca',
-      body: 'Breakfast to late dinner beside the water — the easiest table in the house at any hour of the day.',
+      body: 'Breakfast to late dinner, with tables indoors and out on the poolside terrace — the easiest table in the house at any hour of the day.',
       photo: { restaurant: 'ithaca' },
       to: 'dining',
     },
     {
       kicker: 'Relax',
       title: 'Swimming Pool',
-      body: 'Start the morning with a swim, or keep an afternoon free and spend it by the water.',
+      body: 'Start the morning with a swim, or keep an afternoon free for the sun loungers and a long lunch from Ithaca.',
       photo: { galleryAlt: /swimming pool/i },
     },
     {
       kicker: 'Recharge',
       title: 'Fitness Centre',
-      body: 'Keep to your routine while you travel in the hotel’s own fitness centre.',
+      body: 'A well-equipped fitness centre with modern cardio and strength equipment, open for your routine at any hour.',
       photo: { galleryAlt: /fitness/i },
     },
   ],
@@ -67,7 +67,7 @@ export const HOTEL_EXPERIENCES: Record<string, Experience[]> = {
       photo: { galleryAlt: /sara spa/i },
     },
     {
-      kicker: '24-Hour Coffee Shop',
+      kicker: 'Multi-Cuisine Restaurant',
       title: 'South Parade',
       body: 'Open around the clock for a quiet breakfast meeting, a family lunch or a late supper.',
       photo: { restaurant: 'south-parade' },

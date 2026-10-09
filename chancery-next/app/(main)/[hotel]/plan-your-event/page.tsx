@@ -21,16 +21,6 @@ const OCCASIONS = [
   { Icon: CorporateIcon, title: 'Corporate Events', copy: 'Launches, offsites and award nights with seamless service.' },
 ]
 
-const KINDS: Record<string, string> = {
-  ballroom: 'Ballroom',
-  banquet: 'Banquet',
-  conference: 'Conference Suite',
-  private_dining: 'Private Dining',
-  executive: 'Executive Boardroom',
-  al_fresco: 'Al Fresco',
-  divisible: 'Divisible Hall',
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ hotel: string }> }): Promise<Metadata> {
   const { hotel } = await params
   const [page, h] = await Promise.all([getPage('events', hotel), getHotel(hotel)])
@@ -114,7 +104,6 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
                     : <div className="figure-placeholder" />}
                 </div>
                 <div className="venue-body">
-                  <p className="card-eyebrow">{(v.kind && KINDS[v.kind]) || v.kind || 'Venue'}</p>
                   <h3>{v.name}</h3>
                   <p className="meta">
                     {v.guests_max && <span>Up to {v.guests_max} guests</span>}
@@ -153,9 +142,10 @@ function VenueCapacities({ v }: { v: Venue }) {
   const rows: Array<[string, number]> = (
     [
       ['Theatre', v.cap_theatre],
-      ['Banquet', v.cap_banquet],
+      ['Cluster', v.cap_cluster],
       ['Classroom', v.cap_classroom],
       ['U-Shape', v.cap_ushape],
+      ['Boardroom', v.cap_boardroom],
       ['Reception', v.cap_cocktail],
     ] as Array<[string, number | null]>
   ).filter(([, n]) => n != null) as Array<[string, number]>

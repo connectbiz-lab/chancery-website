@@ -1,0 +1,312 @@
+[
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "the-grand-ball-room",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "cap_cluster": 216
+  }
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "sigma",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "cap_cluster": 90
+  }
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "indian-affair",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "cap_cluster": 108
+  }
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "esquire",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "cap_cluster": 36
+  }
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "pavilion-board-room",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "guests_max": 16,
+   "description": "An intimate executive setting for high-level discussions, board meetings and strategic planning sessions."
+  }
+ },
+ {
+  "op": "insert_if_missing",
+  "table": "venue",
+  "match": {
+   "slug": "club-lounge",
+   "hotel": "pavilion"
+  },
+  "row": {
+   "hotel": "pavilion",
+   "name": "Club Lounge",
+   "slug": "club-lounge",
+   "kind": "executive",
+   "description": "An elegant space featuring an opulent boardroom setting, complemented by a versatile event area ideal for casual dining, intimate gatherings, or as a breakout hall for parallel presentations and meetings.",
+   "guests_max": 40,
+   "hero_image": "venues/2026-pavilion-club-lounge.webp",
+   "order": 6
+  }
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "slug": "pavilion-board-room",
+   "hotel": "pavilion"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-pavilion-club-lounge-boardroom.webp",
+    "alt": "Pavilion Board Room",
+    "order": 0
+   }
+  ]
+ },
+ {
+  "op": "replace_children",
+  "table": "venue",
+  "match": {
+   "slug": "club-lounge",
+   "hotel": "pavilion"
+  },
+  "child": "venue_image",
+  "fk": "venue_id",
+  "rows": [
+   {
+    "image": "venues/2026-pavilion-club-lounge.webp",
+    "alt": "Club Lounge — cluster seating",
+    "order": 0
+   }
+  ]
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "the-lavelle-hall",
+   "hotel": "chancery"
+  },
+  "set": {
+   "guests_max": 250,
+   "cap_cluster": 60,
+   "cap_theatre": 150,
+   "cap_ushape": 40,
+   "cap_boardroom": 40,
+   "cap_classroom": 60,
+   "cap_cocktail": 250,
+   "cap_banquet": null
+  }
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "colors-hall",
+   "hotel": "chancery"
+  },
+  "set": {
+   "guests_max": 250,
+   "cap_cluster": 30,
+   "cap_theatre": 50,
+   "cap_ushape": 30,
+   "cap_boardroom": 30,
+   "cap_classroom": 40,
+   "cap_cocktail": 250,
+   "cap_banquet": null
+  }
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "walton-hall",
+   "hotel": "chancery"
+  },
+  "set": {
+   "guests_max": 90,
+   "cap_cluster": 40,
+   "cap_theatre": 60,
+   "cap_ushape": 30,
+   "cap_boardroom": 30,
+   "cap_classroom": 40,
+   "cap_cocktail": 90,
+   "cap_banquet": null
+  }
+ },
+ {
+  "op": "update",
+  "table": "venue",
+  "match": {
+   "slug": "chancery-boardroom",
+   "hotel": "chancery"
+  },
+  "set": {
+   "guests_max": 50,
+   "cap_cluster": 20,
+   "cap_theatre": 30,
+   "cap_ushape": 20,
+   "cap_boardroom": 20,
+   "cap_classroom": 20,
+   "cap_cocktail": 50,
+   "cap_banquet": null
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "events",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "intro_body": "Six venues — from the soaring Grand Ball Room to the Club Lounge — each one engineered for the kind of celebration you have in mind."
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "catering",
+   "hotel": null
+  },
+  "set": {
+   "intro_body": "Chancery Hotels brings its legacy of hospitality excellence into the domain of large-scale outdoor catering, with the capability to efficiently execute events ranging from 50 to over 10,000 guests. Professional culinary expertise, robust infrastructure and strict quality control deliver consistent taste, hygiene and timely service at scale — backed by trained chefs, standardised processes and FSSAI-compliant practices."
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "hotel_home",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "intro_body": "The Chancery Pavilion is the contemporary face of the Chancery brand. 223 rooms, a rooftop microbrewery, a multi-cuisine all-day dining destination, an outdoor pool — and a grand ballroom that has hosted some of Bangalore's most memorable celebrations."
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "hotel_home",
+   "hotel": "chancery"
+  },
+  "set": {
+   "intro_body": "For 26 years, The Chancery has been part of Lavelle Road — one of the city's most refined addresses. 126 rooms, two restaurants, and an unhurried kind of luxury that only comes with time."
+  }
+ },
+ {
+  "op": "update",
+  "table": "hotel",
+  "match": {
+   "slug": "pavilion"
+  },
+  "set": {
+   "intro_body": "The Chancery Pavilion is the flagship of the Chancery Group, with 20 years of timeless hospitality. 223 tastefully designed rooms and suites rising above Residency Road. With 20,000 sq. ft. of banqueting space, Alchemy’s award-winning rooftop dining featuring progressive Indian cuisine and a microbrewery, a 24/7 coffee shop overlooking the pool, and a glittering lobby, the hotel also offers a well-equipped gymnasium and outdoor swimming pool."
+  }
+ },
+ {
+  "op": "update",
+  "table": "restaurant",
+  "match": {
+   "slug": "alchemy"
+  },
+  "set": {
+   "description": "Award-winning rooftop restaurant and microbrewery with panoramic views of Bengaluru — progressive Indian cuisine curated by celebrity Chef Hari Nayak, and craft beers brewed in association with Cavalier Australia. Seasonal and specialty brews on tap, with a confluence of rich Indian authentic flavours."
+  }
+ },
+ {
+  "op": "update",
+  "table": "restaurant",
+  "match": {
+   "slug": "south-parade"
+  },
+  "set": {
+   "description": "Experience all-day dining at South Parade, our 24-hour multi-cuisine restaurant with an elegant, contemporary ambiance and seating for up to 80 guests. The menu spans an extensive selection of Indian, Asian and Continental delicacies, alongside refreshing beverages and quick bites — perfect for breakfast meetings, family dining and celebrations."
+  }
+ },
+ {
+  "op": "update",
+  "table": "offer",
+  "match": {
+   "title": "Early Bird Offer",
+   "hotel": null
+  },
+  "set": {
+   "title": "Plan Ahead and Save",
+   "hotel": "pavilion"
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Deluxe Room",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "size_sqft": 393
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Presidential Suite",
+   "hotel": "pavilion"
+  },
+  "set": {
+   "size_sqft": 1166
+  }
+ },
+ {
+  "op": "update",
+  "table": "room_category",
+  "match": {
+   "name": "Deluxe Room",
+   "hotel": "chancery"
+  },
+  "set": {
+   "amenities": "Free Wi-Fi\nSmart TV\nTea & Coffee Maker\n24/7 In-Room Dining"
+  }
+ },
+ {
+  "op": "update",
+  "table": "page",
+  "match": {
+   "kind": "events",
+   "hotel": "chancery"
+  },
+  "set": {
+   "intro_body": "Five venues to choose from — the Lavelle Hall for receptions of up to 250 guests, the Business Centre for boardroom meetings, and three halls in between — each with modern facilities and a dedicated events team to run the day."
+  }
+ }
+]

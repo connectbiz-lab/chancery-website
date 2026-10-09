@@ -38,6 +38,8 @@ export const AWARD_GROUPS: AwardGroup[] = [
       { title: 'Best Modern Indian Premium Dining', by: 'Times Food & Nightlife Awards', years: '2023, 2024 & 2025' },
       { title: 'Best Microbrewery, Luxurious Nightout', by: 'Times Food & Nightlife Awards', years: '2025' },
       { title: 'Best Modern Indian Restaurant', by: 'EazyDiner Foodie Awards', years: '2019' },
+      { title: 'Noteworthy Newcomer \u2014 Modern Indian Cuisine', by: 'Times Food & Nightlife Awards', years: '2019' },
+      { title: 'Grub & Dine Food Awards', by: '93.5 Red FM', years: '2023' },
       { title: 'Beer of India \u2014 Gold (Fruited Sour Ale), Silver (American Porter), Silver (Experimental Grain Beer)', by: 'Brewer World', years: '2023' },
     ],
   },
@@ -55,8 +57,8 @@ export const AWARD_GROUPS: AwardGroup[] = [
     ],
   },
   {
-    scope: 'chancery', owner: 'The Chancery Spa', mark: { kind: 'hotel' },
-    awards: [{ title: 'Best Luxury Hotel Spa in India', years: '2024' }],
+    scope: 'chancery', owner: 'Sara Spa', mark: { kind: 'hotel' },
+    awards: [{ title: 'Best Luxury Hotel Spa in India', by: 'Luxury Lifestyle Awards', years: '2024' }],
   },
   {
     scope: 'group', owner: 'The Chancery Group', mark: { kind: 'group' },
@@ -64,7 +66,7 @@ export const AWARD_GROUPS: AwardGroup[] = [
   },
   {
     scope: 'group', owner: 'Catering & Events', mark: { kind: 'group' },
-    awards: [{ title: 'Best Outdoor Caterer', years: '2023' }],
+    awards: [{ title: 'Best Outdoor Caterer', by: 'Event Capital Awards', years: '2023' }],
   },
 ]
 

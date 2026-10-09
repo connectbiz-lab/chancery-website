@@ -24,7 +24,7 @@ const OCCASIONS = [
 ]
 
 // Signature offerings named in the group deck.
-const SIGNATURES = ['Regional Fare', 'Matsuri Live Sushi & Teppanyaki', 'Continental Spreads']
+const SIGNATURES = ['Regional Fare', 'Live Sushi & Teppanyaki', 'Continental Spreads']
 
 const ASSURED = ['FSSAI-compliant', 'Temperature-controlled logistics', 'Jain, vegan & gluten-free menus']
 
@@ -47,7 +47,7 @@ const VENUES_CATERED: Array<[string, string]> = [
   ['Bangalore Palace Grounds', 'Open-air celebrations'],
   ['National Cricket Academy', 'Sporting events & hospitality'],
   ['Farm Houses', 'Private estates'],
-  ['Open Grounds', 'Custom outdoor setups'],
+  ['Private Venues', 'Custom outdoor setups'],
 ]
 
 export async function generateMetadata() {
@@ -100,7 +100,6 @@ export default async function CateringPage() {
           </div>
           <dl className="odc-stats">
             <div><dd>{ODC.guestRange}</dd><dt>Guests per event</dt></div>
-            <div><dd>{VENUES_CATERED.length}</dd><dt>Landmark venues catered</dt></div>
             {award && <div><dd>{award.years}</dd><dt>{award.title}</dt></div>}
           </dl>
           <div className="text-center">
@@ -201,7 +200,7 @@ export default async function CateringPage() {
             )}
             <p className="eyebrow center">Recognition</p>
             <h2 className="h2">{award.title}</h2>
-            <p className="odc-award-year">{award.years}</p>
+            <p className="odc-award-year">{award.years}{award.by ? ` \u00b7 ${award.by}` : ''}</p>
             <Link href="/pavilion/awards" className="link-arrow">All Awards &amp; Accolades</Link>
           </div>
         </section>

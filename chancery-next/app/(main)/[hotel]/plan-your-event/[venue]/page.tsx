@@ -12,16 +12,6 @@ import { hotelHomePath } from '@/lib/routes'
 
 export const revalidate = 3600
 
-const KINDS: Record<string, string> = {
-  ballroom: 'Ballroom',
-  banquet: 'Banquet',
-  conference: 'Conference Suite',
-  private_dining: 'Private Dining',
-  executive: 'Executive Boardroom',
-  al_fresco: 'Al Fresco',
-  divisible: 'Divisible Hall',
-}
-
 export async function generateMetadata(
   { params }: { params: Promise<{ hotel: string; venue: string }> },
 ): Promise<Metadata> {
@@ -57,9 +47,10 @@ export default async function VenueDetailPage(
   const capacities: Array<[string, number]> = (
     [
       ['Theatre', v.cap_theatre],
-      ['Banquet', v.cap_banquet],
+      ['Cluster', v.cap_cluster],
       ['Classroom', v.cap_classroom],
       ['U-Shape', v.cap_ushape],
+      ['Boardroom', v.cap_boardroom],
       ['Reception', v.cap_cocktail],
     ] as Array<[string, number | null]>
   ).filter(([, n]) => n != null) as Array<[string, number]>
@@ -67,8 +58,6 @@ export default async function VenueDetailPage(
   const gallery = v.images.length > 0
     ? v.images
     : (v.hero_image ? [{ image: v.hero_image, alt: v.name, order: 0 }] : [])
-
-  const kindLabel = (v.kind && (KINDS[v.kind] || v.kind)) || 'Event Space'
 
   return (
     <>
@@ -82,7 +71,7 @@ export default async function VenueDetailPage(
       />
       <CinematicHero
         image={v.hero_image}
-        eyebrow={`${v.hotel.name} · ${kindLabel}`}
+        eyebrow={v.hotel.name}
         title={v.name}
       />
 
@@ -92,7 +81,6 @@ export default async function VenueDetailPage(
 
           <div className="venue-detail">
             <div className="venue-detail__main">
-              <p className="eyebrow">{kindLabel}</p>
               <h2 className="h2">{v.name}</h2>
               {v.description && <p className="lede">{v.description}</p>}
 

@@ -100,6 +100,7 @@ export function Navbar({ site, hotels }: NavbarProps) {
               <li><Link href={`/${scope}/special-offers`}>Offers</Link></li>
               <li><Link href={`/${scope}/destination`}>Destination</Link></li>
               <li><Link href={`/${scope}/gallery`}>Gallery</Link></li>
+              <li><Link href={`/${scope}/awards`}>Awards</Link></li>
               <li><Link href={`/${scope}/contact-us`}>Contact</Link></li>
             </ul>
           </nav>

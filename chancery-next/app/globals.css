@@ -80,6 +80,9 @@ body {
   font-family: var(--f-sans);
   font-size: var(--t-body);
   line-height: 1.7;
+  /* Lining figures: Cormorant's default old-style numerals dip below the
+     baseline and read as uneven ("digits are not readable" — hotel team). */
+  font-variant-numeric: lining-nums;
   font-weight: 300;
   color: var(--c-charcoal);
   background: var(--c-cream);

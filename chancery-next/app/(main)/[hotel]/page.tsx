@@ -32,7 +32,7 @@ export const revalidate = 3600
 // Oct 2026). `aboutEyebrow: null` renders the About block with no kicker.
 const HOME_COPY: Record<HotelSlug, { aboutEyebrow: string | null; aboutHeading: string; diningHeading: string }> = {
   pavilion: { aboutEyebrow: null, aboutHeading: 'Hospitality in the Heart of Bangalore', diningHeading: 'Symphony of Flavors' },
-  chancery: { aboutEyebrow: 'Business Hotel', aboutHeading: 'A Welcome That Has Lasted Generations', diningHeading: 'Tables of Distinction' },
+  chancery: { aboutEyebrow: 'Business Hotel', aboutHeading: 'A Welcome That Has Lasted Generations', diningHeading: 'Dining on Lavelle Road' },
 }
 
 // Slug → human name fallback so metadata/hero can resolve before the hotel row.
@@ -220,7 +220,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
             <div className="section-head">
               <p className="eyebrow center" style={{ color: 'var(--c-gold-soft)' }}>Plan your event</p>
               <h2 className="h1" style={{ color: 'var(--c-ivory)' }}>
-                {hotel === 'pavilion' ? 'From Boardrooms to Ballrooms' : 'Celebrations at a Lavelle Address'}
+                {hotel === 'pavilion' ? 'From Boardroom to Ballroom' : 'Celebrations at a Lavelle Address'}
               </h2>
               <p className="lede" style={{ color: 'rgba(246,241,231,0.85)' }}>
                 {venues.length} distinctive venues — each one engineered for the kind of occasion you have in mind.
@@ -319,7 +319,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
               <p className="eyebrow center">Offers</p>
               <h2 className="h1">Curated Packages</h2>
             </div>
-            <div className="card-grid three">
+            <div className={`card-grid three${offers.length === 2 ? ' center-two' : ''}`}>
               {offers.slice(0, 3).map((o) => (
                 <div key={o.id} className="card">
                   <div className="figure">{o.image && <Media path={o.image} alt={o.title} sizes="(max-width: 768px) 100vw, 33vw" />}</div>
