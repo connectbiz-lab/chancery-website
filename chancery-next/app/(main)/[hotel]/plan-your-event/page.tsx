@@ -62,7 +62,7 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
         ]}
       />
       {/* Pavilion's events hero leads with a looping montage of the event spaces
-          (Grand Ball Room, chandelier, banquet, lounge, poolside) on tablet/desktop;
+          (Grand Ball Room, chandelier, banquet, lounge, poolside terrace) on tablet/desktop;
           the "Celebrate Every Occasion" banquet photo is the mobile + poster
           fallback, with the messaging overlaid in the site hero style. Other hotels
           keep their standard photo hero. */}
@@ -78,7 +78,7 @@ export default async function EventsPage({ params }: { params: Promise<{ hotel: 
         title={hotel === 'pavilion' ? 'With The Chancery Pavilion' : (p?.hero_heading ?? 'Plan your event')}
         script={
           hotel === 'pavilion'
-            ? 'Poolside venue · Banquet halls · Meeting rooms'
+            ? 'Grand Ball Room · Banquet halls · Boardroom'
             : (p?.hero_subheading ?? undefined)
         }
         cornerName={hotel === 'pavilion'}
@@ -156,11 +156,9 @@ function VenueCapacities({ v }: { v: Venue }) {
       ['Banquet', v.cap_banquet],
       ['Classroom', v.cap_classroom],
       ['U-Shape', v.cap_ushape],
-      ['Cocktail', v.cap_cocktail],
+      ['Reception', v.cap_cocktail],
     ] as Array<[string, number | null]>
   ).filter(([, n]) => n != null) as Array<[string, number]>
-  // A boardroom has one layout: no per-layout figures, just its seating.
-  if (rows.length === 0 && v.kind === 'executive' && v.guests_max) rows.push(['Boardroom Style', v.guests_max])
   if (rows.length === 0) return null
   return (
     <table className="capacity-table" aria-label={`${v.name} capacities`}>
