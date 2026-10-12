@@ -131,7 +131,7 @@ Each of these has been **checked live**, not just in the code:
 - [ ] all host spellings 308 to one host
 - [ ] every old WordPress URL 308s to a real page (0 × 404 in a crawl of the old sitemap) — preview: 158/158 non-Native ✅; 50 Native URLs wait on the hotel ❓
 - [x] `/robots.txt` names the AI crawlers, and each gets a 200 — preview 12-10; recheck on production
-- [ ] `/sitemap.xml` dates are stable across two deploys
+- [x] `/sitemap.xml` dates are stable across two deploys — preview 12-10: byte-identical across two deploys (md5 1190e25d…)
 - [x] `/llms.txt` matches the pages — preview 12-10 (built from the same CMS queries)
 - [x] the Rich Results test passes on both hotel homes (no aggregateRating) — preview 12-10: all items valid; only note is the optional `priceRange`, left out until the hotel confirms one
 - [ ] NAP is identical on site, schema, llms.txt and both Google listings
