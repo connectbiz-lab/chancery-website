@@ -3,7 +3,7 @@ import { Media } from '@/components/Media'
 import { BookButton } from '@/components/BookButton'
 import { OfferCopy } from '@/components/OfferCopy'
 import { getHotel, getPage, getOffers, type HotelSlug } from '@/lib/queries/content'
-import { buildMetadata } from '@/lib/seo'
+import { hotelPageMetadata } from '@/lib/seo'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import { hotelHomePath } from '@/lib/routes'
@@ -13,11 +13,13 @@ export const revalidate = 3600
 export async function generateMetadata({ params }: { params: Promise<{ hotel: string }> }): Promise<Metadata> {
   const { hotel } = await params
   const [page, h] = await Promise.all([getPage('offers', hotel), getHotel(hotel)])
-  return buildMetadata({
-    title: page?.meta_title || 'Special Offers',
-    description: page?.meta_description ?? undefined,
+  if (!h) return {}
+  return hotelPageMetadata({
+    label: 'Special Offers',
+    hotel: h,
+    page,
     path: `/${hotel}/special-offers`,
-    ogImagePath: page?.hero_image ?? h?.hero_image,
+    description: `Offers and packages at ${h.name} on ${h.location}, Bangalore, booked direct with the hotel.`,
   })
 }
 

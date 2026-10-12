@@ -12,7 +12,7 @@ export default async function MainLayout({ children }: { children: React.ReactNo
   const [site, hotels] = await Promise.all([getSiteContent(), getHotels()])
   return (
     <>
-      <JsonLd data={organizationJsonLd(site)} />
+      <JsonLd data={organizationJsonLd(site, hotels)} />
       <JsonLd data={websiteJsonLd(site)} />
       <Navbar site={site} hotels={hotels} />
       {children}

@@ -30,7 +30,7 @@ export function HeroMedia({
 
   if (video && wide) {
     return (
-      <video className="chero-video" autoPlay muted loop playsInline preload="auto" poster={poster ?? undefined}>
+      <video className="chero-video" autoPlay muted loop playsInline preload="metadata" poster={poster ?? undefined}>
         <source src={video} type="video/mp4" />
       </video>
     )

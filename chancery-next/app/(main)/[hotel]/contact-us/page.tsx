@@ -3,7 +3,7 @@ import { ContactForm } from '@/components/ContactForm'
 import { DeptIcon } from '@/components/DeptIcon'
 import { getHotel, getHotels, getPage, type HotelSlug } from '@/lib/queries/content'
 import { mapsUrl } from '@/lib/maps'
-import { buildMetadata } from '@/lib/seo'
+import { hotelPageMetadata } from '@/lib/seo'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './ContactPage.css'
@@ -16,11 +16,13 @@ type HotelWithDepts = Awaited<ReturnType<typeof getHotels>>[number]
 export async function generateMetadata({ params }: { params: Promise<{ hotel: string }> }): Promise<Metadata> {
   const { hotel } = await params
   const [page, h] = await Promise.all([getPage('contact', hotel), getHotel(hotel)])
-  return buildMetadata({
-    title: page?.meta_title || 'Contact Us',
-    description: page?.meta_description ?? undefined,
+  if (!h) return {}
+  return hotelPageMetadata({
+    label: 'Contact Us',
+    hotel: h,
+    page,
     path: `/${hotel}/contact-us`,
-    ogImagePath: page?.hero_image ?? h?.hero_image,
+    description: `Contact ${h.name}: ${h.address} · ${h.phone} · ${h.email}.`,
   })
 }
 

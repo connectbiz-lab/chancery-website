@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ hotel: st
   const fallbackName = HOTEL_NAME_FALLBACK[hotel as HotelSlug] ?? h.name
   return buildMetadata({
     title: page?.meta_title || h.name || fallbackName,
-    description: page?.meta_description || h.tagline,
+    description: page?.meta_description || `${h.tagline ? `${h.tagline}. ` : ''}${h.name}, ${h.address}.`,
     path: hotelHomePath(hotel),
     ogImagePath: h.hero_image,
   })
@@ -91,7 +91,7 @@ export default async function HotelHome({ params }: { params: Promise<{ hotel: s
 
   return (
     <>
-      <JsonLd data={hotelJsonLd(h)} />
+      <JsonLd data={hotelJsonLd(h, { restaurants, venues })} />
       <Breadcrumbs
         items={[
           { name: 'Home', path: '/' },

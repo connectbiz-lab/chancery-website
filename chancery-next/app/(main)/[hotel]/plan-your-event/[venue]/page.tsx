@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation'
 import { CinematicHero } from '@/components/CinematicHero'
 import { Media } from '@/components/Media'
 import { EventEnquiryButton } from '@/components/EventEnquiryButton'
-import { getVenues, type HotelSlug } from '@/lib/queries/content'
-import { buildMetadata } from '@/lib/seo'
+import { getHotel, getVenues, type HotelSlug } from '@/lib/queries/content'
+import { buildMetadata, hotelWhere, venueJsonLd } from '@/lib/seo'
+import { JsonLd } from '@/components/JsonLd'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './VenueDetailPage.css'
@@ -21,7 +22,8 @@ export async function generateMetadata(
   if (!v) return {}
   return buildMetadata({
     title: `${v.name} — ${v.hotel.name}`,
-    description: v.description ?? undefined,
+    description: v.description ||
+      `${v.name} at ${hotelWhere(v.hotel)}, Bangalore${v.guests_max != null ? ` — up to ${v.guests_max} guests` : ''}.`,
     path: `/${hotel}/plan-your-event/${venue}`,
     ogImagePath: v.hero_image,
   })
@@ -31,9 +33,9 @@ export default async function VenueDetailPage(
   { params }: { params: Promise<{ hotel: string; venue: string }> },
 ) {
   const { hotel, venue } = await params
-  const venues = await getVenues(hotel)
+  const [venues, h] = await Promise.all([getVenues(hotel), getHotel(hotel)])
   const v = venues.find((x) => x.slug === venue)
-  if (!v) notFound()
+  if (!v || !h) notFound()
 
   const facts: Array<[string, string]> = (
     [
@@ -61,6 +63,7 @@ export default async function VenueDetailPage(
 
   return (
     <>
+      <JsonLd data={venueJsonLd(v, h)} />
       <Breadcrumbs
         items={[
           { name: 'Home', path: '/' },

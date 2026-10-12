@@ -1,7 +1,8 @@
 import { Hero } from '@/components/Hero'
 import { FaqAccordion } from '@/components/FaqAccordion'
 import { getFaq, getPage } from '@/lib/queries/content'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, faqJsonLd } from '@/lib/seo'
+import { JsonLd } from '@/components/JsonLd'
 import './FAQPage.css'
 
 export const revalidate = 3600
@@ -22,6 +23,8 @@ export default async function FAQPage() {
 
   return (
     <>
+      {/* The same questions the accordion shows — every answer is on the page. */}
+      <JsonLd data={faqJsonLd(faq.flatMap((s) => s.items))} />
       <Hero
         image={p?.hero_image ?? null}
         eyebrow={p?.hero_eyebrow ?? undefined}

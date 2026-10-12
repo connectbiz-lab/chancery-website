@@ -1,7 +1,7 @@
 import { CinematicHero } from '@/components/CinematicHero'
 import { GalleryLightbox } from '@/components/GalleryLightbox'
 import { getHotel, getPage, getGallery } from '@/lib/queries/content'
-import { buildMetadata } from '@/lib/seo'
+import { hotelPageMetadata } from '@/lib/seo'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './GalleryPage.css'
@@ -12,11 +12,13 @@ export const revalidate = 3600
 export async function generateMetadata({ params }: { params: Promise<{ hotel: string }> }): Promise<Metadata> {
   const { hotel } = await params
   const [page, h] = await Promise.all([getPage('gallery', hotel), getHotel(hotel)])
-  return buildMetadata({
-    title: page?.meta_title || 'Gallery',
-    description: page?.meta_description ?? undefined,
+  if (!h) return {}
+  return hotelPageMetadata({
+    label: 'Gallery',
+    hotel: h,
+    page,
     path: `/${hotel}/gallery`,
-    ogImagePath: page?.hero_image ?? h?.hero_image,
+    description: `Photos of ${h.name} on ${h.location}, Bangalore — rooms, dining, event spaces and the hotel.`,
   })
 }
 

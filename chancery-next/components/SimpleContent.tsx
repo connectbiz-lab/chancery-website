@@ -1,5 +1,5 @@
 import { Hero } from '@/components/Hero'
-import { getPage } from '@/lib/queries/content'
+import { getHotels, getPage } from '@/lib/queries/content'
 import { buildMetadata } from '@/lib/seo'
 
 type Kind = 'privacy' | 'terms' | 'accessibility'
@@ -28,7 +28,6 @@ const FALLBACK: Record<Kind, { title: string; body: string[] }> = {
     body: [
       'Chancery Hotels is committed to ensuring that our website is accessible to as wide an audience as possible, regardless of ability or assistive technology.',
       'We design and develop the site against the principles of WCAG 2.1 Level AA — including sufficient colour contrast, semantic markup, full keyboard navigability and clearly labelled interactive elements.',
-      'If you encounter a barrier on this site, please tell us. Email reservations.tcp@chanceryhotels.com or call +91 80 4141 4141 and we will work to resolve the issue.',
       'Both properties offer step-free access in public areas, lift access to guest floors, and accessibility-friendly room configurations. Please mention accessibility needs while booking so the team can prepare appropriately.',
     ],
   },
@@ -52,9 +51,20 @@ export async function metadataFor(kind: Kind) {
 }
 
 export async function SimpleContent({ kind }: { kind: Kind }) {
-  const page = await getPage(kind)
+  const [page, hotels] = await Promise.all([getPage(kind), getHotels()])
   const p = page
   const fb = FALLBACK[kind]
+  // Contact details come from the hotel rows — the same ones the footer, the
+  // schema and /llms.txt read — never typed into the copy.
+  const body = kind === 'accessibility'
+    ? [
+        ...fb.body.slice(0, 2),
+        `If you encounter a barrier on this site, please tell us and we will work to resolve it: ${hotels
+          .map((h) => `${h.name}, ${[h.email, h.phone].filter(Boolean).join(' or ')}`)
+          .join('; ')}.`,
+        ...fb.body.slice(2),
+      ]
+    : fb.body
 
   return (
     <>
@@ -67,7 +77,7 @@ export async function SimpleContent({ kind }: { kind: Kind }) {
       <section className="section">
         <div className="container narrow">
           {p?.intro_body && <p className="lede">{p.intro_body}</p>}
-          {fb.body.map((para, i) => <p key={i}>{para}</p>)}
+          {body.map((para, i) => <p key={i}>{para}</p>)}
         </div>
       </section>
     </>
