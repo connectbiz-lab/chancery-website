@@ -6,7 +6,7 @@
 .metrics-head .display { margin: 0.6rem 0 1.1rem; }
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* 8 cards: 4×2, then 2×4 */
   gap: clamp(1rem, 1.6vw, 1.5rem);
 }
 .metric-card {
@@ -25,29 +25,6 @@
   letter-spacing: -0.01em;
   color: var(--c-gold);
 }
-/* Star rating (guest-satisfaction card) — sized to the .metric-num line box so
-   the label below stays aligned with the numeric cards in the same row. */
-.metric-stars {
-  position: relative;
-  display: inline-flex;
-  align-self: flex-start; /* hug the stars, not the card width, so the fill % clips correctly */
-  align-items: center;
-  height: clamp(2.4rem, 3.4vw, 3.2rem);
-}
-.metric-stars__row { display: flex; gap: 0.14em; }
-.metric-stars__row svg {
-  width: clamp(1.5rem, 2.1vw, 2rem);
-  height: clamp(1.5rem, 2.1vw, 2rem);
-  flex: 0 0 auto;
-}
-.metric-stars__base svg { fill: rgba(246, 241, 231, 0.32); }
-.metric-stars__fill {
-  position: absolute;
-  top: 0; bottom: 0; left: 0;
-  align-items: center;
-  overflow: hidden;
-}
-.metric-stars__fill svg { fill: var(--c-gold); }
 
 .metric-label {
   font-family: var(--f-sans);
@@ -63,7 +40,7 @@
   margin-top: 0.35rem;
   color: rgba(246, 241, 231, 0.66);
 }
-@media (max-width: 860px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 1024px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .metrics-grid { grid-template-columns: 1fr; } }
 
 /* Who we are — vision and mission side by side, six values beneath (navy band) */

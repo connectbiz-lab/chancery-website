@@ -3,7 +3,7 @@ import { BookButton } from '@/components/BookButton'
 import { CinematicHero } from '@/components/CinematicHero'
 import { MediaGallery } from '@/components/MediaGallery'
 import { getHotel, getPage, getRooms, type HotelSlug } from '@/lib/queries/content'
-import { buildMetadata } from '@/lib/seo'
+import { hotelPageMetadata } from '@/lib/seo'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
 import './AccommodationPage.css'
@@ -14,11 +14,13 @@ export const revalidate = 3600
 export async function generateMetadata({ params }: { params: Promise<{ hotel: string }> }): Promise<Metadata> {
   const { hotel } = await params
   const [page, h] = await Promise.all([getPage('accommodation', hotel), getHotel(hotel)])
-  return buildMetadata({
-    title: page?.meta_title || 'Accommodation',
-    description: page?.meta_description ?? undefined,
+  if (!h) return {}
+  return hotelPageMetadata({
+    label: 'Accommodation',
+    hotel: h,
+    page,
     path: `/${hotel}/accommodation`,
-    ogImagePath: page?.hero_image ?? h?.hero_image,
+    description: `Rooms and suites at ${h.name}, ${h.address}. Compare room types and book direct.`,
   })
 }
 

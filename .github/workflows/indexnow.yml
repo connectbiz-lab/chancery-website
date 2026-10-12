@@ -1,0 +1,38 @@
+# After every production deploy, tell IndexNow (Bing, and through it Copilot
+# and ChatGPT search; Yandex, Seznam, Naver) which pages the site has — the
+# push Google does not offer. The site does the work in /api/indexnow
+# (chancery-next/app/api/indexnow/route.ts) so the list is the sitemap's own;
+# this only knocks once the deploy is live.
+#
+# Needs, on the repository Vercel deploys from:
+#   - secret   INDEXNOW_PING_SECRET — equal to the Vercel env var of that name
+#   - variable SITE_URL             — the canonical origin, e.g. https://www.chanceryhotels.com
+# Without either the job says so and passes, so nothing missing ever blocks a deploy.
+name: IndexNow
+
+on:
+  deployment_status:
+  # Run by hand (Actions → IndexNow → Run workflow, or `gh workflow run
+  # indexnow.yml`): a redeploy from the Vercel dashboard does not report to
+  # GitHub, so it never fires deployment_status and nothing is submitted.
+  workflow_dispatch:
+
+jobs:
+  ping:
+    if: github.event_name == 'workflow_dispatch' || (github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Submit the sitemap's pages
+        env:
+          SECRET: ${{ secrets.INDEXNOW_PING_SECRET }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          if [ -z "$SECRET" ] || [ -z "$SITE_URL" ]; then
+            echo "::warning::INDEXNOW_PING_SECRET or SITE_URL is not set — nothing submitted."
+            exit 0
+          fi
+          # Retries cover the moment between "deploy succeeded" and the domain
+          # serving it; the response body says how many pages went.
+          curl --fail-with-body --silent --show-error --retry 3 --retry-delay 20 --retry-all-errors \
+            -X POST -H "Authorization: Bearer $SECRET" \
+            "${SITE_URL%/}/api/indexnow"

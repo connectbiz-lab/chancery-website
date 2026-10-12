@@ -3,7 +3,7 @@ import { CinematicHero } from '@/components/CinematicHero'
 import { MediaGallery } from '@/components/MediaGallery'
 import { DiningBookButton } from '@/components/DiningBookButton'
 import { getHotel, getPage, getRestaurants, type HotelSlug } from '@/lib/queries/content'
-import { buildMetadata, restaurantsJsonLd } from '@/lib/seo'
+import { hotelPageMetadata, restaurantsJsonLd } from '@/lib/seo'
 import { mediaUrl } from '@/lib/media'
 import { JsonLd } from '@/components/JsonLd'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
@@ -17,11 +17,13 @@ export const revalidate = 3600
 export async function generateMetadata({ params }: { params: Promise<{ hotel: string }> }): Promise<Metadata> {
   const { hotel } = await params
   const [page, h] = await Promise.all([getPage('dining', hotel), getHotel(hotel)])
-  return buildMetadata({
-    title: page?.meta_title || 'Dining',
-    description: page?.meta_description ?? undefined,
+  if (!h) return {}
+  return hotelPageMetadata({
+    label: 'Dining',
+    hotel: h,
+    page,
     path: `/${hotel}/dining`,
-    ogImagePath: page?.hero_image ?? h?.hero_image,
+    description: `Restaurants at ${h.name} on ${h.location}, Bangalore — cuisines, timings and table reservations.`,
   })
 }
 

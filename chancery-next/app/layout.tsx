@@ -6,6 +6,7 @@ import { Fraunces, Cormorant_Garamond, Inter } from 'next/font/google'
 import './globals.css'
 import './pages.css'
 import { SITE_URL } from '@/lib/seo'
+import { GoogleAnalytics } from '@/components/GoogleAnalytics'
 
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces', display: 'swap' })
 const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-cormorant', display: 'swap' })
@@ -20,6 +21,13 @@ export const metadata: Metadata = {
     'hotels Lavelle Road', 'hotels Residency Road', 'banquet halls Bangalore', 'wedding venues Bangalore',
     'fine dining Bangalore', 'Matsuri', 'Alchemy',
   ],
+  // Search Console / Bing Webmaster ownership by meta tag, when a URL-prefix
+  // property is used. (A Search Console DOMAIN property verifies by DNS and
+  // needs neither.) Unset, no tag is emitted.
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
+    ...(process.env.BING_SITE_VERIFICATION ? { other: { 'msvalidate.01': process.env.BING_SITE_VERIFICATION } } : {}),
+  },
 }
 
 export const viewport: Viewport = {
@@ -29,7 +37,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${cormorant.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <GoogleAnalytics />
+      </body>
     </html>
   )
 }

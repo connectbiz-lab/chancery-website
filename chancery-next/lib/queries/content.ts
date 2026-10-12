@@ -137,3 +137,26 @@ export const getPage = cache(async (kind: string, hotelSlug?: string) => {
   if (!match) return null
   return { ...match, sections: (match.sections ?? []).sort(byOrder) }
 })
+
+// Every CMS row's last-edit time, for the sitemap's <lastmod>. Read together so
+// one sitemap request is one round of queries; updated_at is kept by the
+// set_updated_at trigger, so it moves only when someone edits the content.
+export const getContentDates = cache(async () => {
+  const [pages, hotels, rooms, restaurants, venues, offers] = await Promise.all([
+    db.from('page').select('kind, updated_at, hotel:hotel_id(slug)'),
+    db.from('hotel').select('slug, updated_at'),
+    db.from('room_category').select('updated_at, hotel:hotel_id(slug)'),
+    db.from('restaurant').select('updated_at, hotel:hotel_id(slug)'),
+    db.from('venue').select('slug, updated_at, hotel:hotel_id(slug)'),
+    db.from('offer').select('updated_at, hotel:hotel_id(slug)'),
+  ])
+  for (const r of [pages, hotels, rooms, restaurants, venues, offers]) if (r.error) throw r.error
+  return {
+    pages: pages.data ?? [],
+    hotels: hotels.data ?? [],
+    rooms: rooms.data ?? [],
+    restaurants: restaurants.data ?? [],
+    venues: venues.data ?? [],
+    offers: offers.data ?? [],
+  }
+})

@@ -4,7 +4,7 @@ import { CinematicHero } from '@/components/CinematicHero'
 import { Media } from '@/components/Media'
 import { EventEnquiryButton } from '@/components/EventEnquiryButton'
 import { getHotel, getPage, getVenues, type HotelSlug } from '@/lib/queries/content'
-import { buildMetadata } from '@/lib/seo'
+import { hotelPageMetadata } from '@/lib/seo'
 import { mediaUrl } from '@/lib/media'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Metadata } from 'next'
@@ -24,11 +24,13 @@ const OCCASIONS = [
 export async function generateMetadata({ params }: { params: Promise<{ hotel: string }> }): Promise<Metadata> {
   const { hotel } = await params
   const [page, h] = await Promise.all([getPage('events', hotel), getHotel(hotel)])
-  return buildMetadata({
-    title: page?.meta_title || 'Plan Your Event',
-    description: page?.meta_description ?? undefined,
+  if (!h) return {}
+  return hotelPageMetadata({
+    label: 'Plan Your Event',
+    hotel: h,
+    page,
     path: `/${hotel}/plan-your-event`,
-    ogImagePath: page?.hero_image ?? h?.hero_image,
+    description: `Event and meeting venues at ${h.name} on ${h.location}, Bangalore — capacities, layouts and enquiries.`,
   })
 }
 
