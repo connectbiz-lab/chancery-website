@@ -9,6 +9,9 @@ import type { Metadata } from 'next'
 import { mediaUrl } from './media'
 import { hotelHomePath } from '@/lib/routes'
 
+// The canonical host is https://www.chanceryhotels.com (decided 12-10-2026).
+// Every canonical tag, sitemap URL, schema @id and /llms.txt link is built on
+// this one value; the bare host and http:// 308 to it at the Vercel domain level.
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.chanceryhotels.com'
 export const BRAND = 'Chancery Hotels'
 // Guaranteed-present branded fallback: served by app/opengraph-image.tsx.

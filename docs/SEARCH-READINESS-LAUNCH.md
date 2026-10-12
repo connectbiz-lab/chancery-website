@@ -12,7 +12,7 @@ The code side is done; what's left is the hotel's decisions and the production s
 
 | # | Item | Status |
 |---|---|---|
-| 1 | Canonical host | ❓ hotel decision. Code reads `NEXT_PUBLIC_SITE_URL` everywhere (fallback `https://www.chanceryhotels.com`). |
+| 1 | Canonical host | ✅ Decided 12-10-2026: **`https://www.chanceryhotels.com`**. It's the code default and the `.env.example` value; every canonical, sitemap URL, schema `@id` and `/llms.txt` link is built from it. ⏳ Vercel domains + DNS on launch day (below). |
 | 2 | Legacy map | ✅ `next.config.ts` `LEGACY`: all 158 non-Native WordPress URLs 308 to a real page (crawled on the preview). ❓ The 50 Chancery Native URLs (`/native/*`, `na_*`, `tcn_*`) still 404 until the hotel picks a destination (`NATIVE_DESTINATION`). |
 | 3 | Sitemap + robots | ✅ The 10 AI crawlers are named; each gets a 200 on `/` and `/llms.txt`. Sitemap `lastmod` = newest `updated_at` of the rows the page renders; About/Awards carry none; no `changeFrequency`. |
 | 4 | Answers + entity | ✅ `/llms.txt` from CMS data (hourly). ✅ No `aggregateRating`, no `priceRange`. ✅ FAQPage on `/faq`. ✅ Restaurant + EventVenue in `Hotel.containsPlace`; EventVenue on each venue page (capacity/area only from the row). ✅ PostalAddress split from the CMS string. ✅ Accessibility contact line reads the hotel rows. ⏳ `geo` + Google listing link: slot `GOOGLE_LISTING` in `lib/seo.ts`, empty until read from the Places API (the old typed-in coordinates were removed). ⏳ FAQ blocks on hotel homes/venue pages need visible Q&A first (schema only where the answer is on the page). |
@@ -25,7 +25,7 @@ The code side is done; what's left is the hotel's decisions and the production s
 
 ---
 
-## 🔴 1. One canonical host (decision ❓)
+## 🔴 1. One canonical host — decided: `https://www.chanceryhotels.com`
 - **Now:** `lib/seo.ts:6` defaults to `https://www.chanceryhotels.com`, and `NEXT_PUBLIC_SITE_URL` isn't set. The live WordPress site serves the **bare** `chanceryhotels.com`, and `www` 301s to bare.
 - **Do:**
   - Pick one host (recommended: `https://www.chanceryhotels.com`) and set `NEXT_PUBLIC_SITE_URL` in Vercel (Production).
@@ -125,6 +125,37 @@ Traps:
   - discovered/crawled but not indexed: add links and request indexing
 - Watch the Pages report's "Last update" date; it lags about a week.
 - AIO: let Iksha propose titles and descriptions from real Search Console queries in Chancery360; a person approves; the site reads the approved copy live. Never publish an unconfirmed fact.
+
+## 🚀 Launch day (in this order)
+The old WordPress site serves `chanceryhotels.com` until step 4. Nothing before that touches production DNS.
+
+1. **Verify the Search Console domain property** `chanceryhotels.com` (DNS TXT record). It covers www and bare, and http and https. Once it's verified, open **Pages → each reason → Examples**: they list the old site's URLs Google knows about. Check every one against `LEGACY` in `next.config.ts` and add any that are missing. The map was built from the WordPress sitemap; Search Console can know more.
+2. **Set the env vars in Vercel Production:**
+   - `NEXT_PUBLIC_SITE_URL=https://www.chanceryhotels.com`
+   - `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+   - `INDEXNOW_KEY` (Production and Preview)
+   - `INDEXNOW_PING_SECRET`, generated once and piped to both `vercel env add` and `gh secret set INDEXNOW_PING_SECRET`, never printed
+   - `GOOGLE_SITE_VERIFICATION` only if a URL-prefix property is used
+
+   Then **redeploy**: env vars apply only to a new deployment.
+3. **Add both domains in Vercel** (Project → Domains):
+   - `www.chanceryhotels.com` as the primary;
+   - `chanceryhotels.com` set to **redirect (308) to www**;
+   - http → https is automatic.
+4. **Flip DNS** to Vercel for both hosts, then check every spelling:
+   - `curl -s -o /dev/null -w "%{http_code} %{redirect_url}"` on `http://chanceryhotels.com`, `https://chanceryhotels.com`, `http://www.chanceryhotels.com` and `https://www.chanceryhotels.com`;
+   - the first three should 308 to `https://www.chanceryhotels.com/`, and the last returns 200.
+5. **Submit the sitemap** `https://www.chanceryhotels.com/sitemap.xml` in Search Console (and Bing Webmaster, optional).
+6. **Request indexing** (URL Inspection) for:
+   - `/`, `/chancery`
+   - both hotels' `/accommodation`, `/dining`, `/plan-your-event`
+   - each venue page
+
+   This can't be automated.
+7. **Run the IndexNow workflow** by hand (Actions → IndexNow → Run workflow on the repo Vercel deploys from). A dashboard redeploy doesn't fire `deployment_status`. Success looks like `{"indexnow":200,"submitted":N}`.
+8. **Crawl the old WordPress sitemap** against the live site and confirm **0 × 404**. The 50 Chancery Native URLs only pass once `NATIVE_DESTINATION` is decided. Then tell the client that "Page with redirect" in Search Console is expected.
+
+Then tick the boxes below, on production.
 
 ## Done means
 Each of these has been **checked live**, not just in the code:

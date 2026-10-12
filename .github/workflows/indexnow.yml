@@ -6,8 +6,8 @@
 #
 # Needs, on the repository Vercel deploys from:
 #   - secret   INDEXNOW_PING_SECRET — equal to the Vercel env var of that name
-#   - variable SITE_URL             — the canonical origin, e.g. https://www.chanceryhotels.com
-# Without either the job says so and passes, so nothing missing ever blocks a deploy.
+#   - variable SITE_URL (optional)  — the canonical origin; defaults to https://www.chanceryhotels.com
+# Without the secret the job says so and passes, so nothing missing ever blocks a deploy.
 name: IndexNow
 
 on:
@@ -25,10 +25,10 @@ jobs:
       - name: Submit the sitemap's pages
         env:
           SECRET: ${{ secrets.INDEXNOW_PING_SECRET }}
-          SITE_URL: ${{ vars.SITE_URL }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://www.chanceryhotels.com' }}
         run: |
-          if [ -z "$SECRET" ] || [ -z "$SITE_URL" ]; then
-            echo "::warning::INDEXNOW_PING_SECRET or SITE_URL is not set — nothing submitted."
+          if [ -z "$SECRET" ]; then
+            echo "::warning::INDEXNOW_PING_SECRET is not set — nothing submitted."
             exit 0
           fi
           # Retries cover the moment between "deploy succeeded" and the domain
