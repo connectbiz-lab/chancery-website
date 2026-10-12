@@ -6,6 +6,23 @@ Pre-launch checklist for the new site in `chancery-next/` (Next.js on Vercel, Su
 
 **Legend:** 🔴 blocks launch · 🟠 fix before launch · 🟡 first week after launch · ❓ needs a decision or fact from the hotel
 
+## Status — 12-10-2026 (branch `feat/search-readiness`)
+
+The code side is done; what's left is the hotel's decisions and the production setup. Verified on the Vercel preview, not yet on production.
+
+| # | Item | Status |
+|---|---|---|
+| 1 | Canonical host | ❓ hotel decision. Code reads `NEXT_PUBLIC_SITE_URL` everywhere (fallback `https://www.chanceryhotels.com`). |
+| 2 | Legacy map | ✅ `next.config.ts` `LEGACY`: all 158 non-Native WordPress URLs 308 to a real page (crawled on the preview). ❓ The 50 Chancery Native URLs (`/native/*`, `na_*`, `tcn_*`) still 404 until the hotel picks a destination (`NATIVE_DESTINATION`). |
+| 3 | Sitemap + robots | ✅ The 10 AI crawlers are named; each gets a 200 on `/` and `/llms.txt`. Sitemap `lastmod` = newest `updated_at` of the rows the page renders; About/Awards carry none; no `changeFrequency`. |
+| 4 | Answers + entity | ✅ `/llms.txt` from CMS data (hourly). ✅ No `aggregateRating`, no `priceRange`. ✅ FAQPage on `/faq`. ✅ Restaurant + EventVenue in `Hotel.containsPlace`; EventVenue on each venue page (capacity/area only from the row). ✅ PostalAddress split from the CMS string. ✅ Accessibility contact line reads the hotel rows. ⏳ `geo` + Google listing link: slot `GOOGLE_LISTING` in `lib/seo.ts`, empty until read from the Places API (the old typed-in coordinates were removed). ⏳ FAQ blocks on hotel homes/venue pages need visible Q&A first (schema only where the answer is on the page). |
+| 5 | Titles + descriptions | ✅ Brand no longer doubled (`FAQ \| Chancery Hotels \| Chancery Hotels` on 9 pages); hotel-page fallbacks name the hotel and road; generated descriptions when the CMS is empty. |
+| 6 | Facts | ❓ All still open (see the PR's question list). `/about`'s unsourced "4.5 / 5" card is removed. |
+| 7 | Internal links | Not changed in this branch. |
+| 8 | Measurement | ✅ GA4 from `NEXT_PUBLIC_GA_MEASUREMENT_ID`; Search Console/Bing meta verification from env. ⏳ Properties and env values to set in production. |
+| 9 | IndexNow | ✅ `lib/indexnow.ts`, `/<key>.txt` rewrite, `/api/indexnow` (401 without the secret), `.github/workflows/indexnow.yml` (`deployment_status` + `workflow_dispatch`, needs repo secret `INDEXNOW_PING_SECRET` + variable `SITE_URL`). ⏳ Key/secret not set anywhere yet. |
+| 10 | Performance | ✅ Hero video `preload="metadata"`. The remaining raw `<img>` are logos/marks (PNG/SVG, CSS-sized) and the catering photo with its own srcset; `Media` (fill + Supabase `-480/-960` variants) doesn't fit them, so they stay. |
+
 ---
 
 ## 🔴 1. One canonical host (decision ❓)
@@ -112,11 +129,11 @@ Traps:
 ## Done means
 Each of these has been **checked live**, not just in the code:
 - [ ] all host spellings 308 to one host
-- [ ] every old WordPress URL 308s to a real page (0 × 404 in a crawl of the old sitemap)
-- [ ] `/robots.txt` names the AI crawlers, and each gets a 200
+- [ ] every old WordPress URL 308s to a real page (0 × 404 in a crawl of the old sitemap) — preview: 158/158 non-Native ✅; 50 Native URLs wait on the hotel ❓
+- [x] `/robots.txt` names the AI crawlers, and each gets a 200 — preview 12-10; recheck on production
 - [ ] `/sitemap.xml` dates are stable across two deploys
-- [ ] `/llms.txt` matches the pages
-- [ ] the Rich Results test passes on both hotel homes (no aggregateRating)
+- [x] `/llms.txt` matches the pages — preview 12-10 (built from the same CMS queries)
+- [x] the Rich Results test passes on both hotel homes (no aggregateRating) — preview 12-10: all items valid; only note is the optional `priceRange`, left out until the hotel confirms one
 - [ ] NAP is identical on site, schema, llms.txt and both Google listings
 - [ ] GA4 and Search Console are receiving data
 - [ ] the IndexNow run reports `{"indexnow":200}`
