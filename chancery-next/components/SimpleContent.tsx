@@ -65,7 +65,7 @@ export async function SimpleContent({ kind }: { kind: Kind }) {
         size="compact"
       />
       <section className="section">
-        <div className="container narrow">
+        <div className="container narrow text-center">
           {p?.intro_body && <p className="lede">{p.intro_body}</p>}
           {fb.body.map((para, i) => <p key={i}>{para}</p>)}
         </div>

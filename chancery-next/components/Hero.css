@@ -210,3 +210,7 @@
 @media (max-width: 720px) {
   .hero-has-toggle.hero-page { padding-top: 11.5rem; }
 }
+
+/* Imageless hero (privacy, terms, accessibility): navy type on cream, no glow. */
+.hero-plain { background: var(--c-cream); }
+.hero-plain .hero-inner h1, .hero-plain .hero-inner .eyebrow, .hero-plain .hero-sub { color: var(--c-navy); text-shadow: none; }

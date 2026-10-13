@@ -75,7 +75,9 @@ export default async function AboutPage() {
     <>
       <Hero
         image={heroImage}
-        splitImages={pavilion && chancery ? [pavilion.hero_image, chancery.hero_image] : undefined}
+        // The group page shows each hotel's banner_image (the exterior the team
+        // chose for this page), falling back to the hotel's own hero.
+        splitImages={pavilion && chancery ? [pavilion.banner_image ?? pavilion.hero_image, chancery.banner_image ?? chancery.hero_image] : undefined}
         eyebrow="The Chancery Group of Hotels"
         heading="Understated Luxury with Purpose"
         subheading="Bangalore’s distinguished homegrown hospitality brand for over two decades."
@@ -242,7 +244,7 @@ export default async function AboutPage() {
               From 26,800 sq ft of banqueting to 2,500 events a year, the Chancery
               Group is one of Bangalore&rsquo;s largest stages for weddings,
               conferences and celebrations — backed by the depth of a homegrown
-              hospitality brand a quarter-century in the making.
+              hospitality brand, a quarter-century in the making.
             </p>
           </div>
           <div className="metrics-grid">
@@ -251,7 +253,7 @@ export default async function AboutPage() {
               { n: '2,500+', label: 'Events hosted / year', sub: 'Weddings, conferences & socials' },
               { n: '10,000+', label: 'Catering capacity', sub: 'Outdoor events of any scale' },
               { n: '2L+', label: 'F&B covers / year', sub: 'Restaurant, banquet & catering' },
-              { n: '349', label: 'Rooms & suites', sub: '223 Pavilion + 126 Chancery' },
+              { n: '349', label: 'Rooms & suites', sub: '223 The Chancery Pavilion + 126 The Chancery Hotel' },
               { n: '25+', label: 'Years of excellence', sub: 'Award-winning operations in Bangalore' },
               { n: '94+%', label: 'Occupancy rate', sub: 'Consistently above benchmark' },
               { rating: 4.5, label: 'Guest satisfaction', sub: '4.5 / 5 · Tripadvisor, Google & Booking.com' },

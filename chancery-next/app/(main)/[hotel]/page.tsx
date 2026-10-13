@@ -32,7 +32,7 @@ export const revalidate = 3600
 // Oct 2026). `aboutEyebrow: null` renders the About block with no kicker.
 const HOME_COPY: Record<HotelSlug, { aboutEyebrow: string | null; aboutHeading: string; diningHeading: string }> = {
   pavilion: { aboutEyebrow: null, aboutHeading: 'Hospitality in the Heart of Bangalore', diningHeading: 'Symphony of Flavors' },
-  chancery: { aboutEyebrow: 'Business Hotel', aboutHeading: 'A Welcome That Has Lasted Generations', diningHeading: 'Dining on Lavelle Road' },
+  chancery: { aboutEyebrow: 'Business Hotel', aboutHeading: 'A Welcome That Has Lasted Generations', diningHeading: 'A Journey of Flavors' },
 }
 
 // Slug → human name fallback so metadata/hero can resolve before the hotel row.

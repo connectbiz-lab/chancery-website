@@ -35,7 +35,7 @@ export default async function CareersPage() {
         size="page"
       />
       <section className="section">
-        <div className="container narrow">
+        <div className="container narrow text-center">
           {p?.intro_body && <p className="lede">{p.intro_body}</p>}
         </div>
       </section>

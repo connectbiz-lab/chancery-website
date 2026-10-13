@@ -37,7 +37,10 @@ export function Hero({
   splitImages,
   hotelToggle = false,
 }: HeroProps) {
-  const cls = ["hero", `hero-${size}`, `hero-align-${align}`, hotelToggle ? "hero-has-toggle" : ""].filter(Boolean).join(" ");
+  // No photo behind the heading (legal pages): the type goes navy on cream,
+  // because ivory with a glow on a pale background was unreadable.
+  const plain = !splitImages && !image;
+  const cls = ["hero", `hero-${size}`, `hero-align-${align}`, hotelToggle ? "hero-has-toggle" : "", plain ? "hero-plain" : ""].filter(Boolean).join(" ");
   return (
     <section className={cls} role="banner">
       {hotelToggle && <HotelToggle />}

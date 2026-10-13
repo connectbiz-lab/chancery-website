@@ -31,7 +31,7 @@ const ASSURED = ['FSSAI-compliant', 'Temperature-controlled logistics', 'Jain, v
 const CAPABILITIES: Array<[string, string]> = [
   ['Menu Planning', 'Custom menus designed around your cuisine, scale and dietary requirements.'],
   ['Bulk Production', 'Trained chefs and standardised kitchens for consistent quality at any volume.'],
-  ['Secure Packaging', 'Temperature-controlled logistics from the kitchen to your venue.'],
+  ['Secure Logistics', 'Temperature-controlled logistics from the kitchen to your venue.'],
   ['FSSAI Compliance', 'Hygiene, food safety and quality audits on every order — no exceptions.'],
   ['On-Ground Service', 'Front-of-house teams that deliver Chancery service standards on-site.'],
   ['Corporate to Community', 'From boardroom lunches to weddings of 10,000+ — one accountable partner.'],
@@ -100,7 +100,7 @@ export default async function CateringPage() {
           </div>
           <dl className="odc-stats">
             <div><dd>{ODC.guestRange}</dd><dt>Guests per event</dt></div>
-            {award && <div><dd>{award.years}</dd><dt>{award.title}</dt></div>}
+            {award && <div><dd>{award.years}</dd><dt>{award.title}{award.by ? ` \u00b7 ${award.by}` : ''}</dt></div>}
           </dl>
           <div className="text-center">
             <Link href="/pavilion/contact-us" className="btn">Request a Proposal</Link>
@@ -177,7 +177,7 @@ export default async function CateringPage() {
           <div className="section-head odc-venues-head">
             <p className="eyebrow center">Proven at Scale</p>
             <h2 className="h2">Venues We&rsquo;ve Catered</h2>
-            <p className="lede">Stadiums, convention centres, palace grounds and open fields — wherever the occasion calls for it.</p>
+            <p className="lede">Stadiums, convention centres, palace grounds and private venues — wherever the occasion calls for it.</p>
           </div>
           <div className="odc-venues">
             {VENUES_CATERED.map(([name, kind]) => (

@@ -1,0 +1,15 @@
+[
+ {"op":"update","table":"page","match":{"kind":"dining","hotel":"pavilion"},"set":{"intro_body":"From rooftop craft beers to global cuisine by the pool — dining at The Chancery Pavilion is a journey of its own."}},
+ {"op":"update","table":"page","match":{"kind":"careers","hotel":null},"set":{"intro_body":"Chancery Hotels has been a part of Bangalore's hospitality landscape since 2000. We're always looking for people who share our love of service, craft and ceremony."}},
+ {"op":"update","table":"restaurant","match":{"slug":"the-lounge"},"set":{"timing":"9:00 AM – 10:30 PM"}},
+ {"op":"update","table":"restaurant","match":{"slug":"ithaca"},"set":{"cuisine":"24/7 Coffee Shop","timing":"Open 24 Hours"}},
+ {"op":"update","table":"venue","match":{"slug":"colors-hall","hotel":"chancery"},"set":{"description":"A contemporary venue ideal for private functions, workshops and social celebrations, comfortably accommodating up to 250 guests."}},
+ {"op":"update","table":"venue","match":{"slug":"walton-hall","hotel":"chancery"},"set":{"description":"A well-appointed hall suitable for business meetings, training sessions and intimate private events, with a capacity of up to 90 guests."}},
+ {"op":"update","table":"venue","match":{"slug":"chancery-boardroom","hotel":"chancery"},"set":{"description":"Designed for executive meetings and discussions, the Board Room offers a professional, well-appointed environment for corporate sessions of up to 50 guests."}},
+ {"op":"update","table":"offer","match":{"title":"Ultimate Weekend Package","hotel":"chancery"},"set":{"image":"hotels/2026-chancery-spa-1.webp"}},
+ {"op":"update","table":"gallery_image","match":{"alt":"Matsuri — dining room","hotel":"chancery"},"set":{"image":"dining/2026-matsuri-1.webp","alt":"Matsuri — entrance"}},
+ {"op":"update","table":"hotel","match":{"slug":"pavilion"},"set":{"banner_image":"hotels/2026-pavilion-exterior.webp"}},
+ {"op":"update","table":"hotel","match":{"slug":"chancery"},"set":{"banner_image":"hotels/chancery-hero-clean.webp"}},
+ {"op":"update","table":"faq_item","match":{"question":"What general amenities are available at The Chancery Pavilion?"},"set":{"answer":"The Chancery Pavilion offers three dining experiences: award-winning open-air dining and craft beer at Alchemy; round-the-clock dining at Ithaca, the 24/7 coffee shop overlooking the pool; and snacks and light bites at The Lounge, open from 9:00 AM to 10:30 PM. Guests also have access to a fitness centre open from 6:00 am to 9:00 pm, a swimming pool open from 6:00 am to 6:00 pm, 24-hour in-room dining, daily turndown service, on-site laundry, a business centre, valet parking, wake-up calls, and Wi-Fi and LAN connectivity."}},
+ {"op":"update","table":"faq_item","match":{"question":"What dining options are available at The Chancery Pavilion?"},"set":{"answer":"The Chancery Pavilion offers three dining experiences: award-winning open-air dining and craft beer at Alchemy; round-the-clock dining at Ithaca, the 24/7 coffee shop overlooking the pool; and snacks and light bites at The Lounge."}}
+]
