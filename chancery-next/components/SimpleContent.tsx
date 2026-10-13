@@ -65,7 +65,9 @@ export async function SimpleContent({ kind }: { kind: Kind }) {
         size="compact"
       />
       <section className="section">
-        <div className="container narrow text-center">
+        {/* The block sits centred on the page; the copy itself is left-aligned so
+            the paragraphs keep a straight edge (centred text read as ragged). */}
+        <div className="container narrow legal-body">
           {p?.intro_body && <p className="lede">{p.intro_body}</p>}
           {fb.body.map((para, i) => <p key={i}>{para}</p>)}
         </div>

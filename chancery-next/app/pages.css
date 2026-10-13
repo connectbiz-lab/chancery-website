@@ -250,3 +250,7 @@
 @media (max-width: 700px) { .image-grid { grid-template-columns: 1fr 1fr; } }
 .image-grid .figure { aspect-ratio: 3 / 4; }
 .image-grid .figure.wide { aspect-ratio: 4 / 3; }
+
+/* Legal pages (privacy, terms, accessibility): centred column, left-aligned copy. */
+.legal-body { text-align: left; }
+.legal-body .lede { margin-left: 0; margin-right: 0; }
