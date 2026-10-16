@@ -11,7 +11,11 @@ interface Props {
   restaurant: string
 }
 
-const EMPTY = { name: '', email: '', phone: '', covers: '2', date: '', time: '', message: '' }
+// Time is picked on a 12-hour clock (hour, minutes, AM/PM): the native time
+// field showed a 24-hour wheel in Indian browsers, which the team found confusing.
+const EMPTY = { name: '', email: '', phone: '', covers: '2', date: '', hour: '7', minute: '30', ampm: 'PM', message: '' }
+const HOURS = Array.from({ length: 12 }, (_, i) => String(i + 1))
+const MINUTES = ['00', '15', '30', '45']
 
 export function BookTableModal({ open, onClose, hotel, restaurant }: Props) {
   const [form, setForm] = useState({ ...EMPTY })
@@ -63,7 +67,7 @@ export function BookTableModal({ open, onClose, hotel, restaurant }: Props) {
           restaurant,
           covers: Number(form.covers) || null,
           preferred_date: form.date || null,
-          preferred_time: form.time,
+          preferred_time: `${form.hour}:${form.minute} ${form.ampm}`,
           message: form.message,
           page: `${hotel}/dining`,
         }),
@@ -129,11 +133,21 @@ export function BookTableModal({ open, onClose, hotel, restaurant }: Props) {
                   <input type="date" required value={form.date}
                     onChange={(e) => set('date', e.target.value)} />
                 </label>
-                <label className="field">
+                <div className="field btm-time">
                   <span>Time</span>
-                  <input type="time" required value={form.time}
-                    onChange={(e) => set('time', e.target.value)} />
-                </label>
+                  <div className="btm-time-row">
+                    <select aria-label="Hour" value={form.hour} onChange={(e) => set('hour', e.target.value)}>
+                      {HOURS.map((h) => <option key={h} value={h}>{h}</option>)}
+                    </select>
+                    <select aria-label="Minutes" value={form.minute} onChange={(e) => set('minute', e.target.value)}>
+                      {MINUTES.map((m) => <option key={m} value={m}>{m}</option>)}
+                    </select>
+                    <select aria-label="AM or PM" value={form.ampm} onChange={(e) => set('ampm', e.target.value)}>
+                      <option value="AM">AM</option>
+                      <option value="PM">PM</option>
+                    </select>
+                  </div>
+                </div>
               </div>
               <label className="field btm-msg">
                 <span>Special requests (optional)</span>

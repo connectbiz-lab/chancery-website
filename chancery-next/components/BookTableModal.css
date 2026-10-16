@@ -65,3 +65,7 @@
 .btm-success { text-align: center; padding: 1rem 0.5rem; }
 .btm-success p:not(.eyebrow) { margin: 0 auto 1.75rem; max-width: 40ch; }
 .btm-success .btn { margin-top: 0; }
+
+/* 12-hour time picker: hour, minutes, AM/PM side by side in one field. */
+.btm-time-row { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 0.4rem; }
+.btm-time-row select { min-width: 0; }

@@ -1,0 +1,7 @@
+[
+ {"op":"replace_children","table":"venue","match":{"slug":"club-lounge","hotel":"pavilion"},"child":"venue_image","fk":"venue_id","rows":[
+   {"image":"venues/2026-pavilion-club-lounge.webp","alt":"Club Lounge — cluster seating","order":0},
+   {"image":"venues/2026-pavilion-club-lounge-boardroom.webp","alt":"Club Lounge — boardroom setting","order":1}]},
+ {"op":"delete","table":"venue","match":{"slug":"pavilion-board-room","hotel":"pavilion"}},
+ {"op":"update","table":"page","match":{"kind":"events","hotel":"pavilion"},"set":{"intro_body":"Five venues — from the soaring Grand Ball Room to the Club Lounge — each one engineered for the kind of celebration you have in mind.","meta_description":"Grand Ballroom, conference suites, divisible halls and the Club Lounge at The Chancery Pavilion."}}
+]
