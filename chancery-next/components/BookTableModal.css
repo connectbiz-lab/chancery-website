@@ -41,14 +41,15 @@
 
 .btm-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* The third column is wider so the hour · minutes · AM/PM selects fit. */
+  grid-template-columns: 1fr 1fr 1.5fr;
   gap: 0.7rem 1rem;
 }
 .btm-grid .f-wide { grid-column: span 2; }
 .btm-grid .f-full { grid-column: 1 / -1; }
 @media (max-width: 520px) {
   .btm-grid { grid-template-columns: 1fr 1fr; }
-  .btm-grid .f-wide, .btm-grid .f-full { grid-column: 1 / -1; }
+  .btm-grid .f-wide, .btm-grid .f-full, .btm-grid .btm-time { grid-column: 1 / -1; }
 }
 
 .btm-form .field { display: flex; flex-direction: column; }
@@ -68,4 +69,4 @@
 
 /* 12-hour time picker: hour, minutes, AM/PM side by side in one field. */
 .btm-time-row { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 0.4rem; }
-.btm-time-row select { min-width: 0; }
+.btm-time-row select { min-width: 0; padding-inline: 0.5rem 0.25rem; }
