@@ -79,7 +79,7 @@ const LEGACY: Array<[source: string, destination: string]> = [
   ['/pa_plan_your_event/indian-affair/:slug*', '/pavilion/plan-your-event/indian-affair'],
   // Poolside Banqueting is now part of Indian Affair (F&B team, Oct 2026).
   ['/pa_plan_your_event/poolside-banqueting/:slug*', '/pavilion/plan-your-event/indian-affair'],
-  ['/pa_plan_your_event/board-room/:slug*', '/pavilion/plan-your-event/pavilion-board-room'],
+  ['/pa_plan_your_event/board-room/:slug*', '/pavilion/plan-your-event/club-lounge'],
   ['/pa_plan_your_event/:slug*', '/pavilion/plan-your-event'],
   ['/plan-your-event/:slug*', '/pavilion/plan-your-event'],
   ['/meetings_and_events/:slug*', '/pavilion/plan-your-event'], // corporate-events, meetings, weddings
