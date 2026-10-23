@@ -22,6 +22,8 @@ import { indexNowKey } from './lib/indexnow'
  */
 const LEGACY: Array<[source: string, destination: string]> = [
   // ── Group pages ──────────────────────────────────────────────────────────
+  ['/index.php', '/'],
+  ['/index.html', '/'],
   ['/home/:slug*', '/'],
   ['/about-us/:slug*', '/about'],
   ['/reach-us/:slug*', '/pavilion/contact-us'],
