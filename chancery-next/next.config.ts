@@ -23,6 +23,8 @@ import { indexNowKey } from './lib/indexnow'
 const LEGACY: Array<[source: string, destination: string]> = [
   // ── Group pages ──────────────────────────────────────────────────────────
   ['/index.php', '/'],
+  // The old five-star classification certificate PDF still shows in Google.
+  ['/wp-content/uploads/2021/11/Five-Star-Hotel-Classification-Certificate-The-Chancery-Pavilion-Bangalore1.pdf', '/pavilion/awards'],
   ['/index.html', '/'],
   ['/home/:slug*', '/'],
   ['/about-us/:slug*', '/about'],
@@ -112,7 +114,10 @@ const LEGACY: Array<[source: string, destination: string]> = [
  * there? Until the hotel decides, these paths 404 at launch. To forward them,
  * set NATIVE_DESTINATION.
  */
-const NATIVE_DESTINATION: string | null = null
+// 11-11-2026: forwarded to the group page. Search Console showed these URLs
+// still drawing searches (≈390 impressions in 28 days) and landing on a 404.
+// Change the destination here if the hotel gives Native its own site.
+const NATIVE_DESTINATION: string | null = '/about'
 const NATIVE = [
   '/native/:slug*', '/na_accomodation/:slug*', '/na_dining/:slug*', '/na_offers/:slug*',
   '/na_plan_your_event/:slug*', '/na_testimonials/:slug*', '/na_why_choose_us/:slug*',

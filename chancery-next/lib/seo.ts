@@ -231,6 +231,10 @@ export function hotelJsonLd(
     address: postalAddress(h.address),
     ...(listing ? { geo: { '@type': 'GeoCoordinates', latitude: listing.lat, longitude: listing.lng } } : {}),
     ...(h.rooms_count ? { numberOfRooms: h.rooms_count } : {}),
+    // Both hotels: check-in 2:00 pm, check-out 12:00 pm — the times the hotel
+    // team approved in the FAQ ("What are the check-in and check-out times…").
+    checkinTime: '14:00',
+    checkoutTime: '12:00',
     ...(sameAs.length ? { sameAs } : {}),
     parentOrganization: { '@id': ORG_ID },
     ...(containsPlace.length ? { containsPlace } : {}),
